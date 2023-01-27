@@ -31,8 +31,8 @@ public class PantryService {
         return pantryRepository.findAll();
     }
 
-    public Pantry findPantryById(Long id) {
-        return pantryRepository.findPantryById(id)
-                .orElseThrow(() -> new PantryNotFoundException("Pantry with id: " + id + " was not found!"));
+    public Pantry findPantryByPantryId(Long pantryId) {
+        return pantryRepository.findPantryByPantryId(pantryId)
+                .orElseThrow(() -> new PantryNotFoundException("Pantry with id: " + pantryId + " was not found!"));
     }
 }

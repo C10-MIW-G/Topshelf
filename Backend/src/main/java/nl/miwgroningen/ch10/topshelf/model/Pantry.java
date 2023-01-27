@@ -4,10 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
 
@@ -23,12 +20,12 @@ public class Pantry implements Serializable {
 
     @Id
     @GeneratedValue
-    private Long id;
+    private Long pantryId;
 
     private String name;
 
-    @ManyToMany(mappedBy = "pantries")
-    public Set<ProductDefinition> stock;
+    @ManyToMany(mappedBy = "pantries", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private Set<ProductDefinition> stock;
 
     public void addProductToStock (ProductDefinition productDefinition) {
         stock.add(productDefinition);

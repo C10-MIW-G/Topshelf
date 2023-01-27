@@ -4,10 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Set;
 
@@ -23,14 +20,14 @@ public class ProductDefinition {
 
     @Id
     @GeneratedValue
-    private Long id;
+    private Long productDefinitionId;
 
     private String name;
     private LocalDate expirationDate;
     private int productAmount;
 
-    @ManyToMany
-    public Set<Pantry> pantries;
+    @ManyToMany (cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    private Set<Pantry> pantries;
 
     @Override
     public String toString() {

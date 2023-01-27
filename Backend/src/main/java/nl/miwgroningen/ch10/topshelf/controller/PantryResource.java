@@ -31,9 +31,9 @@ public class PantryResource {
         return new ResponseEntity<>(pantries, HttpStatus.OK);
     }
 
-    @GetMapping("/details/{id}")
-    public ResponseEntity<Pantry> getPantryById(@PathVariable("id") Long id) {
-        Pantry pantry = pantryService.findPantryById(id);
+    @GetMapping("/details/{pantryId}")
+    public ResponseEntity<Pantry> getPantryById(@PathVariable("pantryId") Long pantryId) {
+        Pantry pantry = pantryService.findPantryByPantryId(pantryId);
         return new ResponseEntity<>(pantry, HttpStatus.OK);
     }
 }

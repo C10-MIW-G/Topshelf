@@ -7,5 +7,5 @@ import java.util.Optional;
 
 public interface PantryRepository extends JpaRepository<Pantry, Long> {
 
-    Optional<Pantry> findPantryById(Long id);
+    Optional<Pantry> findPantryByPantryId(Long pantryId);
 }

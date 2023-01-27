@@ -4,8 +4,8 @@ import nl.miwgroningen.ch10.topshelf.model.Pantry;
 import nl.miwgroningen.ch10.topshelf.model.ProductDefinition;
 import nl.miwgroningen.ch10.topshelf.repository.PantryRepository;
 import nl.miwgroningen.ch10.topshelf.repository.ProductDefinitionRepository;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -17,7 +17,7 @@ import java.util.Set;
  * Adds data to our DB
  */
 
-@Controller
+@RestController
 public class SeedController {
 
     private final PantryRepository pantryRepository;
@@ -33,7 +33,6 @@ public class SeedController {
     protected String seedDatabase() {
         Pantry pantry1 = new Pantry();
         pantry1.setName("Vliegtuigbar");
-        pantryRepository.save(pantry1);
 
         ProductDefinition rijst = new ProductDefinition();
         rijst.setName("Rijst");
@@ -52,12 +51,15 @@ public class SeedController {
         pesto.setName("Pesto");
 
         Set<ProductDefinition> stock1 = new HashSet<>();
+        stock1.add(rijst);
         Collections.addAll(stock1, rijst, spaghetti, oudeKaas, parmezaan, pesto);
         productDefinitionRepository.saveAll(stock1);
 
         pantry1.setStock(stock1);
         pantryRepository.save(pantry1);
-
+        for (ProductDefinition productDefinition : pantry1.getStock()) {
+            System.out.println(productDefinition.getName());
+        }
         return "redirect:/pantry/all";
     }
 }
