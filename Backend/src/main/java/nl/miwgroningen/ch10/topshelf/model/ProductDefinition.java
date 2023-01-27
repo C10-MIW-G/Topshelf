@@ -26,7 +26,7 @@ public class ProductDefinition {
     private LocalDate expirationDate;
     private int productAmount;
 
-    @ManyToMany (cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @ManyToMany (cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Set<Pantry> pantries;
 
     @Override

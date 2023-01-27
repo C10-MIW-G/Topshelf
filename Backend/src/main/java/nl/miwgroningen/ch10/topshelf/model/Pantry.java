@@ -16,7 +16,7 @@ import java.util.Set;
 
 @Entity
 @Getter @Setter @NoArgsConstructor
-public class Pantry implements Serializable {
+public class Pantry {
 
     @Id
     @GeneratedValue
@@ -24,7 +24,7 @@ public class Pantry implements Serializable {
 
     private String name;
 
-    @ManyToMany(mappedBy = "pantries", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToMany
     private Set<ProductDefinition> stock;
 
     public void addProductToStock (ProductDefinition productDefinition) {

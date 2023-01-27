@@ -58,6 +58,7 @@ public class SeedController {
         pantry1.setStock(stock1);
         pantryRepository.save(pantry1);
         for (ProductDefinition productDefinition : pantry1.getStock()) {
+            System.out.println(productDefinition.getProductDefinitionId());
             System.out.println(productDefinition.getName());
         }
         return "redirect:/pantry/all";
