@@ -1,4 +1,7 @@
+import { ProductDefinition } from "./productdefinition";
+
 export interface Pantry {
-    id: number;
+    pantryId: number;
     name: string;
+    stock: Set<ProductDefinition>;
 }
