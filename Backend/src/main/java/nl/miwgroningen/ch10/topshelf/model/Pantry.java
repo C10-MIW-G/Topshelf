@@ -1,13 +1,13 @@
 package nl.miwgroningen.ch10.topshelf.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import java.io.Serializable;
 import java.util.Set;
 
@@ -17,7 +17,8 @@ import java.util.Set;
  * The definition of a pantry
  */
 
-@Entity @Getter @Setter @NoArgsConstructor
+@Entity
+@Getter @Setter @NoArgsConstructor
 public class Pantry implements Serializable {
 
     @Id
@@ -26,7 +27,7 @@ public class Pantry implements Serializable {
 
     private String name;
 
-    @ManyToMany (mappedBy = "pantries")
+    @ManyToMany(mappedBy = "pantries")
     public Set<ProductDefinition> stock;
 
     public void addProductToStock (ProductDefinition productDefinition) {

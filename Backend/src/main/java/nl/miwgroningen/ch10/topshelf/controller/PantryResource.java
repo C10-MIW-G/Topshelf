@@ -14,13 +14,12 @@ import java.util.List;
  * Talks with the frontend
  */
 
-@CrossOrigin(origins = "http://locolhost:4200")
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/pantry")
 public class PantryResource {
 
     private final PantryService pantryService;
-
 
     public PantryResource(PantryService pantryService) {
         this.pantryService = pantryService;

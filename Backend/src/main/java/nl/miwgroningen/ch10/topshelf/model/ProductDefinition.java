@@ -1,13 +1,13 @@
 package nl.miwgroningen.ch10.topshelf.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import java.time.LocalDate;
 import java.util.Set;
 
@@ -17,7 +17,8 @@ import java.util.Set;
  * The definition of a product
  */
 
-@Entity @Getter @Setter @NoArgsConstructor
+@Entity
+@Getter @Setter @NoArgsConstructor
 public class ProductDefinition {
 
     @Id
