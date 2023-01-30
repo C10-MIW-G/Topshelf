@@ -1,10 +1,10 @@
 package nl.miwgroningen.ch10.topshelf.model;
 
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Set;
 
@@ -26,7 +26,7 @@ public class ProductDefinition {
     private LocalDate expirationDate;
     private int productAmount;
 
-    @ManyToMany (cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Set<Pantry> pantries;
 
     @Override
