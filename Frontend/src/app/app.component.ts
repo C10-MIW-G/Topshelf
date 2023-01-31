@@ -12,6 +12,7 @@ import { ProductDefinition } from './productdefinition';
 export class AppComponent implements OnInit {
   public pantries: Pantry[] = [];
   public productdefinitions: ProductDefinition[] = [];
+  myImage: string = "assets/images/TopshelfLogoTemporary.png"
 
   constructor(private pantryService: PantryService){}
 

@@ -1,1 +1,25 @@
-/* You can add global styles to this file, and also import other style files */
+@import 'https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css';
+@import 'https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css';
+
+.text-bg-dark {
+  background-color: #00695C;
+}
+
+
+body {
+  background-color: beige;
+}
+
+.body-container {
+  padding: 20px;
+}
+
+.footer,
+footer {
+  background-color: bisque;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
+
