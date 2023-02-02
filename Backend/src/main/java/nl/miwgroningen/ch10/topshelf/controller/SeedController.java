@@ -34,6 +34,12 @@ public class SeedController {
         Pantry pantry1 = new Pantry();
         pantry1.setName("Vliegtuigbar");
 
+        Pantry pantry2 = new Pantry();
+        pantry2.setName("The Jockey's");
+
+        Pantry pantry3 = new Pantry();
+        pantry3.setName("Muziekband, de triangel");
+
         ProductDefinition rijst = new ProductDefinition();
         rijst.setName("Rijst");
 
@@ -61,6 +67,10 @@ public class SeedController {
             System.out.println(productDefinition.getProductDefinitionId());
             System.out.println(productDefinition.getName());
         }
+
+        pantryRepository.save(pantry2);
+        pantryRepository.save(pantry3);
+
         return "redirect:/pantry/all";
     }
 }

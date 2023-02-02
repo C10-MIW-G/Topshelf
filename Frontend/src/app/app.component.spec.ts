@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'topshelfAngular'`, () => {
+  it(`should have as title 'Topshelf'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('topshelfAngular');
+    expect(app.title).toEqual('Topshelf');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('topshelfAngular app is running!');
+    expect(compiled.querySelector('.content span')?.textContent).toContain('Topshelf app is running!');
   });
 });

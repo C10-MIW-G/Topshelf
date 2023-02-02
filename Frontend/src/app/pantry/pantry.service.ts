@@ -1,8 +1,7 @@
-import { Inject, Injectable } from "@angular/core";
+import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { HttpClient } from '@angular/common/http';
 import { Pantry } from "./pantry";
-
 
 @Injectable({providedIn: 'root'})
 
@@ -14,5 +13,4 @@ export class PantryService {
   public getPantries(): Observable<Pantry[]> {
     return this.http.get<Pantry[]>(`${this.apiServerUrl}/pantry/all`);
   }
-
 }
