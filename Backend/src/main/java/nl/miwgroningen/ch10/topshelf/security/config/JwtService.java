@@ -22,10 +22,13 @@ import java.util.function.Function;
 @Service
 public class JwtService {
 
-    private final static String SECRET_KEY = "5166546A576E5A7134743777217A25432A462D4A614E645267556B58703273357538782F413F4428472B4B6250655368566D5971337436773979244226452948";
+
+    //    private final static String SECRET_KEY = "5166546A576E5A7134743777217A25432A462D4A614E645267556B58703273357538782F413F4428472B4B6250655368566D5971337436773979244226452948";
+String key = System.getenv("SECRET_KEY");
+
 
     public String extractUsername(String token){
-        return null;
+        return extractClaim(token, Claims::getSubject);
     }
     public String generateToken(UserDetails userDetails){
         return  generateToken(new HashMap<>(), userDetails);
@@ -58,7 +61,7 @@ public class JwtService {
     }
 
     private Key getSignInKey(){
-        byte[] keyBytes = Decoders.BASE64.decode(SECRET_KEY);
+        byte[] keyBytes = Decoders.BASE64.decode(key);
         return Keys.hmacShaKeyFor(keyBytes);
     }
 

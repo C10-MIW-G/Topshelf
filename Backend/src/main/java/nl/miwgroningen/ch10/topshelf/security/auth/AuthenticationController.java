@@ -9,13 +9,11 @@ import org.springframework.web.bind.annotation.*;
  * <p>
  * Dit is wat het programma doet.
  */
-
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/topshelf")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:8081", maxAge = 3600, allowCredentials="true")
 public class AuthenticationController {
-
     private final AuthenticationService service;
 
     @PostMapping("/register")
@@ -23,12 +21,13 @@ public class AuthenticationController {
             @RequestBody RegisterRequest request
     ){
         return ResponseEntity.ok(service.register(request));
+
     }
 
     @PostMapping("/auth")
     public ResponseEntity<AuthenticationResponse> authenticate(
             @RequestBody AuthenticationRequest request
-    ){
+    ) {
         return ResponseEntity.ok(service.authenticate(request));
     }
 

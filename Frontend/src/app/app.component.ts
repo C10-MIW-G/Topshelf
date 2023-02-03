@@ -1,8 +1,5 @@
-import { HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse, HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Pantry } from './pantry';
-import { PantryService } from './pantry.service';
-import { ProductDefinition } from './productdefinition';
 
 @Component({
   selector: 'app-root',
@@ -10,24 +7,40 @@ import { ProductDefinition } from './productdefinition';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  public pantries: Pantry[] = [];
-  public productdefinitions: ProductDefinition[] = [];
+  title(title: any) {
+    throw new Error('Method not implemented.');
+  }
 
-  constructor(private pantryService: PantryService){}
+  roles: string[] = [];
+  tokenStorageService: any;
+  isLoggedIn: boolean = false;
+  showAdminBoard = false;
+  showModeratorBoard = false;
+  username: string | undefined;
+
+  constructor(
+    private httpclient: HttpClient){
+    }
 
   ngOnInit() {
-    this.getPantries();
+    this.httpclient.get(`http://localhost:8080/topshelf`);
+
   }
 
-  public getPantries(): void {
-    this.pantryService.getPantries().subscribe(
-      (response: Pantry[]) => {
-        this.pantries = response;
-        console.log(this.pantries);
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-    );
+  if (_isLoggedIn: boolean) {
+    const user = this.tokenStorageService.getUser();
+    this.roles = user.roles;
+
+    this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
+    this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
+
+    this.username = user.username;
   }
+  logout(): void {
+  this.tokenStorageService.signOut();
+  window.location.reload();
+
 }
+
+}
+
