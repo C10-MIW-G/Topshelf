@@ -1,15 +1,15 @@
 import { LoginComponent } from './login/login.component';
-import { NgModule, Component } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PantryStockComponent } from './pantry-stock/pantry-stock.component';
+import { StockProductComponent } from './stock-product/stock-product.component';
 import { PantryComponent } from './pantry/pantry.component';
 
 
 const appRoute: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},
   {path: 'pantry', component: PantryComponent},
-  {path: 'pantry/:pantryId', component: PantryStockComponent},
-  {path: 'login', component: LoginComponent}
+  {path: 'login', component: LoginComponent},
+  {path: 'pantry/:pantryId', component: StockProductComponent}
 ]
 
 @NgModule({

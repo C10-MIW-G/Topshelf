@@ -5,8 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDate;
-import java.util.Set;
+import java.util.List;
 
 /**
  * @author Robbin Drent <r.v.drent@st.hanze.nl>
@@ -19,18 +18,13 @@ import java.util.Set;
 public class ProductDefinition {
 
     @Id
-    @GeneratedValue
-    private Long productDefinitionId;
-
     private String name;
-    private LocalDate expirationDate;
-    private int productAmount;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    private Set<Pantry> pantries;
+    @OneToMany(mappedBy = "stockProductId", cascade = CascadeType.ALL)
+    List<StockProduct> stockProducts;
 
     @Override
     public String toString() {
-        return "Product: " + name + " Amount: " + productAmount + " Expiration date: " + expirationDate;
+        return "Product: " + name;
     }
 }

@@ -2,14 +2,15 @@ package nl.miwgroningen.ch10.topshelf.controller;
 
 import nl.miwgroningen.ch10.topshelf.model.Pantry;
 import nl.miwgroningen.ch10.topshelf.model.ProductDefinition;
+import nl.miwgroningen.ch10.topshelf.model.StockProduct;
 import nl.miwgroningen.ch10.topshelf.repository.PantryRepository;
 import nl.miwgroningen.ch10.topshelf.repository.ProductDefinitionRepository;
+import nl.miwgroningen.ch10.topshelf.repository.StockProductRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.time.LocalDate;
+import java.util.*;
 
 /**
  * @author Inge Dikland
@@ -21,11 +22,14 @@ import java.util.Set;
 public class SeedController {
 
     private final PantryRepository pantryRepository;
-
+    private final StockProductRepository stockProductRepository;
     private final ProductDefinitionRepository productDefinitionRepository;
 
-    public SeedController(PantryRepository pantryRepository, ProductDefinitionRepository productDefinitionRepository) {
+    public SeedController(PantryRepository pantryRepository,
+                          StockProductRepository stockProductRepository,
+                          ProductDefinitionRepository productDefinitionRepository) {
         this.pantryRepository = pantryRepository;
+        this.stockProductRepository = stockProductRepository;
         this.productDefinitionRepository = productDefinitionRepository;
     }
 
@@ -40,9 +44,12 @@ public class SeedController {
         Pantry pantry3 = new Pantry();
         pantry3.setName("Muziekband, de triangel");
 
+        pantryRepository.save(pantry1);
+        pantryRepository.save(pantry2);
+        pantryRepository.save(pantry3);
+
         ProductDefinition rijst = new ProductDefinition();
         rijst.setName("Rijst");
-
 
         ProductDefinition spaghetti = new ProductDefinition();
         spaghetti.setName("Spaghetti");
@@ -56,20 +63,46 @@ public class SeedController {
         ProductDefinition pesto = new ProductDefinition();
         pesto.setName("Pesto");
 
-        Set<ProductDefinition> stock1 = new HashSet<>();
-        stock1.add(rijst);
-        Collections.addAll(stock1, rijst, spaghetti, oudeKaas, parmezaan, pesto);
-        productDefinitionRepository.saveAll(stock1);
+        List<ProductDefinition> productDefinitions = new ArrayList<>();
+        productDefinitions.add(rijst);
+        productDefinitions.add(spaghetti);
+        productDefinitions.add(oudeKaas);
+        productDefinitions.add(parmezaan);
+        productDefinitions.add(pesto);
+        productDefinitionRepository.saveAll(productDefinitions);
 
-        pantry1.setStock(stock1);
-        pantryRepository.save(pantry1);
-        for (ProductDefinition productDefinition : pantry1.getStock()) {
-            System.out.println(productDefinition.getProductDefinitionId());
-            System.out.println(productDefinition.getName());
-        }
+        StockProduct rijst1 = new StockProduct();
+        rijst1.setProductDefinition(rijst);
+        rijst1.setExpirationDate(LocalDate.now());
+        rijst1.setPantry(pantry1);
 
-        pantryRepository.save(pantry2);
-        pantryRepository.save(pantry3);
+        StockProduct spaghetti1 = new StockProduct();
+        spaghetti1.setProductDefinition(spaghetti);
+        spaghetti1.setExpirationDate(LocalDate.now());
+        spaghetti1.setPantry(pantry1);
+
+        StockProduct oudeKaas1 = new StockProduct();
+        oudeKaas1.setProductDefinition(oudeKaas);
+        oudeKaas1.setExpirationDate(LocalDate.now());
+        oudeKaas1.setPantry(pantry1);
+
+        StockProduct pesto1 = new StockProduct();
+        pesto1.setProductDefinition(pesto);
+        pesto1.setExpirationDate(LocalDate.now());
+        pesto1.setPantry(pantry2);
+
+        StockProduct parmezaan1 = new StockProduct();
+        parmezaan1.setProductDefinition(parmezaan);
+        parmezaan1.setExpirationDate(LocalDate.now());
+        parmezaan1.setPantry(pantry2);
+
+        List<StockProduct> stock1 = new ArrayList<>();
+        stock1.add(rijst1);
+        stock1.add(spaghetti1);
+        stock1.add(oudeKaas1);
+        stock1.add(parmezaan1);
+        stock1.add(pesto1);
+        stockProductRepository.saveAll(stock1);
 
         return "redirect:/pantry/all";
     }
