@@ -1,14 +1,12 @@
 package nl.miwgroningen.ch10.topshelf.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Set;
+import java.util.List;
 
 /**
  * @author Robbin Drent <r.v.drent@st.hanze.nl>
@@ -26,11 +24,8 @@ public class Pantry {
 
     private String name;
 
-    @ManyToMany
-    private Set<ProductDefinition> stock;
+    @JsonManagedReference
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "stockProductId")
+    private List<StockProduct> stock;
 
-    public void addProductToStock (ProductDefinition productDefinition) {
-        stock.add(productDefinition);
-        productDefinition.getPantries().add(this);
-    }
 }

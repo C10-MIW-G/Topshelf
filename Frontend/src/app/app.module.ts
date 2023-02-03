@@ -5,14 +5,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PantryComponent } from './pantry/pantry.component';
-import { PantryStockComponent } from './pantry-stock/pantry-stock.component';
+import { StockProductComponent } from './stock-product/stock-product.component';
 import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     PantryComponent,
-    PantryStockComponent
+    StockProductComponent
   ],
   imports: [
     BrowserModule,

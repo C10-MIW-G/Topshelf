@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PantryStockComponent } from './pantry-stock/pantry-stock.component';
+import { StockProductComponent } from './stock-product/stock-product.component';
 import { PantryComponent } from './pantry/pantry.component';
 
 const appRoute: Routes = [
   {path: '', redirectTo: 'pantry', pathMatch: 'full'},
   {path: 'pantry', component: PantryComponent},
-  {path: 'pantry/:pantryId', component: PantryStockComponent}
+  {path: 'pantry/:pantryId', component: StockProductComponent}
 ]
 
 @NgModule({

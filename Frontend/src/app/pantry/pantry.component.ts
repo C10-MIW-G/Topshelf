@@ -2,7 +2,6 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Pantry } from './pantry';
 import { PantryService } from './pantry.service';
-import { ProductDefinition } from '../product-definitions/productDefinition';
 
 @Component({
     selector: 'app-pantry',
@@ -10,9 +9,8 @@ import { ProductDefinition } from '../product-definitions/productDefinition';
     styleUrls: ['./pantry.component.css']
 })
 export class PantryComponent implements OnInit {
-    public pantries: Pantry[] = [];
-    public productDefinitions: ProductDefinition[] = [];
-
+    public pantries?: Pantry[] = [];
+    
     constructor(private pantryService: PantryService) { }
 
     ngOnInit() {
@@ -23,7 +21,6 @@ export class PantryComponent implements OnInit {
         this.pantryService.getPantries().subscribe(
             (response: Pantry[]) => {
                 this.pantries = response;
-                console.log(this.pantries);
             },
             (error: HttpErrorResponse) => {
                 alert(error.message);

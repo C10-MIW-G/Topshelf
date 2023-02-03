@@ -1,7 +1,7 @@
 <body>
     <div class="body-container">
         <div *ngFor="let pantry of pantries">
-            <h1>{{pantry.name}}</h1>
+            <a routerLink="/pantry/{{pantry.pantryId}}">{{pantry.name}}</a>
         </div>
     </div>
 </body>
