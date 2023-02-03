@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { TokenStorageService } from './_services/token-storage.service';
 import { HttpErrorResponse, HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
@@ -12,13 +14,15 @@ export class AppComponent implements OnInit {
   title = 'Topshelf'
 
   roles: string[] = [];
-  tokenStorageService: any;
+
   isLoggedIn: boolean = false;
   showAdminBoard = false;
   showModeratorBoard = false;
   username: string | undefined;
+  router: Router = new Router;
 
   constructor(
+    private tokenStorageService: TokenStorageService,
     private httpclient: HttpClient){
     }
 
@@ -36,10 +40,10 @@ export class AppComponent implements OnInit {
 
     this.username = user.username;
   }
+
   logout(): void {
   this.tokenStorageService.signOut();
-  window.location.reload();
-
+  this.router.navigate(['login']);
 }
 
 }

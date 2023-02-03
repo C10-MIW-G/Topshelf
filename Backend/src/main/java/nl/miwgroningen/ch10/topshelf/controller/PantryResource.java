@@ -4,6 +4,7 @@ import nl.miwgroningen.ch10.topshelf.model.Pantry;
 import nl.miwgroningen.ch10.topshelf.service.PantryService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,7 +25,6 @@ public class PantryResource {
     public PantryResource(PantryService pantryService) {
         this.pantryService = pantryService;
     }
-
     @GetMapping("/all")
     public ResponseEntity<List<Pantry>> getAllPantries() {
         List<Pantry> pantries = pantryService.findAllPantries();

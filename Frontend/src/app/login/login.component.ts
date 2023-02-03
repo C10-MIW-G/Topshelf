@@ -39,13 +39,14 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(this.form).subscribe(
       data => {
-        this.tokenStorageService.saveToken(data.accessToken);
+        this.tokenStorageService.saveToken(data.token);
         this.tokenStorageService.saveUser(data);
 
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.roles = this.tokenStorageService.getUser().roles;
         this.reloadPage();
+
       },
       err => {console.log(err)
         this.errorMessage = err;
@@ -55,8 +56,7 @@ export class LoginComponent implements OnInit {
   }
 
   reloadPage(): void {
-    window.location.reload();
-    
+    this.router.navigate(['/pantry'])
   }
 
   public getAuthenticated(): Observable<Headers> {
