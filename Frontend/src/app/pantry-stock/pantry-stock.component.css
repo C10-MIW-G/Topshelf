@@ -5,9 +5,9 @@
   background-color: #00695C;
 }
 
-
 body {
   background-color: beige;
+  height: 100vh;
 }
 
 .body-container {
@@ -22,4 +22,3 @@ footer {
   width: 100%;
   text-align: center;
 }
-
