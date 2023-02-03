@@ -14,8 +14,6 @@ export class AppComponent implements OnInit {
   title = 'Topshelf'
 
   roles: string[] = [];
-
-  isLoggedIn: boolean = false;
   showAdminBoard = false;
   showModeratorBoard = false;
   username: string | undefined;
@@ -43,8 +41,12 @@ export class AppComponent implements OnInit {
 
   logout(): void {
   this.tokenStorageService.signOut();
-  this.router.navigate(['login']);
+  window.location.reload;
+
 }
 
+public isLoggedIn(): boolean{
+  return this.tokenStorageService.isLoggedIn();
+}
 }
 
