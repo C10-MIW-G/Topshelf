@@ -1,0 +1,27 @@
+1x. Install IDE (VScode, Intelij).
+2x. Install Node.js.
+xx. Install MySQL Workbench.
+xx. Install Postman.
+3x. Open your version control software (or use the build-in tools in your IDE).
+4x. Clone the Topshelf repository from https://github.com/C10-MIW-G/Topshelf.
+    (Backend)
+5x. Open the Backend folder with your IDE.
+6x. Run Maven.
+7x. Set the JDK to 17, download if necessary.
+xx. Set up a database named "topshelf" in Workbench.
+xx. Make a user with the username and password provided in the application.properties file.
+xx. Give the user all the schema privileges.
+8x. Set the environment variable "SECRET-KEY" in your IDE-configurations (key will be provided by your team).
+9x. Run the backend in your IDE and fix the errors you encounter.
+    (Frontend)
+10. Install Angular by running "npm install -g @angular/cli".
+11. Open the Frontend folder with your IDE.
+12. Run "npm install" in the terminal.
+13. Run "npm i @ng-bootstrap/ng-bootstrap".
+14. Run "ng serve" to start the frontend and fix the errors you encounter.
+    (Log in)
+xx. Open Postman en create a post-request for localhost8080:/topshelf/register.
+xx. Add a json.file with the lines username, email, password.
+    (Seed)
+xx. Create a get-request in Postman localhost:8080/seed.
+xx. Under the tab authorization, set the type to "bearer token" and paste the token you got in the tokenfield.
