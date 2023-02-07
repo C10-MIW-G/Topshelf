@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 const AUTH_API = 'http://localhost:8080/topshelf/';
-
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
@@ -26,11 +25,26 @@ export class AuthService {
   }
 
   register(user: { username: any; email: any; password: any; }): Observable<any> {
-    return this.http.post(AUTH_API + 'signup', {
+    return this.http.post(AUTH_API + 'register', {
       username: user.username,
       email: user.email,
       password: user.password
     }, httpOptions);
   }
 
+  GetAll(){
+    return this.http.get(AUTH_API);
+  }
+  
+  GetbyCode(code: any){
+    return this.http.get(AUTH_API + '/' + code);
+  }
+
+  ProceedRegister(inputdata: any) {
+    return this.http.post(AUTH_API, inputdata);
+  }
+
+  UpdateUser(code: any, inputdata: any) {
+    return this.http.post(AUTH_API + '/' + code, inputdata);
+  }
 }
