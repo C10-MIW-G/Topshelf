@@ -10,13 +10,15 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PantryComponent } from './pantry/pantry.component';
 import { AuthInterceptor } from './_helper/auth.interceptor';
 import { StockProductComponent } from './stock-product/stock-product.component';
+import { NavComponent } from './nav/nav.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     PantryComponent,
-    StockProductComponent
+    StockProductComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,
