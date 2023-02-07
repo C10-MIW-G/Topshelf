@@ -14,12 +14,15 @@ import { RegisterComponent } from './register/register.component';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { NavComponent } from './nav/nav.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     PantryComponent,
+    StockProductComponent,
+    NavComponent
     StockProductComponent,
     RegisterComponent
   ],

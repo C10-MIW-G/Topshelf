@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Pantry } from '../pantry/pantry';
 import { StockProduct } from './stock-product';
 import { StockProductService } from './stock-product.service';
 
