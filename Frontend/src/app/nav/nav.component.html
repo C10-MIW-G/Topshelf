@@ -6,10 +6,13 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
+      <li class="nav-item active" *ngIf="git sisLoggedIn()">
         <a routerLink="pantry" routerLinkActive="active" class="nav-link px-2 text-white">Pantry overview</a>
       </li>
     </ul>
+    <form class="form-inline my-2 my-lg-0" *ngIf="!isLoggedIn()">
+      <<button  class="btn btn-outline-info me-2" type="button" routerLink="login">Login</button>
+    </form>
     <form class="form-inline my-2 my-lg-0" *ngIf="isLoggedIn()">
       <button class="btn btn-outline-success my-2 my-sm-0 text-white" type="submit" routerLink="login" (click)="logout()">Logout</button>
     </form>
