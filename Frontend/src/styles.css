@@ -11,14 +11,16 @@ body {
 
 .body-container {
   padding: 20px;
+  background-color: beige;
+  min-height: 86vh;
 }
 
 .footer,
 footer {
   background-color: bisque;
-  position: fixed;
+  /* position: fixed; */
   bottom: 0;
-  width: 100%;
+  width: 100;
   text-align: center;
 }
 
