@@ -2,23 +2,27 @@
 @import 'https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css';
 
 .text-bg-dark {
-  background-color: #00695C;
+  background-color: #430069;
 }
 
 body {
   background-color: beige;
+
 }
 
 .body-container {
-  padding: 20px;
+  background-color: rgb(127, 167, 81);
+  min-height: 100vh;
+
 }
 
-.footer,
-footer {
-  background-color: bisque;
+.footer {
+  background-color: rgb(181, 219, 213);
   position: fixed;
   bottom: 0;
-  width: 100%;
   text-align: center;
+  width: 100%;
+
+
 }
 

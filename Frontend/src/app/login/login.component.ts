@@ -19,7 +19,6 @@ export class LoginComponent implements OnInit {
   errorMessage = '';
   roles: string[] = [];
 
-
   constructor(
     private authService: AuthService,
     private tokenStorageService: TokenStorageService,
@@ -62,7 +61,4 @@ export class LoginComponent implements OnInit {
   public getAuthenticated(): Observable<Headers> {
     return this.http.get<Headers>(`${this.apiServerUrl}/auth`);
   }
-
-
-
 }

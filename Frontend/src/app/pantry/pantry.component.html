@@ -1,7 +1,5 @@
-<body>
-    <div class="body-container">
-        <div *ngFor="let pantry of pantries">
-            <a routerLink="/pantry/{{pantry.pantryId}}">{{pantry.name}}</a>
-        </div>
+<div class="body-container">
+    <div *ngFor="let pantry of pantries">
+        <li class="list-group-item list-group-item-action"><a routerLink="/pantry/{{pantry.pantryId}}">{{pantry.name}}</a></li>
     </div>
-</body>
+</div>

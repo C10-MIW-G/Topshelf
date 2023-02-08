@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 import { TokenStorageService } from './_services/token-storage.service';
-import { HttpErrorResponse, HttpClient } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -8,7 +8,6 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-
 export class AppComponent implements OnInit {
 
   title = 'Topshelf'
@@ -21,15 +20,15 @@ export class AppComponent implements OnInit {
 
   constructor(
     private tokenStorageService: TokenStorageService,
-    private httpclient: HttpClient){
-    }
+    private httpclient: HttpClient) {
+  }
 
   ngOnInit() {
     this.httpclient.get(`http://localhost:8080/topshelf`);
 
   }
 
-  if (_isLoggedIn: boolean) {
+  if(_isLoggedIn: boolean) {
     const user = this.tokenStorageService.getUser();
     this.roles = user.roles;
 
@@ -40,13 +39,13 @@ export class AppComponent implements OnInit {
   }
 
   logout(): void {
-  this.tokenStorageService.signOut();
-  window.location.reload;
+    this.tokenStorageService.signOut();
+    window.location.reload;
 
-}
+  }
 
-public isLoggedIn(): boolean{
-  return this.tokenStorageService.isLoggedIn();
-}
+  public isLoggedIn(): boolean {
+    return this.tokenStorageService.isLoggedIn();
+  }
 }
 
