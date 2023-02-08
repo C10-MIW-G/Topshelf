@@ -22,7 +22,7 @@ import { NavComponent } from './nav/nav.component';
     LoginComponent,
     PantryComponent,
     StockProductComponent,
-    NavComponent
+    NavComponent,
     StockProductComponent,
     RegisterComponent
   ],
