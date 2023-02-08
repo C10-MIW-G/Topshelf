@@ -1,7 +1,16 @@
-package nl.miwgroningen.ch10.topshelf.dto;/** 
+package nl.miwgroningen.ch10.topshelf.dto;
+
+
+import java.time.LocalDate;
+
+/**
  * @author Inge Dikland
- *
- * Dit is wat het programma doet.
+ * <p>
  */
-public class StockProductDTO {
+public record StockProductDTO (
+        Long stockProductId,
+        Long pantryId,
+        String name,
+        LocalDate expirationDate
+) {
 }

@@ -1,7 +1,11 @@
-package nl.miwgroningen.ch10.topshelf.dto;/** 
+package nl.miwgroningen.ch10.topshelf.dto;
+
+/**
  * @author Inge Dikland
- *
- * Dit is wat het programma doet.
+ * <p>
  */
-public class PantryDTO {
+public record PantryDTO(
+        Long pantryId,
+        String name
+) {
 }
