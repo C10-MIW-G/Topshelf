@@ -12,7 +12,7 @@ export class RegisterComponent implements OnInit {
   form: any = [];
   isSuccessful = false;
   isSignUpFailed = false;
-  errorMessage = '';
+  errorMessage = 'Username already taken';
 
   constructor(private authService: AuthService, private router: Router) {
 
@@ -29,7 +29,7 @@ export class RegisterComponent implements OnInit {
         this.registrationComplete();
       },
       error => {
-        this.errorMessage = error.error.message;
+        this.errorMessage;
         this.isSignUpFailed = true;
       }
     );
