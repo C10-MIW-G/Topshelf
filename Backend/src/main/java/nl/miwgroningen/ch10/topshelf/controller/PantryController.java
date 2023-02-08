@@ -4,7 +4,6 @@ import nl.miwgroningen.ch10.topshelf.model.Pantry;
 import nl.miwgroningen.ch10.topshelf.service.PantryService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,11 +17,11 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/pantry")
-public class PantryResource {
+public class PantryController {
 
     private final PantryService pantryService;
 
-    public PantryResource(PantryService pantryService) {
+    public PantryController(PantryService pantryService) {
         this.pantryService = pantryService;
     }
     @GetMapping("/all")
