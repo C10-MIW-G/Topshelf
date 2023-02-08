@@ -66,6 +66,7 @@ public class StockProductController {
                                                    BindingResult result, @PathVariable String pantryId) {//TODO is it a protected StockProduct or String?
         if (!result.hasErrors()) {
             pantryRepository.save(pantryStockToBeSaved);
+            //TODO add to productDefinition
 
         }
 
