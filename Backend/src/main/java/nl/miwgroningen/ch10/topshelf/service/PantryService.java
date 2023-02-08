@@ -1,12 +1,14 @@
 package nl.miwgroningen.ch10.topshelf.service;
-
+import nl.miwgroningen.ch10.topshelf.dto.PantryDTO;
 import nl.miwgroningen.ch10.topshelf.exception.PantryNotFoundException;
+import nl.miwgroningen.ch10.topshelf.mapper.PantryDTOMapper;
 import nl.miwgroningen.ch10.topshelf.model.Pantry;
 import nl.miwgroningen.ch10.topshelf.repository.PantryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author Robbin Drent <r.v.drent@st.hanze.nl>
@@ -17,22 +19,26 @@ import java.util.List;
 @Service
 public class PantryService {
     private final PantryRepository pantryRepository;
+    private final PantryDTOMapper pantryDTOMapper;
 
     @Autowired
-    public PantryService(PantryRepository pantryRepository) {
+    public PantryService(PantryRepository pantryRepository,
+                         PantryDTOMapper pantryDTOMapper) {
         this.pantryRepository = pantryRepository;
+        this.pantryDTOMapper = pantryDTOMapper;
     }
 
-    public Pantry addPantry(Pantry pantry) {
-        return pantryRepository.save(pantry);
+    public List<PantryDTO> findAllPantries() {
+        return pantryRepository.findAll()
+                .stream()
+                .map(pantryDTOMapper)
+                .collect(Collectors.toList());
     }
 
-    public List<Pantry> findAllPantries() {
-        return pantryRepository.findAll();
-    }
-
-    public Pantry findPantryByPantryId(Long pantryId) {
+    public PantryDTO findPantryByPantryId(Long pantryId) {
         return pantryRepository.findPantryByPantryId(pantryId)
+                .map(pantryDTOMapper)
                 .orElseThrow(() -> new PantryNotFoundException("Pantry with id: " + pantryId + " was not found!"));
     }
 }
+

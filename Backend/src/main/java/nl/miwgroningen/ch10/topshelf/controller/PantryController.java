@@ -1,5 +1,6 @@
 package nl.miwgroningen.ch10.topshelf.controller;
 
+import nl.miwgroningen.ch10.topshelf.dto.PantryDTO;
 import nl.miwgroningen.ch10.topshelf.model.Pantry;
 import nl.miwgroningen.ch10.topshelf.service.PantryService;
 import org.springframework.http.HttpStatus;
@@ -25,14 +26,14 @@ public class PantryController {
         this.pantryService = pantryService;
     }
     @GetMapping("/all")
-    public ResponseEntity<List<Pantry>> getAllPantries() {
-        List<Pantry> pantries = pantryService.findAllPantries();
+    public ResponseEntity<List<PantryDTO>> getAllPantries() {
+        List<PantryDTO> pantries = pantryService.findAllPantries();
         return new ResponseEntity<>(pantries, HttpStatus.OK);
     }
 
     @GetMapping("/details/{pantryId}")
-    public ResponseEntity<Pantry> getPantryById(@PathVariable("pantryId") Long pantryId) {
-        Pantry pantry = pantryService.findPantryByPantryId(pantryId);
+    public ResponseEntity<PantryDTO> getPantryById(@PathVariable("pantryId") Long pantryId) {
+        PantryDTO pantry = pantryService.findPantryByPantryId(pantryId);
         return new ResponseEntity<>(pantry, HttpStatus.OK);
     }
 }
