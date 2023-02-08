@@ -12,8 +12,6 @@ export class NavComponent {
   private tokenStorageService: TokenStorageService
 ){}
 
-
-
   public isLoggedIn(): boolean{
     return this.tokenStorageService.isLoggedIn();
   }
@@ -22,5 +20,4 @@ export class NavComponent {
     this.tokenStorageService.signOut();
     window.location.reload;
   }
-
 }
