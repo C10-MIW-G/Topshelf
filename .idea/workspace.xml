@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="55918902-c386-4150-a81a-5552bace315c" name="Changes" comment="" />
+    <list default="true" id="55918902-c386-4150-a81a-5552bace315c" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -27,7 +29,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Jessica/Make IT Work/Topshelf/Backend",
+    "last_opened_file_path": "/Users/inge/Desktop/Topshelf",
     "nodejs_package_manager_path": "npm",
     "spring.configuration.checksum": "d67f2dceac2d98478e33923d3fdbe7e3"
   }
@@ -58,6 +60,12 @@
       <workItem from="1674835230923" duration="311000" />
       <workItem from="1675066180977" duration="65000" />
       <workItem from="1675066268641" duration="511000" />
+      <workItem from="1675435576046" duration="77000" />
+      <workItem from="1675435666126" duration="352000" />
+      <workItem from="1675436042689" duration="185000" />
+      <workItem from="1675671078736" duration="143000" />
+      <workItem from="1675671228544" duration="52000" />
+      <workItem from="1675671316539" duration="297000" />
     </task>
     <servers />
   </component>
