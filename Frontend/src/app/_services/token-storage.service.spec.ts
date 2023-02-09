@@ -6,11 +6,14 @@ import { TokenStorageService } from './token-storage.service';
 describe('Service: TokenStorage', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [TokenStorageService]
+      providers: [TokenStorageService],
     });
   });
 
-  it('should ...', inject([TokenStorageService], (service: TokenStorageService) => {
-    expect(service).toBeTruthy();
-  }));
+  it('should ...', inject(
+    [TokenStorageService],
+    (service: TokenStorageService) => {
+      expect(service).toBeTruthy();
+    }
+  ));
 });

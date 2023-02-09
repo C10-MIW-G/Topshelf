@@ -1,10 +1,10 @@
-import { ProductDefinition } from "../product-definitions/productDefinition";
+import { ProductDefinition } from '../product-definitions/productDefinition';
 
-export interface StockProduct{
-    stockProductId: number;
-    name: string;
-    expirationDate: Date;
-    pantryId: number;
+export interface StockProduct {
+  stockProductId: number;
+  name: string;
+  expirationDate: Date;
+  pantryId: number;
 
-    productDefinition: ProductDefinition;
+  productDefinition: ProductDefinition;
 }

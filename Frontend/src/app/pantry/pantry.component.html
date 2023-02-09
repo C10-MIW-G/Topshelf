@@ -1,5 +1,10 @@
 <div class="body-container">
-    <div *ngFor="let pantry of pantries">
-        <li class="list-group-item list-group-item-action"><a routerLink="/pantry/{{pantry.pantryId}}">{{pantry.name}}</a></li>
-    </div>
+  <div *ngFor="let pantry of pantries">
+    <li class="list-group-item list-group-item-action">
+      <a routerLink="/pantry/{{ pantry.pantryId }}">{{ pantry.name }}</a>
+    </li>
+  </div>
+  <div class="alert alert-danger" *ngIf="unAuthorizedUser == false">
+    Page can not be visited:<br />{{ errorMessage }}
+  </div>
 </div>

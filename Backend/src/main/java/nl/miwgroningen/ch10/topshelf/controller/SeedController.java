@@ -25,9 +25,7 @@ public class SeedController {
     private final StockProductRepository stockProductRepository;
     private final ProductDefinitionRepository productDefinitionRepository;
 
-    public SeedController(PantryRepository pantryRepository,
-                          StockProductRepository stockProductRepository,
-                          ProductDefinitionRepository productDefinitionRepository) {
+    public SeedController(PantryRepository pantryRepository, StockProductRepository stockProductRepository, ProductDefinitionRepository productDefinitionRepository) {
         this.pantryRepository = pantryRepository;
         this.stockProductRepository = stockProductRepository;
         this.productDefinitionRepository = productDefinitionRepository;

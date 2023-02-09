@@ -4,27 +4,31 @@ import { Pantry } from './pantry';
 import { PantryService } from './pantry.service';
 
 @Component({
-    selector: 'app-pantry',
-    templateUrl: './pantry.component.html',
-    styleUrls: ['./pantry.component.css']
+  selector: 'app-pantry',
+  templateUrl: './pantry.component.html',
+  styleUrls: ['./pantry.component.css'],
 })
 export class PantryComponent implements OnInit {
-    public pantries?: Pantry[] = [];
-    
-    constructor(private pantryService: PantryService) { }
+  public pantries?: Pantry[] = [];
+  errorMessage: string = '';
+  unAuthorizedUser = false;
 
-    ngOnInit() {
-        this.getPantries();
-    }
+  constructor(private pantryService: PantryService) {}
 
-    public getPantries(): void {
-        this.pantryService.getPantries().subscribe(
-            (response: Pantry[]) => {
-                this.pantries = response;
-            },
-            (error: HttpErrorResponse) => {
-                alert(error.message);
-            }
-        );
-    }
+  ngOnInit() {
+    this.getPantries();
+  }
+
+  public getPantries(): void {
+    this.pantryService.getPantries().subscribe(
+      (response: Pantry[]) => {
+        this.pantries = response;
+        this.unAuthorizedUser = true;
+      },
+      (error: HttpErrorResponse) => {
+        this.errorMessage = 'You are not logged in';
+        this.unAuthorizedUser = false;
+      }
+    );
+  }
 }

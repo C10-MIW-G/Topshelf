@@ -1,4 +1,4 @@
 export interface Pantry {
-    pantryId: number;
-    name: string;
+  pantryId: number;
+  name: string;
 }

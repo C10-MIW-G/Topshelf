@@ -6,15 +6,15 @@ import { PantryComponent } from './pantry/pantry.component';
 import { RegisterComponent } from './register/register.component';
 
 const appRoute: Routes = [
-  {path: '', redirectTo: 'login', pathMatch: 'full'},
-  {path: 'login', component: LoginComponent},
-  {path: 'register', component: RegisterComponent},
-  {path: 'pantry/:pantryId', component: StockProductComponent},
-  {path: 'pantry', component: PantryComponent}
-]
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'pantry/:pantryId', component: StockProductComponent },
+  { path: 'pantry', component: PantryComponent },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(appRoute)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
