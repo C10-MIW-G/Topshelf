@@ -20,4 +20,10 @@ public class PantryDTOMapper implements Function<Pantry, PantryDTO> {
                 pantry.getName()
         );
     }
+
+    public Pantry toPantry(PantryDTO pantryDTO){
+        Pantry pantry = new Pantry();
+        pantry.setName(pantryDTO.name());
+        return pantry;
+    }
 }
