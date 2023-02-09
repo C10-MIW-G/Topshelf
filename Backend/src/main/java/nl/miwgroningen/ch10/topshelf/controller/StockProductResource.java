@@ -37,7 +37,7 @@ public class StockProductResource {
         return new ResponseEntity<>(stockProduct, HttpStatus.OK);
     }
 
-    @GetMapping("/pantry/{pantryId}")
+    @GetMapping("/{pantryId}")
     public ResponseEntity<List<StockProductDTO>> getStockProductByPantryId(@PathVariable("pantryId") Long pantryId) {
         List<StockProductDTO> stockProduct = stockProductService.findStockProductByPantryId(pantryId);
         return new ResponseEntity<>(stockProduct, HttpStatus.OK);

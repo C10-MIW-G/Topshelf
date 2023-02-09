@@ -1,9 +1,7 @@
 package nl.miwgroningen.ch10.topshelf.service;
 import nl.miwgroningen.ch10.topshelf.dto.StockProductDTO;
-import nl.miwgroningen.ch10.topshelf.exception.PantryNotFoundException;
 import nl.miwgroningen.ch10.topshelf.exception.StockProductNotFoundException;
 import nl.miwgroningen.ch10.topshelf.mapper.StockProductDTOMapper;
-import nl.miwgroningen.ch10.topshelf.model.StockProduct;
 import nl.miwgroningen.ch10.topshelf.repository.StockProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,10 +26,6 @@ public class StockProductService {
         this.stockProductDTOMapper = stockProductDTOMapper;
     }
 
-    public StockProduct addStockProduct(StockProduct stockProduct) {
-        return stockProductRepository.save(stockProduct);
-    }
-
     public List<StockProductDTO> findAllStockProducts() {
         return stockProductRepository.findAll()
                 .stream()
@@ -46,15 +40,11 @@ public class StockProductService {
     }
 
     public List<StockProductDTO> findStockProductByPantryId(Long pantryId) {
-
-        List<StockProductDTO> stockProductInPantry = stockProductRepository
+        return stockProductRepository
                 .findAll()
                 .stream()
                 .filter(stockProduct -> Objects.equals(stockProduct.getPantry().getPantryId(), pantryId))
                 .map(stockProductDTOMapper)
                 .collect(Collectors.toList());
-        {
-            return stockProductInPantry;
-        }
     }
 }
