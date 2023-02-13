@@ -37,7 +37,7 @@ public class ProductDefinitionService {
         return productDefinitionRepository.findAll()
                 .stream()
                 .map(productDefinitionDTOMapper)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public ProductDefinition findProductByName(String name) {

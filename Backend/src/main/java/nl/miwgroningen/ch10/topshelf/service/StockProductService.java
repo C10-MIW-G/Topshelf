@@ -3,9 +3,13 @@ import nl.miwgroningen.ch10.topshelf.dto.StockProductDTO;
 import nl.miwgroningen.ch10.topshelf.exception.StockProductNotFoundException;
 import nl.miwgroningen.ch10.topshelf.mapper.StockProductDTOMapper;
 import nl.miwgroningen.ch10.topshelf.model.StockProduct;
+import nl.miwgroningen.ch10.topshelf.model.Pantry;
+import nl.miwgroningen.ch10.topshelf.model.StockProduct;
 import nl.miwgroningen.ch10.topshelf.repository.StockProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -35,23 +39,23 @@ public class StockProductService {
     public List<StockProductDTO> findAllStockProducts() {
         return stockProductRepository.findAll()
                 .stream()
-                .map(stockProductDTOMapper::convertToDTO)
-                .collect(Collectors.toList());
+                .map(stockProductDTOMapper)
+                .toList();
     }
 
     public StockProductDTO findStockProductByStockProductId(Long stockProductId) {
         return stockProductRepository.findStockProductByStockProductId(stockProductId)
-                .map(stockProductDTOMapper::convertToDTO)
+                .map(stockProductDTOMapper)
                 .orElseThrow(() -> new StockProductNotFoundException("StockProduct with id: " +
                         stockProductId + " was not found!"));
     }
 
-    public List<StockProductDTO> findStockProductByPantryId(Long pantryId) {
-        return stockProductRepository.findAll() // TODO this shouldn't be a find all according to Vincent ;-)
+    public List<StockProductDTO> findStockProductByPantry(Pantry pantry) {
+        return stockProductRepository.findStockProductsByPantry(pantry)
                 .stream()
-                .filter(stockProduct -> Objects.equals(stockProduct.getPantry().getPantryId(), pantryId))
-                .map(stockProductDTOMapper::convertToDTO)
-                .collect(Collectors.toList());
+                .sorted(Comparator.comparing(StockProduct::getExpirationDate))
+                .map(stockProductDTOMapper)
+                .toList();
     }
 
     public void save(StockProductDTO pantryStockProductToBeSaved) {
