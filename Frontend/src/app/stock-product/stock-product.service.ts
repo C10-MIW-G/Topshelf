@@ -15,11 +15,7 @@ export class StockProductService {
     );
   }
 
-  public getPantryWithStockProducts(
-    pantryId: number
-  ): Observable<StockProduct[]> {
-    return this.http.get<StockProduct[]>(
-      `${this.apiServerUrl}/stockproduct/pantry/${pantryId}`
-    );
+  public getPantryWithStockProducts(pantryId: number): Observable<StockProduct[]> {
+    return this.http.get<StockProduct[]>(`${this.apiServerUrl}/stockproduct/${pantryId}`)
   }
 }

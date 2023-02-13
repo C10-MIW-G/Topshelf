@@ -33,5 +33,4 @@ public class StockProduct {
     @JoinColumn(name = "pantryId", referencedColumnName = "pantryId")
     private Pantry pantry;
 
-
 }

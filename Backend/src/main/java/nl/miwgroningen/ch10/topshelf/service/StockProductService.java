@@ -1,17 +1,13 @@
 package nl.miwgroningen.ch10.topshelf.service;
-
-import nl.miwgroningen.ch10.topshelf.exception.PantryNotFoundException;
+import nl.miwgroningen.ch10.topshelf.dto.StockProductDTO;
 import nl.miwgroningen.ch10.topshelf.exception.StockProductNotFoundException;
-import nl.miwgroningen.ch10.topshelf.model.Pantry;
-import nl.miwgroningen.ch10.topshelf.model.StockProduct;
-import nl.miwgroningen.ch10.topshelf.repository.PantryRepository;
+import nl.miwgroningen.ch10.topshelf.mapper.StockProductDTOMapper;
 import nl.miwgroningen.ch10.topshelf.repository.StockProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * @author Jack Wieringa <j.w.wieringa@st.hanze.nl>
@@ -22,37 +18,33 @@ import java.util.Optional;
 @Service
 public class StockProductService {
     private final StockProductRepository stockProductRepository;
-    private final PantryRepository pantryRepository;
+    private final StockProductDTOMapper stockProductDTOMapper;
 
     @Autowired
-    public StockProductService(StockProductRepository stockProductRepository, PantryRepository pantryRepository) {
+    public StockProductService(StockProductRepository stockProductRepository, StockProductDTOMapper stockProductDTOMapper) {
         this.stockProductRepository = stockProductRepository;
-        this.pantryRepository = pantryRepository;
+        this.stockProductDTOMapper = stockProductDTOMapper;
     }
 
-    public StockProduct addStockProduct(StockProduct stockProduct) {
-        return stockProductRepository.save(stockProduct);
+    public List<StockProductDTO> findAllStockProducts() {
+        return stockProductRepository.findAll()
+                .stream()
+                .map(stockProductDTOMapper)
+                .collect(Collectors.toList());
     }
 
-    public List<StockProduct> findAllStockProducts() {
-        return stockProductRepository.findAll();
-    }
-
-    public StockProduct findStockProductByStockProductId(Long stockProductId) {
+    public StockProductDTO findStockProductByStockProductId(Long stockProductId) {
         return stockProductRepository.findStockProductByStockProductId(stockProductId)
-                .orElseThrow(() -> new StockProductNotFoundException
-                        ("StockProduct with id: " + stockProductId + " was not found!"));
+                .map(stockProductDTOMapper)
+                .orElseThrow(() -> new StockProductNotFoundException("StockProduct with id: " + stockProductId + " was not found!"));
     }
 
-    public List<StockProduct> findStockProductByPantryId(Long pantryId) {
-        List<StockProduct> stockProducts = stockProductRepository.findAll();
-        List<StockProduct> stockProductInPantry = new ArrayList<>();
-
-        for (StockProduct stockProduct : stockProducts) {
-            if(stockProduct.getPantry().getPantryId() == pantryId) {
-                stockProductInPantry.add(stockProduct);
-            }
-        }
-        return stockProductInPantry;
+    public List<StockProductDTO> findStockProductByPantryId(Long pantryId) {
+        return stockProductRepository
+                .findAll()
+                .stream()
+                .filter(stockProduct -> Objects.equals(stockProduct.getPantry().getPantryId(), pantryId))
+                .map(stockProductDTOMapper)
+                .collect(Collectors.toList());
     }
 }
