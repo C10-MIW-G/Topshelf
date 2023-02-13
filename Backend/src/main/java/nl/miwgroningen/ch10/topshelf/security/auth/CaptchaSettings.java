@@ -15,6 +15,6 @@ import org.springframework.stereotype.Component;
 public class CaptchaSettings {
 
     @Value("${recaptcha.secret.key}")
-    private String secreyKey;
+    private String secretKey;
 
 }
