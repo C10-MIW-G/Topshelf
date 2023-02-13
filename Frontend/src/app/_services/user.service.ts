@@ -1,30 +1,29 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
-const API_URL = 'http://localhost:8080/topshelf/';
+const API_URL = environment.apiBaseUrl;
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getPublicContent(): Observable<any> {
-    return this.http.get(API_URL + 'all', { responseType: 'text' });
+    return this.http.get(API_URL + '/all', { responseType: 'text' });
   }
 
   getUserBoard(): Observable<any> {
-    return this.http.get(API_URL + 'user', { responseType: 'text' });
+    return this.http.get(API_URL + '/user', { responseType: 'text' });
   }
 
   getModeratorBoard(): Observable<any> {
-    return this.http.get(API_URL + 'mod', { responseType: 'text' });
+    return this.http.get(API_URL + '/mod', { responseType: 'text' });
   }
 
   getAdminBoard(): Observable<any> {
-    return this.http.get(API_URL + 'admin', { responseType: 'text' });
+    return this.http.get(API_URL + '/admin', { responseType: 'text' });
   }
-
 }

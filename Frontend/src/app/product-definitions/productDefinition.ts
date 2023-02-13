@@ -1,3 +1,3 @@
 export interface ProductDefinition {
-    name: string;
+  name: string;
 }
