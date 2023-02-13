@@ -27,7 +27,7 @@ public class CaptchaService {
 
     public boolean verify(String captchaResponse) {
 
-        String urlString = "secret=" + captchaSettings.getSecreyKey() + "&response="
+        String urlString = "secret=" + captchaSettings.getSecretKey() + "&response="
                 + captchaResponse;
 
         if (captchaResponse == null || "".equals(captchaResponse)) {
