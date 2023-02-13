@@ -43,6 +43,7 @@ export class PantryComponent implements OnInit {
     dialogConfig.disableClose = true;
     dialogConfig.data = {
       name: null,
+      isSubmitted: true,
     };
 
     const dialogRef = this.matDialog.open(
@@ -51,10 +52,11 @@ export class PantryComponent implements OnInit {
     );
 
     dialogRef.afterClosed().subscribe((data) => {
-      if (data.pantryName !== null) {
+      console.log(data);
+      if (data.pantryName !== null && data.isSubmitted) {
         this.pantryService.addPantry({ name: data.pantryName }).subscribe({
           complete: () => {
-            window.location.reload();
+            // window.location.reload();
           },
           error: () => {
             alert('pantry niet toegevoegd');
