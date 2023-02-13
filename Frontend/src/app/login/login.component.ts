@@ -3,16 +3,16 @@ import { TokenStorageService } from './../_services/token-storage.service';
 import { AuthService } from './../_services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Router, Routes } from '@angular/router';
+import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-
-  private apiServerUrl = 'http://localhost:8080';
+  private apiServerUrl = environment.apiBaseUrl;
   form: any = {};
   isLoggedIn = false;
   isLoginFailed = false;
@@ -23,21 +23,20 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private tokenStorageService: TokenStorageService,
     private http: HttpClient,
-    private router: Router) {
-     }
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     if (this.tokenStorageService.getToken()) {
       this.isLoggedIn = true;
       this.roles = this.tokenStorageService.getUser().roles;
     }
-      this.http.get<Headers>(`${this.apiServerUrl}/auth`)
+    this.http.get<Headers>(`${this.apiServerUrl}/auth`);
   }
 
   onSubmit(): void {
-
     this.authService.login(this.form).subscribe(
-      data => {
+      (data) => {
         this.tokenStorageService.saveToken(data.token);
         this.tokenStorageService.saveUser(data);
 
@@ -45,9 +44,9 @@ export class LoginComponent implements OnInit {
         this.isLoggedIn = true;
         this.roles = this.tokenStorageService.getUser().roles;
         this.reloadPage();
-
       },
-      err => {console.log(err)
+      (err) => {
+        console.log(err);
         this.errorMessage = err;
         this.isLoginFailed = true;
       }
@@ -55,7 +54,7 @@ export class LoginComponent implements OnInit {
   }
 
   reloadPage(): void {
-    this.router.navigate(['/pantry'])
+    this.router.navigate(['/pantry']);
   }
 
   public getAuthenticated(): Observable<Headers> {

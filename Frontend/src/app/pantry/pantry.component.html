@@ -1,5 +1,19 @@
-<div class="body-container">
+<body>
+  <div class="body-container">
+    <button
+      class="btn btn-primary"
+      *ngIf="unAuthorizedUser == true"
+      (click)="onOpenDialog()"
+    >
+      Add pantry
+    </button>
     <div *ngFor="let pantry of pantries">
-        <li class="list-group-item list-group-item-action"><a routerLink="/pantry/{{pantry.pantryId}}">{{pantry.name}}</a></li>
+      <li class="list-group-item list-group-item-action">
+        <a routerLink="/pantry/{{ pantry.pantryId }}">{{ pantry.name }}</a>
+      </li>
     </div>
-</div>
+    <div class="alert alert-danger" *ngIf="unAuthorizedUser == false">
+      Page can not be visited:<br />{{ errorMessage }}
+    </div>
+  </div>
+</body>

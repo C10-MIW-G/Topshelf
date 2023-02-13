@@ -43,5 +43,10 @@ public class PantryService {
         return pantryRepository.findPantryByPantryId(pantryId)
                 .orElseThrow(() -> new PantryNotFoundException("Pantry with id: " + pantryId + " was not found!"));
     }
+
+    public Pantry addPantry(PantryDTO pantryDTO){
+        Pantry pantry = pantryDTOMapper.toPantry(pantryDTO);
+        return pantryRepository.save(pantry);
+    }
 }
 

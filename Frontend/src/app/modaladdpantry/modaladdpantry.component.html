@@ -1,0 +1,17 @@
+<mat-dialog-content [formGroup]="form" class="form">
+  <mat-form-field class="form-group">
+    <input
+      formControlName="pantryName"
+      matInput
+      placeholder="Type a pantryname"
+      [(ngModel)]="pantryName"
+      required
+    />
+  </mat-form-field>
+  <mat-error class="error" *ngIf="hasFailed">{{ errormessage }}</mat-error>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button class="btn btn-block btn-primary" (click)="close()">Close</button>
+  <button class="btn btn-block btn-primary" (click)="save()">Save</button>
+</mat-dialog-actions>

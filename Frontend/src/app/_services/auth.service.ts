@@ -1,42 +1,52 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
-const AUTH_API = 'http://localhost:8080/topshelf/';
+const AUTH_API = environment.authUrl;
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
 };
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
+  constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) { }
-
-  login(credentials: { username: any; password: any; }): Observable<any> {
-    console.log(credentials)
-    return this.http.post(AUTH_API + 'auth', {
-      username: credentials.username,
-      password: credentials.password
-
-
-    }, httpOptions);
+  login(credentials: { username: string; password: string }): Observable<any> {
+    console.log(credentials);
+    return this.http.post(
+      AUTH_API + '/auth',
+      {
+        username: credentials.username,
+        password: credentials.password,
+      },
+      httpOptions
+    );
   }
 
-  register(user: { username: any; email: any; password: any; }): Observable<any> {
-    return this.http.post(AUTH_API + 'register', {
-      username: user.username,
-      email: user.email,
-      password: user.password
-    }, httpOptions);
+  register(
+    user: { username: string; email: string; password: string },
+    captchaResponse: string | undefined
+  ): Observable<any> {
+    return this.http.post(
+      AUTH_API + '/register',
+      {
+        username: user.username,
+        email: user.email,
+        password: user.password,
+        captchaResponse,
+      },
+      httpOptions
+    );
   }
 
-  GetAll(){
+  GetAll() {
     return this.http.get(AUTH_API);
   }
-  
-  GetbyCode(code: any){
+
+  GetbyCode(code: any) {
     return this.http.get(AUTH_API + '/' + code);
   }
 
