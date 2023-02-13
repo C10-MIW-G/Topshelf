@@ -1,6 +1,12 @@
 <body>
   <div class="body-container">
-    <button class="btn btn-primary" (click)="onOpenDialog()">Add pantry</button>
+    <button
+      class="btn btn-primary"
+      *ngIf="unAuthorizedUser == true"
+      (click)="onOpenDialog()"
+    >
+      Add pantry
+    </button>
     <div *ngFor="let pantry of pantries">
       <li class="list-group-item list-group-item-action">
         <a routerLink="/pantry/{{ pantry.pantryId }}">{{ pantry.name }}</a>
