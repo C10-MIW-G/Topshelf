@@ -5,7 +5,7 @@ target/
 !**/src/test/**/target/
 
 ## database credentials are stored in /resources/configuration.properties
-config/application.properties
+/config/application.properties
 
 ### STS ###
 .apt_generated

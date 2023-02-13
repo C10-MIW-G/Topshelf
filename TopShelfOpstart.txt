@@ -20,6 +20,7 @@ xx. Give the user all the schema privileges.
 13. Run "npm i @ng-bootstrap/ng-bootstrap".
 xx. Run "npm install popper.js --save".
 xx. Run "npm install jquery --save".
+xx. Run "npm i ng-recaptcha --save".
 14. Run "ng serve" to start the frontend and fix the errors you encounter.
     (Log in)
 xx. Open Postman en create a post-request for localhost8080:/topshelf/register.
