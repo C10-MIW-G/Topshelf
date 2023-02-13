@@ -52,16 +52,11 @@ import { environment } from 'src/environments/environment';
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
-  ],
-  exports: [MatFormFieldModule],
-  providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-  ],
-  bootstrap: [AppComponent],
-  entryComponents: [ModaladdpantryComponent],
     RecaptchaModule,
     RecaptchaFormsModule,
   ],
+  exports: [MatFormFieldModule],
+  entryComponents: [ModaladdpantryComponent],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     {

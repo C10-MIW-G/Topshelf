@@ -1,5 +1,3 @@
-import { Router } from '@angular/router';
-import { PantryDTO } from './pantrydto';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Pantry } from './pantry';
@@ -14,11 +12,12 @@ import { ModaladdpantryComponent } from '../modaladdpantry/modaladdpantry.compon
 })
 export class PantryComponent implements OnInit {
   public pantries?: Pantry[] = [];
+  errorMessage: string = '';
+  unAuthorizedUser = false;
 
   constructor(
     private pantryService: PantryService,
-    private matDialog: MatDialog,
-    private router: Router
+    private matDialog: MatDialog
   ) {}
 
   ngOnInit() {
@@ -29,9 +28,13 @@ export class PantryComponent implements OnInit {
     this.pantryService.getPantries().subscribe(
       (response: Pantry[]) => {
         this.pantries = response;
+
+        this.unAuthorizedUser = true;
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        this.errorMessage = 'You are not logged in';
+
+        this.unAuthorizedUser = false;
       }
     );
   }
