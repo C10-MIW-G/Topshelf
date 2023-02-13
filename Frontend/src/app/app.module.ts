@@ -15,6 +15,10 @@ import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { NavComponent } from './nav/nav.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ModaladdpantryComponent } from './modaladdpantry/modaladdpantry.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -24,7 +28,8 @@ import { NavComponent } from './nav/nav.component';
     StockProductComponent,
     NavComponent,
     StockProductComponent,
-    RegisterComponent
+    RegisterComponent,
+    ModaladdpantryComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,11 +41,16 @@ import { NavComponent } from './nav/nav.component';
     CommonModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
   ],
-  providers: [{provide: HTTP_INTERCEPTORS,
-    useClass : AuthInterceptor,
-    multi: true}],
-  bootstrap: [AppComponent]
+  exports: [MatFormFieldModule],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  ],
+  bootstrap: [AppComponent],
+  entryComponents: [ModaladdpantryComponent],
 })
-export class AppModule { }
+export class AppModule {}

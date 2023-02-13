@@ -13,8 +13,6 @@ export class AppComponent implements OnInit {
   title = 'Topshelf'
 
   roles: string[] = [];
-  showAdminBoard = false;
-  showModeratorBoard = false;
   username: string | undefined;
   router: Router = new Router;
 
@@ -26,16 +24,6 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.httpclient.get(`http://localhost:8080/topshelf`);
 
-  }
-
-  if(_isLoggedIn: boolean) {
-    const user = this.tokenStorageService.getUser();
-    this.roles = user.roles;
-
-    this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
-    this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
-
-    this.username = user.username;
   }
 
   logout(): void {

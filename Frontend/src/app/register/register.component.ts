@@ -5,30 +5,26 @@ import { AuthService } from '../_services/auth.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
-
   form: any = [];
   isSuccessful = false;
   isSignUpFailed = false;
   errorMessage = 'Username already taken';
 
-  constructor(private authService: AuthService, private router: Router) {
-
-  }
-  ngOnInit(): void {
-  }
+  constructor(private authService: AuthService, private router: Router) {}
+  ngOnInit(): void {}
 
   onSubmit(): void {
     this.authService.register(this.form).subscribe(
-      response => {
+      (response) => {
         console.log(response);
         this.isSuccessful = true;
         this.isSignUpFailed = false;
         this.registrationComplete();
       },
-      error => {
+      (error) => {
         this.errorMessage;
         this.isSignUpFailed = true;
       }
@@ -36,7 +32,6 @@ export class RegisterComponent implements OnInit {
   }
 
   registrationComplete(): void {
-    this.router.navigate(['/login'])
-
+    this.router.navigate(['/login']);
   }
 }

@@ -39,8 +39,8 @@ public class PantryResource {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<PantryDTO> addPantry(@RequestBody PantryDTO pantryDTO){
+    public ResponseEntity<String> addPantry(@RequestBody PantryDTO pantryDTO){
         pantryService.addPantry(pantryDTO);
-        return new ResponseEntity<>(pantryDTO, HttpStatus.CREATED);
+        return new ResponseEntity<>( HttpStatus.CREATED);
     }
 }
