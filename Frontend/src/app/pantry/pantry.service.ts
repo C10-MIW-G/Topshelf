@@ -1,3 +1,4 @@
+import { PantryDTO } from './pantrydto';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -11,5 +12,13 @@ export class PantryService {
 
   public getPantries(): Observable<Pantry[]> {
     return this.http.get<Pantry[]>(`${this.apiServerUrl}/pantry/all`);
+  }
+
+  public addPantry(pantryDTO: PantryDTO): Observable<PantryDTO> {
+    console.log('service');
+    return this.http.post<PantryDTO>(
+      `${this.apiServerUrl}/pantry/add`,
+      pantryDTO
+    );
   }
 }

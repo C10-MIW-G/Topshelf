@@ -21,6 +21,10 @@ import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { NavComponent } from './nav/nav.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ModaladdpantryComponent } from './modaladdpantry/modaladdpantry.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { environment } from 'src/environments/environment';
 
 @NgModule({
@@ -32,6 +36,7 @@ import { environment } from 'src/environments/environment';
     NavComponent,
     StockProductComponent,
     RegisterComponent,
+    ModaladdpantryComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,9 +49,14 @@ import { environment } from 'src/environments/environment';
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     ReactiveFormsModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
     RecaptchaModule,
     RecaptchaFormsModule,
   ],
+  exports: [MatFormFieldModule],
+  entryComponents: [ModaladdpantryComponent],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     {
