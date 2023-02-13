@@ -1,9 +1,26 @@
+<div class="col-sm-6">
+  <h5>Add a stock product to your stock</h5>
+  <form [formGroup]="addStockProductForm" (ngSubmit)="collectData()">
+    <div class="formGroup">
+      <label>Product name: </label><br>
+      <input type="text" class="form-control" formControlName="name" placeholder="enter product name">
+    </div>
+    <div class="formGroup">
+      <label>Expiration date: </label>
+      <input type="date" class="form-control" formControlName="expirationdate" placeholder="enter expiration date">
+    </div>
+    <button type="submit" class="btn btn-primary" (click)="save()">Save</button><br>
+  </form>
+</div>
+<br>
 <div class="body-container">
+  <h4>Products in stock of this pantry:</h4>
     <div class="list-group">
         <div *ngFor="let stockProduct of pantryWithStockProducts">
-            <h5>{{stockProduct.name}}</h5>
+            <h5>Product name:    {{stockProduct.name}}</h5>
             <h5>Expiration date: {{stockProduct.expirationDate}}</h5>
             <br>
         </div>
     </div>
 </div>
+

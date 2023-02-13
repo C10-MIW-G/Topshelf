@@ -10,8 +10,7 @@ import java.util.function.Function;
  *
  */
 @Service
-public class ProductDefinitionDTOMapper implements Function<ProductDefinition, ProductDefinitionDTO>
-{
+public class ProductDefinitionDTOMapper implements Function<ProductDefinition, ProductDefinitionDTO> {
     @Override
     public ProductDefinitionDTO apply(ProductDefinition productDefinition) {
         return new ProductDefinitionDTO(

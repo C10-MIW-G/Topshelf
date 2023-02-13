@@ -18,5 +18,11 @@ export class StockProductService {
     return this.http.get<StockProduct[]>(`${this.apiServerUrl}/stockproduct/pantry/${pantryId}`)
   }
 
-  
+  public saveStockProductToPantryStock(stockProduct: StockProduct): Observable<StockProduct> {
+    return this.http.post<StockProduct> (`${this.apiServerUrl}/stockproduct/add`, {
+      expirationDate: stockProduct.expirationDate,
+      name: stockProduct.name,
+      pantryId: stockProduct.pantryId
+    });
+  }
 }
