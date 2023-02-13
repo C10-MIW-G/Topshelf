@@ -32,7 +32,7 @@ public class PantryService {
         return pantryRepository.findAll()
                 .stream()
                 .map(pantryDTOMapper)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public PantryDTO findPantryByPantryId(Long pantryId) {

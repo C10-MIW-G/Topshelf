@@ -73,27 +73,27 @@ public class SeedController {
 
         StockProduct rijst1 = new StockProduct();
         rijst1.setProductDefinition(rijst);
-        rijst1.setExpirationDate(LocalDate.now());
+        rijst1.setExpirationDate(LocalDate.of(2022, 4, 3));
         rijst1.setPantry(pantry1);
 
         StockProduct spaghetti1 = new StockProduct();
         spaghetti1.setProductDefinition(spaghetti);
-        spaghetti1.setExpirationDate(LocalDate.now());
+        spaghetti1.setExpirationDate(LocalDate.of(2026, 7, 6));
         spaghetti1.setPantry(pantry1);
 
         StockProduct oudeKaas1 = new StockProduct();
         oudeKaas1.setProductDefinition(oudeKaas);
-        oudeKaas1.setExpirationDate(LocalDate.now());
+        oudeKaas1.setExpirationDate(LocalDate.of(2022, 12, 6));
         oudeKaas1.setPantry(pantry1);
 
         StockProduct pesto1 = new StockProduct();
         pesto1.setProductDefinition(pesto);
-        pesto1.setExpirationDate(LocalDate.now());
+        pesto1.setExpirationDate(LocalDate.of(2023, 11, 4));
         pesto1.setPantry(pantry2);
 
         StockProduct parmezaan1 = new StockProduct();
         parmezaan1.setProductDefinition(parmezaan);
-        parmezaan1.setExpirationDate(LocalDate.now());
+        parmezaan1.setExpirationDate(LocalDate.of(2025, 6, 2));
         parmezaan1.setPantry(pantry2);
 
         List<StockProduct> stock1 = new ArrayList<>();

@@ -36,6 +36,6 @@ public class ProductDefinitionService {
         return productDefinitionRepository.findAll()
                 .stream()
                 .map(productDefinitionDTOMapper)
-                .collect(Collectors.toList());
+                .toList();
     }
 }

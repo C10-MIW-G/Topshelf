@@ -1,6 +1,7 @@
 package nl.miwgroningen.ch10.topshelf.controller;
 
 import nl.miwgroningen.ch10.topshelf.dto.StockProductDTO;
+import nl.miwgroningen.ch10.topshelf.model.Pantry;
 import nl.miwgroningen.ch10.topshelf.service.StockProductService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,8 +39,8 @@ public class StockProductResource {
     }
 
     @GetMapping("/{pantryId}")
-    public ResponseEntity<List<StockProductDTO>> getStockProductByPantryId(@PathVariable("pantryId") Long pantryId) {
-        List<StockProductDTO> stockProduct = stockProductService.findStockProductByPantryId(pantryId);
+    public ResponseEntity<List<StockProductDTO>> getStockProductByPantryId(@PathVariable("pantryId") Pantry pantry) {
+        List<StockProductDTO> stockProduct = stockProductService.findStockProductByPantry(pantry);
         return new ResponseEntity<>(stockProduct, HttpStatus.OK);
     }
 }
