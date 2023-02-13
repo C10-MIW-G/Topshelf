@@ -1,11 +1,9 @@
 package nl.miwgroningen.ch10.topshelf.controller;
 
 import nl.miwgroningen.ch10.topshelf.dto.PantryDTO;
-import nl.miwgroningen.ch10.topshelf.model.Pantry;
 import nl.miwgroningen.ch10.topshelf.service.PantryService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,6 +24,7 @@ public class PantryResource {
     public PantryResource(PantryService pantryService) {
         this.pantryService = pantryService;
     }
+
     @GetMapping("/all")
     public ResponseEntity<List<PantryDTO>> getAllPantries() {
         List<PantryDTO> pantries = pantryService.findAllPantries();
@@ -39,8 +38,8 @@ public class PantryResource {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<String> addPantry(@RequestBody PantryDTO pantryDTO){
+    public ResponseEntity<String> addPantry(@RequestBody PantryDTO pantryDTO) {
         pantryService.addPantry(pantryDTO);
-        return new ResponseEntity<>( HttpStatus.CREATED);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 }
