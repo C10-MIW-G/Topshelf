@@ -1,4 +1,5 @@
 package nl.miwgroningen.ch10.topshelf.service;
+
 import nl.miwgroningen.ch10.topshelf.dto.PantryDTO;
 import nl.miwgroningen.ch10.topshelf.exception.PantryNotFoundException;
 import nl.miwgroningen.ch10.topshelf.mapper.PantryDTOMapper;
@@ -8,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * @author Robbin Drent <r.v.drent@st.hanze.nl>
@@ -41,7 +41,7 @@ public class PantryService {
                 .orElseThrow(() -> new PantryNotFoundException("Pantry with id: " + pantryId + " was not found!"));
     }
 
-    public Pantry addPantry(PantryDTO pantryDTO){
+    public Pantry addPantry(PantryDTO pantryDTO) {
         Pantry pantry = pantryDTOMapper.toPantry(pantryDTO);
         return pantryRepository.save(pantry);
     }
