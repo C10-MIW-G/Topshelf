@@ -37,4 +37,10 @@ public class PantryResource {
         PantryDTO pantry = pantryService.findPantryByPantryId(pantryId);
         return new ResponseEntity<>(pantry, HttpStatus.OK);
     }
+
+    @PostMapping("/add")
+    public ResponseEntity<String> addPantry(@RequestBody PantryDTO pantryDTO){
+        pantryService.addPantry(pantryDTO);
+        return new ResponseEntity<>( HttpStatus.CREATED);
+    }
 }

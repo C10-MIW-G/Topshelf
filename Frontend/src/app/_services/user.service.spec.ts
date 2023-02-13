@@ -4,7 +4,7 @@ import { UserService } from './user.service';
 describe('Service: User', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [UserService]
+      providers: [UserService],
     });
   });
 

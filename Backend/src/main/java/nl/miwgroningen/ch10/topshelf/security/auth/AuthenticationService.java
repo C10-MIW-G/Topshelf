@@ -5,15 +5,13 @@ import nl.miwgroningen.ch10.topshelf.security.config.JwtService;
 import nl.miwgroningen.ch10.topshelf.security.user.Role;
 import nl.miwgroningen.ch10.topshelf.security.user.User;
 import nl.miwgroningen.ch10.topshelf.security.user.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+import java.io.IOException;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Author: Jacob Visser
@@ -29,7 +27,7 @@ public class AuthenticationService {
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
 
-    public AuthenticationResponse register(RegisterRequest request) {
+    public AuthenticationResponse register(RegisterRequest request) throws IOException {
 
         User user = User.builder()
                 .username(request.getUsername())
@@ -43,14 +41,14 @@ public class AuthenticationService {
                 .filter(x -> request.getUsername().equals(x.getUsername()))
                 .toList();
 
-        if(existingUsers.isEmpty()) {
+        if (existingUsers.isEmpty()) {
             repository.save(user);
             String jwtToken = jwtService.generateToken(user);
             return AuthenticationResponse.builder()
                     .token(jwtToken)
                     .build();
         } else {
-            throw new RuntimeException("Username is already taken");
+            throw new RuntimeException("Username already taken");
         }
     }
 
