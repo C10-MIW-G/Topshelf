@@ -1,7 +1,30 @@
-li {
-  width: 50%;
-}
-
 a {
   color: black;
+  font-size: larger;
+  margin-left: 10px;
+}
+
+.row {
+  height: 100vh;
+}
+
+.component-left {
+  padding: 10px;
+  text-align: center;
+  background-color: aqua;
+}
+
+.component-center {
+  padding: 10px;
+}
+
+.component-right {
+  padding: 10px;
+  text-align: center;
+
+  background-color: aqua;
+}
+
+p {
+  text-align: center;
 }

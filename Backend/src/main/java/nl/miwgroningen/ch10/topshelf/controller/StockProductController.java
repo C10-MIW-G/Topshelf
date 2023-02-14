@@ -1,10 +1,12 @@
 package nl.miwgroningen.ch10.topshelf.controller;
 
+import lombok.RequiredArgsConstructor;
 import nl.miwgroningen.ch10.topshelf.dto.StockProductDTO;
 import nl.miwgroningen.ch10.topshelf.model.Pantry;
 import nl.miwgroningen.ch10.topshelf.service.StockProductService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,19 +20,10 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/stockproduct")
-public class StockProductResource {
+@RequiredArgsConstructor
+public class StockProductController {
 
     private final StockProductService stockProductService;
-
-    public StockProductResource(StockProductService stockProductService) {
-        this.stockProductService = stockProductService;
-    }
-
-    @GetMapping("/all")
-    public ResponseEntity<List<StockProductDTO>> getAllStockProducts() {
-        List<StockProductDTO> stockProducts = stockProductService.findAllStockProducts();
-        return new ResponseEntity<>(stockProducts, HttpStatus.OK);
-    }
 
     @GetMapping("/details/{stockProductId}")
     public ResponseEntity<StockProductDTO> getStockProductById(@PathVariable("stockProductId") Long stockProductId) {
@@ -42,5 +35,14 @@ public class StockProductResource {
     public ResponseEntity<List<StockProductDTO>> getStockProductByPantryId(@PathVariable("pantryId") Pantry pantry) {
         List<StockProductDTO> stockProduct = stockProductService.findStockProductByPantry(pantry);
         return new ResponseEntity<>(stockProduct, HttpStatus.OK);
+    }
+
+    @PostMapping("/add")
+    public ResponseEntity <String> saveStockProductToPantryStock(
+            @RequestBody StockProductDTO pantryStockProductToBeSaved, BindingResult result) {
+        if (!result.hasErrors()) {
+            stockProductService.save(pantryStockProductToBeSaved);
+        }
+    return new ResponseEntity<>(HttpStatus.CREATED);
     }
 }

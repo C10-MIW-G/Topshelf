@@ -1,20 +1,47 @@
-<body>
-    <div class="body-container">
-        <div class="row">
-            <div class="col-2"><p>Dit is een test</p></div>
-                <div class="col-8">
-                         <table class="table table-striped">
-                             <tr>
-                              <td>Product</td>
-                                <td>Expiration Date</td>
-                              </tr>
-                              <tr *ngFor="let stockProduct of pantryWithStockProducts">
-                                  <td>{{ stockProduct.name }}</td>
-                                  <td>{{ stockProduct.expirationDate }}</td>
-                             </tr>
-                             </table>
-                </div>
-                <div class="col-2"><p>Eens kijken of dit werkt</p></div> 
-        </div>
+<div class="col-sm-6">
+  <h5>Add a stock product to your stock</h5>
+  <form [formGroup]="addStockProductForm">
+    <div class="formGroup">
+      <label>Product name: </label><br />
+      <input
+        type="text"
+        class="form-control"
+        formControlName="name"
+        placeholder="enter product name"
+      />
     </div>
-</body>
+    <div class="formGroup">
+      <label>Expiration date: </label>
+      <input
+        type="date"
+        class="form-control"
+        formControlName="expirationdate"
+        placeholder="enter expiration date"
+      />
+    </div>
+    <button type="submit" class="btn btn-primary" (click)="save()">Save</button
+    ><br />
+  </form>
+</div>
+<br />
+<div class="body-container">
+  <h4>Products in stock of this pantry:</h4>
+  <div class="body-container">
+    <div class="row">
+      <div class="col-2"><p>Dit is een test</p></div>
+      <div class="col-8">
+        <table class="table table-striped">
+          <tr>
+            <td>Product</td>
+            <td>Expiration Date</td>
+          </tr>
+          <tr *ngFor="let stockProduct of pantryWithStockProducts">
+            <td>{{ stockProduct.name }}</td>
+            <td>{{ stockProduct.expirationDate }}</td>
+          </tr>
+        </table>
+      </div>
+      <div class="col-2"><p>Eens kijken of dit werkt</p></div>
+    </div>
+  </div>
+</div>
