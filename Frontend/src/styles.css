@@ -1,25 +1,31 @@
-.text-bg-dark {
-  background-color: #430069;
-}
-
 body {
-  background-color: beige;
-
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  overflow-y: hidden;
 }
 
-.body-container {
-  background-color: rgb(127, 167, 81);
-  min-height: 100vh;
+.navbar {
+  background-color: black;
+  color: white;
 }
 
-.footer {
-  background-color: rgb(181, 219, 213);
+footer {
+  background-color: black;
+  color: white;
   position: fixed;
   bottom: 0;
   text-align: center;
   width: 100%;
 }
 
+li {
+  width: 50%;
+}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+a {
+  color: black;
+}
+
+a.date {
+  font-style: italic;
+}
