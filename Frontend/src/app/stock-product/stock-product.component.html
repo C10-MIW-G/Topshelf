@@ -1,10 +1,35 @@
+<div class="col-sm-6">
+  <h5>Add a stock product to your stock</h5>
+  <form [formGroup]="addStockProductForm">
+    <div class="formGroup">
+      <label>Product name: </label><br>
+      <input type="text" class="form-control" formControlName="name" placeholder="enter product name">
+    </div>
+    <div class="formGroup">
+      <label>Expiration date: </label>
+      <input type="date" class="form-control" formControlName="expirationdate" placeholder="enter expiration date">
+    </div>
+    <button type="submit" class="btn btn-primary" (click)="save()">Save</button><br>
+  </form>
+</div>
+<br>
 <div class="body-container">
+<<<<<<< HEAD
   <div class="list-group">
     <div *ngFor="let stockProduct of pantryWithStockProducts">
       <li class="list-group-item">
         {{ stockProduct.name }}<br />
         <a class="date">Expiration date: {{ stockProduct.expirationDate }}</a>
       </li>
+=======
+  <h4>Products in stock of this pantry:</h4>
+    <div class="list-group">
+        <div *ngFor="let stockProduct of pantryWithStockProducts">
+            <h5>Product name:    {{stockProduct.name}}</h5>
+            <h5>Expiration date: {{stockProduct.expirationDate}}</h5>
+            <br>
+        </div>
+>>>>>>> d8b9c17dd9a4e9b3d886a8a53a94423601bb6609
     </div>
-  </div>
 </div>
+

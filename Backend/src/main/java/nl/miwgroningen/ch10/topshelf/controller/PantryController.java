@@ -17,11 +17,11 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/pantry")
-public class PantryResource {
+public class PantryController {
 
     private final PantryService pantryService;
 
-    public PantryResource(PantryService pantryService) {
+    public PantryController(PantryService pantryService) {
         this.pantryService = pantryService;
     }
 
@@ -33,7 +33,7 @@ public class PantryResource {
 
     @GetMapping("/details/{pantryId}")
     public ResponseEntity<PantryDTO> getPantryById(@PathVariable("pantryId") Long pantryId) {
-        PantryDTO pantry = pantryService.findPantryByPantryId(pantryId);
+        PantryDTO pantry = pantryService.findPantryDTOByPantryId(pantryId);
         return new ResponseEntity<>(pantry, HttpStatus.OK);
     }
 

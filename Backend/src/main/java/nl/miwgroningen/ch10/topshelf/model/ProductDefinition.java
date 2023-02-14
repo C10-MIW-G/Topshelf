@@ -18,9 +18,10 @@ import java.util.List;
 public class ProductDefinition {
 
     @Id
+    @Column(name = "name", nullable = false)
     private String name;
 
-    @OneToMany(mappedBy = "stockProductId", cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
     List<StockProduct> stockProducts;
 
     @Override

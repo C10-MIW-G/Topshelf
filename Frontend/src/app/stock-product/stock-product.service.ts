@@ -5,9 +5,10 @@ import { StockProduct } from './stock-product';
 
 @Injectable({ providedIn: 'root' })
 export class StockProductService {
+  userdata: any;
   private apiServerUrl = 'http://localhost:8080';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient){}
 
   public getStockProducts(): Observable<StockProduct[]> {
     return this.http.get<StockProduct[]>(
@@ -17,5 +18,13 @@ export class StockProductService {
 
   public getPantryWithStockProducts(pantryId: number): Observable<StockProduct[]> {
     return this.http.get<StockProduct[]>(`${this.apiServerUrl}/stockproduct/${pantryId}`)
+  }
+
+  public saveStockProductToPantryStock(stockProduct: StockProduct): Observable<StockProduct> {
+    return this.http.post<StockProduct> (`${this.apiServerUrl}/stockproduct/add`, {
+      expirationDate: stockProduct.expirationDate,
+      name: stockProduct.name,
+      pantryId: stockProduct.pantryId
+    });
   }
 }

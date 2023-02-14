@@ -37,6 +37,7 @@ import { environment } from 'src/environments/environment';
     StockProductComponent,
     RegisterComponent,
     ModaladdpantryComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
