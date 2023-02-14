@@ -20,9 +20,6 @@ export class StockProductComponent implements OnInit{
     expirationdate: new FormControl('', Validators.required)
   })
 
-  collectData() {
-  }
-
   constructor(
     private stockProductService : StockProductService,
     private router: Router,
@@ -30,19 +27,7 @@ export class StockProductComponent implements OnInit{
   }
 
   ngOnInit() {
-    this.getStockProducts();
     this.getPantryWithStockProducts();
-  }
-
-  public getStockProducts (): void {
-    this.stockProductService.getStockProducts().subscribe(
-      (response: StockProduct[]) => {
-        this.stockProducts = response;
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-      );
   }
 
   public getPantryWithStockProducts (): void {

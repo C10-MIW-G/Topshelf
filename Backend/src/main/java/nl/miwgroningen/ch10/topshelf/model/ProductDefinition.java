@@ -21,7 +21,7 @@ public class ProductDefinition {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @OneToMany(mappedBy = "stockProductId", cascade = CascadeType.ALL) // TODO Check if mappedBy is necessary
+    @OneToMany(cascade = CascadeType.ALL)
     List<StockProduct> stockProducts;
 
     @Override
