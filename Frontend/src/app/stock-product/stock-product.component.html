@@ -1,10 +1,20 @@
-<div class="body-container">
-  <div class="list-group">
-    <div *ngFor="let stockProduct of pantryWithStockProducts">
-      <li class="list-group-item list-group-item-action">
-        {{ stockProduct.name }}<br />
-        <a class="date">Expiration date: {{ stockProduct.expirationDate }}</a>
-      </li>
+<body>
+    <div class="body-container">
+        <div class="row">
+            <div class="col-2"><p>Dit is een test</p></div>
+                <div class="col-8">
+                         <table class="table table-striped">
+                             <tr>
+                              <td>Product</td>
+                                <td>Expiration Date</td>
+                              </tr>
+                              <tr *ngFor="let stockProduct of pantryWithStockProducts">
+                                  <td>{{ stockProduct.name }}</td>
+                                  <td>{{ stockProduct.expirationDate }}</td>
+                             </tr>
+                             </table>
+                </div>
+                <div class="col-2"><p>Eens kijken of dit werkt</p></div> 
+        </div>
     </div>
-  </div>
-</div>
+</body>
