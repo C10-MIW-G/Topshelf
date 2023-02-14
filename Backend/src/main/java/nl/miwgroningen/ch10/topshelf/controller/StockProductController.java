@@ -25,12 +25,6 @@ public class StockProductController {
 
     private final StockProductService stockProductService;
 
-    @GetMapping("/all")
-    public ResponseEntity<List<StockProductDTO>> getAllStockProducts() {
-        List<StockProductDTO> stockProducts = stockProductService.findAllStockProducts();
-        return new ResponseEntity<>(stockProducts, HttpStatus.OK);
-    }
-
     @GetMapping("/details/{stockProductId}")
     public ResponseEntity<StockProductDTO> getStockProductById(@PathVariable("stockProductId") Long stockProductId) {
         StockProductDTO stockProduct = stockProductService.findStockProductByStockProductId(stockProductId);
@@ -44,8 +38,8 @@ public class StockProductController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity <String> saveStockProductToPantryStock(@RequestBody StockProductDTO pantryStockProductToBeSaved,
-                                                BindingResult result) {
+    public ResponseEntity <String> saveStockProductToPantryStock(
+            @RequestBody StockProductDTO pantryStockProductToBeSaved, BindingResult result) {
         if (!result.hasErrors()) {
             stockProductService.save(pantryStockProductToBeSaved);
         }
