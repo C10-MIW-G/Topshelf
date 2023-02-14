@@ -56,7 +56,7 @@ export class PantryComponent implements OnInit {
       if (data.pantryName !== null && data.isSubmitted) {
         this.pantryService.addPantry({ name: data.pantryName }).subscribe({
           complete: () => {
-            // window.location.reload();
+            window.location.reload();
           },
           error: () => {
             alert('pantry niet toegevoegd');

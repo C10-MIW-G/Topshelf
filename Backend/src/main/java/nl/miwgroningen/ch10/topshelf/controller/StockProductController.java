@@ -45,4 +45,12 @@ public class StockProductController {
         }
     return new ResponseEntity<>(HttpStatus.CREATED);
     }
+
+    @DeleteMapping("/delete/{stockProductId}")
+    public ResponseEntity<?> deleteStockProduct(
+            @PathVariable("stockProductId") Long stockProductId){
+        System.out.println("i want to delete a stockproduct");
+        stockProductService.deleteStockProduct(stockProductId);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }
