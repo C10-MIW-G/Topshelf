@@ -21,7 +21,6 @@ export class StockProductComponent implements OnInit{
   })
 
   collectData() {
-    console.warn(this.addStockProductForm.value);
   }
 
   constructor(
@@ -72,7 +71,8 @@ export class StockProductComponent implements OnInit{
       }).subscribe({
         complete: ()=> {
           console.log("Product has been added to pantry stock");
-          this.router.navigateByUrl('/pantry/{pantryId}');
+          this.router.navigate(['/pantry', id]);
+          window.location.reload();
         }
       })
     }

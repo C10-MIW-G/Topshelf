@@ -5,15 +5,12 @@ import nl.miwgroningen.ch10.topshelf.exception.StockProductNotFoundException;
 import nl.miwgroningen.ch10.topshelf.mapper.StockProductDTOMapper;
 import nl.miwgroningen.ch10.topshelf.model.StockProduct;
 import nl.miwgroningen.ch10.topshelf.model.Pantry;
-import nl.miwgroningen.ch10.topshelf.model.StockProduct;
 import nl.miwgroningen.ch10.topshelf.repository.StockProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
 import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
 
 /**
  * @author Jack Wieringa <j.w.wieringa@st.hanze.nl>

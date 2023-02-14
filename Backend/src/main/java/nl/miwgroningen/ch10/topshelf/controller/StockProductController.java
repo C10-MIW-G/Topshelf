@@ -44,12 +44,11 @@ public class StockProductController {
     }
 
     @PostMapping("/add")
-    public String saveStockProductToPantryStock(@RequestBody StockProductDTO pantryStockProductToBeSaved,
+    public ResponseEntity <String> saveStockProductToPantryStock(@RequestBody StockProductDTO pantryStockProductToBeSaved,
                                                 BindingResult result) {
         if (!result.hasErrors()) {
             stockProductService.save(pantryStockProductToBeSaved);
         }
-
-        return "redirect:/pantry/{pantryId}";
+    return new ResponseEntity<>(HttpStatus.CREATED);
     }
 }
