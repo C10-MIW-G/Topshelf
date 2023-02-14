@@ -24,6 +24,7 @@ public class PantryController {
     public PantryController(PantryService pantryService) {
         this.pantryService = pantryService;
     }
+
     @GetMapping("/all")
     public ResponseEntity<List<PantryDTO>> getAllPantries() {
         List<PantryDTO> pantries = pantryService.findAllPantries();
@@ -37,8 +38,8 @@ public class PantryController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<String> addPantry(@RequestBody PantryDTO pantryDTO){
+    public ResponseEntity<String> addPantry(@RequestBody PantryDTO pantryDTO) {
         pantryService.addPantry(pantryDTO);
-        return new ResponseEntity<>( HttpStatus.CREATED);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 }

@@ -1,4 +1,5 @@
 package nl.miwgroningen.ch10.topshelf.service;
+
 import nl.miwgroningen.ch10.topshelf.dto.StockProductDTO;
 import nl.miwgroningen.ch10.topshelf.exception.StockProductNotFoundException;
 import nl.miwgroningen.ch10.topshelf.mapper.StockProductDTOMapper;

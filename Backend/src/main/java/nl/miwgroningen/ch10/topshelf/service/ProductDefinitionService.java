@@ -8,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 /**
  * @author Robbin Drent <r.v.drent@st.hanze.nl>
@@ -38,19 +36,5 @@ public class ProductDefinitionService {
                 .stream()
                 .map(productDefinitionDTOMapper)
                 .toList();
-    }
-
-    public ProductDefinition findProductByName(String name) {
-        Optional<ProductDefinition> existingProductDefinition =
-                productDefinitionRepository.findProductDefinitionByName(name);
-        if (existingProductDefinition.isPresent()) {
-            return existingProductDefinition.get();
-        } else {
-            ProductDefinition newProductDefinition = new ProductDefinition();
-            System.out.println(newProductDefinition);
-            newProductDefinition.setName(name);
-            productDefinitionRepository.save(newProductDefinition);
-            return newProductDefinition;
-        }
     }
 }
