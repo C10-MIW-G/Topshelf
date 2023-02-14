@@ -1,9 +1,9 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Pantry } from '../pantry/pantry';
+import { Router, ActivatedRoute } from '@angular/router';
 import { StockProduct } from './stock-product';
 import { StockProductService } from './stock-product.service';
+import { FormControl, FormGroup, Validators} from '@angular/forms'
 
 @Component({
   selector: 'app-stock-product',
@@ -15,8 +15,17 @@ export class StockProductComponent implements OnInit{
   public stockProductId?: number;
   public pantryWithStockProducts?: StockProduct[] = [];
 
+  addStockProductForm= new FormGroup({
+    name: new FormControl('', Validators.required),
+    expirationdate: new FormControl('', Validators.required)
+  })
+
+  collectData() {
+  }
+
   constructor(
     private stockProductService : StockProductService,
+    private router: Router,
     private route: ActivatedRoute) {
   }
 
@@ -47,5 +56,25 @@ export class StockProductComponent implements OnInit{
         alert(error.message);
       }
       );
+  }
+
+  public save() {
+    const nameValue = this.addStockProductForm.value.name;
+    const expDateValue = this.addStockProductForm.value.expirationdate;
+    const id = Number(this.route.snapshot.paramMap.get('pantryId'))
+
+    if (nameValue && expDateValue) {
+      this.stockProductService.saveStockProductToPantryStock({
+        name: nameValue,
+        expirationDate: new Date(expDateValue),
+        pantryId: id
+      }).subscribe({
+        complete: ()=> {
+          console.log("Product has been added to pantry stock");
+          this.router.navigate(['/pantry', id]);
+          window.location.reload();
+        }
+      })
+    }
   }
 }

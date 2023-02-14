@@ -32,7 +32,7 @@ public class SecurityConfiguration {
                 .csrf()
                 .disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/topshelf/**")
+                .requestMatchers("/topshelf/**")//("/**")//
                 .permitAll()
                 .and()
                 .sessionManagement()

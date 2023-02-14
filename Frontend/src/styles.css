@@ -20,6 +20,13 @@ body {
   width: 100%;
 }
 
+input.ng-invalid {
+  border-left: 5px solid blue;
+}
+
+input.ng-valid {
+  border-left: 5px solid green;
+}
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
