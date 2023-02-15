@@ -1,3 +1,21 @@
 a {
     white-space: nowrap;
 }
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.navbar-brand {
+    width: auto;
+    max-width: 120px;
+}
+
+a:link, a:visited, a:active{
+    color:white !important;
+    text-decoration: none; 
+  }
+
+
+

@@ -5,10 +5,14 @@ body, html {
 }
 
 li {
-  color: black;
+  color: rgb(65, 113, 156);
   width: 50%;
 }
 
 a.date {
   font-style: italic;
+}
+
+.btn-primary {
+  background-color: rgb(65, 113, 156) !important;
 }
