@@ -35,13 +35,13 @@ a.date {
 
 .btn-primary {
   background-color: rgb(65, 113, 156) !important;
-  border: none !important;
+  border: none!important;
 }
+
 
 a {
   color: rgb(65, 113, 156);
   font-size: larger;
-  margin-left: 10px;
 }
 
 a:link, a:visited, a:active{
