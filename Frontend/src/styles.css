@@ -35,8 +35,8 @@ a.date {
 
 .btn-primary {
   background-color: rgb(65, 113, 156) !important;
+  border: 0;
 }
-
 
 a {
   color: rgb(65, 113, 156);
@@ -46,7 +46,7 @@ a {
 
 a:link, a:visited, a:active{
   color:black;
-  text-decoration: none; 
+  text-decoration: none;
 }
 
 .row {
@@ -66,3 +66,5 @@ a:link, a:visited, a:active{
 p {
   text-align: left;
 }
+
+

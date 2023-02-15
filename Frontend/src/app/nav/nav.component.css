@@ -14,8 +14,15 @@ img {
 
 a:link, a:visited, a:active{
     color:white !important;
-    text-decoration: none; 
-  }
+    text-decoration: none;
+}
 
+.btn-primary {
+  border: 0;
+}
+
+.btn-outline-info {
+  
+}
 
 
