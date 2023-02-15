@@ -38,11 +38,11 @@ public class StockProductController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity <String> saveStockProductToPantryStock(
+    public ResponseEntity<String> saveStockProductToPantryStock(
             @RequestBody StockProductDTO pantryStockProductToBeSaved, BindingResult result) {
         if (!result.hasErrors()) {
             stockProductService.save(pantryStockProductToBeSaved);
         }
-    return new ResponseEntity<>(HttpStatus.CREATED);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 }

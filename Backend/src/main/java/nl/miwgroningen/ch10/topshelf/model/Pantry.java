@@ -28,4 +28,7 @@ public class Pantry {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "stockProductId")
     private List<StockProduct> stock;
 
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "basicStockProductId")
+    private List<BasicStockProduct> basicStock;
+
 }

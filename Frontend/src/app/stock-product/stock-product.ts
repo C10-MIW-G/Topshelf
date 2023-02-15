@@ -1,6 +1,5 @@
-export interface StockProduct{
-    name: string;
-    expirationDate: Date;
-    pantryId: number;
+export interface StockProduct {
+  name: string;
+  expirationDate: Date;
+  pantryId: number;
 }
-

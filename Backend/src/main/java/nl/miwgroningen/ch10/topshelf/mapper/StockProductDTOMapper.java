@@ -13,8 +13,10 @@ import java.util.function.Function;
  * @author Inge Dikland
  *
  */
-@Service @RequiredArgsConstructor
+@Service
+@RequiredArgsConstructor
 public class StockProductDTOMapper implements Function<StockProduct, StockProductDTO> {
+
     private final PantryService pantryService;
     private final ProductDefinitionService productDefinitionService;
 

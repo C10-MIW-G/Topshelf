@@ -2,29 +2,33 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { StockProduct } from './stock-product';
+import { environment } from 'src/environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class StockProductService {
   userdata: any;
-  private apiServerUrl = 'http://localhost:8080';
+  private apiServerUrl = environment.apiBaseUrl;
 
-  constructor(private http: HttpClient){}
+  constructor(private http: HttpClient) {}
 
-  public getStockProducts(): Observable<StockProduct[]> {
+  public getPantryWithStockProducts(
+    pantryId: number
+  ): Observable<StockProduct[]> {
     return this.http.get<StockProduct[]>(
-      `${this.apiServerUrl}/stockproduct/all`
+      `${this.apiServerUrl}/stockproduct/${pantryId}`
     );
   }
 
-  public getPantryWithStockProducts(pantryId: number): Observable<StockProduct[]> {
-    return this.http.get<StockProduct[]>(`${this.apiServerUrl}/stockproduct/${pantryId}`)
-  }
-
-  public saveStockProductToPantryStock(stockProduct: StockProduct): Observable<StockProduct> {
-    return this.http.post<StockProduct> (`${this.apiServerUrl}/stockproduct/add`, {
-      expirationDate: stockProduct.expirationDate,
-      name: stockProduct.name,
-      pantryId: stockProduct.pantryId
-    });
+  public saveStockProductToPantryStock(
+    stockProduct: StockProduct
+  ): Observable<StockProduct> {
+    return this.http.post<StockProduct>(
+      `${this.apiServerUrl}/stockproduct/add`,
+      {
+        expirationDate: stockProduct.expirationDate,
+        name: stockProduct.name,
+        pantryId: stockProduct.pantryId,
+      }
+    );
   }
 }

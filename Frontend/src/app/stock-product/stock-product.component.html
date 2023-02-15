@@ -1,5 +1,8 @@
 <div class="col-sm-6">
   <h5>Add a stock product to your stock</h5>
+  <a [routerLink]="['/pantry', pantryId, 'basicstock']"
+    >Manage your basic stock</a
+  >
   <form [formGroup]="addStockProductForm">
     <div class="formGroup">
       <label>Product name: </label><br />
