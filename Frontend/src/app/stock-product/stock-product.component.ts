@@ -8,12 +8,14 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-stock-product',
   templateUrl: './stock-product.component.html',
-  styleUrls: ['./stock-product.component.css'],
+  styleUrls: ['./stock-product.component.css']
 })
 export class StockProductComponent implements OnInit {
   public stockProducts?: StockProduct[] = [];
   public stockProductId?: number;
   public pantryWithStockProducts?: StockProduct[] = [];
+  public stockProductDelete?: StockProduct;
+  public namePantry!: string;
   public pantryId!: number;
 
   addStockProductForm = new FormGroup({
@@ -28,6 +30,7 @@ export class StockProductComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.getPantryName();
     this.getPantryIdWithStockProducts();
   }
 
@@ -65,5 +68,22 @@ export class StockProductComponent implements OnInit {
           },
         });
     }
+  }
+
+  public remove(stockProduct: StockProduct) {
+    this.stockProductService
+      .deleteStockproductFromPantry(stockProduct.stockProductId)
+      .subscribe((response: void) => {
+        this.getPantryWithStockProducts;
+        window.location.reload();
+      }),
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      };
+  }
+
+  public getPantryName() {
+    const id = this.route.snapshot.queryParamMap.get('name')!;
+    this.namePantry = id;
   }
 }

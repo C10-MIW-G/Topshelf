@@ -1,0 +1,14 @@
+@import "https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css";
+@import "https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css";
+body, html {
+  height: 100%;
+}
+
+li {
+  color: black;
+  width: 50%;
+}
+
+a.date {
+  font-style: italic;
+}

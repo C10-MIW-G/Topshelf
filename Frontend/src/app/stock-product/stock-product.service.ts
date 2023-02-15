@@ -1,3 +1,4 @@
+import { StockProductSave } from './stock-product-save';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -29,6 +30,14 @@ export class StockProductService {
         name: stockProduct.name,
         pantryId: stockProduct.pantryId,
       }
+    );
+  }
+
+  public deleteStockproductFromPantry(
+    stockProductId: number
+  ): Observable<void> {
+    return this.http.delete<void>(
+      `${this.apiServerUrl}/stockproduct/delete/${stockProductId}`
     );
   }
 }
