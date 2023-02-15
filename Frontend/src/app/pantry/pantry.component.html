@@ -4,7 +4,7 @@
       <div class="col-2 component-left">
         <p>Linker kolom</p>
       </div>
-      <div class="col-8 component-center">
+      <div class="col-7 component-center">
         <div *ngFor="let pantry of pantries">
           <table class="table table-striped">
             <tr>
@@ -20,7 +20,7 @@
       <div class="alert alert-danger" *ngIf="unAuthorizedUser == false">
         Page can not be visited:<br />{{ errorMessage }}
       </div>
-      <div class="col-2 component-right">
+      <div class="col-3 component-right">
         <button
           class="btn btn-primary"
           *ngIf="unAuthorizedUser == true"

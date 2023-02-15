@@ -1,5 +1,7 @@
 a {
     white-space: nowrap;
+    color: rgb(65, 113, 156);
+    margin-left: 10px;
 }
 
 img {
@@ -14,8 +16,10 @@ img {
 
 a:link, a:visited, a:active{
     color:white !important;
-    text-decoration: none; 
-  }
+    text-decoration: none;
+}
 
-
+.btn-primary {
+  border: 0;
+}
 

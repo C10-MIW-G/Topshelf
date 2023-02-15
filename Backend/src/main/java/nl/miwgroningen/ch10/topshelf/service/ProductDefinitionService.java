@@ -23,7 +23,8 @@ public class ProductDefinitionService {
     private final ProductDefinitionDTOMapper productDefinitionDTOMapper;
 
     @Autowired
-    public ProductDefinitionService(ProductDefinitionRepository productDefinitionRepository, ProductDefinitionDTOMapper productDefinitionDTOMapper) {
+    public ProductDefinitionService(ProductDefinitionRepository productDefinitionRepository,
+                                    ProductDefinitionDTOMapper productDefinitionDTOMapper) {
         this.productDefinitionRepository = productDefinitionRepository;
         this.productDefinitionDTOMapper = productDefinitionDTOMapper;
     }
