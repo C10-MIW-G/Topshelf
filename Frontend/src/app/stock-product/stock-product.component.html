@@ -2,8 +2,9 @@
   <div class="row">
     <div class="col-2">
       <a [routerLink]="['/pantry', pantryId, 'basicstock']">
-      Manage your basic stock</a>
-      </div>
+        Manage your basic stock</a
+      >
+    </div>
     <div class="col-8">
       <h4>Products in stock of: {{ namePantry }}</h4>
       <table class="table table-striped">
@@ -19,7 +20,11 @@
       </table>
     </div>
     <div class="col-2">
-      <form [formGroup]="addStockProductForm">
+      <form
+        [formGroup]="addStockProductForm"
+        (ngSubmit)="addStockProductForm.valid && save()"
+        name="form"
+      >
         <div class="formGroup col-12">
           <br />
           <h5>Add your product</h5>
@@ -30,7 +35,14 @@
             formControlName="name"
             placeholder="enter product name"
           />
+          <div
+            class="alert-danger"
+            *ngIf="isSubmitted && !addStockProductForm.value.name"
+          >
+            Stockproduct name required
+          </div>
         </div>
+
         <div class="formGroup col-12">
           <br />
           <label>Expiration date: </label>
@@ -40,6 +52,12 @@
             formControlName="expirationdate"
             placeholder="enter expiration date"
           />
+          <div
+            class="alert-danger"
+            *ngIf="isSubmitted && !addStockProductForm.value.expirationdate"
+          >
+            Expirationdate is required
+          </div>
           <br />
           <button type="submit" class="btn btn-primary" (click)="save()">
             Save

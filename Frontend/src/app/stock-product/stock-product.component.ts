@@ -8,7 +8,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-stock-product',
   templateUrl: './stock-product.component.html',
-  styleUrls: ['./stock-product.component.css']
+  styleUrls: ['./stock-product.component.css'],
 })
 export class StockProductComponent implements OnInit {
   public stockProducts?: StockProduct[] = [];
@@ -17,6 +17,7 @@ export class StockProductComponent implements OnInit {
   public stockProductDelete?: StockProduct;
   public namePantry!: string;
   public pantryId!: number;
+  public isSubmitted?: boolean = false;
 
   addStockProductForm = new FormGroup({
     name: new FormControl('', Validators.required),
@@ -49,6 +50,7 @@ export class StockProductComponent implements OnInit {
   }
 
   public save() {
+    this.isSubmitted = true;
     const nameValue = this.addStockProductForm.value.name;
     const expDateValue = this.addStockProductForm.value.expirationdate;
     const id = Number(this.route.snapshot.paramMap.get('pantryId'));
