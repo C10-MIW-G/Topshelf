@@ -19,7 +19,7 @@
         <tr *ngFor="let stockProduct of pantryWithStockProducts">
           <td>{{ stockProduct.name }}</td>
           <td>{{ stockProduct.expirationDate }}</td>
-          <a class="btn" (click)="remove(stockProduct)"><span>&#9940;</span></a>
+          <a class="btn" (click)="remove(stockProduct)"><span><i class="fa fa-trash-o"></i></span></a>
         </tr>
       </table>
     </div>
