@@ -2,8 +2,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { ChangePasswordRequest } from '../change-password/change-password';
 
 const AUTH_API = environment.authUrl;
+const API_URL = environment.apiBaseUrl;
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
 };
@@ -41,6 +43,18 @@ export class AuthService {
       httpOptions
     );
   }
+
+  changePassword(
+    request: { password: string, newPassword: string}): Observable<any> {
+      return this.http.put<ChangePasswordRequest>(
+        API_URL + '/user/updatepassword',
+        {
+          password: request.password,
+          newPassword: request.newPassword,
+        },
+        httpOptions
+      );
+    }
 
   GetAll() {
     return this.http.get(AUTH_API);

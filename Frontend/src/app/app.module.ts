@@ -27,6 +27,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { environment } from 'src/environments/environment';
 import { BasicStockProductComponent } from './basic-stock-product/basic-stock-product.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { BasicStockProductComponent } from './basic-stock-product/basic-stock-pr
     ModaladdpantryComponent,
     RegisterComponent,
     BasicStockProductComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,

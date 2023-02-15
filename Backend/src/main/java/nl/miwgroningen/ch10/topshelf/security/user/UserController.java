@@ -1,6 +1,7 @@
 package nl.miwgroningen.ch10.topshelf.security.user;
 
 import nl.miwgroningen.ch10.topshelf.exception.InvalidPasswordException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,26 +14,26 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/user")
-
 public class UserController {
 
     private final UserService userService;
 
+    @Autowired
     public UserController(UserService userService) {
         this.userService = userService;
     }
 
-    @PostMapping("/updatePassword")
+    @PutMapping ("/updatepassword")
     public String changeUserPassword (
-            @RequestParam("oldPassword") String oldPassword,
-            @RequestParam("password") String password) {
+            @RequestBody ChangePasswordRequest request) {
         User user = userService.findUserByUsername(
                 SecurityContextHolder.getContext().getAuthentication().getName());
 
-        if (!userService.checkPassword(user, oldPassword)) {
-            throw new InvalidPasswordException("Onjuist wachtwoord!");
+        if (!userService.checkPassword(user, request.getPassword())) {
+            throw new InvalidPasswordException("Invalid password!");
         }
-        userService.changeUserPassword(user, password);
-        return "Wachtwoord succesvol veranderd!";
+
+        userService.changeUserPassword(user, request.getNewPassword());
+        return "Password successfully changed!";
     }
 }
