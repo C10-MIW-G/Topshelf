@@ -46,7 +46,7 @@ a {
 
 a:link, a:visited, a:active{
   color:black;
-  text-decoration: none; 
+  text-decoration: none;
 }
 
 .row {
@@ -54,7 +54,6 @@ a:link, a:visited, a:active{
 }
 
 .component-left, .component-right {
-  padding: 10px;
   text-align: left;
   background-color: rgb(232, 241, 248);
 }
