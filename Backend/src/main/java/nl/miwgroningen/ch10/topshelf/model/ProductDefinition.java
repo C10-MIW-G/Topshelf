@@ -24,6 +24,9 @@ public class ProductDefinition {
     @OneToMany(cascade = CascadeType.ALL)
     List<StockProduct> stockProducts;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    List<BasicStockProduct> basicStockProducts;
+
     @Override
     public String toString() {
         return "Product: " + name;

@@ -1,6 +1,5 @@
 package nl.miwgroningen.ch10.topshelf.dto;
 
-
 import java.time.LocalDate;
 
 /**

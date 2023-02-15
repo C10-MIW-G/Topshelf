@@ -60,4 +60,8 @@ public class StockProductService {
         StockProduct stockProduct = stockProductDTOMapper.convertFromDTO(pantryStockProductToBeSaved);
         stockProductRepository.save(stockProduct);
     }
+
+    public void deleteStockProduct(Long stockProductId){
+        stockProductRepository.deleteById(stockProductId);
+    }
 }

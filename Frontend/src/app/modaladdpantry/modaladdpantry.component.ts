@@ -15,9 +15,9 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 export class ModaladdpantryComponent implements OnInit {
   form!: FormGroup;
   pantryName: string;
-  isSuccesfull: boolean = false;
   hasFailed: boolean = false;
   errormessage?: string;
+  isSubmitted: boolean;
 
   constructor(
     private fb: FormBuilder,
@@ -25,25 +25,27 @@ export class ModaladdpantryComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) data: any
   ) {
     this.pantryName = data.name;
+    this.isSubmitted = data.isSubmitted;
   }
 
   ngOnInit() {
     this.form = this.fb.group({
       pantryName: new FormControl('', [Validators.required]),
+      isSubmitted: this.isSubmitted,
     });
   }
 
   close() {
-    this.dialogRef.close(this.form.value);
+    this.isSubmitted = false;
+    this.dialogRef.close(this.isSubmitted);
   }
 
   save() {
     if (this.form.value.pantryName === null) {
       this.hasFailed = true;
       this.errormessage = 'Fill in a pantryname';
-    }
-
-    if (this.form.value.pantryName !== null) {
+    } else {
+      this.isSubmitted = true;
       this.dialogRef.close(this.form.value);
     }
   }

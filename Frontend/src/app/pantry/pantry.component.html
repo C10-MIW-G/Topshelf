@@ -8,9 +8,11 @@
         <div *ngFor="let pantry of pantries">
           <table class="table table-striped">
             <tr>
-              <a routerLink="/pantry/{{ pantry.pantryId }}">{{
-                pantry.name
-              }}</a>
+              <a
+                routerLink="/pantry/{{ pantry.pantryId }}"
+                [queryParams]="{ name: pantry.name }"
+                >{{ pantry.name }}</a
+              >
             </tr>
           </table>
         </div>

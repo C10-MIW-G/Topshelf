@@ -38,11 +38,18 @@ public class StockProductController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity <String> saveStockProductToPantryStock(
+    public ResponseEntity<String> saveStockProductToPantryStock(
             @RequestBody StockProductDTO pantryStockProductToBeSaved, BindingResult result) {
         if (!result.hasErrors()) {
             stockProductService.save(pantryStockProductToBeSaved);
         }
-    return new ResponseEntity<>(HttpStatus.CREATED);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/delete/{stockProductId}")
+    public ResponseEntity<?> deleteStockProduct(
+            @PathVariable("stockProductId") Long stockProductId){
+        stockProductService.deleteStockProduct(stockProductId);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

@@ -1,0 +1,34 @@
+<div class="col-sm-6">
+  <h5>Decide what your stock should contain</h5>
+  <form [formGroup]="addBasicStockProductForm">
+    <div class="formGroup">
+      <label>Product name: </label><br />
+      <input
+        type="text"
+        class="form-control"
+        formControlName="name"
+        placeholder="enter product name"
+      />
+      <label>Product amount: </label><br />
+      <input
+        type="number"
+        class="form-control"
+        formControlName="amount"
+        placeholder="enter product amount"
+      />
+    </div>
+    <button type="submit" class="btn btn-primary" (click)="save()">Save</button
+    ><br />
+  </form>
+</div>
+<br />
+<div class="body-container">
+  <h4>Products in basic stock of this pantry:</h4>
+  <div class="list-group">
+    <div *ngFor="let basicStockProduct of pantryWithBasicStockProducts">
+      <h5>Product name: {{ basicStockProduct.name }}</h5>
+      <h5>Product amount: {{ basicStockProduct.amount }}</h5>
+      <br />
+    </div>
+  </div>
+</div>
