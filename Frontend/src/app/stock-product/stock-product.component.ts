@@ -15,6 +15,7 @@ export class StockProductComponent implements OnInit {
   public stockProductId?: number;
   public pantryWithStockProducts?: StockProduct[] = [];
   public stockProductDelete?: StockProduct;
+  public namePantry!: string;
 
   addStockProductForm = new FormGroup({
     name: new FormControl('', Validators.required),
@@ -29,6 +30,7 @@ export class StockProductComponent implements OnInit {
 
   ngOnInit() {
     this.getPantryWithStockProducts();
+    this.getPantryName();
   }
 
   public getPantryWithStockProducts(): void {
@@ -76,5 +78,10 @@ export class StockProductComponent implements OnInit {
       (error: HttpErrorResponse) => {
         alert(error.message);
       };
+  }
+
+  public getPantryName() {
+    const id = this.route.snapshot.queryParamMap.get('name')!;
+    this.namePantry = id;
   }
 }
