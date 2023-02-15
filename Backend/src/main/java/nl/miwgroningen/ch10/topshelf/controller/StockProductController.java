@@ -24,7 +24,7 @@ import java.util.List;
 public class StockProductController {
 
     private final StockProductService stockProductService;
-
+    
     @GetMapping("/details/{stockProductId}")
     public ResponseEntity<StockProductDTO> getStockProductById(@PathVariable("stockProductId") Long stockProductId) {
         StockProductDTO stockProduct = stockProductService.findStockProductByStockProductId(stockProductId);

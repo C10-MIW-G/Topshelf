@@ -35,18 +35,18 @@ a.date {
 
 .btn-primary {
   background-color: rgb(65, 113, 156) !important;
+  border: none!important;
 }
 
 
 a {
   color: rgb(65, 113, 156);
   font-size: larger;
-  margin-left: 10px;
 }
 
 a:link, a:visited, a:active{
   color:black;
-  text-decoration: none; 
+  text-decoration: underline;
 }
 
 .row {
@@ -54,13 +54,13 @@ a:link, a:visited, a:active{
 }
 
 .component-left, .component-right {
-  padding: 10px;
+  padding: 20px;
   text-align: left;
   background-color: rgb(232, 241, 248);
 }
 
 .component-center {
-  padding: 10px;
+  padding: 20px;
 }
 
 p {

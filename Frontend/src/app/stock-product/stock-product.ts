@@ -4,4 +4,3 @@ export interface StockProduct {
   pantryId: number;
   stockProductId: number;
 }
-
