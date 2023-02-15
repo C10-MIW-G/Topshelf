@@ -1,5 +1,7 @@
 a {
     white-space: nowrap;
+    color: rgb(65, 113, 156);
+    margin-left: 10px;
 }
 
 img {

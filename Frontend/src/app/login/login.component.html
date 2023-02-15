@@ -1,6 +1,12 @@
-<div class="col-6">
-  <div class="card card-container">
-    <form
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-2 component-left">
+        <p></p>
+      </div>
+      <div class="col-7 component-center">
+        <div class="col-5 card card-container">
+         <form
       *ngIf="!isLoggedIn"
       name="form"
       (ngSubmit)="f.form.valid && onSubmit()"
@@ -49,9 +55,7 @@
       </div>
       <div class="form-group">
         <button class="btn btn-primary btn-block">Login</button>
-        <a routerLink="/register" class="btn btn-primary btn-block"
-          >No account? Click here to register</a
-        >
+        <a routerLink="/register" class="btn btn-primary btn-block">No account? Click here to register</a>
       </div>
       <div class="form-group">
         <div
@@ -64,4 +68,6 @@
       </div>
     </form>
   </div>
+  
 </div>
+<div class="col-3 component-right"></div>
