@@ -14,18 +14,9 @@
         >
       </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0" *ngIf="!isLoggedIn()">
-      <button
-        class="btn btn-outline-info me-2"
-        type="button"
-        routerLink="login"
-      >
-        Login
-      </button>
-    </form>
     <form class="form-inline my-2 my-lg-0" *ngIf="isLoggedIn()">
       <button
-        class="btn btn-outline-info me-2 text-white"
+        class="btn btn-info me-2 text-white"
         type="submit"
         routerLink="login"
         (click)="logout()"
