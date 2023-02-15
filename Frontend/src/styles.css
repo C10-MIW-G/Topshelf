@@ -39,14 +39,13 @@ a.date {
 
 
 a {
-  color: rgb(65, 113, 156);
   font-size: larger;
   margin-left: 10px;
 }
 
 a:link, a:visited, a:active{
   color:black;
-  text-decoration: none; 
+  text-decoration: underline;
 }
 
 .row {

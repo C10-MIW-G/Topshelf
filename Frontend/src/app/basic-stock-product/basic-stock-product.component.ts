@@ -14,6 +14,8 @@ export class BasicStockProductComponent implements OnInit {
   public basicStockProducts?: BasicStockProduct[] = [];
   public basicStockProductId?: number;
   public pantryWithBasicStockProducts?: BasicStockProduct[] = [];
+  public namePantry!: string;
+  public pantryId!: number;
 
   addBasicStockProductForm = new FormGroup({
     name: new FormControl('', Validators.required),
@@ -27,11 +29,13 @@ export class BasicStockProductComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.getPantryName();
     this.getPantryIdWithBasicStockProducts();
   }
 
   public getPantryIdWithBasicStockProducts(): void {
     const id = Number(this.route.snapshot.paramMap.get('pantryId'));
+    this.pantryId = id;
     this.basicStockProductService.getPantryWithBasicStockProducts(id).subscribe(
       (response: BasicStockProduct[]) => {
         this.pantryWithBasicStockProducts = response;
@@ -63,5 +67,10 @@ export class BasicStockProductComponent implements OnInit {
           },
         });
     }
+  }
+
+  public getPantryName() {
+    const id = this.route.snapshot.queryParamMap.get('name')!;
+    this.namePantry = id;
   }
 }
