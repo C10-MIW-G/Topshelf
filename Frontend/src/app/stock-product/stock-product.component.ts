@@ -74,7 +74,7 @@ export class StockProductComponent implements OnInit {
     this.stockProductService
       .deleteStockproductFromPantry(stockProduct.stockProductId)
       .subscribe((response: void) => {
-        this.getPantryWithStockProducts;
+        this.getPantryIdWithStockProducts;
         window.location.reload();
       }),
       (error: HttpErrorResponse) => {

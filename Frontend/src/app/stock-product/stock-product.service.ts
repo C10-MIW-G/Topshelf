@@ -21,14 +21,14 @@ export class StockProductService {
   }
 
   public saveStockProductToPantryStock(
-    stockProduct: StockProduct
-  ): Observable<StockProduct> {
-    return this.http.post<StockProduct>(
+    stockProductSave: StockProductSave
+  ): Observable<StockProductSave> {
+    return this.http.post<StockProductSave>(
       `${this.apiServerUrl}/stockproduct/add`,
       {
-        expirationDate: stockProduct.expirationDate,
-        name: stockProduct.name,
-        pantryId: stockProduct.pantryId,
+        expirationDate: stockProductSave.expirationDate,
+        name: stockProductSave.name,
+        pantryId: stockProductSave.pantryId,
       }
     );
   }
