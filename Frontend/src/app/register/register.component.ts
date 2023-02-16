@@ -33,7 +33,7 @@ export class RegisterComponent implements OnInit {
         console.log(response);
         this.isSuccessful = true;
         this.isSignUpFailed = false;
-        this.registrationComplete();
+        this.router.navigate(['/login']);
         this.toastr.success('You can now log in', 'Registration success!', {
           positionClass: 'toast-top-center',
         });
@@ -52,9 +52,5 @@ export class RegisterComponent implements OnInit {
         }
       }
     );
-  }
-
-  registrationComplete(): void {
-    this.router.navigate(['/login']);
   }
 }

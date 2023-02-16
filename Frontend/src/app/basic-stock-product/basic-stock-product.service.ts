@@ -11,7 +11,7 @@ export class BasicStockProductService {
 
   constructor(private http: HttpClient) {}
 
-  public getPantryWithBasicStockProducts(
+  public getBasicStockProductsByPantry(
     pantryId: number
   ): Observable<BasicStockProduct[]> {
     return this.http.get<BasicStockProduct[]>(

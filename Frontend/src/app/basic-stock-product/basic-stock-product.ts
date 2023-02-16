@@ -1,5 +1,5 @@
 export interface BasicStockProduct {
-  name: string;
+  name: string | null | undefined;
   pantryId: number;
-  amount: number;
+  amount: number | null | undefined;
 }
