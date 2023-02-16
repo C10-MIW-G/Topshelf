@@ -1,10 +1,9 @@
 package nl.miwgroningen.ch10.topshelf.security.auth;
 
 import lombok.RequiredArgsConstructor;
+import nl.miwgroningen.ch10.topshelf.exception.InvalidReCaptchaException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.io.IOException;
 
 /**
  * Author: Jacob Visser
@@ -23,11 +22,11 @@ public class AuthenticationController {
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register(
             @RequestBody RegisterRequest request
-    ) throws IOException {
+    ) throws InvalidReCaptchaException {
         if(captchaService.verify(request.getCaptchaResponse())) {
             return ResponseEntity.ok(service.register(request));
         } else {
-            throw new RuntimeException("Invalid reCaptcha");
+            throw new InvalidReCaptchaException("Invalid reCaptcha");
         }
     }
 
