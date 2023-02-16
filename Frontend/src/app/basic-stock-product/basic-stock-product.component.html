@@ -1,59 +1,61 @@
-<div class="body-container">
-  <div class="row">
-    <div class="col-2 component-left">
-      <a
-        [routerLink]="['/pantry', pantryId]"
-        [queryParams]="{ name: namePantry }"
-      >
-        Stock</a
-      >
-    </div>
-    <div class="col-7 component-center">
-      <h4>{{ namePantry }}</h4>
-      <br />
-      <table class="table table-striped">
-        <tr>
-          <th>Product</th>
-          <th>Amount</th>
-        </tr>
-        <tr *ngFor="let basicStockProduct of pantryWithBasicStockProducts">
-          <td>{{ basicStockProduct.name }}</td>
-          <td>{{ basicStockProduct.amount }}</td>
-        </tr>
-      </table>
-      <div *ngIf="pantryWithBasicStockProducts.length === 0">
-				<p>There are no products in your list yet.</p>
-			</div>
-    </div>
-    <div class="col-3 component-right">
-      <form [formGroup]="addBasicStockProductForm">
-        <div class="formGroup col-12">
-          <h5>Add product to basic stock</h5>
-          <label>Product name: </label>
-          <input
-            type="text"
-            class="form-control"
-            formControlName="name"
-            placeholder="enter product name"
-          />
-        </div>
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-2 component-left">
+        <a
+          [routerLink]="['/pantry', pantryId]"
+          [queryParams]="{ name: namePantry }"
+        >
+          Stock</a
+        >
+      </div>
+      <div class="col-7 component-center">
+        <h4>{{ namePantry }}</h4>
         <br />
-        <div class="formGroup col-12">
-          <label>Product amount: </label>
-          <input
-            min="0"
-            type="number"
-            class="form-control"
-            formControlName="amount"
-            placeholder="enter product amount"
-          />
-          <br />
-          <button type="submit" class="btn btn-primary" (click)="save()">
-            Save
-          </button>
-          <br />
+        <table class="table table-striped">
+          <tr>
+            <th>Product</th>
+            <th>Amount</th>
+          </tr>
+          <tr *ngFor="let basicStockProduct of pantryWithBasicStockProducts">
+            <td>{{ basicStockProduct.name }}</td>
+            <td>{{ basicStockProduct.amount }}</td>
+          </tr>
+        </table>
+        <div *ngIf="pantryWithBasicStockProducts.length === 0">
+          <p>There are no products in your list yet.</p>
         </div>
-      </form>
+      </div>
+      <div class="col-3 component-right">
+        <form [formGroup]="addBasicStockProductForm" class="sidebar-fixed">
+          <div class="formGroup col-12">
+            <h5>Add product to basic stock</h5>
+            <label>Product name: </label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="name"
+              placeholder="enter product name"
+            />
+          </div>
+          <br />
+          <div class="formGroup col-12">
+            <label>Product amount: </label>
+            <input
+              min="0"
+              type="number"
+              class="form-control"
+              formControlName="amount"
+              placeholder="enter product amount"
+            />
+            <br />
+            <button type="submit" class="btn btn-primary" (click)="save()">
+              Save
+            </button>
+            <br />
+          </div>
+        </form>
+      </div>
     </div>
   </div>
-</div>
+</body>

@@ -30,7 +30,6 @@ public class PantryController {
         List<PantryDTO> pantries = pantryService.findAllPantries();
         return new ResponseEntity<>(pantries, HttpStatus.OK);
     }
-
     @PostMapping("/add")
     public ResponseEntity<String> addPantry(@RequestBody PantryDTO pantryDTO) {
         pantryService.addPantry(pantryDTO);
