@@ -22,6 +22,9 @@
           <a class="btn" (click)="remove(stockProduct)"><span><i class="fa fa-trash-o"></i></span></a>
         </tr>
       </table>
+      <div *ngIf="pantryWithStockProducts.length === 0">
+				<p>There are no products in your list yet.</p>
+			</div>
     </div>
     <div class="col-3 component-right">
       <form [formGroup]="addStockProductForm">
