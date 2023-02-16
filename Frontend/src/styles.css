@@ -3,10 +3,13 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+
 .navbar {
   background-color: rgb(65, 113, 156);
   color: white;
 }
+
+
 
 footer {
   background-color: rgb(65, 113, 156);
@@ -54,9 +57,11 @@ a:link, a:visited, a:active{
 }
 
 .component-left, .component-right {
-  padding: 20px;
+  padding-top: 36px;
   text-align: left;
-  background-color: rgb(232, 241, 248);
+  background-color:
+   rgb(232, 241, 248);
+   position: sticky ;
 }
 
 .component-center {
@@ -65,4 +70,8 @@ a:link, a:visited, a:active{
 
 p {
   text-align: left;
+}
+
+.sidebar-fixed{
+  position: fixed;
 }
