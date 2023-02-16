@@ -13,14 +13,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class BasicStockProductComponent implements OnInit {
   public basicStockProducts?: BasicStockProduct[] = [];
   public basicStockProductId?: number;
-  public pantryWithBasicStockProducts?: BasicStockProduct[] = [];
+  public pantryWithBasicStockProducts: BasicStockProduct[] = [];
   public namePantry!: string;
   public pantryId!: number;
-
-  addBasicStockProductForm = new FormGroup({
-    name: new FormControl('', Validators.required),
-    amount: new FormControl(0, Validators.required),
-  });
 
   constructor(
     private basicStockProductService: BasicStockProductService,
@@ -32,6 +27,11 @@ export class BasicStockProductComponent implements OnInit {
     this.getPantryName();
     this.getPantryIdWithBasicStockProducts();
   }
+
+  addBasicStockProductForm = new FormGroup({
+    name: new FormControl('', Validators.required),
+    amount: new FormControl(0, Validators.required),
+  });
 
   public getPantryIdWithBasicStockProducts(): void {
     const id = Number(this.route.snapshot.paramMap.get('pantryId'));
