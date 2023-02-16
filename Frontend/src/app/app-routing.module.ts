@@ -15,7 +15,11 @@ const appRoute: Routes = [
     component: BasicStockProductComponent,
     pathMatch: 'full',
   },
-  { path: 'pantry/:pantryId', component: StockProductComponent },
+  {
+    path: 'pantry/:pantryId',
+    component: StockProductComponent,
+  },
+
   { path: '', redirectTo: 'login', pathMatch: 'full' },
 ];
 

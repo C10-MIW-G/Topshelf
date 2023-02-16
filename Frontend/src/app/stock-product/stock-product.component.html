@@ -1,58 +1,60 @@
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-2 component-left">
-      <a
-        [routerLink]="['/pantry', pantryId, 'basicstock']"
-        [queryParams]="{ name: namePantry }"
-      >
-        Basic stock</a
-      >
-    </div>
-    <div class="col-7 component-center">
-      <h4>{{ namePantry }}</h4>
-      <br />
-      <table class="table table-striped">
-        <tr>
-          <th>Product</th>
-          <th>Expiration Date</th>
-        </tr>
-        <tr *ngFor="let stockProduct of pantryWithStockProducts">
-          <td>{{ stockProduct.name }}</td>
-          <td>{{ stockProduct.expirationDate }}</td>
-
-          <a class="btn" (click)="remove(stockProduct)"
-            ><span><i class="fa fa-trash-o"></i></span
-          ></a>
-        </tr>
-      </table>
-    </div>
-    <div class="col-3 component-right">
-      <form [formGroup]="addStockProductForm">
-        <div class="formGroup col-12">
-          <h5>Add your product</h5>
-          <label>Product name: </label>
-          <input
-            type="text"
-            class="form-control"
-            formControlName="name"
-            placeholder="enter product name"
-          />
-        </div>
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-2 component-left">
+        <a
+          [routerLink]="['/pantry/', pantryId, 'basicstock']"
+          [queryParams]="{ name: namePantry }"
+        >
+          Basic stock</a
+        >
+      </div>
+      <div class="col-7 component-center">
+        <h4>{{ namePantry }}</h4>
         <br />
-        <div class="formGroup col-12">
-          <label>Expiration date: </label>
-          <input
-            type="date"
-            class="form-control"
-            formControlName="expirationdate"
-            placeholder="enter expiration date"
-          />
+        <table class="table table-striped">
+          <tr>
+            <th>Product</th>
+            <th>Expiration Date</th>
+          </tr>
+          <tr *ngFor="let stockProduct of pantryWithStockProducts">
+            <td>{{ stockProduct.name }}</td>
+            <td>{{ stockProduct.expirationDate }}</td>
+
+            <a class="btn" (click)="remove(stockProduct)"
+              ><span><i class="fa fa-trash-o"></i></span
+            ></a>
+          </tr>
+        </table>
+      </div>
+      <div class="col-3 component-right">
+        <form [formGroup]="addStockProductForm" class="sidebar-fixed">
+          <div class="formGroup col-12">
+            <h5>Add your product</h5>
+            <label>Product name: </label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="name"
+              placeholder="enter product name"
+            />
+          </div>
           <br />
-          <button type="submit" class="btn btn-primary" (click)="save()">
-            Save
-          </button>
-        </div>
-      </form>
+          <div class="formGroup col-12">
+            <label>Expiration date: </label>
+            <input
+              type="date"
+              class="form-control"
+              formControlName="expirationdate"
+              placeholder="enter expiration date"
+            />
+            <br />
+            <button type="submit" class="btn btn-primary" (click)="save()">
+              Save
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
-</div>
+</body>
