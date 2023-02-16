@@ -2,6 +2,8 @@ package nl.miwgroningen.ch10.topshelf.security.user;
 
 import nl.miwgroningen.ch10.topshelf.exception.InvalidPasswordException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,8 +25,8 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PutMapping ("/updatepassword")
-    public String changeUserPassword (
+    @PostMapping ("/updatepassword")
+    public ResponseEntity<String> changeUserPassword (
             @RequestBody ChangePasswordRequest request) {
         User user = userService.findUserByUsername(
                 SecurityContextHolder.getContext().getAuthentication().getName());
@@ -34,6 +36,6 @@ public class UserController {
         }
 
         userService.changeUserPassword(user, request.getNewPassword());
-        return "Password successfully changed!";
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

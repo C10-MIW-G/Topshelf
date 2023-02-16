@@ -44,17 +44,19 @@ export class AuthService {
     );
   }
 
-  changePassword(
-    request: { password: string, newPassword: string}): Observable<any> {
-      return this.http.put<ChangePasswordRequest>(
-        API_URL + '/user/updatepassword',
-        {
-          password: request.password,
-          newPassword: request.newPassword,
-        },
-        httpOptions
-      );
-    }
+  changePassword(request: {
+    password: string;
+    newPassword: string;
+  }): Observable<any> {
+    return this.http.post(
+      API_URL + '/user/updatepassword',
+      {
+        password: request.password,
+        newPassword: request.newPassword,
+      },
+      httpOptions
+    );
+  }
 
   GetAll() {
     return this.http.get(AUTH_API);
