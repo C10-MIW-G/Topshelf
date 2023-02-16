@@ -8,5 +8,4 @@ import java.util.Optional;
 public interface PantryRepository extends JpaRepository<Pantry, Long> {
 
     Optional<Pantry> findPantryByPantryId(Long pantryId);
-    Optional<Pantry> findPantryByName(String name);
 }

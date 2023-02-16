@@ -31,12 +31,6 @@ public class PantryController {
         return new ResponseEntity<>(pantries, HttpStatus.OK);
     }
 
-    @GetMapping("/details/{pantryId}")
-    public ResponseEntity<PantryDTO> getPantryById(@PathVariable("pantryId") Long pantryId) {
-        PantryDTO pantry = pantryService.findPantryDTOByPantryId(pantryId);
-        return new ResponseEntity<>(pantry, HttpStatus.OK);
-    }
-
     @PostMapping("/add")
     public ResponseEntity<String> addPantry(@RequestBody PantryDTO pantryDTO) {
         pantryService.addPantry(pantryDTO);

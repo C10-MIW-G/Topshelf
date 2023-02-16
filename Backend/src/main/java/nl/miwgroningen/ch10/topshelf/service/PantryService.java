@@ -35,10 +35,6 @@ public class PantryService {
                 .toList();
     }
 
-    public PantryDTO findPantryDTOByPantryId(Long pantryId) {
-        return pantryDTOMapper.apply(findPantryByPantryId(pantryId));
-    }
-
     public Pantry findPantryByPantryId(Long pantryId) {
         return pantryRepository.findPantryByPantryId(pantryId)
                 .orElseThrow(() -> new PantryNotFoundException("Pantry with id: " + pantryId + " was not found!"));

@@ -30,17 +30,6 @@ public class StockProductService {
         this.stockProductDTOMapper = stockProductDTOMapper;
     }
 
-    public StockProduct addStockProduct(StockProduct stockProduct) {
-        return stockProductRepository.save(stockProduct);
-    }
-
-    public List<StockProductDTO> findAllStockProducts() {
-        return stockProductRepository.findAll()
-                .stream()
-                .map(stockProductDTOMapper)
-                .toList();
-    }
-
     public StockProductDTO findStockProductByStockProductId(Long stockProductId) {
         return stockProductRepository.findStockProductByStockProductId(stockProductId)
                 .map(stockProductDTOMapper)

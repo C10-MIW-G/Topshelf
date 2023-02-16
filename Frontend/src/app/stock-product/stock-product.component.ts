@@ -8,20 +8,16 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-stock-product',
   templateUrl: './stock-product.component.html',
-  styleUrls: ['./stock-product.component.css']
+  styleUrls: ['./stock-product.component.css'],
 })
 export class StockProductComponent implements OnInit {
   public stockProducts?: StockProduct[] = [];
   public stockProductId?: number;
-  public pantryWithStockProducts?: StockProduct[] = [];
+  public pantryWithStockProducts: StockProduct[] = [];
   public stockProductDelete?: StockProduct;
   public namePantry!: string;
   public pantryId!: number;
-
-  addStockProductForm = new FormGroup({
-    name: new FormControl('', Validators.required),
-    expirationdate: new FormControl('', Validators.required),
-  });
+  public isSubmitted?: boolean = false;
 
   constructor(
     private stockProductService: StockProductService,
@@ -33,6 +29,11 @@ export class StockProductComponent implements OnInit {
     this.getPantryName();
     this.getPantryIdWithStockProducts();
   }
+
+  addStockProductForm = new FormGroup({
+    name: new FormControl('', Validators.required),
+    expirationdate: new FormControl('', Validators.required),
+  });
 
   public getPantryIdWithStockProducts(): void {
     const id = Number(this.route.snapshot.paramMap.get('pantryId'));
@@ -49,6 +50,7 @@ export class StockProductComponent implements OnInit {
   }
 
   public save() {
+    this.isSubmitted = true;
     const nameValue = this.addStockProductForm.value.name;
     const expDateValue = this.addStockProductForm.value.expirationdate;
     const id = Number(this.route.snapshot.paramMap.get('pantryId'));

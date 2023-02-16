@@ -13,7 +13,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class BasicStockProductComponent implements OnInit {
   public basicStockProducts?: BasicStockProduct[] = [];
   public basicStockProductId?: number;
-  public pantryWithBasicStockProducts?: BasicStockProduct[] = [];
+  public pantryWithBasicStockProducts: BasicStockProduct[] = [];
   public namePantry!: string;
   public pantryId!: number;
 
