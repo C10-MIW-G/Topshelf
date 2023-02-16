@@ -30,17 +30,6 @@ public class BasicStockProductService {
         this.basicStockProductDTOMapper = basicStockProductDTOMapper;
     }
 
-    public BasicStockProduct addBasicStockProduct(BasicStockProduct basicStockProduct) {
-        return basicStockProductRepository.save(basicStockProduct);
-    }
-
-    public List<BasicStockProductDTO> findAllBasicStockProducts() {
-        return basicStockProductRepository.findAll()
-                .stream()
-                .map(basicStockProductDTOMapper)
-                .toList();
-    }
-
     public BasicStockProductDTO findBasicStockProductByBasicStockProductId(Long basicStockProductId) {
         return basicStockProductRepository.findBasicStockProductByBasicStockProductId(basicStockProductId)
                 .map(basicStockProductDTOMapper)

@@ -41,7 +41,6 @@ String key = System.getenv("SECRET_KEY");
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24))
                 .signWith(getSignInKey(), SignatureAlgorithm.HS256)
                 .compact();
-
     }
 
     public <T> T extractClaim(String token, Function<Claims, T> claimResolver){

@@ -26,7 +26,6 @@ public class CaptchaService {
     private static final String VALIDATION_STRING = "success";
 
     public boolean verify(String captchaResponse) {
-
         String urlString = "secret=" + captchaSettings.getSecretKey() + "&response="
                 + captchaResponse;
 
@@ -37,7 +36,7 @@ public class CaptchaService {
             HttpsURLConnection connection = getHttpsURLConnection();
             addOutputToCurrentConnection(urlString, connection);
 
-            StringBuffer response = convertResponseToString(connection);
+            StringBuilder response = convertResponseToString(connection);
 
             return checkForValidResponse(response);
 
@@ -66,11 +65,11 @@ public class CaptchaService {
         dataOutputStream.close();
     }
 
-    private static StringBuffer convertResponseToString(HttpsURLConnection connection) throws IOException {
+    private static StringBuilder convertResponseToString(HttpsURLConnection connection) throws IOException {
         BufferedReader input = new BufferedReader(new InputStreamReader(
                 connection.getInputStream()));
 
-        StringBuffer response = new StringBuffer();
+        StringBuilder response = new StringBuilder();
         String inputLine;
         while ((inputLine = input.readLine()) != null) {
             response.append(inputLine);
@@ -80,7 +79,7 @@ public class CaptchaService {
         return response;
     }
 
-    private boolean checkForValidResponse(StringBuffer response) {
+    private boolean checkForValidResponse(StringBuilder response) {
         JsonReader jsonReader = Json.createReader(new StringReader(response.toString()));
         JsonObject jsonObject = jsonReader.readObject();
         jsonReader.close();

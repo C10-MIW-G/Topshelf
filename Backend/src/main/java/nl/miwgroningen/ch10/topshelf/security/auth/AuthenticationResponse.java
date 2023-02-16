@@ -7,8 +7,6 @@ import lombok.NoArgsConstructor;
 
 /**
  * Author: Jacob Visser
- * <p>
- * Dit is wat het programma doet.
  */
 @Data
 @Builder

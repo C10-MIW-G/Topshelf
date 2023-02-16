@@ -1,6 +1,7 @@
 package nl.miwgroningen.ch10.topshelf.security.auth;
 
 import lombok.RequiredArgsConstructor;
+import nl.miwgroningen.ch10.topshelf.exception.UsernameTakenException;
 import nl.miwgroningen.ch10.topshelf.security.config.JwtService;
 import nl.miwgroningen.ch10.topshelf.security.user.Role;
 import nl.miwgroningen.ch10.topshelf.security.user.User;
@@ -10,7 +11,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
 import java.util.List;
 
 /**
@@ -27,7 +27,7 @@ public class AuthenticationService {
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
 
-    public AuthenticationResponse register(RegisterRequest request) throws IOException {
+    public AuthenticationResponse register(RegisterRequest request) throws UsernameTakenException {
 
         User user = User.builder()
                 .username(request.getUsername())
@@ -48,7 +48,7 @@ public class AuthenticationService {
                     .token(jwtToken)
                     .build();
         } else {
-            throw new RuntimeException("Username already taken");
+            throw new UsernameTakenException("Username already taken");
         }
     }
 

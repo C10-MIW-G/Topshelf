@@ -21,6 +21,9 @@
           <td>{{ basicStockProduct.amount }}</td>
         </tr>
       </table>
+      <div *ngIf="pantryWithBasicStockProducts.length === 0">
+				<p>There are no products in your list yet.</p>
+			</div>
     </div>
     <div class="col-3 component-right">
       <form [formGroup]="addBasicStockProductForm">
@@ -38,6 +41,7 @@
         <div class="formGroup col-12">
           <label>Product amount: </label>
           <input
+            min="0"
             type="number"
             class="form-control"
             formControlName="amount"

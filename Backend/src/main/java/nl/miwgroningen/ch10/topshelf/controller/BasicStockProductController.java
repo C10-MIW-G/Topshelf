@@ -25,11 +25,11 @@ public class BasicStockProductController {
 
     private final BasicStockProductService basicStockProductService;
 
-    @GetMapping("/details/{basicstockproductid}")
+    @GetMapping("/details/{basicStockProductId}")
     public ResponseEntity<BasicStockProductDTO> getBasicStockProductById
-            (@PathVariable("basicStockProductId") Long basicstockproductid) {
+            (@PathVariable("basicStockProductId") Long basicStockProductId) {
         BasicStockProductDTO basicStockProductDTO = basicStockProductService
-                .findBasicStockProductByBasicStockProductId(basicstockproductid);
+                .findBasicStockProductByBasicStockProductId(basicStockProductId);
         return new ResponseEntity<>(basicStockProductDTO, HttpStatus.OK);
     }
 
