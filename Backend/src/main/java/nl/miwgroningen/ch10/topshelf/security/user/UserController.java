@@ -32,7 +32,7 @@ public class UserController {
                 SecurityContextHolder.getContext().getAuthentication().getName());
 
         if (!userService.checkPassword(user, request.getPassword())) {
-            throw new InvalidPasswordException("Invalid password!");
+            throw new InvalidPasswordException("Password didn't match old password!");
         }
         userService.changeUserPassword(user, request.getNewPassword());
         return new ResponseEntity<>(HttpStatus.OK);
