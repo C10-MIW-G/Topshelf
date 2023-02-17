@@ -12,8 +12,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 /**
  * Author: Jacob Visser
- * <p>
- * Dit is wat het programma doet.
  */
 @Configuration
 @EnableWebSecurity

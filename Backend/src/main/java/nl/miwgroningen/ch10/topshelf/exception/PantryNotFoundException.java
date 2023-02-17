@@ -2,8 +2,7 @@ package nl.miwgroningen.ch10.topshelf.exception;
 
 /**
  * @author Robbin Drent <r.v.drent@st.hanze.nl>
- * <p>
- * Exception for when a pantry is not found by id
+ * When pantry isn't found, this will provide an exception error message
  */
 public class PantryNotFoundException extends RuntimeException{
     public PantryNotFoundException(String message) {

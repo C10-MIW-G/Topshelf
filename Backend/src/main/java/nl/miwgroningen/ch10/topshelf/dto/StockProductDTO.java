@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 /**
  * @author Inge Dikland
- * <p>
+ * Supplies information to our frontend
  */
 public record StockProductDTO (
         Long stockProductId,

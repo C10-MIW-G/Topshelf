@@ -15,14 +15,13 @@ import java.util.List;
 
 /**
  * Author: Jacob Visser
- * <p>
- * Dit is wat het programma doet.
+ * Controls the User repository
  */
 @Service
 @RequiredArgsConstructor
 public class AuthenticationService {
 
-    private final UserRepository repository;
+    private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
@@ -36,13 +35,13 @@ public class AuthenticationService {
                 .role(Role.SITEADMIN)
                 .build();
 
-        List<User> existingUsers = repository.findAll()
+        List<User> existingUsers = userRepository.findAll()
                 .stream()
                 .filter(x -> request.getUsername().equals(x.getUsername()))
                 .toList();
 
         if (existingUsers.isEmpty()) {
-            repository.save(user);
+            userRepository.save(user);
             String jwtToken = jwtService.generateToken(user);
             return AuthenticationResponse.builder()
                     .token(jwtToken)
@@ -59,7 +58,7 @@ public class AuthenticationService {
                         authenticationRequest.getPassword()
                 )
         );
-        User user = repository.findByUsername(authenticationRequest.getUsername()).
+        User user = userRepository.findByUsername(authenticationRequest.getUsername()).
                 orElseThrow();
         String jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()

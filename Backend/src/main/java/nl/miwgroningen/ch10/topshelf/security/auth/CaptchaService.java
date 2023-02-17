@@ -12,7 +12,6 @@ import java.net.URL;
 
 /**
  * @author Jack Wieringa <j.w.wieringa@st.hanze.nl>
- * <p>
  * Verifies the reCaptcha key which is provided by the frontend input
  */
 

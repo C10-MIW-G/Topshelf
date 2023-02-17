@@ -4,7 +4,6 @@ import org.springframework.boot.SpringApplication;
 
 /**
  * @author Robbin Drent <r.v.drent@st.hanze.nl>
- * <p>
  * Runs the application
  */
 public class TopShelfLauncher {
