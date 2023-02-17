@@ -75,3 +75,7 @@ p {
 .sidebar-fixed{
   position: fixed;
 }
+
+.table {
+  table-layout: fixed;
+}
