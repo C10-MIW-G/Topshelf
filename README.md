@@ -1,4 +1,4 @@
-![Topshelf] (https://github.com/C10-MIW-G/Topshelf/blob/main/Docs/TOPSHELF.png)
+Topshelf
 
 This application makes use of Angular for the frontend, Springboot for the backend and a Mysql database to handle the data.
 
