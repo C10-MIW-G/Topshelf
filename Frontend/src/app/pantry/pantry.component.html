@@ -1,8 +1,8 @@
 <body>
-  <div class="container-fluid">
+  <div class="container-fluid" *ngIf="unAuthorizedUser">
     <div class="row">
       <div class="col-2 component-left">
-        <h5>Hello username</h5>
+        <h5>Hello</h5>
         <p>This page shows the pantries you can manage.</p>
         <br />
       </div>
@@ -20,18 +20,18 @@
           </table>
         </div>
       </div>
-      <div class="alert alert-danger" *ngIf="unAuthorizedUser == false">
-        Page can not be visited:<br />{{ errorMessage }}
-      </div>
       <div class="col-3 component-right">
         <button
           class="btn btn-primary sidebar-fixed"
-          *ngIf="unAuthorizedUser == true"
+          *ngIf="unAuthorizedUser"
           (click)="onOpenDialog()"
         >
           Add pantry
         </button>
       </div>
     </div>
+  </div>
+  <div class="alert alert-danger" *ngIf="!unAuthorizedUser">
+    Page can not be visited:<br />{{ errorMessage }}
   </div>
 </body>

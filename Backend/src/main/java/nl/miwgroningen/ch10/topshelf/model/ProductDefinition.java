@@ -9,7 +9,6 @@ import lombok.Setter;
 
 /**
  * @author Robbin Drent <r.v.drent@st.hanze.nl>
- * <p>
  * The definition of a product
  */
 

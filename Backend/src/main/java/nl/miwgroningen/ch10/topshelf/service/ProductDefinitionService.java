@@ -9,7 +9,6 @@ import java.util.Optional;
 
 /**
  * @author Robbin Drent <r.v.drent@st.hanze.nl>
- * <p>
  * Controls the productDefinitionRepository
  */
 

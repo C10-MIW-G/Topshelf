@@ -7,7 +7,7 @@ import java.util.function.Function;
 
 /**
  * @author Inge Dikland
- *
+ * This class makes it possible to make use of DTO's
  */
 @Service
 public class ProductDefinitionDTOMapper implements Function<ProductDefinition, ProductDefinitionDTO> {

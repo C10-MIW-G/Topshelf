@@ -7,8 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 /**
  * Author: Jacob Visser
- * <p>
- * Dit is wat het programma doet.
+ * Talks with the frontend
  */
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController

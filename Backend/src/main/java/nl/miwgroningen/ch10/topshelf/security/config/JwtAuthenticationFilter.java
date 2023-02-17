@@ -18,8 +18,6 @@ import java.io.IOException;
 
 /**
  * Author: Jacob Visser
- * <p>
- * Dit is wat het programma doet.
  */
 @Component
 @RequiredArgsConstructor

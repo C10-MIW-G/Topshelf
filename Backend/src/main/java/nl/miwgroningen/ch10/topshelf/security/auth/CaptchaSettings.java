@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 
 /**
  * @author Jack Wieringa <j.w.wieringa@st.hanze.nl>
- * <p>
  * Gets the captcha secret key out of config directory
  */
 

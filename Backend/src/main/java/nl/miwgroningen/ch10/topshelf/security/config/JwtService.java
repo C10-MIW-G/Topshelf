@@ -16,8 +16,6 @@ import java.util.function.Function;
 
 /**
  * Author: Jacob Visser
- * <p>
- * Dit is wat het programma doet.
  */
 @Service
 public class JwtService {

@@ -16,14 +16,16 @@
           <tr>
             <th>Product</th>
             <th>Expiration Date</th>
+            <th></th>
           </tr>
           <tr *ngFor="let stockProduct of pantryWithStockProducts">
             <td>{{ stockProduct.name }}</td>
             <td>{{ stockProduct.expirationDate }}</td>
-
-            <a class="btn" (click)="remove(stockProduct)"
-              ><span><i class="fa fa-trash-o"></i></span
-            ></a>
+            <td>
+              <a class="" (click)="remove(stockProduct)"
+                ><span><i class="fa fa-trash-o"></i></span
+              ></a>
+            </td>
           </tr>
         </table>
         <div *ngIf="pantryWithStockProducts.length === 0">

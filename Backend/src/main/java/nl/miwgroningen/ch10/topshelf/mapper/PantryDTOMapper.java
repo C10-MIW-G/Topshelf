@@ -8,7 +8,7 @@ import java.util.function.Function;
 
 /**
  * @author Inge Dikland
- * <p>
+ * This class makes it possible to make use of DTO's
  */
 
 @Service

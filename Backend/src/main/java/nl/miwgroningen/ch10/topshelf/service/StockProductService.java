@@ -14,7 +14,6 @@ import java.util.List;
 
 /**
  * @author Jack Wieringa <j.w.wieringa@st.hanze.nl>
- * <p>
  * Controls the stockProductRepository
  */
 

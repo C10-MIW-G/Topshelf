@@ -13,7 +13,7 @@ import { ModaladdpantryComponent } from '../modaladdpantry/modaladdpantry.compon
 export class PantryComponent implements OnInit {
   public pantries?: Pantry[] = [];
   errorMessage: string = '';
-  unAuthorizedUser = false;
+  unAuthorizedUser = true;
 
   constructor(
     private pantryService: PantryService,

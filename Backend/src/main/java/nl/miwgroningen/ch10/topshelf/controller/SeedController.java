@@ -14,7 +14,6 @@ import java.util.*;
 
 /**
  * @author Inge Dikland
- * <p>
  * Adds data to our DB
  */
 
