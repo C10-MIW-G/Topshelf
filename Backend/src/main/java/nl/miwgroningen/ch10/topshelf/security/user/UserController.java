@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 /**
  * @author Robbin Drent <r.v.drent@st.hanze.nl>
  * <p>
- * Dit is wat het programma doet.
+ * Talks with the frontend.
  */
 
 @CrossOrigin(origins = "http://localhost:4200")
@@ -34,7 +34,6 @@ public class UserController {
         if (!userService.checkPassword(user, request.getPassword())) {
             throw new InvalidPasswordException("Invalid password!");
         }
-
         userService.changeUserPassword(user, request.getNewPassword());
         return new ResponseEntity<>(HttpStatus.OK);
     }
