@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 
 /**
  * @author Robbin Drent <r.v.drent@st.hanze.nl>
- * <p>
+ *
  * This contains the information the UserController needs to change the password.
  */
 

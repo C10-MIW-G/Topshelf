@@ -14,7 +14,7 @@ import java.util.List;
 
 /**
  * Author: Jacob Visser
- * <p>
+ *
  * THe definition of a user.
  */
 
