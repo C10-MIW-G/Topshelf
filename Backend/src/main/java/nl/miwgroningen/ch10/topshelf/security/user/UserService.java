@@ -4,12 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 /**
  * @author Robbin Drent <r.v.drent@st.hanze.nl>
- * <p>
- * Dit is wat het programma doet.
  */
 @Service
 public class UserService {

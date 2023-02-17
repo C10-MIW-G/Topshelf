@@ -10,7 +10,6 @@ import java.util.List;
 
 /**
  * @author Robbin Drent <r.v.drent@st.hanze.nl>
- * <p>
  * Talks with the frontend
  */
 

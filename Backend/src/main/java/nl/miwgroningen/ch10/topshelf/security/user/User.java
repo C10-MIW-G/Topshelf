@@ -14,8 +14,6 @@ import java.util.List;
 
 /**
  * Author: Jacob Visser
- * <p>
- * Dit is wat het programma doet.
  */
 @Data
 @Builder

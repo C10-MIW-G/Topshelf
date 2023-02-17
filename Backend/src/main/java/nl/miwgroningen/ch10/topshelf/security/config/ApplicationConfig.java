@@ -15,8 +15,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 /**
  * Author: Jacob Visser
- * <p>
- * Dit is wat het programma doet.
  */
 @Configuration
 @RequiredArgsConstructor

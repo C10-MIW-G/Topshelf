@@ -7,8 +7,6 @@ import lombok.NoArgsConstructor;
 
 /**
  * @author Robbin Drent <r.v.drent@st.hanze.nl>
- * <p>
- * Dit is wat het programma doet.
  */
 @Data
 @Builder

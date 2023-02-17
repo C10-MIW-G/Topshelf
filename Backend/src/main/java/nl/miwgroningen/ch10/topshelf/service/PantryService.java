@@ -12,7 +12,6 @@ import java.util.List;
 
 /**
  * @author Robbin Drent <r.v.drent@st.hanze.nl>
- * <p>
  * Controls the pantryRepository
  */
 

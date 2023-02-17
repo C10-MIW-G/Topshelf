@@ -11,7 +11,6 @@ import java.util.function.Function;
 
 /**
  * @author Jack Wieringa <j.w.wieringa@st.hanze.nl>
- * <p>
  * This class makes it possible to make use of DTO's
  */
 

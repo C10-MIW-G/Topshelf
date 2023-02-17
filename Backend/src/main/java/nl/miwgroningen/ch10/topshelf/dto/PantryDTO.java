@@ -2,7 +2,7 @@ package nl.miwgroningen.ch10.topshelf.dto;
 
 /**
  * @author Inge Dikland
- * <p>
+ * Supplies information to our frontend
  */
 public record PantryDTO(
         Long pantryId,

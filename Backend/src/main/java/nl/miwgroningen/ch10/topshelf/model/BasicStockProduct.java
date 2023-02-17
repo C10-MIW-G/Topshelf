@@ -7,8 +7,7 @@ import lombok.Setter;
 
 /**
  * @author Jack Wieringa <j.w.wieringa@st.hanze.nl>
- * <p>
- * A user can manage their minimal stock in their Pantry
+ * The definition of a product that the user wishes to have in stock at all time is called a BasicStockProduct
  */
 
 @Entity

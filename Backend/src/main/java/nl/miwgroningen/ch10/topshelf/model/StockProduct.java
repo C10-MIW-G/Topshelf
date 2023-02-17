@@ -10,7 +10,6 @@ import java.time.LocalDate;
 
 /**
  * @author Jack Wieringa <j.w.wieringa@st.hanze.nl>
- * <p>
  * A productdefinition on the shelf in our pantry is called a stockproduct
  */
 
