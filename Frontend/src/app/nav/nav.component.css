@@ -23,3 +23,25 @@ a:link, a:visited, a:active{
   border: 0;
 }
 
+.btn {
+    color: white;
+}
+
+.btn:hover {
+    background-color: rgb(232, 241, 248);
+    color: rgb(65, 113, 156);
+}
+
+.dropdown-menu p {
+    color: black;
+    padding: 0;
+    margin: 0;
+}
+
+.dropdown-item:hover p {
+    font-weight: 650;
+}
+
+.dropdown-menu-right.show {
+    left: auto;
+}
