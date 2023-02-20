@@ -13,6 +13,7 @@ import { AuthService } from '../_services/auth.service';
 export class ChangePasswordComponent implements OnInit {
   changePasswordRequest: any = [];
 
+
   constructor(
     private authService: AuthService,
     private toastr: ToastrService,
@@ -26,10 +27,14 @@ export class ChangePasswordComponent implements OnInit {
       Validators.minLength(6),
     ]),
     confirmPassword: new FormControl(''),
-  })
-  
-  get password(){return this.changePasswordForm.get('password')}
-  get newPassword(){return this.changePasswordForm.get('newPassword')}
+  });
+
+  get password() {
+    return this.changePasswordForm.get('password');
+  }
+  get newPassword() {
+    return this.changePasswordForm.get('newPassword');
+  }
 
   ngOnInit(): void {}
 
@@ -53,35 +58,45 @@ export class ChangePasswordComponent implements OnInit {
     }
   }
 
-  confirmDoesNotMatch(): void{    
-      this.toastr.error('Passwords did not match', 'Password change failed!', {
-        positionClass: 'toast-top-center',
-    })
+  confirmDoesNotMatch(): void {
+    this.toastr.error('Passwords did not match', 'Password change failed!', {
+      positionClass: 'toast-top-center',
+    });
   }
 
   samePassword(): void {
-      this.toastr.error(
-        'New password can not be the same',
-        'Password change failed!',
-        {
-          positionClass: 'toast-top-center',
-        }
-      );
-    }
-  
-    setNewPassword(passw: string, newPw: string): void {
-    this.authService
-    // change password in the backend
-    .changePassword({password: passw, newPassword: newPw})
-    .subscribe({
-      complete: () => {
-        console.log('success');
-        this.router.navigate(['/pantry']);
-        this.toastr.success('Password has been changed!', 'Success!', {
-          positionClass: 'toast-top-center',
-        });
-      },
-      error: () => console.log('error'),
-    });
+    this.toastr.error(
+      'New password can not be the same',
+      'Password change failed!',
+      {
+        positionClass: 'toast-top-center',
+      }
+    );
   }
+
+  setNewPassword(passw: string, newPw: string): void {
+    this.authService
+      // change password in the backend
+      .changePassword({ password: passw, newPassword: newPw })
+      .subscribe({
+        complete: () => {
+          console.log('success');
+          this.router.navigate(['/pantry']);
+          this.toastr.success('Password has been changed!', 'Success!', {
+            positionClass: 'toast-top-center',
+          });
+        },
+        error: () => {
+          console.log('error');
+          this.toastr.error(
+            'Password change failed!',
+            'Your password did not match your old password!',
+            {
+              positionClass: 'toast-top-center',
+            }
+          );
+        },
+      });
+  }
+
 }

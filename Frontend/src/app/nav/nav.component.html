@@ -2,7 +2,7 @@
   <a class="navbar-brand" *ngIf="isLoggedIn()" href="/pantry"
     ><img src="/assets/images/TOPSHELF-logo.png"
   /></a>
-  <a class="navbar-brand" *ngIf="!isLoggedIn()" href="/login"
+  <a class="navbar-brand" *ngIf="!isLoggedIn()"
     ><img src="/assets/images/TOPSHELF-logo.png"
   /></a>
 
@@ -17,22 +17,28 @@
         >
       </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0" *ngIf="isLoggedIn()">
-      <button
-        class="btn btn-info me-2 text-white"
-        type="submit"
-        routerLink="login"
-        (click)="logout()"
-      >
-        Logout
-      </button>
-      <button
-        class="btn btn-info me-2 text-white"
-        type="submit"
-        routerLink="changepassword"
-      >
-        Change Password
-      </button>
-    </form>
+    <div class="form-inline my-2 my-lg-0" *ngIf="isLoggedIn()">
+      <div class="dropdown">
+        <button
+          class="btn"
+          type="button"
+          data-bs-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          <i class="material-icons" style="font-size: 30px">person</i>
+        </button>
+        <ul
+          class="dropdown-menu dropdown-menu-right"
+        >
+          <li class="dropdown-item" type="button" routerLink="changepassword">
+            <p>Change password</p>
+          </li>
+          <li class="dropdown-item" type="button" routerLink="login" (click)="logout()">
+            <p>Logout</p>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 </nav>

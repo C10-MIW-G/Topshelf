@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 
 /**
  * @author Robbin Drent <r.v.drent@st.hanze.nl>
+ *
+ * Talks with the frontend.
  */
 
 @CrossOrigin(origins = "http://localhost:4200")
@@ -30,9 +32,8 @@ public class UserController {
                 SecurityContextHolder.getContext().getAuthentication().getName());
 
         if (!userService.checkPassword(user, request.getPassword())) {
-            throw new InvalidPasswordException("Invalid password!");
+            throw new InvalidPasswordException("Password didn't match old password!");
         }
-
         userService.changeUserPassword(user, request.getNewPassword());
         return new ResponseEntity<>(HttpStatus.OK);
     }

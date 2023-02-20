@@ -6,7 +6,10 @@ import org.springframework.stereotype.Service;
 
 /**
  * @author Robbin Drent <r.v.drent@st.hanze.nl>
+ *
+ * Controls the userRepository
  */
+
 @Service
 public class UserService {
 

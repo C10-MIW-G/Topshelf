@@ -14,7 +14,10 @@ import java.util.List;
 
 /**
  * Author: Jacob Visser
+ *
+ * THe definition of a user.
  */
+
 @Data
 @Builder
 @NoArgsConstructor
