@@ -3,6 +3,6 @@ export const environment = {
   apiBaseUrl: 'http://localhost:8080',
   authUrl: 'http://localhost:8080/topshelf',
   recaptcha: {
-    siteKey: '6LfDMGckAAAAAAB_teBTMs_-mdWl9GHNNDvEE6E1',
+    siteKey: '6Lfj1pokAAAAAAeuwsZZoIgJJOg11tqiCxtMr17f',
   },
 };
