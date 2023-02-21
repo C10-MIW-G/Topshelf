@@ -27,4 +27,11 @@ a:active {
   color: white;
 }
 
+#recaptcha {
+  margin-left: -5px;
+}
 
+h4 {
+  padding: 10px;
+  text-align: center;
+}

@@ -4,7 +4,7 @@
       <div class="col-2 component-left"></div>
       <div class="col-7 component-center">
         <div class="col-5 card card-container">
-          <h3>User registration</h3>
+          <h4>User registration</h4>
           <form
             *ngIf="!isSuccessful"
             name="form"
@@ -70,25 +70,27 @@
                 </div>
               </div>
               <div class="form-group">
-                <re-captcha
-                  id="recaptcha"
-                  name="recaptcha"
-                  #recaptcha="ngModel"
-                  [(ngModel)]="captchaResponse"
-                  required
-                  [class.is-invalid]="
-                    recaptcha.invalid && (recaptcha.dirty || recaptcha.touched)
-                  "
-                ></re-captcha>
-                <div
-                  *ngIf="
-                    recaptcha.invalid && (recaptcha.dirty || recaptcha.touched)
-                  "
-                  class="invalid-feedback"
-                >
-                  <div *ngIf="recaptcha.errors?.['required']">
-                    This field is required.
-                  </div>
+                <div id="recaptcha">
+                  <re-captcha
+                    name="recaptcha"
+                    #recaptcha="ngModel"
+                    [(ngModel)]="captchaResponse"
+                    required
+                    [class.is-invalid]="
+                      recaptcha.invalid &&
+                      (recaptcha.dirty || recaptcha.touched)
+                    "
+                  ></re-captcha>
+                </div>
+              </div>
+              <div
+                *ngIf="
+                  recaptcha.invalid && (recaptcha.dirty || recaptcha.touched)
+                "
+                class="invalid-feedback"
+              >
+                <div *ngIf="recaptcha.errors?.['required']">
+                  This field is required.
                 </div>
               </div>
               <div class="form-group">
