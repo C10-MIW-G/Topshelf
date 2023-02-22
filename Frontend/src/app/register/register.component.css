@@ -1,21 +1,26 @@
-/* regular style toast */
-@import "ngx-toastr/toastr";
-
-/* bootstrap style toast
-or import a bootstrap 4 alert styled design (SASS ONLY)
-should be after your bootstrap imports, it uses bs4 variables, mixins, functions */
-@import "ngx-toastr/toastr-bs4-alert";
-
-/* bootstrap 4 */
-@import "ngx-toastr/toastr-bs4-alert";
-
-a:link, a:visited, a:active{
-    color:white;
-    text-decoration: none; 
-  }
+a:link,
+a:visited,
+a:active {
+  color: white;
+  text-decoration: none;
+}
 
 .card {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.btn-color, .btn-color:hover {
+  background-color: gray;
+  color: white;
+}
+
+#recaptcha {
+  margin-left: 5%;
+}
+
+h4 {
+  padding: 10px;
+  text-align: center;
 }

@@ -32,14 +32,17 @@ a:link, a:visited, a:active{
     color: rgb(65, 113, 156);
 }
 
-.dropdown-menu p {
+.item p {
     color: black;
-    padding: 0;
+    padding: 5px;
+    padding-left: 10px;
     margin: 0;
+    text-align: left;
+    white-space: nowrap;
 }
 
-.dropdown-item:hover p {
-    font-weight: 650;
+.item:hover p {
+    font-weight: 500;
 }
 
 .dropdown-menu-right.show {
