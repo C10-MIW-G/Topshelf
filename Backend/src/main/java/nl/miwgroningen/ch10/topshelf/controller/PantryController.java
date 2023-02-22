@@ -1,7 +1,11 @@
 package nl.miwgroningen.ch10.topshelf.controller;
 
+import lombok.RequiredArgsConstructor;
 import nl.miwgroningen.ch10.topshelf.dto.PantryDTO;
+import nl.miwgroningen.ch10.topshelf.model.Pantry;
+import nl.miwgroningen.ch10.topshelf.security.config.JwtService;
 import nl.miwgroningen.ch10.topshelf.service.PantryService;
+import nl.miwgroningen.ch10.topshelf.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,13 +20,12 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/pantry")
+@RequiredArgsConstructor
 public class PantryController {
 
+    private final JwtService jwtService;
     private final PantryService pantryService;
-
-    public PantryController(PantryService pantryService) {
-        this.pantryService = pantryService;
-    }
+    private final UserService userService;
 
     @GetMapping("/all")
     public ResponseEntity<List<PantryDTO>> getAllPantries() {
@@ -30,8 +33,18 @@ public class PantryController {
         return new ResponseEntity<>(pantries, HttpStatus.OK);
     }
     @PostMapping("/add")
-    public ResponseEntity<String> addPantry(@RequestBody PantryDTO pantryDTO) {
-        pantryService.addPantry(pantryDTO);
+    public ResponseEntity<String> addPantry(@RequestBody PantryDTO pantryDTO, @RequestHeader(name = "Authorization") String jwt) {
+        Pantry savedPantry = pantryService.addPantry(pantryDTO);
+        String username = jwtService.extractUsername(jwt.substring(7));
+        pantryService.addUserToPantry(username, savedPantry);
+        pantryService.addAdminToPantry(username, savedPantry);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
+
+    @GetMapping("/all/user")
+    public ResponseEntity<List<PantryDTO>> getPantriesOfUser(@RequestHeader (name = "Authorization") String jwt){
+        String username = jwtService.extractUsername(jwt.substring(7));
+        List<PantryDTO> pantries = pantryService.findPantriesByUser(username);
+        return new ResponseEntity<>(pantries, HttpStatus.CREATED);
+        }
 }

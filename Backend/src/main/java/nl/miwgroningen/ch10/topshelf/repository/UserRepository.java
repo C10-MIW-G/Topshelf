@@ -1,5 +1,6 @@
-package nl.miwgroningen.ch10.topshelf.security.user;
+package nl.miwgroningen.ch10.topshelf.repository;
 
+import nl.miwgroningen.ch10.topshelf.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

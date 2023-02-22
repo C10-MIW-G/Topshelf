@@ -3,9 +3,9 @@ package nl.miwgroningen.ch10.topshelf.security.auth;
 import lombok.RequiredArgsConstructor;
 import nl.miwgroningen.ch10.topshelf.exception.UsernameTakenException;
 import nl.miwgroningen.ch10.topshelf.security.config.JwtService;
-import nl.miwgroningen.ch10.topshelf.security.user.Role;
-import nl.miwgroningen.ch10.topshelf.security.user.User;
-import nl.miwgroningen.ch10.topshelf.security.user.UserRepository;
+import nl.miwgroningen.ch10.topshelf.model.Role;
+import nl.miwgroningen.ch10.topshelf.model.User;
+import nl.miwgroningen.ch10.topshelf.repository.UserRepository;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -32,7 +32,7 @@ public class AuthenticationService {
                 .username(request.getUsername())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
-                .role(Role.SITEADMIN)
+                .role(Role.USER)
                 .build();
 
         List<User> existingUsers = userRepository.findAll()

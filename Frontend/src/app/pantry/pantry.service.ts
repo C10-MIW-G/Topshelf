@@ -15,8 +15,11 @@ export class PantryService {
     return this.http.get<Pantry[]>(`${this.apiServerUrl}/pantry/all`);
   }
 
+  public getPantriesForUser(): Observable<Pantry[]> {
+    return this.http.get<Pantry[]>(`${this.apiServerUrl}/pantry/all/user`);
+  }
+
   public addPantry(pantryDTO: PantryDTO): Observable<PantryDTO> {
-    console.log('service');
     return this.http.post<PantryDTO>(
       `${this.apiServerUrl}/pantry/add`,
       pantryDTO

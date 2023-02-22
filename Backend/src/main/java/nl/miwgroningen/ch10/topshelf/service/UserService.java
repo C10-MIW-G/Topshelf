@@ -1,6 +1,9 @@
-package nl.miwgroningen.ch10.topshelf.security.user;
+package nl.miwgroningen.ch10.topshelf.service;
 
+import nl.miwgroningen.ch10.topshelf.model.User;
+import nl.miwgroningen.ch10.topshelf.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +29,6 @@ public class UserService {
     public User findUserByUsername(String username) {
         return userRepository.findByUsername(username).get();
     }
-
     public boolean checkPassword(User user, String oldPassword) {
         return passwordEncoder.matches(oldPassword, user.getPassword());
     }

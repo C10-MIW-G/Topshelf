@@ -3,7 +3,10 @@ package nl.miwgroningen.ch10.topshelf.controller;
 import lombok.RequiredArgsConstructor;
 import nl.miwgroningen.ch10.topshelf.dto.StockProductDTO;
 import nl.miwgroningen.ch10.topshelf.model.Pantry;
+import nl.miwgroningen.ch10.topshelf.model.User;
+import nl.miwgroningen.ch10.topshelf.security.config.JwtService;
 import nl.miwgroningen.ch10.topshelf.service.StockProductService;
+import nl.miwgroningen.ch10.topshelf.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -23,6 +26,8 @@ import java.util.List;
 public class StockProductController {
 
     private final StockProductService stockProductService;
+    private final JwtService jwtService;
+    private final UserService userService;
     
     @GetMapping("/details/{stockProductId}")
     public ResponseEntity<StockProductDTO> getStockProductById(@PathVariable("stockProductId") Long stockProductId) {
@@ -31,9 +36,15 @@ public class StockProductController {
     }
 
     @GetMapping("/{pantryId}")
-    public ResponseEntity<List<StockProductDTO>> getStockProductByPantryId(@PathVariable("pantryId") Pantry pantry) {
+    public ResponseEntity<List<StockProductDTO>> getStockProductByPantryId(@PathVariable("pantryId") Pantry pantry,
+    @RequestHeader (name = "Authorization") String jwt ) {
+        String username = jwtService.extractUsername(jwt.substring(7));
+        User user = userService.findUserByUsername(username);
+        if(stockProductService.checkIfUserBelongsToPantry(pantry, user)){
         List<StockProductDTO> stockProduct = stockProductService.findStockProductByPantry(pantry);
         return new ResponseEntity<>(stockProduct, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.FORBIDDEN);
     }
 
     @PostMapping("/add")
