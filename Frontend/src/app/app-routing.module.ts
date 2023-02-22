@@ -12,6 +12,7 @@ const appRoute: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'pantry', component: PantryComponent },
   { path: 'changepassword', component: ChangePasswordComponent},
+  { path: 'edit/:id', component: BasicStockProductComponent},
   {
     path: 'pantry/:pantryId/basicstock',
     component: BasicStockProductComponent,
