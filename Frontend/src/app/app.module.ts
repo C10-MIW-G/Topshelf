@@ -28,6 +28,7 @@ import { MatInputModule } from '@angular/material/input';
 import { environment } from 'src/environments/environment';
 import { BasicStockProductComponent } from './basic-stock-product/basic-stock-product.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
     ModaladdpantryComponent,
     RegisterComponent,
     BasicStockProductComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,
