@@ -29,39 +29,9 @@
         </div>
       </div>
       <div class="col-3 component-right">
-        <form [formGroup]="addBasicStockProductForm" class="sidebar-fixed">
-          <div class="formGroup col-12">
-            <h5>Add product to basic stock</h5>
-            <label>Product name: </label>
-            <input
-              type="text"
-              class="form-control"
-              formControlName="name"
-              placeholder="enter product name"
-            />
-            <span class="alert-danger" *ngIf="name?.invalid && name?.touched"
-              >Product name is invalid</span
-            >
-          </div>
-          <br />
-          <div class="formGroup col-12">
-            <label for="amount">Product amount: </label>
-            <input
-              type="number"
-              class="form-control"
-              formControlName="amount"
-              placeholder="enter product amount"
-            />
-            <span
-              class="alert-danger"
-              *ngIf="amount?.invalid && amount?.touched"
-              >Product amount is invalid</span
-            >
-            <br />
-            <button class="btn btn-primary" (click)="save()">Save</button>
-            <br />
-          </div>
-        </form>
+        <button class="btn btn-primary sidebar-fixed" (click)="onOpenDialog()">
+          Add product
+        </button>
       </div>
     </div>
   </div>

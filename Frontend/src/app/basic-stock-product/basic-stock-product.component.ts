@@ -4,6 +4,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { BasicStockProduct } from './basic-stock-product';
 import { BasicStockProductService } from './basic-stock-product.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { ModaladdbasicstockComponent } from '../modaladdbasicstock/modaladdbasicstock.component';
 
 @Component({
   selector: 'app-basic-stock-product',
@@ -16,6 +18,7 @@ export class BasicStockProductComponent implements OnInit {
   public pantryWithBasicStockProducts: BasicStockProduct[] = [];
   public namePantry!: string;
   public pantryId!: number;
+  errorMessage: string = '';
 
   addBasicStockProductForm = new FormGroup({
     name: new FormControl(
@@ -42,7 +45,8 @@ export class BasicStockProductComponent implements OnInit {
   constructor(
     private basicStockProductService: BasicStockProductService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private matDialog: MatDialog
   ) {}
 
   ngOnInit() {
@@ -88,6 +92,35 @@ export class BasicStockProductComponent implements OnInit {
           },
         });
     }
+  }
+
+  onOpenDialog() {
+    const dialogConfig = new MatDialogConfig();
+    const id = Number(this.route.snapshot.paramMap.get('pantryId'));
+    dialogConfig.disableClose = true;
+    dialogConfig.data = {
+      name: null,
+      isSubmitted: true,
+    };
+
+    const dialogRef = this.matDialog.open(
+      ModaladdbasicstockComponent,
+      dialogConfig
+    );
+
+    dialogRef.afterClosed().subscribe((data) => {
+      console.log(data);
+      if (data.basicStockProductName !== null && data.isSubmitted) {
+        this.basicStockProductService.saveBasicStockProductToPantryStock({ name: data.basicStockProductName, pantryId: id, amount: data.amount  }).subscribe({
+          complete: () => {
+            window.location.reload();
+          },
+          error: () => {
+            alert('Product niet toegevoegd');
+          },
+        });
+      }
+    });
   }
 
   public isEmptyOrSpaces(str: string | null | undefined) {
