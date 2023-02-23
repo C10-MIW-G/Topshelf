@@ -1,7 +1,8 @@
-package nl.miwgroningen.ch10.topshelf.security.user;
+package nl.miwgroningen.ch10.topshelf.service;
 
+import nl.miwgroningen.ch10.topshelf.model.User;
+import nl.miwgroningen.ch10.topshelf.repository.UserRepository;
 import jakarta.mail.MessagingException;
-import lombok.Data;
 import nl.miwgroningen.ch10.topshelf.email.EmailService;
 import nl.miwgroningen.ch10.topshelf.passwordGenerator.PasswordGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,6 @@ import org.springframework.stereotype.Service;
  */
 
 @Service
-@Data
 public class UserService {
 
     private final UserRepository userRepository;

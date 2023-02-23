@@ -14,6 +14,7 @@ const appRoute: Routes = [
   { path: 'changepassword', component: ChangePasswordComponent},
   { path: 'resetpassword', component: ResetPasswordComponent},
   { path: 'pantry', component: PantryComponent },
+  { path: 'edit/:id', component: BasicStockProductComponent},
   {
     path: 'pantry/:pantryId/basicstock',
     component: BasicStockProductComponent,

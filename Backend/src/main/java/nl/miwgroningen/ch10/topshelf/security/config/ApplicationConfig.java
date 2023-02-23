@@ -1,7 +1,7 @@
 package nl.miwgroningen.ch10.topshelf.security.config;
 
 import lombok.RequiredArgsConstructor;
-import nl.miwgroningen.ch10.topshelf.security.user.UserRepository;
+import nl.miwgroningen.ch10.topshelf.repository.UserRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;

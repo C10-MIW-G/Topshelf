@@ -19,9 +19,10 @@
             <th></th>
           </tr>
           <tr *ngFor="let basicStockProduct of pantryWithBasicStockProducts">
+            <input type="hidden" name="basicStockProductId">
             <td>{{ basicStockProduct.name }}</td>
             <td class="text-end">{{ basicStockProduct.amount }}</td>
-            <td></td>
+            <td><button type="submit" class="btn btn-primary" (click)="showBasicStockProductInForm(basicStockProduct)">Edit</button></td>
           </tr>
         </table>
         <div *ngIf="pantryWithBasicStockProducts.length === 0">
@@ -58,7 +59,7 @@
               >Product amount is invalid</span
             >
             <br />
-            <button class="btn btn-primary" (click)="save()">Save</button>
+            <button type="submit" class="btn btn-primary" (click)="save()" [disabled]="addBasicStockProductForm.invalid">Save</button>
             <br />
           </div>
         </form>

@@ -1,4 +1,4 @@
-package nl.miwgroningen.ch10.topshelf.security.user;
+package nl.miwgroningen.ch10.topshelf.model;
 
 public enum Role {
     USER,

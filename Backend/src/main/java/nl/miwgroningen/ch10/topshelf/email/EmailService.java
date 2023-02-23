@@ -1,7 +1,7 @@
 package nl.miwgroningen.ch10.topshelf.email;
 
 import jakarta.mail.MessagingException;
-import nl.miwgroningen.ch10.topshelf.security.user.User;
+import nl.miwgroningen.ch10.topshelf.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
