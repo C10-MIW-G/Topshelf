@@ -1,17 +1,21 @@
 <mat-dialog-content [formGroup]="form" class="form">
-  <h5>Add product to basic stock</h5>
+  <button type="button" class="close" (click)="close()">&times;</button>
+  <div class="modal-header primary">
+    <h5>Add a product</h5>
+  </div>
+  <br />
   <mat-form-field class="form-group">
     <input
       name="basicStockProductName"
+      type="text"
       matInput
       formControlName="basicStockProductName"
-      placeholder="Type product name"
-      [(ngModel)]="basicStockProductName"
+      placeholder="Product name"
       required
     />
     <mat-error class="error" *ngIf="form.invalid && form.touched"
-    >Name is required</mat-error
-  >
+      >Name is required</mat-error
+    >
   </mat-form-field>
 
   <br />
@@ -24,26 +28,15 @@
       placeholder="Amount"
       required
     />
-    <mat-error
-      class="error"
-      *ngIf="form.touched && form.invalid"
-      >Enter an amount greater than 0</mat-error
-    >
-    <mat-error
-      class="error"
-      *ngIf="form.value.amount < 1 && form.touched && !form == null"> 
-      Enter a positive amount</mat-error
+    <mat-error class="error" *ngIf="form.touched && form.invalid"
+      >Enter a positive amount</mat-error
     >
   </mat-form-field>
 </mat-dialog-content>
 
 <mat-dialog-actions>
-  <button class="btn btn-block btn-primary" (click)="close()">Close</button>
-  <button
-    class="btn btn-block btn-primary"
-    [disabled]="form.invalid"
-    (click)="save()"
-  >
+  <button class="btn btn-color" (click)="close()">Cancel</button>
+  <button class="btn btn-color-2" [disabled]="form.invalid" (click)="save()">
     Save
   </button>
 </mat-dialog-actions>
