@@ -1,5 +1,6 @@
 package nl.miwgroningen.ch10.topshelf.service;
 
+import lombok.Setter;
 import nl.miwgroningen.ch10.topshelf.model.ProductDefinition;
 import nl.miwgroningen.ch10.topshelf.repository.ProductDefinitionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,7 @@ import java.util.Optional;
  * Controls the productDefinitionRepository
  */
 
-@Service
+@Service @Setter
 public class ProductDefinitionService {
 
     private final ProductDefinitionRepository productDefinitionRepository;
@@ -24,7 +25,7 @@ public class ProductDefinitionService {
 
     public ProductDefinition findProductByName(String name) {
         Optional<ProductDefinition> existingProductDefinition =
-                productDefinitionRepository.findProductDefinitionByName(name);
+                Optional.ofNullable(productDefinitionRepository.findProductDefinitionByName(name));
         if (existingProductDefinition.isPresent()) {
             return existingProductDefinition.get();
         } else {

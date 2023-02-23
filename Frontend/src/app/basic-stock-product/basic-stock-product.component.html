@@ -9,7 +9,7 @@
           Stock</a
         >
       </div>
-      <div class="col-7 component-center">
+      <div class="col-8 component-center">
         <h4>{{ namePantry }}</h4>
         <br />
         <table class="table table-striped">
@@ -19,16 +19,17 @@
             <th></th>
           </tr>
           <tr *ngFor="let basicStockProduct of pantryWithBasicStockProducts">
+            <input type="hidden" name="basicStockProductId">
             <td>{{ basicStockProduct.name }}</td>
             <td class="text-end">{{ basicStockProduct.amount }}</td>
-            <td></td>
+            <td><button type="submit" class="btn btn-primary" (click)="showBasicStockProductInForm(basicStockProduct)">Edit</button></td>
           </tr>
         </table>
         <div *ngIf="pantryWithBasicStockProducts.length === 0">
           <p>There are no products in your list yet.</p>
         </div>
       </div>
-      <div class="col-3 component-right">
+      <div class="col-2 component-right">
         <form [formGroup]="addBasicStockProductForm" class="sidebar-fixed">
           <div class="formGroup col-12">
             <h5>Add product to basic stock</h5>
@@ -58,7 +59,7 @@
               >Product amount is invalid</span
             >
             <br />
-            <button class="btn btn-primary" (click)="save()">Save</button>
+            <button type="submit" class="btn btn-primary" (click)="save()" [disabled]="addBasicStockProductForm.invalid">Save</button>
             <br />
           </div>
         </form>

@@ -1,6 +1,7 @@
 package nl.miwgroningen.ch10.topshelf.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,7 +12,7 @@ import lombok.Setter;
  */
 
 @Entity
-@Getter @Setter @NoArgsConstructor
+@Getter @Setter @NoArgsConstructor @AllArgsConstructor
 public class BasicStockProduct {
 
     @Id
@@ -27,10 +28,4 @@ public class BasicStockProduct {
     @ManyToOne
     @JoinColumn(name = "pantryId", referencedColumnName = "pantryId")
     private Pantry pantry;
-
-    public BasicStockProduct(ProductDefinition productDefinition, Pantry pantry, int amount) {
-        this.productDefinition = productDefinition;
-        this.pantry = pantry;
-        this.amount = amount;
-    }
 }

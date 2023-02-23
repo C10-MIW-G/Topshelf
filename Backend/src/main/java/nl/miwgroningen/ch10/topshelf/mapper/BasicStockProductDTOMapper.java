@@ -32,9 +32,10 @@ public class BasicStockProductDTOMapper implements Function<BasicStockProduct, B
 
     public BasicStockProduct convertFromDTO(BasicStockProductDTO basicStockProductDTO) {
         return new BasicStockProduct(
+                basicStockProductDTO.basicStockProductId(),
+                basicStockProductDTO.amount(),
                 productDefinitionService.findProductByName(basicStockProductDTO.name()),
-                pantryService.findPantryByPantryId(basicStockProductDTO.pantryId()),
-                basicStockProductDTO.amount()
+                pantryService.findPantryByPantryId(basicStockProductDTO.pantryId())
         );
     }
 }

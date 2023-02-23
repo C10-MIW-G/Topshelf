@@ -58,6 +58,20 @@ export class AuthService {
     );
   }
 
+  resetPassword(
+    user: { email: string; },
+    captchaResponse: string | undefined
+  ): Observable<any> {
+    return this.http.post(
+      AUTH_API + '/resetpassword',
+      {
+        email: user.email,
+        captchaResponse,
+      },
+      httpOptions
+    );
+  }
+
   GetAll() {
     return this.http.get(AUTH_API);
   }
