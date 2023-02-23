@@ -6,12 +6,14 @@
           [routerLink]="['/pantry', pantryId]"
           [queryParams]="{ name: namePantry }"
         >
-          Stock</a
+          Go to your pantry stock</a
         >
       </div>
       <div class="col-8 component-center">
         <h4>{{ namePantry }}</h4>
-        <br />
+        <br>
+        <tr>Products defined in your basic stock:</tr>
+        <br>
         <table class="table table-striped">
           <tr>
             <th>Product</th>
@@ -22,7 +24,11 @@
             <input type="hidden" name="basicStockProductId">
             <td>{{ basicStockProduct.name }}</td>
             <td class="text-end">{{ basicStockProduct.amount }}</td>
-            <td><button type="submit" class="btn btn-primary" (click)="showBasicStockProductInForm(basicStockProduct)">Edit</button></td>
+            <td class="text-center">
+              <a class="" (click)="showBasicStockProductInForm(basicStockProduct)"
+              ><span><i class="fa fa-edit"></i></span
+                ></a>
+            </td>
           </tr>
         </table>
         <div *ngIf="pantryWithBasicStockProducts.length === 0">
@@ -32,7 +38,7 @@
       <div class="col-2 component-right">
         <form [formGroup]="addBasicStockProductForm" class="sidebar-fixed">
           <div class="formGroup col-12">
-            <h5>Add product to basic stock</h5>
+            <h5>Add product</h5>
             <label>Product name: </label>
             <input
               type="text"
