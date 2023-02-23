@@ -25,7 +25,6 @@ public class PasswordGenerator {
             stringBuilder.append(upperCase);
             stringBuilder.append(character);
         }
-
         return String.valueOf(stringBuilder);
     }
 
