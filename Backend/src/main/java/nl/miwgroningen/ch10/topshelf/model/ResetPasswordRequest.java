@@ -1,4 +1,4 @@
-package nl.miwgroningen.ch10.topshelf.model.user;
+package nl.miwgroningen.ch10.topshelf.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

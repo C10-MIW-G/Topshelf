@@ -5,7 +5,6 @@ import nl.miwgroningen.ch10.topshelf.repository.UserRepository;
 import jakarta.mail.MessagingException;
 import nl.miwgroningen.ch10.topshelf.email.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -21,15 +20,14 @@ public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final EmailService sendEmail;
-
-    @Value("${resetPassword}")
     private String resetPassword;
 
     @Autowired
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, EmailService sendEmail) {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, EmailService sendEmail, String resetPassword) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.sendEmail = sendEmail;
+        this.resetPassword = resetPassword;
     }
 
     public User findUserByUsername(String username) {
@@ -60,7 +58,7 @@ public class UserService {
     }
 
     public void sendResetPasswordMailToUser(User user) throws MessagingException {
-        sendEmail.sendMessage(user, "Reset password",
+        sendEmail.sendMessage( user, "Reset password",
                 "Your password reset was successful \n" +
                         "Your new password = " + resetPassword + "\n" +
                         "It's strongly advised to change your password immediately.");
