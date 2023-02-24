@@ -1,7 +1,49 @@
-h1,
+.header,
+h4 {
+  background-color: rgb(207, 233, 255);
+  text-align: center;
+  padding: 5px;
+  color: rgb(65, 113, 156);
+  font-style: italic;
+}
+
 a {
   text-align: center;
   text-decoration: none;
+}
+
+a.btn,
+a.btn:hover {
+  color: white;
+}
+
+a ul a {
+  position: absolute;
+  bottom: 0;
+  width: 230px;
+  margin: 10px 0px 5px 0px;
+}
+
+p {
+ text-align: center;
+ font-size: larger;
+}
+
+.col-4 {
+  display: block;
+  margin-top: 50px;
+}
+
+.card {
+  background-color: white;
+  border: rgb(207, 233, 255) solid 4px;
+  position: relative;
+  min-height: 250px;
+}
+
+.card:hover {
+  border: rgb(162, 212, 255) outset 5px;
+  color: black;
 }
 
 ul {
@@ -10,53 +52,10 @@ ul {
   padding-top: 10px;
 }
 
-.col-4 {
-  display: block;
-  margin-top: 50px;
-}
-
-a.btn,
-a.btn:hover {
-  color: white;
-}
-
-a.secondary {
-  color: rgb(45, 92, 134);
-}
-
-a.secondary:hover {
-  color: rgb(65, 113, 156);
-  text-decoration: underline;
-}
-
-.header,
-h4 {
-  background-color: rgb(65, 113, 156);
-  text-align: center;
-  padding: 5px;
-  color: white;
-}
-
 img {
-  width: 200px;
-  margin-left: 11%;
+  margin-left: -15px;
 }
 
-.cardOne {
-  background-color: rgb(190, 225, 255);
-}
-
-.cardTwo {
-  background-color: rgb(162, 210, 253);
-}
-
-.cardThree {
-  background-color: rgb(179, 200, 219);
-}
-
-a.login {   
-    float: right;
-    padding-right: 15px;
-    margin-top: 5px;
-    font-size: 20px;
+.row {
+    max-height: 90vh;
 }
