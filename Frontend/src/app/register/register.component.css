@@ -24,3 +24,18 @@ h4 {
   padding: 10px;
   text-align: center;
 }
+
+.cancel {
+  text-align: center;
+  padding: 10px 10px 0px 10px;
+  font-size: 14px;
+}
+
+a.secondary {
+  color: rgb(45, 92, 134);
+}
+
+a.secondary:hover {
+  color: rgb(65, 113, 156);
+  text-decoration: underline;
+}
