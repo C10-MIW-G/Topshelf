@@ -18,7 +18,6 @@ export class BasicStockProductComponent implements OnInit {
   public pantryId!: number;
   public BasicStockProductId: number | undefined;
 
-
   addBasicStockProductForm = new FormGroup({
     name: new FormControl(
       '',
@@ -119,7 +118,3 @@ export class BasicStockProductComponent implements OnInit {
     this.router.navigate(['/edit', name]);
   }
 }
-function subscribe(arg0: {}) {
-  throw new Error('Function not implemented.');
-}
-
