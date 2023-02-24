@@ -5,6 +5,7 @@ import nl.miwgroningen.ch10.topshelf.exception.StockProductNotFoundException;
 import nl.miwgroningen.ch10.topshelf.mapper.StockProductDTOMapper;
 import nl.miwgroningen.ch10.topshelf.model.StockProduct;
 import nl.miwgroningen.ch10.topshelf.model.Pantry;
+import nl.miwgroningen.ch10.topshelf.model.User;
 import nl.miwgroningen.ch10.topshelf.repository.StockProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -51,5 +52,9 @@ public class StockProductService {
 
     public void deleteStockProduct(Long stockProductId){
         stockProductRepository.deleteById(stockProductId);
+    }
+
+    public boolean checkIfUserBelongsToPantry(Pantry pantry, User user){
+       return pantry.getUsers().contains(user);
     }
 }

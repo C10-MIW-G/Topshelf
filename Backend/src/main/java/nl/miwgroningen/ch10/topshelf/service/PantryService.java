@@ -4,10 +4,13 @@ import nl.miwgroningen.ch10.topshelf.dto.PantryDTO;
 import nl.miwgroningen.ch10.topshelf.exception.PantryNotFoundException;
 import nl.miwgroningen.ch10.topshelf.mapper.PantryDTOMapper;
 import nl.miwgroningen.ch10.topshelf.model.Pantry;
+import nl.miwgroningen.ch10.topshelf.model.User;
 import nl.miwgroningen.ch10.topshelf.repository.PantryRepository;
+import nl.miwgroningen.ch10.topshelf.security.config.JwtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,12 +22,15 @@ import java.util.List;
 public class PantryService {
     private final PantryRepository pantryRepository;
     private final PantryDTOMapper pantryDTOMapper;
-
+    private final JwtService jwtService;
+    private final UserService userService;
     @Autowired
     public PantryService(PantryRepository pantryRepository,
-                         PantryDTOMapper pantryDTOMapper) {
+                         PantryDTOMapper pantryDTOMapper, JwtService jwtService, UserService userService) {
         this.pantryRepository = pantryRepository;
         this.pantryDTOMapper = pantryDTOMapper;
+        this.jwtService = jwtService;
+        this.userService = userService;
     }
 
     public List<PantryDTO> findAllPantries() {
@@ -42,6 +48,27 @@ public class PantryService {
     public Pantry addPantry(PantryDTO pantryDTO) {
         Pantry pantry = pantryDTOMapper.toPantry(pantryDTO);
         return pantryRepository.save(pantry);
+    }
+
+    public void addAdminToPantry(String username, Pantry pantry){
+        User newPantryAdmin = userService.findUserByUsername(username);
+        pantry.getAdmins().add(newPantryAdmin);
+        pantryRepository.save(pantry);
+    }
+
+    public void addUserToPantry(String username, Pantry pantry){
+        User userToBeAdded = userService.findUserByUsername(username);
+        pantry.getUsers().add(userToBeAdded);
+        pantryRepository.save(pantry);
+    }
+
+    public List<PantryDTO> findPantriesByUser(String username){
+        User userToBeSearched = userService.findUserByUsername(username);
+        List<PantryDTO> newlist = pantryRepository.findPantriesByUsers(userToBeSearched)
+                .stream()
+                .map(pantryDTOMapper)
+                .toList();
+        return newlist;
     }
 }
 

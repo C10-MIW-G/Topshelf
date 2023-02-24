@@ -2,11 +2,8 @@
   <div class="container-fluid" *ngIf="unAuthorizedUser">
     <div class="row">
       <div class="col-2 component-left">
-        <h5>Hello</h5>
-        <p>This page shows the pantries you can manage.</p>
-        <br />
       </div>
-      <div class="col-7 component-center">
+      <div class="col-8 component-center">
         <h5>Your pantries:</h5>
         <div *ngFor="let pantry of pantries">
           <table class="table table-striped">
@@ -20,7 +17,7 @@
           </table>
         </div>
       </div>
-      <div class="col-3 component-right">
+      <div class="col-2 component-right">
         <button
           class="btn btn-primary sidebar-fixed"
           *ngIf="unAuthorizedUser"
