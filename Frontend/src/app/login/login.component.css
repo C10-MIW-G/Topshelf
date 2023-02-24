@@ -54,3 +54,7 @@ a.secondary:hover {
   text-decoration: underline;
 }
 
+.row {
+  max-height: 90vh;
+}
+
