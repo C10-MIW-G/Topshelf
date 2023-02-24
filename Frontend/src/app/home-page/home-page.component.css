@@ -1,8 +1,62 @@
-h4, a {
-    text-align: center;
+h1,
+a {
+  text-align: center;
+  text-decoration: none;
 }
 
-h5, ul {
-    text-align: center;
-    padding: 10px;
+ul {
+  text-align: center;
+  padding: 3px;
+  padding-top: 10px;
+}
+
+.col-4 {
+  display: block;
+  margin-top: 50px;
+}
+
+a.btn,
+a.btn:hover {
+  color: white;
+}
+
+a.secondary {
+  color: rgb(45, 92, 134);
+}
+
+a.secondary:hover {
+  color: rgb(65, 113, 156);
+  text-decoration: underline;
+}
+
+.header,
+h4 {
+  background-color: rgb(65, 113, 156);
+  text-align: center;
+  padding: 5px;
+  color: white;
+}
+
+img {
+  width: 200px;
+  margin-left: 11%;
+}
+
+.cardOne {
+  background-color: rgb(190, 225, 255);
+}
+
+.cardTwo {
+  background-color: rgb(162, 210, 253);
+}
+
+.cardThree {
+  background-color: rgb(179, 200, 219);
+}
+
+a.login {   
+    float: right;
+    padding-right: 15px;
+    margin-top: 5px;
+    font-size: 20px;
 }

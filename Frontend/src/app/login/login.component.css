@@ -10,7 +10,7 @@ a:active {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  max-height: 325px;
+  min-height: 330px;
 }
 
 h4 {
@@ -31,6 +31,7 @@ p {
 .reset {
   text-align: center;
   padding: 10px;
+  padding-bottom: 0px;
   font-size: 14px;
 }
 
