@@ -4,9 +4,9 @@ import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
 import nl.miwgroningen.ch10.topshelf.exception.InvalidReCaptchaException;
 import nl.miwgroningen.ch10.topshelf.exception.UserNotFoundException;
-import nl.miwgroningen.ch10.topshelf.security.user.ResetPasswordRequest;
-import nl.miwgroningen.ch10.topshelf.security.user.User;
-import nl.miwgroningen.ch10.topshelf.security.user.UserService;
+import nl.miwgroningen.ch10.topshelf.model.ResetPasswordRequest;
+import nl.miwgroningen.ch10.topshelf.model.User;
+import nl.miwgroningen.ch10.topshelf.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -30,7 +30,7 @@ public class AuthenticationController {
     public ResponseEntity<AuthenticationResponse> register(
             @RequestBody RegisterRequest request
     ) throws InvalidReCaptchaException {
-        if(captchaService.verify(request.getCaptchaResponse())) {
+        if (captchaService.verify(request.getCaptchaResponse())) {
             return ResponseEntity.ok(service.register(request));
         } else {
             throw new InvalidReCaptchaException("Invalid reCaptcha");
@@ -45,14 +45,13 @@ public class AuthenticationController {
     }
 
     @PostMapping("/resetpassword")
-    public ResponseEntity<String> resetUserPassword (
+    public ResponseEntity<String> resetUserPassword(
             @RequestBody ResetPasswordRequest request) throws MessagingException, InvalidReCaptchaException {
         User user = userService.findUserByEmail(request.getEmail());
 
-        if(captchaService.verify(request.getCaptchaResponse()) &&
+        if (captchaService.verify(request.getCaptchaResponse()) &&
                 userService.checkUserEmail(user, request.getEmail())) {
             userService.resetPassword(user);
-            userService.sendResetPasswordMailToUser(user);
 
             return new ResponseEntity<>(HttpStatus.OK);
         } else if (!captchaService.verify(request.getCaptchaResponse())) {

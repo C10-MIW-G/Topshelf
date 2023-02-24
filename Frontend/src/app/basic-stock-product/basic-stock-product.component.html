@@ -6,12 +6,14 @@
           [routerLink]="['/pantry', pantryId]"
           [queryParams]="{ name: namePantry }"
         >
-          Stock</a
+          Go to your pantry stock</a
         >
       </div>
       <div class="col-8 component-center">
         <h4>{{ namePantry }}</h4>
-        <br />
+        <br>
+        <tr>Products defined in your basic stock:</tr>
+        <br>
         <table class="table table-striped">
           <tr>
             <th>Product</th>

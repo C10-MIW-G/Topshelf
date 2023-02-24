@@ -30,6 +30,7 @@ import { BasicStockProductComponent } from './basic-stock-product/basic-stock-pr
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { ModaladdbasicstockComponent } from './modaladdbasicstock/modaladdbasicstock.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { HomePageComponent } from './home-page/home-page.component';
 import { ModaleditbasicstockComponent } from './modaleditbasicstock/modaleditbasicstock.component';
 
 @NgModule({
@@ -45,6 +46,8 @@ import { ModaleditbasicstockComponent } from './modaleditbasicstock/modaleditbas
     RegisterComponent,
     BasicStockProductComponent,
     ChangePasswordComponent,
+    ResetPasswordComponent,
+    HomePageComponent,
     ModaladdbasicstockComponent,
     ResetPasswordComponent,
     ModaleditbasicstockComponent

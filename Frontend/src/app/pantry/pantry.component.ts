@@ -21,7 +21,18 @@ export class PantryComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.getPantries();
+    this.getPantriesByUser();
+  }
+
+  public getPantriesByUser(): void {
+    this.pantryService.getPantriesForUser().subscribe(
+      (response: Pantry[]) => {
+        this.pantries = response;
+      },
+      (error: HttpErrorResponse) => {
+        this.errorMessage = 'Unable to retrieve the pantries';
+      }
+    );
   }
 
   public getPantries(): void {

@@ -30,4 +30,10 @@ public class Pantry {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "basicStockProductId")
     private List<BasicStockProduct> basicStock;
 
+    @ManyToMany
+    private List<User> users;
+
+    @ManyToMany
+    private List<User> admins;
+
 }

@@ -1,9 +1,11 @@
-package nl.miwgroningen.ch10.topshelf.security.user;
+package nl.miwgroningen.ch10.topshelf.service;
 
+import nl.miwgroningen.ch10.topshelf.model.User;
+import nl.miwgroningen.ch10.topshelf.repository.UserRepository;
 import jakarta.mail.MessagingException;
 import nl.miwgroningen.ch10.topshelf.email.EmailService;
+import nl.miwgroningen.ch10.topshelf.passwordGenerator.PasswordGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -19,9 +21,7 @@ public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final EmailService sendEmail;
-
-    @Value("${resetPassword}")
-    private String resetPassword;
+    private final PasswordGenerator passwordGenerator = new PasswordGenerator();
 
     @Autowired
     public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, EmailService sendEmail) {
@@ -51,16 +51,13 @@ public class UserService {
         return email.equals(user.getEmail());
     }
 
-    public void resetPassword(User user) {
-        String password = resetPassword;
-        user.setPassword(passwordEncoder.encode(password));
+    public void resetPassword(User user) throws MessagingException {
+        String newPassword = passwordGenerator.generateSecureRandomPassword();
+        user.setPassword(passwordEncoder.encode(newPassword));
         userRepository.save(user);
-    }
 
-    public void sendResetPasswordMailToUser(User user) throws MessagingException {
-        sendEmail.sendMessage(user, "Reset password",
-                "Your password reset was successful \n" +
-                        "Your new password = " + resetPassword + "\n" +
-                        "It's strongly advised to change your password immediately.");
+        sendEmail.sendMessage(user, "Reset password", "Your password reset was successful \n" +
+                "Your new password = " + newPassword + "\n" +
+                "It's strongly advised to change your password immediately.");
     }
 }

@@ -1,23 +1,56 @@
-a:link,
+a, a:link,
 a:visited,
 a:active {
   color: white;
   text-decoration: none;
+  text-align: center;
 }
 
 .card {
   display: block;
   margin-left: auto;
   margin-right: auto;
-}
-
-.btn-color, .btn-color:hover {
-  background-color: gray;
-  color: white;
-  border: none;
+  min-height: 330px;
 }
 
 h4 {
-  padding: 10px;
+  padding: 10px 10px 20px 10px;
   text-align: center;
 }
+
+p {
+  margin-left: 13%
+}
+
+.register {
+  text-align: center;
+  padding: 15px;
+  font-size: 16px;
+}
+
+.reset {
+  text-align: center;
+  padding: 10px;
+  padding-bottom: 0px;
+  font-size: 14px;
+}
+
+span {
+  margin-right: 15px;
+  color: green;
+  font-size: 22px;
+}
+
+.firstLine {
+  padding-top: 6px;
+}
+
+a.secondary {
+  color: rgb(45, 92, 134);
+}
+
+a.secondary:hover {
+  color: rgb(65, 113, 156);
+  text-decoration: underline;
+}
+

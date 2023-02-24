@@ -1,4 +1,4 @@
-package nl.miwgroningen.ch10.topshelf.security.user;
+package nl.miwgroningen.ch10.topshelf.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -37,6 +37,9 @@ public class User implements UserDetails {
 
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    @ManyToMany
+    List<Pantry> pantries;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

@@ -1,6 +1,9 @@
-package nl.miwgroningen.ch10.topshelf.security.user;
+package nl.miwgroningen.ch10.topshelf.controller;
 
 import nl.miwgroningen.ch10.topshelf.exception.InvalidPasswordException;
+import nl.miwgroningen.ch10.topshelf.model.ChangePasswordRequest;
+import nl.miwgroningen.ch10.topshelf.model.User;
+import nl.miwgroningen.ch10.topshelf.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
