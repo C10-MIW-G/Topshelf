@@ -1,4 +1,4 @@
-export interface BasicStockProduct {
+export interface BasicStockProductEdit {
   name: string | null | undefined;
   basicStockProductId: number | null | undefined;
   pantryId: number;

@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { BasicStockProduct } from './basic-stock-product';
+import { BasicStockProductEdit } from './basic-stock-product-edit';
 import { environment } from 'src/environments/environment';
+import { BasicStockProduct } from './basic-stock-product';
+import { ObserversModule } from '@angular/cdk/observers';
 
 @Injectable({ providedIn: 'root' })
 export class BasicStockProductService {
@@ -19,15 +21,34 @@ export class BasicStockProductService {
     );
   }
 
+  getBasicStockProduct(basicStockProductId: number): Observable<BasicStockProduct> {
+    return this.http.get<BasicStockProduct>(`${this.apiServerUrl}/${basicStockProductId}`)
+  }
+
   public saveBasicStockProductToPantryStock(
-    basicStockProduct: BasicStockProduct
-  ): Observable<BasicStockProduct> {
-    return this.http.post<BasicStockProduct>(
+    basicStockProductEdit: BasicStockProductEdit
+  ): Observable<any> {
+    return this.http.post(
       `${this.apiServerUrl}/basicstockproduct/add`,
       {
-        name: basicStockProduct.name,
-        amount: basicStockProduct.amount,
-        pantryId: basicStockProduct.pantryId,
+        basicStockProductId: basicStockProductEdit.basicStockProductId,
+        pantryId: basicStockProductEdit.pantryId,
+        name: basicStockProductEdit.name,
+        amount: basicStockProductEdit.amount
+      }
+    );
+  }
+
+  public editBasicStockProduct(
+    basicStockProductEdit: BasicStockProductEdit
+  ): Observable<any> {
+    return this.http.put(
+      `${this.apiServerUrl}/basicstockproduct/edit`,
+      {
+        basicStockProductId: basicStockProductEdit.basicStockProductId,
+        pantryId: basicStockProductEdit.pantryId,
+        name: basicStockProductEdit.name,
+        amount: basicStockProductEdit.amount
       }
     );
   }

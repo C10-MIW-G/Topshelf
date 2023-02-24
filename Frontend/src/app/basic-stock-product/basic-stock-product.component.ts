@@ -6,6 +6,8 @@ import { BasicStockProductService } from './basic-stock-product.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ModaladdbasicstockComponent } from '../modaladdbasicstock/modaladdbasicstock.component';
+import { ModaleditbasicstockComponent } from '../modaleditbasicstock/modaleditbasicstock.component';
+import { BasicStockProductEdit } from './basic-stock-product-edit';
 
 @Component({
   selector: 'app-basic-stock-product',
@@ -18,6 +20,8 @@ export class BasicStockProductComponent implements OnInit {
   public pantryWithBasicStockProducts: BasicStockProduct[] = [];
   public namePantry!: string;
   public pantryId!: number;
+  public BasicStockProductId: number | undefined;
+
   errorMessage: string = '';
 
   addBasicStockProductForm = new FormGroup({
@@ -25,22 +29,16 @@ export class BasicStockProductComponent implements OnInit {
       '',
       Validators.compose([Validators.required, Validators.pattern(/[\S]/g)])
     ),
+    basicStockProductId: new FormControl(0),
     amount: new FormControl(
       0,
       Validators.compose([
         Validators.required,
-        Validators.min(0),
+        Validators.min(1),
         Validators.max(2147483647),
       ])
     ),
   });
-
-  get name() {
-    return this.addBasicStockProductForm.get('name');
-  }
-  get amount() {
-    return this.addBasicStockProductForm.get('amount');
-  }
 
   constructor(
     private basicStockProductService: BasicStockProductService,
@@ -52,6 +50,21 @@ export class BasicStockProductComponent implements OnInit {
   ngOnInit() {
     this.getPantryName();
     this.getBasicStockProductsByPantryId();
+  }
+
+  get name() {
+    return this.addBasicStockProductForm.get('name');
+  }
+  get amount() {
+    return this.addBasicStockProductForm.get('amount');
+  }
+
+  getBasicStockProduct(basicStockProductId: number) {
+    this.basicStockProductService
+      .getBasicStockProduct(basicStockProductId)
+      .subscribe((basicStockProduct: BasicStockProduct) =>
+        this.showBasicStockProductInForm(basicStockProduct)
+      );
   }
 
   public getPantryName() {
@@ -76,13 +89,16 @@ export class BasicStockProductComponent implements OnInit {
     const nameValue = this.addBasicStockProductForm.value.name;
     const amountValue = this.addBasicStockProductForm.value.amount;
     const id = Number(this.route.snapshot.paramMap.get('pantryId'));
+    const basicStockProductId =
+      this.addBasicStockProductForm.value.basicStockProductId;
 
     if (this.isEmptyOrSpaces(nameValue) && amountValue! > 0) {
       this.basicStockProductService
         .saveBasicStockProductToPantryStock({
           name: nameValue,
-          amount: amountValue,
+          basicStockProductId: basicStockProductId,
           pantryId: id,
+          amount: amountValue,
         })
         .subscribe({
           complete: () => {
@@ -94,9 +110,16 @@ export class BasicStockProductComponent implements OnInit {
     }
   }
 
+  public showBasicStockProductInForm(basicStockProduct: BasicStockProduct) {
+    this.addBasicStockProductForm.patchValue({
+      basicStockProductId: basicStockProduct.basicStockProductId,
+      name: basicStockProduct.name,
+      amount: basicStockProduct.amount,
+    });
+  }
+
   onOpenDialog() {
     const dialogConfig = new MatDialogConfig();
-    const id = Number(this.route.snapshot.paramMap.get('pantryId'));
     dialogConfig.disableClose = true;
     dialogConfig.data = {
       name: null,
@@ -111,14 +134,58 @@ export class BasicStockProductComponent implements OnInit {
     dialogRef.afterClosed().subscribe((data) => {
       console.log(data);
       if (data.basicStockProductName !== null && data.isSubmitted) {
-        this.basicStockProductService.saveBasicStockProductToPantryStock({ name: data.basicStockProductName, pantryId: id, amount: data.amount  }).subscribe({
-          complete: () => {
-            window.location.reload();
-          },
-          error: () => {
-            alert('Product niet toegevoegd');
-          },
-        });
+        this.basicStockProductService
+          .saveBasicStockProductToPantryStock({
+            name: data.basicStockProductName,
+            amount: data.amount,
+            pantryId: Number(this.route.snapshot.paramMap.get('pantryId')),
+            basicStockProductId: data.basicStockProductId,
+          })
+          .subscribe({
+            complete: () => {
+              window.location.reload();
+            },
+            error: () => {
+              alert('Failed adding product');
+            },
+          });
+      }
+    });
+  }
+
+  openEditModal(BasicStockProductedit: BasicStockProductEdit): void {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.data = {
+      name: BasicStockProductedit.name,
+      basicStockProductId: BasicStockProductedit.basicStockProductId,
+      amount: BasicStockProductedit.amount,
+      isSubmitted: true,
+    };
+
+    const dialogRef = this.matDialog.open(
+      ModaleditbasicstockComponent,
+      dialogConfig
+    );
+
+    dialogRef.afterClosed().subscribe((data) => {
+      console.log(data);
+      if (data.basicStockProductName !== null && data.isSubmitted) {
+        this.basicStockProductService
+          .saveBasicStockProductToPantryStock({
+            name: data.basicStockProductName,
+            basicStockProductId: BasicStockProductedit.basicStockProductId,
+            pantryId: Number(this.route.snapshot.paramMap.get('pantryId')),
+            amount: data.amount,
+          })
+          .subscribe({
+            complete: () => {
+              window.location.reload();
+            },
+            error: () => {
+              alert('Update failed');
+            },
+          });
       }
     });
   }
@@ -126,4 +193,11 @@ export class BasicStockProductComponent implements OnInit {
   public isEmptyOrSpaces(str: string | null | undefined) {
     return str === null || str?.match(/[\S]/g) !== null;
   }
+
+  editButtonClick(name: string) {
+    this.router.navigate(['/edit', name]);
+  }
+}
+  function subscribe(arg0: {}) {
+  throw new Error('Function not implemented.');
 }

@@ -29,6 +29,8 @@ import { environment } from 'src/environments/environment';
 import { BasicStockProductComponent } from './basic-stock-product/basic-stock-product.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { ModaladdbasicstockComponent } from './modaladdbasicstock/modaladdbasicstock.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { ModaleditbasicstockComponent } from './modaleditbasicstock/modaleditbasicstock.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,9 @@ import { ModaladdbasicstockComponent } from './modaladdbasicstock/modaladdbasics
     RegisterComponent,
     BasicStockProductComponent,
     ChangePasswordComponent,
-    ModaladdbasicstockComponent
+    ModaladdbasicstockComponent,
+    ResetPasswordComponent,
+    ModaleditbasicstockComponent
   ],
   imports: [
     BrowserModule,
