@@ -1,3 +1,5 @@
+import { PantrydetailComponent } from './pantrydetail/pantrydetail.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
 import { LoginComponent } from './login/login.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -11,18 +13,38 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 const appRoute: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'changepassword', component: ChangePasswordComponent},
-  { path: 'resetpassword', component: ResetPasswordComponent},
-  { path: 'pantry', component: PantryComponent },
-  { path: 'edit/:id', component: BasicStockProductComponent},
+  { path: 'changepassword', component: ChangePasswordComponent },
+  { path: 'resetpassword', component: ResetPasswordComponent },
   {
-    path: 'pantry/:pantryId/basicstock',
-    component: BasicStockProductComponent,
-    pathMatch: 'full',
+    path: 'pantry',
+    component: PantryComponent,
   },
+  { path: 'edit/:id', component: BasicStockProductComponent },
   {
     path: 'pantry/:pantryId',
-    component: StockProductComponent,
+    component: PantrydetailComponent,
+    children: [
+      {
+        path: '',
+        component: SidebarComponent,
+        outlet: 'sidebar',
+      },
+      {
+        path: '',
+        component: StockProductComponent,
+        outlet: 'stockproduct',
+      },
+      {
+        path: 'basicstock',
+        component: BasicStockProductComponent,
+        outlet: 'stockproduct',
+      },
+      {
+        path: 'stock',
+        component: StockProductComponent,
+        outlet: 'stockproduct',
+      },
+    ],
   },
 
   { path: '', redirectTo: 'login', pathMatch: 'full' },

@@ -1,15 +1,15 @@
 <body>
   <div class="container-fluid">
     <div class="row">
-      <div class="col-2 component-left">
+      <!-- <div class="col-2 component-left">
         <a
           [routerLink]="['/pantry/', pantryId, 'basicstock']"
           [queryParams]="{ name: namePantry }"
         >
           Basic stock</a
         >
-      </div>
-      <div class="col-8 component-center">
+      </div> -->
+      <div class="col-10 component-center">
         <h4>{{ namePantry }}</h4>
         <br />
         <table class="table table-striped">
@@ -54,7 +54,14 @@
               placeholder="enter expiration date"
             />
             <br />
-            <button type="submit" class="btn btn-primary" (click)="save()" [disabled]="addStockProductForm.invalid">Save</button>
+            <button
+              type="submit"
+              class="btn btn-primary"
+              (click)="save()"
+              [disabled]="addStockProductForm.invalid"
+            >
+              Save
+            </button>
           </div>
         </form>
       </div>

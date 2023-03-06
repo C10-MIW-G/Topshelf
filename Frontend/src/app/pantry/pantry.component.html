@@ -12,10 +12,39 @@
           <table class="table table-striped">
             <tr>
               <a
-                routerLink="/pantry/{{ pantry.pantryId }}"
-                [queryParams]="{ name: pantry.name }"
+                routerLink="/pantry/{{
+                  pantry.pantryId
+                }};sidebar:sidebar;stockproduct:stockproduct"
+                [queryParams]="{ name: pantry.name, id: pantry.pantryId }"
                 >{{ pantry.name }}</a
               >
+
+              <!-- <a
+                [routerLink]="[
+                  '/pantry',
+                  pantry.pantryId,
+                  {
+                    outlets: {
+                      componentOne: [
+                        'component-one',
+                        { pantryId: pantry.pantryId }
+                      ],
+                      componentTwo: 'component-two'
+                    }
+                  }
+                ]"
+                [queryParams]="{ name: pantry.name }"
+              >
+                {{ pantry.name }}</a
+              > -->
+
+              <!-- <a
+                routerLink="/pantry/{{
+                  pantry.pantryId
+                }}/;componentOne=sidebar;componentTwo=stockproduct"
+                [queryParams]="{ name: pantry.name }"
+                >{{ pantry.name }}</a
+              > -->
             </tr>
           </table>
         </div>

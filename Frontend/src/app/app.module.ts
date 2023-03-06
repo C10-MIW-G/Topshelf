@@ -29,6 +29,8 @@ import { environment } from 'src/environments/environment';
 import { BasicStockProductComponent } from './basic-stock-product/basic-stock-product.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { PantrydetailComponent } from './pantrydetail/pantrydetail.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,9 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
     RegisterComponent,
     BasicStockProductComponent,
     ChangePasswordComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    SidebarComponent,
+    PantrydetailComponent
   ],
   imports: [
     BrowserModule,

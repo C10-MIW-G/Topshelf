@@ -55,13 +55,11 @@ a:link, a:visited, a:active{
 .row {
   height: 100vh;
 }
-
-.component-left, .component-right {
+.component-right, .sidebar {
   padding-top: 36px;
   text-align: left;
   background-color:
    rgb(232, 241, 248);
-   position: sticky ;
 }
 
 .component-center {
