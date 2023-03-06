@@ -6,12 +6,14 @@
           [routerLink]="['/pantry/', pantryId, 'basicstock']"
           [queryParams]="{ name: namePantry }"
         >
-          Basic stock</a
+          Go to basic stock</a
         >
       </div> -->
       <div class="col-10 component-center">
         <h4>{{ namePantry }}</h4>
-        <br />
+        <br>
+        <tr>These products are in stock:</tr>
+        <br>
         <table class="table table-striped">
           <tr>
             <th>Product</th>

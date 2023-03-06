@@ -28,10 +28,12 @@ import { MatInputModule } from '@angular/material/input';
 import { environment } from 'src/environments/environment';
 import { BasicStockProductComponent } from './basic-stock-product/basic-stock-product.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { ModaladdbasicstockComponent } from './modaladdbasicstock/modaladdbasicstock.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { PantrydetailComponent } from './pantrydetail/pantrydetail.component';
-
+import { HomePageComponent } from './home-page/home-page.component';
+import { ModaleditbasicstockComponent } from './modaleditbasicstock/modaleditbasicstock.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,7 +49,11 @@ import { PantrydetailComponent } from './pantrydetail/pantrydetail.component';
     ChangePasswordComponent,
     ResetPasswordComponent,
     SidebarComponent,
-    PantrydetailComponent
+    PantrydetailComponent,
+    HomePageComponent,
+    ModaladdbasicstockComponent,
+    ResetPasswordComponent,
+    ModaleditbasicstockComponent
   ],
   imports: [
     BrowserModule,

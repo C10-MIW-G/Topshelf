@@ -3,7 +3,9 @@
     <div class="row">
       <div class="col-10 component-center">
         <h4>{{ namePantry }}</h4>
-        <br />
+        <br>
+        <tr>Products defined in your basic stock:</tr>
+        <br>
         <table class="table table-striped">
           <tr>
             <th>Product</th>
@@ -23,6 +25,11 @@
                 Edit
               </button>
             </td>
+          <td class="text-center">
+            <a class="" (click)="openEditModal(basicStockProduct)"
+            ><span><i class="fa fa-edit"></i></span
+              ></a>
+          </td>
           </tr>
         </table>
         <div *ngIf="pantryWithBasicStockProducts.length === 0">
@@ -70,6 +77,10 @@
             <br />
           </div>
         </form>
+      <div class="col-2 component-right">
+        <button class="btn btn-primary sidebar-fixed" (click)="onOpenDialog()">
+          Add product
+        </button>
       </div>
     </div>
   </div>

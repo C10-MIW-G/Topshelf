@@ -9,8 +9,10 @@ import { RegisterComponent } from './register/register.component';
 import { BasicStockProductComponent } from './basic-stock-product/basic-stock-product.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { HomePageComponent } from './home-page/home-page.component';
 
 const appRoute: Routes = [
+  { path: 'home', component: HomePageComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'changepassword', component: ChangePasswordComponent },
@@ -46,8 +48,7 @@ const appRoute: Routes = [
       },
     ],
   },
-
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];
 
 @NgModule({

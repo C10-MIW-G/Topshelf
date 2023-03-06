@@ -1,0 +1,35 @@
+modal-header {
+    width: 100%;
+}
+
+h5 {
+    font-weight:bold;
+    color: rgb(65, 113, 156);
+}
+
+mat-dialog-actions {
+    display:flex;
+    justify-content: flex-end;
+    margin-right: 5%;
+}
+
+button {
+    margin-left: 5px;
+}
+
+.btn-color{
+    background-color: gray;
+    color: white;
+}
+
+.btn-color-2 {
+    background-color: rgb(65, 113, 156);
+    color: white;
+}
+
+.btn:link,
+.btn:visited,
+.btn:active {
+    color: white;
+}
+
