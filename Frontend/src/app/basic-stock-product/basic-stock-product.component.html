@@ -3,9 +3,12 @@
     <div class="row">
       <div class="col-10 component-center">
         <h4>{{ namePantry }}</h4>
-        <br>
-        <tr>Products defined in your basic stock:</tr>
-        <br>
+        <br />
+        <br />
+        <tr>
+          Products defined in your basic stock:
+        </tr>
+        <br />
         <table class="table table-striped">
           <tr>
             <th>Product</th>
@@ -16,67 +19,17 @@
             <input type="hidden" name="basicStockProductId" />
             <td>{{ basicStockProduct.name }}</td>
             <td class="text-end">{{ basicStockProduct.amount }}</td>
-            <td>
-              <button
-                type="submit"
-                class="btn btn-primary"
-                (click)="showBasicStockProductInForm(basicStockProduct)"
-              >
-                Edit
-              </button>
-            </td>
-          <td class="text-center">
-            <a class="" (click)="openEditModal(basicStockProduct)"
-            ><span><i class="fa fa-edit"></i></span
+            <td class="text-center">
+              <a class="" (click)="openEditModal(basicStockProduct)"
+                ><span><i class="fa fa-edit"></i></span
               ></a>
-          </td>
+            </td>
           </tr>
         </table>
         <div *ngIf="pantryWithBasicStockProducts.length === 0">
           <p>There are no products in your list yet.</p>
         </div>
       </div>
-      <div class="col-2 component-right px-0">
-        <form [formGroup]="addBasicStockProductForm" class="sidebar-fixed">
-          <div class="formGroup col-12">
-            <h5>Add product to basic stock</h5>
-            <label>Product name: </label>
-            <input
-              type="text"
-              class="form-control"
-              formControlName="name"
-              placeholder="enter product name"
-            />
-            <span class="alert-danger" *ngIf="name?.invalid && name?.touched"
-              >Product name is invalid</span
-            >
-          </div>
-          <br />
-          <div class="formGroup col-12">
-            <label for="amount">Product amount: </label>
-            <input
-              type="number"
-              class="form-control"
-              formControlName="amount"
-              placeholder="enter product amount"
-            />
-            <span
-              class="alert-danger"
-              *ngIf="amount?.invalid && amount?.touched"
-              >Product amount is invalid</span
-            >
-            <br />
-            <button
-              type="submit"
-              class="btn btn-primary"
-              (click)="save()"
-              [disabled]="addBasicStockProductForm.invalid"
-            >
-              Save
-            </button>
-            <br />
-          </div>
-        </form>
       <div class="col-2 component-right">
         <button class="btn btn-primary sidebar-fixed" (click)="onOpenDialog()">
           Add product
