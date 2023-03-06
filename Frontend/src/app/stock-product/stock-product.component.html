@@ -6,7 +6,14 @@
           [routerLink]="['/pantry/', pantryId, 'basicstock']"
           [queryParams]="{ name: namePantry }"
         >
-          Go to basic stock</a
+          To basic stock</a
+        >
+        <br><br>
+        <a
+          [routerLink]="['/pantry/', pantryId, 'groceries']"
+          [queryParams]="{ name: namePantry }"
+        >
+          To grocery list</a
         >
       </div>
       <div class="col-8 component-center">

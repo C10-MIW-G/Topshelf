@@ -30,6 +30,7 @@ import { BasicStockProductComponent } from './basic-stock-product/basic-stock-pr
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { GroceryProductComponent } from './grocery-product/grocery-product.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { HomePageComponent } from './home-page/home-page.component';
     BasicStockProductComponent,
     ChangePasswordComponent,
     ResetPasswordComponent,
-    HomePageComponent
+    HomePageComponent,
+    GroceryProductComponent
   ],
   imports: [
     BrowserModule,
