@@ -14,7 +14,7 @@ import java.util.List;
 
 /**
  * Author: Jacob Visser
- *
+ * <p>
  * THe definition of a user.
  */
 
@@ -25,6 +25,7 @@ import java.util.List;
 @Table(name = "_user")
 @Entity
 public class User implements UserDetails {
+
     @Id
     @GeneratedValue
     private Long id;
@@ -40,6 +41,14 @@ public class User implements UserDetails {
 
     @ManyToMany
     List<Pantry> pantries;
+
+    public User(Long id, String username, String email, String password, Role role) {
+        this.id = id;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

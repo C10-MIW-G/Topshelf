@@ -10,7 +10,6 @@ import nl.miwgroningen.ch10.topshelf.security.config.JwtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,6 +23,7 @@ public class PantryService {
     private final PantryDTOMapper pantryDTOMapper;
     private final JwtService jwtService;
     private final UserService userService;
+
     @Autowired
     public PantryService(PantryRepository pantryRepository,
                          PantryDTOMapper pantryDTOMapper, JwtService jwtService, UserService userService) {

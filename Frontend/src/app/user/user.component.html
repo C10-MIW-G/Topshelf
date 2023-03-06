@@ -1,0 +1,42 @@
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-2 component-left">
+        <a
+          [routerLink]="['/pantry/', pantryId, 'basicstock']"
+          [queryParams]="{ name: namePantry }"
+        >
+          Go to basic stock</a
+        >
+        <br />
+        <a
+          [routerLink]="['/pantry', pantryId]"
+          [queryParams]="{ name: namePantry }"
+        >
+          Go to your pantry stock</a
+        >
+      </div>
+      <div class="col-8 component-center">
+        <h4>{{ namePantry }}</h4>
+        <br />
+        <tr>
+          These users are part of your pantry:
+        </tr>
+        <br />
+        <table class="table table-striped">
+          <tr>
+            <th>User</th>
+            <th>User role</th>
+          </tr>
+          <tr *ngFor="let user of users">
+            <td>{{ user.username }}</td>
+          </tr>
+        </table>
+        <div *ngIf="users.length === 0">
+          <p>There are no users using your pantry.</p>
+        </div>
+      </div>
+      <div class="col-2 component-right"></div>
+    </div>
+  </div>
+</body>

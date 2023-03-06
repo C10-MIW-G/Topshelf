@@ -13,5 +13,7 @@ public interface PantryRepository extends JpaRepository<Pantry, Long> {
 
     List<Pantry> findPantriesByUsers(User user);
 
+    List<User> findUsersByPantryId(Long pantryId);
+
 
 }

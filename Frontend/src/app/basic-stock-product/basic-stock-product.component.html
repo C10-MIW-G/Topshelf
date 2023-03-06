@@ -8,6 +8,12 @@
         >
           Go to your pantry stock</a
         >
+        <a
+          [routerLink]="['/pantry/', pantryId, 'users']"
+          [queryParams]="{ name: namePantry }"
+        >
+          Go to user overview</a
+        >
       </div>
       <div class="col-8 component-center">
         <h4>{{ namePantry }}</h4>

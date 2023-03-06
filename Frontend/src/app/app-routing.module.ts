@@ -8,6 +8,7 @@ import { BasicStockProductComponent } from './basic-stock-product/basic-stock-pr
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { UserComponent } from './user/user.component';
 
 const appRoute: Routes = [
   { path: 'home', component: HomePageComponent },
@@ -16,6 +17,7 @@ const appRoute: Routes = [
   { path: 'changepassword', component: ChangePasswordComponent},
   { path: 'resetpassword', component: ResetPasswordComponent},
   { path: 'pantry', component: PantryComponent },
+  { path: 'pantry/:pantryId/users', component: UserComponent, pathMatch: 'full' },
   { path: 'edit/:id', component: BasicStockProductComponent},
   {
     path: 'pantry/:pantryId/basicstock',
