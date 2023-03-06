@@ -3,13 +3,10 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-
 .navbar {
   background-color: rgb(65, 113, 156);
   color: white;
 }
-
-
 
 footer {
   background-color: rgb(65, 113, 156);
@@ -40,7 +37,6 @@ a.date {
   background-color: rgb(65, 113, 156) !important;
   border: none!important;
 }
-
 
 a {
   color: rgb(65, 113, 156);

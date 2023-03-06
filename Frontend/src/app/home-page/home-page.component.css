@@ -1,8 +1,61 @@
-h4, a {
-    text-align: center;
+.header,
+h4 {
+  background-color: rgb(207, 233, 255);
+  text-align: center;
+  padding: 5px;
+  color: rgb(65, 113, 156);
+  font-style: italic;
 }
 
-h5, ul {
-    text-align: center;
-    padding: 10px;
+a {
+  text-align: center;
+  text-decoration: none;
+}
+
+a.btn,
+a.btn:hover {
+  color: white;
+}
+
+a ul a {
+  position: absolute;
+  bottom: 0;
+  width: 230px;
+  margin: 10px 0px 5px 0px;
+}
+
+p {
+ text-align: center;
+ font-size: larger;
+}
+
+.col-4 {
+  display: block;
+  margin-top: 50px;
+}
+
+.card {
+  background-color: white;
+  border: rgb(207, 233, 255) solid 4px;
+  position: relative;
+  min-height: 250px;
+}
+
+.card:hover {
+  border: rgb(162, 212, 255) outset 5px;
+  color: black;
+}
+
+ul {
+  text-align: center;
+  padding: 3px;
+  padding-top: 10px;
+}
+
+img {
+  margin-left: -15px;
+}
+
+.row {
+    max-height: 90vh;
 }

@@ -28,9 +28,11 @@ import { MatInputModule } from '@angular/material/input';
 import { environment } from 'src/environments/environment';
 import { BasicStockProductComponent } from './basic-stock-product/basic-stock-product.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { ModaladdbasicstockComponent } from './modaladdbasicstock/modaladdbasicstock.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { GroceryProductComponent } from './grocery-product/grocery-product.component';
+import { ModaleditbasicstockComponent } from './modaleditbasicstock/modaleditbasicstock.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +48,10 @@ import { GroceryProductComponent } from './grocery-product/grocery-product.compo
     BasicStockProductComponent,
     ChangePasswordComponent,
     ResetPasswordComponent,
+    HomePageComponent,
+    ModaladdbasicstockComponent,
+    ResetPasswordComponent,
+    ModaleditbasicstockComponent,
     HomePageComponent,
     GroceryProductComponent
   ],
