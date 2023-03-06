@@ -1,11 +1,10 @@
 <body>
   <div class="container-fluid" *ngIf="unAuthorizedUser">
     <div class="row">
-      <div class="col-2 component-left">
-      </div>
+      <div class="col-2 component-left"></div>
       <div class="col-8 component-center">
         <h5>These are your pantries:</h5>
-        <br>
+        <br />
         <div *ngFor="let pantry of pantries">
           <table class="table table-striped">
             <tr>
@@ -16,33 +15,6 @@
                 [queryParams]="{ name: pantry.name, id: pantry.pantryId }"
                 >{{ pantry.name }}</a
               >
-
-              <!-- <a
-                [routerLink]="[
-                  '/pantry',
-                  pantry.pantryId,
-                  {
-                    outlets: {
-                      componentOne: [
-                        'component-one',
-                        { pantryId: pantry.pantryId }
-                      ],
-                      componentTwo: 'component-two'
-                    }
-                  }
-                ]"
-                [queryParams]="{ name: pantry.name }"
-              >
-                {{ pantry.name }}</a
-              > -->
-
-              <!-- <a
-                routerLink="/pantry/{{
-                  pantry.pantryId
-                }}/;componentOne=sidebar;componentTwo=stockproduct"
-                [queryParams]="{ name: pantry.name }"
-                >{{ pantry.name }}</a
-              > -->
             </tr>
           </table>
         </div>

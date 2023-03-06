@@ -51,7 +51,7 @@ a:link, a:visited, a:active{
 .row {
   height: 100vh;
 }
-.component-right, .sidebar {
+.component-left, .component-right, .sidebar {
   padding-top: 36px;
   text-align: left;
   background-color:
