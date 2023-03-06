@@ -33,6 +33,7 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { PantrydetailComponent } from './pantrydetail/pantrydetail.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { GroceryProductComponent } from './grocery-product/grocery-product.component';
 import { ModaleditbasicstockComponent } from './modaleditbasicstock/modaleditbasicstock.component';
 @NgModule({
   declarations: [
@@ -53,7 +54,9 @@ import { ModaleditbasicstockComponent } from './modaleditbasicstock/modaleditbas
     HomePageComponent,
     ModaladdbasicstockComponent,
     ResetPasswordComponent,
-    ModaleditbasicstockComponent
+    ModaleditbasicstockComponent,
+    HomePageComponent,
+    GroceryProductComponent
   ],
   imports: [
     BrowserModule,

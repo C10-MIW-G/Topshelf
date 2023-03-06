@@ -10,6 +10,7 @@ import { BasicStockProductComponent } from './basic-stock-product/basic-stock-pr
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { GroceryProductComponent } from './grocery-product/grocery-product.component';
 
 const appRoute: Routes = [
   { path: 'home', component: HomePageComponent },
@@ -22,6 +23,11 @@ const appRoute: Routes = [
     component: PantryComponent,
   },
   { path: 'edit/:id', component: BasicStockProductComponent },
+  {
+    path: 'pantry/:pantryId/groceries',
+    component: GroceryProductComponent,
+    pathMatch: 'full',
+  },
   {
     path: 'pantry/:pantryId',
     component: PantrydetailComponent,
