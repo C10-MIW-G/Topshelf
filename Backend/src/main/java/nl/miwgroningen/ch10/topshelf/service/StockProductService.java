@@ -1,7 +1,5 @@
 package nl.miwgroningen.ch10.topshelf.service;
-
 import nl.miwgroningen.ch10.topshelf.dto.StockProductDTO;
-import nl.miwgroningen.ch10.topshelf.exception.StockProductNotFoundException;
 import nl.miwgroningen.ch10.topshelf.mapper.StockProductDTOMapper;
 import nl.miwgroningen.ch10.topshelf.model.StockProduct;
 import nl.miwgroningen.ch10.topshelf.model.Pantry;
@@ -9,7 +7,6 @@ import nl.miwgroningen.ch10.topshelf.model.User;
 import nl.miwgroningen.ch10.topshelf.repository.StockProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.Comparator;
 import java.util.List;
 
@@ -28,13 +25,6 @@ public class StockProductService {
                                StockProductDTOMapper stockProductDTOMapper) {
         this.stockProductRepository = stockProductRepository;
         this.stockProductDTOMapper = stockProductDTOMapper;
-    }
-
-    public StockProductDTO findStockProductByStockProductId(Long stockProductId) {
-        return stockProductRepository.findStockProductByStockProductId(stockProductId)
-                .map(stockProductDTOMapper)
-                .orElseThrow(() -> new StockProductNotFoundException("StockProduct with id: " +
-                        stockProductId + " was not found!"));
     }
 
     public List<StockProductDTO> findStockProductByPantry(Pantry pantry) {

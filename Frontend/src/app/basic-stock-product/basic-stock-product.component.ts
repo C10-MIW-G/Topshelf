@@ -114,7 +114,7 @@ export class BasicStockProductComponent implements OnInit {
           .saveBasicStockProductToPantryStock({
             name: data.basicStockProductName,
             basicStockProductId: BasicStockProductedit.basicStockProductId,
-            pantryId: Number(this.route.snapshot.paramMap.get('pantryId')),
+            pantryId: this.getPantryId(),
             amount: data.amount,
           })
           .subscribe({

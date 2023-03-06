@@ -1,5 +1,4 @@
 package nl.miwgroningen.ch10.topshelf.controller;
-
 import nl.miwgroningen.ch10.topshelf.model.Pantry;
 import nl.miwgroningen.ch10.topshelf.model.ProductDefinition;
 import nl.miwgroningen.ch10.topshelf.model.StockProduct;
@@ -8,7 +7,6 @@ import nl.miwgroningen.ch10.topshelf.repository.ProductDefinitionRepository;
 import nl.miwgroningen.ch10.topshelf.repository.StockProductRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import java.time.LocalDate;
 import java.util.*;
 

@@ -1,5 +1,4 @@
 package nl.miwgroningen.ch10.topshelf.controller;
-
 import lombok.RequiredArgsConstructor;
 import nl.miwgroningen.ch10.topshelf.dto.GroceryProductDTO;
 import nl.miwgroningen.ch10.topshelf.model.Pantry;
@@ -8,7 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 /**
@@ -24,15 +22,6 @@ import java.util.List;
 public class GroceryProductController {
 
     private final GroceryProductService groceryProductService;
-
-
-    @GetMapping("/details/{groceryProductId}")
-    public ResponseEntity<GroceryProductDTO> getGroceryProductById
-            (@PathVariable("groceryProductId") Long groceryProductId) {
-        GroceryProductDTO groceryProductDTO = groceryProductService
-                .findGroceryProductByGroceryProductId(groceryProductId);
-        return new ResponseEntity<>(groceryProductDTO, HttpStatus.OK);
-    }
 
     @GetMapping("/{pantryId}")
     public ResponseEntity<List<GroceryProductDTO>> getGroceryProductsByPantryId (
