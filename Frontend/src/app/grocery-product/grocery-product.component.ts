@@ -8,10 +8,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-grocery-product',
   templateUrl: './grocery-product.component.html',
-  styleUrls: ['./grocery-product.component.css']
+  styleUrls: ['./grocery-product.component.css'],
 })
 export class GroceryProductComponent implements OnInit {
-
   public groceryProducts?: GroceryProduct[] = [];
   public groceryProductId?: number;
   public pantryWithGroceryProducts: GroceryProduct[] = [];
@@ -24,18 +23,15 @@ export class GroceryProductComponent implements OnInit {
       '',
       Validators.compose([Validators.required, Validators.pattern(/[\S]/g)])
     ),
-    groceryProductId: new FormControl(
-      0,
-    ),
+    groceryProductId: new FormControl(0),
     amount: new FormControl(
       0,
-        Validators.compose([
+      Validators.compose([
         Validators.required,
         Validators.min(1),
         Validators.max(2147483647),
       ])
     ),
-
   });
 
   constructor(
@@ -47,6 +43,8 @@ export class GroceryProductComponent implements OnInit {
   ngOnInit() {
     this.getPantryName();
     this.getGroceryProductsByPantryId();
+    this.getPantryId();
+    console.log('pantryId: ' + this.pantryId);
   }
 
   get name() {
@@ -56,19 +54,28 @@ export class GroceryProductComponent implements OnInit {
     return this.addGroceryProductForm.get('amount');
   }
 
+  public getPantryId(): number {
+    this.route.parent?.params.subscribe((params) => {
+      const response = params['pantryId'];
+      this.pantryId = parseInt(response.split(';')[0], 10);
+    });
+    return this.pantryId;
+  }
+
   getGroceryProduct(groceryProductId: number) {
     this.GroceryProductService.getGroceryProduct(groceryProductId).subscribe(
-      (groceryProduct: GroceryProduct) => this.showGroceryProductInForm(groceryProduct)
-  )}
+      (groceryProduct: GroceryProduct) =>
+        this.showGroceryProductInForm(groceryProduct)
+    );
+  }
 
   public getPantryName() {
-    const id = this.route.snapshot.queryParamMap.get('name')!;
-    this.namePantry = id;
+    const name = this.route.snapshot.queryParamMap.get('name')!;
+    this.namePantry = name;
   }
 
   public getGroceryProductsByPantryId(): void {
-    const id = Number(this.route.snapshot.paramMap.get('pantryId'));
-    this.pantryId = id;
+    const id = this.getPantryId();
     this.GroceryProductService.getGroceryProductsByPantry(id).subscribe(
       (response: GroceryProduct[]) => {
         this.pantryWithGroceryProducts = response;
@@ -82,33 +89,31 @@ export class GroceryProductComponent implements OnInit {
   public save() {
     const nameValue = this.addGroceryProductForm.value.name;
     const amountValue = this.addGroceryProductForm.value.amount;
-    const id = Number(this.route.snapshot.paramMap.get('pantryId'));
+    const id = this.getPantryId();
     const groceryProductId = this.addGroceryProductForm.value.groceryProductId;
 
     if (this.isEmptyOrSpaces(nameValue) && amountValue! > 0) {
-      this.GroceryProductService
-        .saveGroceryProductToPantryStock({
-          name: nameValue,
-          groceryProductId: groceryProductId,
-          pantryId: id,
-          amount: amountValue,
-        })
-        .subscribe({
-          complete: () => {
-            console.log('Product has been added to stock grocery list');
-            this.router.navigate(['/groceries', id]);
-            window.location.reload();
-          },
-        });
+      this.GroceryProductService.saveGroceryProductToPantryStock({
+        name: nameValue,
+        groceryProductId: groceryProductId,
+        pantryId: id,
+        amount: amountValue,
+      }).subscribe({
+        complete: () => {
+          console.log('Product has been added to stock grocery list');
+          this.router.navigate(['/groceries', id]);
+          window.location.reload();
+        },
+      });
     }
   }
 
   public showGroceryProductInForm(groceryProduct: GroceryProduct) {
-     this.addGroceryProductForm.patchValue({
+    this.addGroceryProductForm.patchValue({
       groceryProductId: groceryProduct.groceryProductId,
       name: groceryProduct.name,
-      amount: groceryProduct.amount
-    })
+      amount: groceryProduct.amount,
+    });
   }
 
   public isEmptyOrSpaces(str: string | null | undefined) {

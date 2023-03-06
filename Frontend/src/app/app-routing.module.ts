@@ -52,6 +52,11 @@ const appRoute: Routes = [
         component: StockProductComponent,
         outlet: 'stockproduct',
       },
+      {
+        path: 'groceries',
+        component: GroceryProductComponent,
+        outlet: 'stockproduct',
+      },
     ],
   },
   { path: '', redirectTo: 'home', pathMatch: 'full' },

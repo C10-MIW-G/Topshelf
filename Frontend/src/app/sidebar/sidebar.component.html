@@ -31,6 +31,19 @@
                 <span>Basic Stock</span>
               </a>
             </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                [routerLink]="[
+                  '/pantry',
+                  pantryId,
+                  { outlets: { stockproduct: ['groceries'] } }
+                ]"
+                [queryParams]="{ name: pantryName }"
+              >
+                <span>Grocery list</span>
+              </a>
+            </li>
           </ul>
         </div>
       </nav>
