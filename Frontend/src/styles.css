@@ -66,14 +66,19 @@ p {
   text-align: left;
 }
 
-.sidebar-fixed{
-  position: fixed;
-}
-
 .table {
   table-layout: fixed;
 }
 
 span:hover {
   cursor: pointer;
+}
+
+.action-bar {
+  background-color:
+  rgb(232, 241, 248);
+  padding-top: 36px;
+  align-items: center;
+  justify-content: center;
+
 }

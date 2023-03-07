@@ -3,7 +3,6 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { BasicStockProduct } from './basic-stock-product';
-import { ObserversModule } from '@angular/cdk/observers';
 
 @Injectable({ providedIn: 'root' })
 export class BasicStockProductService {
@@ -19,22 +18,22 @@ export class BasicStockProductService {
     );
   }
 
-  getBasicStockProduct(basicStockProductId: number): Observable<BasicStockProduct> {
-    return this.http.get<BasicStockProduct>(`${this.apiServerUrl}/${basicStockProductId}`)
+  getBasicStockProduct(
+    basicStockProductId: number
+  ): Observable<BasicStockProduct> {
+    return this.http.get<BasicStockProduct>(
+      `${this.apiServerUrl}/${basicStockProductId}`
+    );
   }
 
   public saveBasicStockProductToPantryStock(
     basicStockProductEdit: BasicStockProduct
   ): Observable<any> {
-    return this.http.post(
-      `${this.apiServerUrl}/basicstockproduct/add`,
-      {
-        basicStockProductId: basicStockProductEdit.basicStockProductId,
-        pantryId: basicStockProductEdit.pantryId,
-        name: basicStockProductEdit.name,
-        amount: basicStockProductEdit.amount
-      }
-    );
+    return this.http.post(`${this.apiServerUrl}/basicstockproduct/add`, {
+      basicStockProductId: basicStockProductEdit.basicStockProductId,
+      pantryId: basicStockProductEdit.pantryId,
+      name: basicStockProductEdit.name,
+      amount: basicStockProductEdit.amount,
+    });
   }
-
 }

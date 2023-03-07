@@ -1,9 +1,11 @@
+import { ModalAddGroceryProductComponent } from './../modal-add-grocery-product/modal-add-grocery-product.component';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { GroceryProduct } from './grocery-product';
 import { GroceryProductService } from './grocery-product.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-grocery-product',
@@ -37,21 +39,14 @@ export class GroceryProductComponent implements OnInit {
   constructor(
     private GroceryProductService: GroceryProductService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private matDialog: MatDialog
   ) {}
 
   ngOnInit() {
     this.getPantryName();
     this.getGroceryProductsByPantryId();
     this.getPantryId();
-    console.log('pantryId: ' + this.pantryId);
-  }
-
-  get name() {
-    return this.addGroceryProductForm.get('name');
-  }
-  get amount() {
-    return this.addGroceryProductForm.get('amount');
   }
 
   public getPantryId(): number {
@@ -86,28 +81,6 @@ export class GroceryProductComponent implements OnInit {
     );
   }
 
-  public save() {
-    const nameValue = this.addGroceryProductForm.value.name;
-    const amountValue = this.addGroceryProductForm.value.amount;
-    const id = this.getPantryId();
-    const groceryProductId = this.addGroceryProductForm.value.groceryProductId;
-
-    if (this.isEmptyOrSpaces(nameValue) && amountValue! > 0) {
-      this.GroceryProductService.saveGroceryProductToPantryStock({
-        name: nameValue,
-        groceryProductId: groceryProductId,
-        pantryId: id,
-        amount: amountValue,
-      }).subscribe({
-        complete: () => {
-          console.log('Product has been added to stock grocery list');
-          this.router.navigate(['/groceries', id]);
-          window.location.reload();
-        },
-      });
-    }
-  }
-
   public showGroceryProductInForm(groceryProduct: GroceryProduct) {
     this.addGroceryProductForm.patchValue({
       groceryProductId: groceryProduct.groceryProductId,
@@ -116,8 +89,39 @@ export class GroceryProductComponent implements OnInit {
     });
   }
 
-  public isEmptyOrSpaces(str: string | null | undefined) {
-    return str === null || str?.match(/[\S]/g) !== null;
+  openEditModal(groceryProductEdit: GroceryProduct): void {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.data = {
+      name: groceryProductEdit.name,
+      groceryProductId: groceryProductEdit.groceryProductId,
+      amount: groceryProductEdit.amount,
+      isSubmitted: true,
+    };
+
+    const dialogRef = this.matDialog.open(
+      ModalAddGroceryProductComponent,
+      dialogConfig
+    );
+
+    dialogRef.afterClosed().subscribe((data) => {
+      if (data.name !== null && data.isSubmitted) {
+        this.GroceryProductService.saveGroceryProductToPantryStock({
+          name: data.groceryProductName,
+          amount: data.amount,
+          pantryId: this.getPantryId(),
+          groceryProductId: groceryProductEdit.groceryProductId,
+        }).subscribe({
+          complete: () => {
+            window.location.reload();
+          },
+          error: () => {
+            console.log(data.name);
+            alert('Update failed');
+          },
+        });
+      }
+    });
   }
 
   editButtonClick(name: string) {

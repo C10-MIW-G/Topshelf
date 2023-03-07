@@ -4,7 +4,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { BasicStockProduct } from './basic-stock-product';
 import { BasicStockProductService } from './basic-stock-product.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { ModaladdbasicstockComponent } from '../modaladdbasicstock/modaladdbasicstock.component';
 import { ModaleditbasicstockComponent } from '../modaleditbasicstock/modaleditbasicstock.component';
 
 @Component({
@@ -40,8 +39,9 @@ export class BasicStockProductComponent implements OnInit {
     return this.pantryId;
   }
   public getPantryName() {
-    const name = this.route.snapshot.queryParamMap.get('name')!;
-    this.namePantry = name;
+    this.route.queryParams.subscribe((params) => {
+      this.namePantry = params['name'];
+    });
   }
 
   public getBasicStockProductsByPantryId(): void {
@@ -57,48 +57,13 @@ export class BasicStockProductComponent implements OnInit {
       );
   }
 
-  onOpenDialog() {
+  openEditModal(basicStockProductedit: BasicStockProduct): void {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.data = {
-      name: null,
-      isSubmitted: true,
-    };
-
-    const dialogRef = this.matDialog.open(
-      ModaladdbasicstockComponent,
-      dialogConfig
-    );
-
-    dialogRef.afterClosed().subscribe((data) => {
-      console.log(data);
-      if (data.basicStockProductName !== null && data.isSubmitted) {
-        this.basicStockProductService
-          .saveBasicStockProductToPantryStock({
-            name: data.basicStockProductName,
-            amount: data.amount,
-            pantryId: this.getPantryId(),
-            basicStockProductId: data.basicStockProductId,
-          })
-          .subscribe({
-            complete: () => {
-              window.location.reload();
-            },
-            error: () => {
-              alert('Failed adding product');
-            },
-          });
-      }
-    });
-  }
-
-  openEditModal(BasicStockProductedit: BasicStockProduct): void {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = true;
-    dialogConfig.data = {
-      name: BasicStockProductedit.name,
-      basicStockProductId: BasicStockProductedit.basicStockProductId,
-      amount: BasicStockProductedit.amount,
+      name: basicStockProductedit.name,
+      basicStockProductId: basicStockProductedit.basicStockProductId,
+      amount: basicStockProductedit.amount,
       isSubmitted: true,
     };
 
@@ -113,9 +78,9 @@ export class BasicStockProductComponent implements OnInit {
         this.basicStockProductService
           .saveBasicStockProductToPantryStock({
             name: data.basicStockProductName,
-            basicStockProductId: BasicStockProductedit.basicStockProductId,
-            pantryId: Number(this.route.snapshot.paramMap.get('pantryId')),
             amount: data.amount,
+            pantryId: this.getPantryId(),
+            basicStockProductId: basicStockProductedit.basicStockProductId,
           })
           .subscribe({
             complete: () => {

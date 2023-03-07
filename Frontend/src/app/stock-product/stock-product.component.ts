@@ -84,8 +84,9 @@ export class StockProductComponent implements OnInit {
   }
 
   public getPantryName() {
-    const name = this.route.snapshot.queryParamMap.get('name')!;
-    this.namePantry = name;
+    this.route.queryParams.subscribe((params) => {
+      this.namePantry = params['name'];
+    });
   }
 
   public getPantryId(): number {

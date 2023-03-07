@@ -26,14 +26,6 @@ public class GroceryProductController {
     private final GroceryProductService groceryProductService;
 
 
-    @GetMapping("/details/{groceryProductId}")
-    public ResponseEntity<GroceryProductDTO> getGroceryProductById
-            (@PathVariable("groceryProductId") Long groceryProductId) {
-        GroceryProductDTO groceryProductDTO = groceryProductService
-                .findGroceryProductByGroceryProductId(groceryProductId);
-        return new ResponseEntity<>(groceryProductDTO, HttpStatus.OK);
-    }
-
     @GetMapping("/{pantryId}")
     public ResponseEntity<List<GroceryProductDTO>> getGroceryProductsByPantryId (
             @PathVariable("pantryId")Pantry pantry) {

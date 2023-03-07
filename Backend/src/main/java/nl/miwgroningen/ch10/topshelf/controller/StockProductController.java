@@ -29,11 +29,11 @@ public class StockProductController {
     private final JwtService jwtService;
     private final UserService userService;
     
-    @GetMapping("/details/{stockProductId}")
-    public ResponseEntity<StockProductDTO> getStockProductById(@PathVariable("stockProductId") Long stockProductId) {
-        StockProductDTO stockProduct = stockProductService.findStockProductByStockProductId(stockProductId);
-        return new ResponseEntity<>(stockProduct, HttpStatus.OK);
-    }
+//    @GetMapping("/details/{stockProductId}")
+//    public ResponseEntity<StockProductDTO> getStockProductById(@PathVariable("stockProductId") Long stockProductId) {
+//        StockProductDTO stockProduct = stockProductService.findStockProductByStockProductId(stockProductId);
+//        return new ResponseEntity<>(stockProduct, HttpStatus.OK);
+//    }
 
     @GetMapping("/{pantryId}")
     public ResponseEntity<List<StockProductDTO>> getStockProductByPantryId(@PathVariable("pantryId") Pantry pantry,
