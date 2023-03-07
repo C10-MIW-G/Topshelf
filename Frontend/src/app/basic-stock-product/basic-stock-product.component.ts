@@ -78,6 +78,8 @@ export class BasicStockProductComponent implements OnInit {
         this.basicStockProductService
           .saveBasicStockProductToPantryStock({
             name: data.basicStockProductName,
+            basicStockProductId: BasicStockProductedit.basicStockProductId,
+            pantryId: this.getPantryId(),
             amount: data.amount,
             pantryId: this.getPantryId(),
             basicStockProductId: basicStockProductedit.basicStockProductId,

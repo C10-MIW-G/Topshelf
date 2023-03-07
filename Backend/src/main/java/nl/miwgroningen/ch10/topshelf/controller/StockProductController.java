@@ -1,5 +1,4 @@
 package nl.miwgroningen.ch10.topshelf.controller;
-
 import lombok.RequiredArgsConstructor;
 import nl.miwgroningen.ch10.topshelf.dto.StockProductDTO;
 import nl.miwgroningen.ch10.topshelf.model.Pantry;
@@ -11,7 +10,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 /**
@@ -28,12 +26,7 @@ public class StockProductController {
     private final StockProductService stockProductService;
     private final JwtService jwtService;
     private final UserService userService;
-    
-//    @GetMapping("/details/{stockProductId}")
-//    public ResponseEntity<StockProductDTO> getStockProductById(@PathVariable("stockProductId") Long stockProductId) {
-//        StockProductDTO stockProduct = stockProductService.findStockProductByStockProductId(stockProductId);
-//        return new ResponseEntity<>(stockProduct, HttpStatus.OK);
-//    }
+
 
     @GetMapping("/{pantryId}")
     public ResponseEntity<List<StockProductDTO>> getStockProductByPantryId(@PathVariable("pantryId") Pantry pantry,
