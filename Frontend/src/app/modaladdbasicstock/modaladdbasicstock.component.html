@@ -2,15 +2,12 @@
   <button type="button" class="close" (click)="close()">&times;</button>
   <mat-toolbar class="header">
     <h1>
-      {{basicStockProductName == null
-      ?"Add a product"
-      : "Edit product"}}
+      {{ basicStockProductName == null ? "Add a product" : "Edit product" }}
     </h1>
   </mat-toolbar>
   <br />
   <label>Product name </label>
   <mat-form-field class="form-group">
-
     <input
       name="basicStockProductName"
       type="text"
@@ -23,7 +20,6 @@
       >Name is required</mat-error
     >
   </mat-form-field>
-
   <br />
   <label>Amount </label>
   <mat-form-field class="form-group">
@@ -41,14 +37,17 @@
   </mat-form-field>
 
   <mat-dialog-actions>
-   <mat-checkbox 
-      mat-checkbox
-      class="align-bottom"
-      formControlName="openNewModal"
-      checked="true"
-      unchecked="false"
-   ><span class="text-bottom">Add another</span>
-    </mat-checkbox>
+    <span *ngIf="basicStockProductName == null">
+      <mat-checkbox
+        mat-checkbox
+        class="align-bottom"
+        formControlName="openNewModal"
+        checked="true"
+        unchecked="false"
+        >Add another</mat-checkbox
+      >
+    </span>
+
     <button class="btn btn-color" (click)="close()">Cancel</button>
     <button
       class="btn btn-color-2"

@@ -42,6 +42,7 @@ export class BasicStockProductComponent implements OnInit {
     });
     return this.pantryId;
   }
+  
   public getPantryName() {
     this.route.queryParams.subscribe((params) => {
       this.namePantry = params['name'];
@@ -67,14 +68,12 @@ export class BasicStockProductComponent implements OnInit {
     dialogConfig.data = {
       name: basicStockProduct?.name,
       amount: basicStockProduct?.amount,
-      isSubmitted: true
+      isSubmitted: true,
     };
-
     const dialogRef = this.matDialog.open(
       ModaladdbasicstockComponent,
       dialogConfig
     );
-
     dialogRef.afterClosed().subscribe((data) => {
       this.saveBasicStockProduct(data, basicStockProduct);
     });
