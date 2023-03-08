@@ -33,8 +33,9 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { PantrydetailComponent } from './pantrydetail/pantrydetail.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import {MatToolbarModule} from '@angular/material/toolbar';
 import { GroceryProductComponent } from './grocery-product/grocery-product.component';
-import { ModaleditbasicstockComponent } from './modaleditbasicstock/modaleditbasicstock.component';
 import { ActionBarStockProductComponent } from './action-bar-stock-product/action-bar-stock-product.component';
 import { ActionBarBasicStockProductComponent } from './action-bar-basic-stock-product/action-bar-basic-stock-product.component';
 import { ActionBarGroceryProductComponent } from './action-bar-grocery-product/action-bar-grocery-product.component';
@@ -46,19 +47,14 @@ import { ModalAddGroceryProductComponent } from './modal-add-grocery-product/mod
     PantryComponent,
     StockProductComponent,
     NavComponent,
-    StockProductComponent,
     RegisterComponent,
     ModaladdpantryComponent,
-    RegisterComponent,
     BasicStockProductComponent,
     ChangePasswordComponent,
-    ResetPasswordComponent,
     SidebarComponent,
     PantrydetailComponent,
-    HomePageComponent,
     ModaladdbasicstockComponent,
     ResetPasswordComponent,
-    ModaleditbasicstockComponent,
     HomePageComponent,
     GroceryProductComponent,
     ActionBarStockProductComponent,
@@ -82,6 +78,8 @@ import { ModalAddGroceryProductComponent } from './modal-add-grocery-product/mod
     MatInputModule,
     RecaptchaModule,
     RecaptchaFormsModule,
+    MatCheckboxModule,
+    MatToolbarModule,
   ],
   exports: [MatFormFieldModule],
   entryComponents: [ModaladdpantryComponent],
