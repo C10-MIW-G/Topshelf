@@ -13,6 +13,7 @@
             <th>Product</th>
             <th class="text-end">Amount</th>
             <th></th>
+            <th></th>
           </tr>
           <tr *ngFor="let groceryProduct of pantryWithGroceryProducts">
             <input type="hidden" name="groceryProductId" />
@@ -21,6 +22,11 @@
             <td class="text-center">
               <a class="" (click)="showGroceryProductInForm(groceryProduct)"
                 ><span><i class="fa fa-edit"></i></span
+              ></a>
+            </td>
+            <td>
+              <a class="" (click)="remove(groceryProduct)"
+                ><span><i class="fa fa-trash-o"></i></span
               ></a>
             </td>
           </tr>

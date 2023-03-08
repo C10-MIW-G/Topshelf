@@ -14,9 +14,21 @@ export class GroceryProductComponent implements OnInit {
   public groceryProducts?: GroceryProduct[] = [];
   public groceryProductId?: number;
   public pantryWithGroceryProducts: GroceryProduct[] = [];
+  public groceryProductDelete?: GroceryProduct;
   public namePantry!: string;
   public pantryId!: number;
-  public GroceryProductId: number | undefined;
+
+  constructor(
+    private groceryProductService: GroceryProductService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
+
+  ngOnInit() {
+    this.getPantryName();
+    this.getPantryId();
+    this.getGroceryProductsByPantryId();
+  }
 
   addGroceryProductForm = new FormGroup({
     name: new FormControl(
@@ -34,17 +46,17 @@ export class GroceryProductComponent implements OnInit {
     ),
   });
 
-  constructor(
-    private GroceryProductService: GroceryProductService,
-    private router: Router,
-    private route: ActivatedRoute
-  ) {}
-
-  ngOnInit() {
-    this.getPantryName();
-    this.getGroceryProductsByPantryId();
-    this.getPantryId();
-    console.log('pantryId: ' + this.pantryId);
+  public getGroceryProductsByPantryId(): void {
+    this.groceryProductService
+    .getGroceryProductsByPantry(this.pantryId)
+    .subscribe(
+      (response: GroceryProduct[]) => {
+        this.pantryWithGroceryProducts = response;
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
   }
 
   get name() {
@@ -63,7 +75,7 @@ export class GroceryProductComponent implements OnInit {
   }
 
   getGroceryProduct(groceryProductId: number) {
-    this.GroceryProductService.getGroceryProduct(groceryProductId).subscribe(
+    this.groceryProductService.getGroceryProduct(groceryProductId).subscribe(
       (groceryProduct: GroceryProduct) =>
         this.showGroceryProductInForm(groceryProduct)
     );
@@ -74,18 +86,6 @@ export class GroceryProductComponent implements OnInit {
     this.namePantry = name;
   }
 
-  public getGroceryProductsByPantryId(): void {
-    const id = this.getPantryId();
-    this.GroceryProductService.getGroceryProductsByPantry(id).subscribe(
-      (response: GroceryProduct[]) => {
-        this.pantryWithGroceryProducts = response;
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-    );
-  }
-
   public save() {
     const nameValue = this.addGroceryProductForm.value.name;
     const amountValue = this.addGroceryProductForm.value.amount;
@@ -93,26 +93,39 @@ export class GroceryProductComponent implements OnInit {
     const groceryProductId = this.addGroceryProductForm.value.groceryProductId;
 
     if (this.isEmptyOrSpaces(nameValue) && amountValue! > 0) {
-      this.GroceryProductService.saveGroceryProductToPantryStock({
-        name: nameValue,
-        groceryProductId: groceryProductId,
-        pantryId: id,
-        amount: amountValue,
+      this.groceryProductService
+      .saveGroceryProductToPantryStock({
+        name: nameValue!,
+        amount: amountValue!,
+        pantryId: id!,
+        groceryProductId: groceryProductId!
       }).subscribe({
         complete: () => {
           console.log('Product has been added to stock grocery list');
-          this.router.navigate(['/groceries', id]);
+          this.router.navigate(['/groceries', this.pantryId]);
           window.location.reload();
         },
       });
     }
   }
 
+  public remove(groceryProduct: GroceryProduct) {
+    this.groceryProductService
+      .deleteGroceryProductFromPantry(groceryProduct.groceryProductId)
+      .subscribe((response: void) => {
+        this.getGroceryProductsByPantryId;
+        window.location.reload();
+      }),
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      };
+  }
+
   public showGroceryProductInForm(groceryProduct: GroceryProduct) {
     this.addGroceryProductForm.patchValue({
-      groceryProductId: groceryProduct.groceryProductId,
       name: groceryProduct.name,
       amount: groceryProduct.amount,
+      groceryProductId: groceryProduct.groceryProductId
     });
   }
 

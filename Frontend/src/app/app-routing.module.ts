@@ -22,12 +22,6 @@ const appRoute: Routes = [
     path: 'pantry',
     component: PantryComponent,
   },
-  { path: 'edit/:id', component: BasicStockProductComponent },
-  {
-    path: 'pantry/:pantryId/groceries',
-    component: GroceryProductComponent,
-    pathMatch: 'full',
-  },
   {
     path: 'pantry/:pantryId',
     component: PantrydetailComponent,
