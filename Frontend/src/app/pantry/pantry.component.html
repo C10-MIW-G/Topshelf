@@ -1,5 +1,5 @@
 <body>
-  <div class="container-fluid" *ngIf="unAuthorizedUser">
+  <div class="container-fluid overflow-auto" *ngIf="unAuthorizedUser">
     <div class="row">
       <div class="col-2 component-left"></div>
       <div class="col-8 component-center">
@@ -19,9 +19,9 @@
           </table>
         </div>
       </div>
-      <div class="col-2 component-right">
+      <div class="col-2 action-bar d-flex align-items-start">
         <button
-          class="btn btn-primary sidebar-fixed"
+          class="btn btn-primary position-fixed"
           *ngIf="unAuthorizedUser"
           (click)="onOpenDialog()"
         >
