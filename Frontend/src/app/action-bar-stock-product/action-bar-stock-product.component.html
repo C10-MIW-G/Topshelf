@@ -1,0 +1,39 @@
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 component-right">
+        <form [formGroup]="addStockProductForm" class="sidebar-fixed">
+          <div class="formGroup col-12">
+            <h5>Add your product</h5>
+            <label>Product name: </label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="name"
+              placeholder="enter product name"
+            />
+          </div>
+          <br />
+          <div class="formGroup col-12">
+            <label>Expiration date: </label>
+            <input
+              type="date"
+              class="form-control"
+              formControlName="expirationdate"
+              placeholder="enter expiration date"
+            />
+            <br />
+            <button
+              type="submit"
+              class="btn btn-primary"
+              (click)="save()"
+              [disabled]="addStockProductForm.invalid"
+            >
+              Save
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>

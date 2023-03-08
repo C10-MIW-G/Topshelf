@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule, Routes } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
@@ -15,6 +15,13 @@ export class SidebarComponent implements OnInit {
   ngOnInit() {
     this.route.parent?.params.subscribe((params) => {
       this.pantryId = params['pantryId'];
+    });
+
+    this.getPantryName();
+  }
+
+  public getPantryName() {
+    this.route.queryParams.subscribe((params) => {
       this.pantryName = params['name'];
     });
   }

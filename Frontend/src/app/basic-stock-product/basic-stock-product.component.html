@@ -1,8 +1,7 @@
 <body>
   <div class="container-fluid">
     <div class="row">
-
-      <div class="col-10 component-center">
+      <div class="col-12 component-center">
         <h4>{{ namePantry }}</h4>
         <br />
         <br />
@@ -20,9 +19,9 @@
             <input type="hidden" name="basicStockProductId" />
             <td>{{ basicStockProduct.name }}</td>
             <td class="text-end">{{ basicStockProduct.amount }}</td>
-            <td class="text-center">
-              <a class="" (click)="openEditModal(basicStockProduct)"
-                ><span><i class="fa fa-edit"></i></span
+          <td class="text-center">
+            <a (click)="onOpenDialog(basicStockProduct)"
+            ><span><i class="fa fa-edit"></i></span
               ></a>
             </td>
           </tr>
@@ -30,11 +29,6 @@
         <div *ngIf="pantryWithBasicStockProducts.length === 0">
           <p>There are no products in your list yet.</p>
         </div>
-      </div>
-      <div class="col-2 component-right">
-        <button class="btn btn-primary sidebar-fixed" (click)="onOpenDialog()">
-          Add product
-        </button>
       </div>
     </div>
   </div>

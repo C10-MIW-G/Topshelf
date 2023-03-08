@@ -1,7 +1,7 @@
 <body>
   <div class="container-fluid">
     <div class="row">
-      <div class="col-10 component-center">
+      <div class="col-12 component-center">
         <h4>{{ namePantry }}</h4>
         <br />
         <tr>
@@ -20,7 +20,7 @@
             <td>{{ groceryProduct.name }}</td>
             <td class="text-end">{{ groceryProduct.amount }}</td>
             <td class="text-center">
-              <a class="" (click)="showGroceryProductInForm(groceryProduct)"
+              <a (click)="openEditModal(groceryProduct)"
                 ><span><i class="fa fa-edit"></i></span
               ></a>
             </td>
@@ -34,48 +34,6 @@
         <div *ngIf="pantryWithGroceryProducts.length === 0">
           <p>There are no products in your list yet.</p>
         </div>
-      </div>
-      <div class="col-2 component-right">
-        <form [formGroup]="addGroceryProductForm" class="sidebar-fixed">
-          <div class="formGroup col-12">
-            <h5>Add product</h5>
-            <label>Product name: </label>
-            <input
-              type="text"
-              class="form-control"
-              formControlName="name"
-              placeholder="enter product name"
-            />
-            <span class="alert-danger" *ngIf="name?.invalid && name?.touched"
-              >Product name is invalid</span
-            >
-          </div>
-          <br />
-          <div class="formGroup col-12">
-            <label for="amount">Product amount: </label>
-            <input
-              type="number"
-              class="form-control"
-              formControlName="amount"
-              placeholder="enter product amount"
-            />
-            <span
-              class="alert-danger"
-              *ngIf="amount?.invalid && amount?.touched"
-              >Product amount is invalid</span
-            >
-            <br />
-            <button
-              type="submit"
-              class="btn btn-primary"
-              (click)="save()"
-              [disabled]="addGroceryProductForm.invalid"
-            >
-              Save
-            </button>
-            <br />
-          </div>
-        </form>
       </div>
     </div>
   </div>

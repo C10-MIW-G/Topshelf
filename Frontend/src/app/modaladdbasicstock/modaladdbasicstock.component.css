@@ -1,16 +1,7 @@
-modal-header {
+mat-toolbar.header {
+    background-color: rgb(65, 113, 156);
     width: 100%;
-}
-
-h5 {
-    font-weight:bold;
-    color: rgb(65, 113, 156);
-}
-
-mat-dialog-actions {
-    display:flex;
-    justify-content: flex-end;
-    margin-right: 5%;
+    color: white;
 }
 
 button {
@@ -32,4 +23,10 @@ button {
 .btn:active {
     color: white;
 }
+
+.text-bottom {
+    vertical-align: bottom;
+}
+
+
 

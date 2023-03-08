@@ -1,3 +1,6 @@
+import { ActionBarGroceryProductComponent } from './action-bar-grocery-product/action-bar-grocery-product.component';
+import { ActionBarBasicStockProductComponent } from './action-bar-basic-stock-product/action-bar-basic-stock-product.component';
+import { ActionBarStockProductComponent } from './action-bar-stock-product/action-bar-stock-product.component';
 import { PantrydetailComponent } from './pantrydetail/pantrydetail.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { LoginComponent } from './login/login.component';
@@ -37,9 +40,19 @@ const appRoute: Routes = [
         outlet: 'stockproduct',
       },
       {
+        path: '',
+        component: ActionBarStockProductComponent,
+        outlet: 'action',
+      },
+      {
         path: 'basicstock',
         component: BasicStockProductComponent,
         outlet: 'stockproduct',
+      },
+      {
+        path: 'basicstock',
+        component: ActionBarBasicStockProductComponent,
+        outlet: 'action',
       },
       {
         path: 'stock',
@@ -47,9 +60,19 @@ const appRoute: Routes = [
         outlet: 'stockproduct',
       },
       {
+        path: 'stock',
+        component: ActionBarStockProductComponent,
+        outlet: 'action',
+      },
+      {
         path: 'groceries',
         component: GroceryProductComponent,
         outlet: 'stockproduct',
+      },
+      {
+        path: 'groceries',
+        component: ActionBarGroceryProductComponent,
+        outlet: 'action',
       },
     ],
   },

@@ -11,9 +11,9 @@
                 [routerLink]="[
                   '/pantry',
                   pantryId,
-                  { outlets: { stockproduct: ['stock'] } }
+                  { outlets: { stockproduct: ['stock'], action: ['stock'] } }
                 ]"
-                queryParamsHandling="merge"
+                [queryParams]="{ name: pantryName }"
                 ><span>Stock</span></a
               >
             </li>
@@ -23,12 +23,17 @@
                 [routerLink]="[
                   '/pantry',
                   pantryId,
-                  { outlets: { stockproduct: ['basicstock'] } }
+                  {
+                    outlets: {
+                      stockproduct: ['basicstock'],
+                      action: ['basicstock']
+                    }
+                  }
                 ]"
                 [queryParams]="{ name: pantryName }"
                 queryParamsHandling="merge"
               >
-                <span>Basic Stock</span>
+                <span>Basic stock</span>
               </a>
             </li>
             <li class="nav-item">
@@ -37,7 +42,12 @@
                 [routerLink]="[
                   '/pantry',
                   pantryId,
-                  { outlets: { stockproduct: ['groceries'] } }
+                  {
+                    outlets: {
+                      stockproduct: ['groceries'],
+                      action: ['groceries']
+                    }
+                  }
                 ]"
                 [queryParams]="{ name: pantryName }"
               >

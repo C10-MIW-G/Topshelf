@@ -1,3 +1,4 @@
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Component, OnInit, Inject } from '@angular/core';
 import {
   FormBuilder,
@@ -5,16 +6,15 @@ import {
   Validators,
   FormControl,
 } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-modaleditbasicstock',
-  templateUrl: './modaleditbasicstock.component.html',
-  styleUrls: ['./modaleditbasicstock.component.css'],
+  selector: 'app-modal-add-grocery-product',
+  templateUrl: './modal-add-grocery-product.component.html',
+  styleUrls: ['./modal-add-grocery-product.component.css'],
 })
-export class ModaleditbasicstockComponent implements OnInit {
+export class ModalAddGroceryProductComponent implements OnInit {
   form!: FormGroup;
-  basicStockProductName: string;
+  groceryProductName: string;
   amount: number;
   hasFailed: boolean = false;
   errormessage?: string;
@@ -22,17 +22,17 @@ export class ModaleditbasicstockComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private dialogRef: MatDialogRef<ModaleditbasicstockComponent>,
+    private dialogRef: MatDialogRef<ModalAddGroceryProductComponent>,
     @Inject(MAT_DIALOG_DATA) data: any
   ) {
-    this.basicStockProductName = data.name;
+    this.groceryProductName = data.name;
     this.amount = data.amount;
     this.isSubmitted = data.isSubmitted;
   }
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      basicStockProductName: new FormControl('', [Validators.required]),
+      groceryProductName: new FormControl('', [Validators.required]),
       amount: new FormControl(
         '',
         Validators.compose([
@@ -51,8 +51,10 @@ export class ModaleditbasicstockComponent implements OnInit {
     this.dialogRef.close(this.isSubmitted);
   }
 
-  edit() {
-    if (this.form.value.basicStockProductName === null) {
+  save() {
+    const groceryProductName = this.form.value.groceryProductName;
+    console.log(groceryProductName + ' grocery-component');
+    if (!this.isEmptyOrSpaces(groceryProductName)) {
       this.hasFailed = true;
       this.errormessage = 'Enter product name';
     }
@@ -60,12 +62,24 @@ export class ModaleditbasicstockComponent implements OnInit {
       this.hasFailed = true;
       this.errormessage = 'Enter a postive amount';
     }
-    if (this.form.value.amount < 0) {
+    if (
+      this.form.value.amount < 0 ||
+      !this.isEmptyOrSpaces(groceryProductName)
+    ) {
       this.hasFailed = true;
       this.errormessage = 'Amount has to be positive';
     } else {
       this.isSubmitted = true;
       this.dialogRef.close(this.form.value);
     }
+  }
+
+  public myError = (controlName: string, errorName: string) => {
+    return this.form.controls[controlName].hasError(errorName);
+  };
+
+  public isEmptyOrSpaces(str: string | null | undefined) {
+    console.log(str);
+    return str === null || str?.match(/[\S]/g) !== null;
   }
 }
