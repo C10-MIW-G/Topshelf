@@ -75,3 +75,7 @@ p {
 .table {
   table-layout: fixed;
 }
+
+.custom-dialog-container .mat-dialog-content {
+  padding: 0;
+}

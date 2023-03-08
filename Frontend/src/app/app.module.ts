@@ -31,7 +31,8 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 import { ModaladdbasicstockComponent } from './modaladdbasicstock/modaladdbasicstock.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { HomePageComponent } from './home-page/home-page.component';
-import { ModaleditbasicstockComponent } from './modaleditbasicstock/modaleditbasicstock.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import {MatToolbarModule} from '@angular/material/toolbar';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,6 @@ import { ModaleditbasicstockComponent } from './modaleditbasicstock/modaleditbas
     HomePageComponent,
     ModaladdbasicstockComponent,
     ResetPasswordComponent,
-    ModaleditbasicstockComponent
   ],
   imports: [
     BrowserModule,
@@ -68,6 +68,8 @@ import { ModaleditbasicstockComponent } from './modaleditbasicstock/modaleditbas
     MatInputModule,
     RecaptchaModule,
     RecaptchaFormsModule,
+    MatCheckboxModule,
+    MatToolbarModule,
   ],
   exports: [MatFormFieldModule],
   entryComponents: [ModaladdpantryComponent],

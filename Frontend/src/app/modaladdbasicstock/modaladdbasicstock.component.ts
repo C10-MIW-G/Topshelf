@@ -1,40 +1,44 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
   Validators,
   FormControl,
 } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef, MatDialogConfig } from '@angular/material/dialog';
+import { BasicStockProductComponent } from '../basic-stock-product/basic-stock-product.component';
+import { BasicStockProduct } from '../basic-stock-product/basic-stock-product';
+import { BasicStockProductService } from '../basic-stock-product/basic-stock-product.service';
 
 @Component({
   selector: 'app-modaladdbasicstock',
   templateUrl: './modaladdbasicstock.component.html',
   styleUrls: ['./modaladdbasicstock.component.css'],
 })
-export class ModaladdbasicstockComponent implements OnInit {
+export class ModaladdbasicstockComponent {
   form!: FormGroup;
   basicStockProductName: string;
   amount: number;
   hasFailed: boolean = false;
   errormessage?: string;
   isSubmitted: boolean;
+  openNewModal!: boolean;
+  basicStockProductsToBeAdded: BasicStockProduct[] = [];
+  basicStockProcuctService!: BasicStockProductService;
+  public basicStockProductComponent!: BasicStockProductComponent;  
 
   constructor(
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<ModaladdbasicstockComponent>,
     @Inject(MAT_DIALOG_DATA) data: any
   ) {
-    this.basicStockProductName = data.basicStockProductName;
+    this.basicStockProductName = data.name;
     this.amount = data.amount;
     this.isSubmitted = data.isSubmitted;
-  }
-
-  ngOnInit(): void {
     this.form = this.fb.group({
-      basicStockProductName: new FormControl('', [Validators.required]),
+      basicStockProductName: new FormControl(this.basicStockProductName, [Validators.required]),
       amount: new FormControl(
-        '',
+        this.amount,
         Validators.compose([
           Validators.required,
           Validators.pattern("^[0-9]*$"),
@@ -43,7 +47,8 @@ export class ModaladdbasicstockComponent implements OnInit {
         ])
       ),
       isSubmitted: this.isSubmitted,
-    });
+      openNewModal: new FormControl(this.openNewModal)
+    })
   }
 
   close() {
@@ -52,23 +57,9 @@ export class ModaladdbasicstockComponent implements OnInit {
   }
 
   save() {
-    if (this.form.value.basicStockProductName === null) {
-      this.hasFailed = true;
-      this.errormessage = 'Enter product name';
-    } 
-    if (this.form.value.amount === null) {
-      this.hasFailed = true;
-      this.errormessage = 'Enter a postive amount';
-    }
-    if (this.form.value.amount < 0) {
-      this.hasFailed = true;
-      this.errormessage = 'Amount has to be positive';
-    } else {
-      this.isSubmitted = true;
-      this.dialogRef.close(this.form.value);
-    }
+    this.dialogRef.close(this.form.value);   
   }
-
+  
   public myError = (controlName: string, errorName: string) => {
     return this.form.controls[controlName].hasError(errorName);
   };

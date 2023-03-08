@@ -5,7 +5,7 @@ import { BasicStockProduct } from './basic-stock-product';
 import { BasicStockProductService } from './basic-stock-product.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ModaladdbasicstockComponent } from '../modaladdbasicstock/modaladdbasicstock.component';
-import { ModaleditbasicstockComponent } from '../modaleditbasicstock/modaleditbasicstock.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-basic-stock-product',
@@ -17,13 +17,16 @@ export class BasicStockProductComponent implements OnInit {
   public pantryWithBasicStockProducts: BasicStockProduct[] = [];
   public namePantry!: string;
   public pantryId!: number;
-  public BasicStockProductId: number | undefined;
+  public basicStockProductId?: number;
+  public modaladdbasicstock!: ModaladdbasicstockComponent;
+  public openNewModal?: boolean;
 
   constructor(
     private basicStockProductService: BasicStockProductService,
     private router: Router,
     private route: ActivatedRoute,
-    private matDialog: MatDialog
+    private matDialog: MatDialog,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit() {
@@ -49,12 +52,13 @@ export class BasicStockProductComponent implements OnInit {
     );
   }
 
-  onOpenDialog() {
+  onOpenDialog(basicStockProduct?:BasicStockProduct) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.data = {
-      name: null,
-      isSubmitted: true,
+      name: basicStockProduct?.name,
+      amount: basicStockProduct?.amount,
+      isSubmitted: true
     };
 
     const dialogRef = this.matDialog.open(
@@ -63,62 +67,43 @@ export class BasicStockProductComponent implements OnInit {
     );
 
     dialogRef.afterClosed().subscribe((data) => {
-      console.log(data);
-      if (data.basicStockProductName !== null && data.isSubmitted) {
-        this.basicStockProductService
-          .saveBasicStockProductToPantryStock({
-            name: data.basicStockProductName,
-            amount: data.amount,
-            pantryId: Number(this.route.snapshot.paramMap.get('pantryId')),
-            basicStockProductId: data.basicStockProductId,
-          })
-          .subscribe({
-            complete: () => {
-              window.location.reload();
-            },
-            error: () => {
-              alert('Failed adding product');
-            },
-          });
-      }
+      this.saveBasicStockProduct(data, basicStockProduct);
     });
   }
 
-  openEditModal(BasicStockProductedit: BasicStockProduct): void {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = true;
-    dialogConfig.data = {
-      name: BasicStockProductedit.name,
-      basicStockProductId: BasicStockProductedit.basicStockProductId,
-      amount: BasicStockProductedit.amount,
-      isSubmitted: true,
-    };
-
-    const dialogRef = this.matDialog.open(
-      ModaleditbasicstockComponent,
-      dialogConfig
-    );
-
-    dialogRef.afterClosed().subscribe((data) => {
-      console.log(data);
-      if (data.basicStockProductName !== null && data.isSubmitted) {
-        this.basicStockProductService
-          .saveBasicStockProductToPantryStock({
-            name: data.basicStockProductName,
-            basicStockProductId: BasicStockProductedit.basicStockProductId,
-            pantryId: Number(this.route.snapshot.paramMap.get('pantryId')),
-            amount: data.amount,
-          })
-          .subscribe({
-            complete: () => {
-              window.location.reload();
-            },
-            error: () => {
-              alert('Update failed');
-            },
-          });
+  private saveBasicStockProduct(data: any, basicStockProduct: BasicStockProduct | undefined) {
+    if (data.basicStockProductName !== null && data.isSubmitted) {
+      if (basicStockProduct?.basicStockProductId !== null) {
+        this.basicStockProductId = basicStockProduct?.basicStockProductId;
+      } else {
+        this.basicStockProductId = data.basicStockProductId;
       }
-    });
+      this.basicStockProductService
+        .saveBasicStockProductToPantryStock({
+          name: data.basicStockProductName,
+          amount: data.amount,
+          pantryId: Number(this.route.snapshot.paramMap.get('pantryId')),
+          basicStockProductId: this.basicStockProductId,
+        })
+        .subscribe({
+          complete: () => {
+            if (data.openNewModal == true) {
+              this.onOpenDialog();
+              this.toastr.success('Success!', 'Product added!', {
+                positionClass: 'toast-top-center',
+              });
+              this.openNewModal = true;
+            } else {
+              window.location.reload();
+            }
+          },
+          error: () => {
+            alert('Failed adding product');
+          },
+        });
+    } else {
+      window.location.reload();
+    }
   }
 
   public isEmptyOrSpaces(str: string | null | undefined) {

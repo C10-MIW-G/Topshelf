@@ -1,10 +1,16 @@
 <mat-dialog-content [formGroup]="form" class="form">
   <button type="button" class="close" (click)="close()">&times;</button>
-  <div class="modal-header primary">
-    <h5>Add a product</h5>
-  </div>
+  <mat-toolbar class="header">
+    <h1>
+      {{basicStockProductName == null
+      ?"Add a product"
+      : "Edit product"}}
+    </h1>
+  </mat-toolbar>
   <br />
+  <label>Product name </label>
   <mat-form-field class="form-group">
+
     <input
       name="basicStockProductName"
       type="text"
@@ -19,6 +25,7 @@
   </mat-form-field>
 
   <br />
+  <label>Amount </label>
   <mat-form-field class="form-group">
     <input
       name="amount"
@@ -32,11 +39,27 @@
       >Enter a positive amount</mat-error
     >
   </mat-form-field>
-</mat-dialog-content>
 
-<mat-dialog-actions>
-  <button class="btn btn-color" (click)="close()">Cancel</button>
-  <button class="btn btn-color-2" [disabled]="form.invalid" (click)="save()">
-    Save
-  </button>
-</mat-dialog-actions>
+  <mat-dialog-actions>
+   <mat-checkbox 
+      mat-checkbox
+      class="align-bottom"
+      formControlName="openNewModal"
+      checked="true"
+      unchecked="false"
+   ><span class="text-bottom">Add another</span>
+    </mat-checkbox>
+    <button class="btn btn-color" (click)="close()">Cancel</button>
+    <button
+      class="btn btn-color-2"
+      onclick="openNewModal = false"
+      [disabled]="form.invalid"
+      (click)="save()"
+    >
+      Save
+    </button>
+    <!-- <button class="btn btn-color-2" onclick="openNewModal = true" [disabled]="form.invalid" (click)="saveAndAdd()">
+    Add another
+  </button> -->
+  </mat-dialog-actions></mat-dialog-content
+>
