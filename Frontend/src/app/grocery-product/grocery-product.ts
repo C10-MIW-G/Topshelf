@@ -1,6 +1,6 @@
 export interface GroceryProduct {
-  name: string | null | undefined;
-  groceryProductId: number | null | undefined;
+  name: string;
   pantryId: number;
-  amount: number | null | undefined;
+  amount: number;
+  groceryProductId: number;
 }

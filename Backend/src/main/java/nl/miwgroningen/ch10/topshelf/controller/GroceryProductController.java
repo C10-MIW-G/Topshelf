@@ -25,7 +25,7 @@ public class GroceryProductController {
 
     @GetMapping("/{pantryId}")
     public ResponseEntity<List<GroceryProductDTO>> getGroceryProductsByPantryId (
-            @PathVariable("pantryId")Pantry pantry) {
+            @PathVariable("pantryId") Pantry pantry) {
         List<GroceryProductDTO> groceryProductDTO = groceryProductService.findGroceryProductByPantry(pantry);
         return new ResponseEntity<>(groceryProductDTO, HttpStatus.OK);
     }
@@ -37,5 +37,12 @@ public class GroceryProductController {
             groceryProductService.save(groceryProductToBeSaved);
         }
         return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/delete/{groceryProductId}")
+    public ResponseEntity<String> deleteGroceryProduct(
+            @PathVariable("groceryProductId") Long groceryProductId){
+        groceryProductService.deleteGroceryProduct(groceryProductId);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

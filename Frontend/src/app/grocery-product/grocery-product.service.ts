@@ -28,11 +28,19 @@ export class GroceryProductService {
     return this.http.post(
       `${this.apiServerUrl}/groceryproduct/add`,
       {
-        name: groceryProductEdit.name,
-        amount: groceryProductEdit.amount,
+        groceryProductId: groceryProductEdit.groceryProductId,
         pantryId: groceryProductEdit.pantryId,
-        groceryProductId: groceryProductEdit.groceryProductId
+        name: groceryProductEdit.name,
+        amount: groceryProductEdit.amount
       }
+    );
+  }
+
+  public deleteGroceryProductFromPantry(
+    groceryProductId: number
+  ): Observable<void> {
+    return this.http.delete<void>(
+      `${this.apiServerUrl}/groceryproduct/delete/${groceryProductId}`
     );
   }
 }

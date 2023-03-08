@@ -16,9 +16,17 @@ export class GroceryProductComponent implements OnInit {
   public groceryProducts?: GroceryProduct[] = [];
   public groceryProductId?: number;
   public pantryWithGroceryProducts: GroceryProduct[] = [];
+  public groceryProductDelete?: GroceryProduct;
   public namePantry!: string;
   public pantryId!: number;
   public GroceryProductId: number | undefined;
+
+  constructor(
+    private groceryProductService: GroceryProductService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private matDialog: MatDialog
+  ) {}
 
   addGroceryProductForm = new FormGroup({
     name: new FormControl(
@@ -36,13 +44,6 @@ export class GroceryProductComponent implements OnInit {
     ),
   });
 
-  constructor(
-    private GroceryProductService: GroceryProductService,
-    private router: Router,
-    private route: ActivatedRoute,
-    private matDialog: MatDialog
-  ) {}
-
   ngOnInit() {
     this.getPantryName();
     this.getGroceryProductsByPantryId();
@@ -58,7 +59,7 @@ export class GroceryProductComponent implements OnInit {
   }
 
   getGroceryProduct(groceryProductId: number) {
-    this.GroceryProductService.getGroceryProduct(groceryProductId).subscribe(
+    this.groceryProductService.getGroceryProduct(groceryProductId).subscribe(
       (groceryProduct: GroceryProduct) =>
         this.showGroceryProductInForm(groceryProduct)
     );
@@ -69,9 +70,21 @@ export class GroceryProductComponent implements OnInit {
     this.namePantry = name;
   }
 
+  public remove(groceryProduct: GroceryProduct) {
+    this.groceryProductService
+      .deleteGroceryProductFromPantry(groceryProduct.groceryProductId)
+      .subscribe((response: void) => {
+        this.getGroceryProductsByPantryId;
+        window.location.reload();
+      }),
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      };
+  }
+
   public getGroceryProductsByPantryId(): void {
     const id = this.getPantryId();
-    this.GroceryProductService.getGroceryProductsByPantry(id).subscribe(
+    this.groceryProductService.getGroceryProductsByPantry(id).subscribe(
       (response: GroceryProduct[]) => {
         this.pantryWithGroceryProducts = response;
       },
@@ -83,9 +96,9 @@ export class GroceryProductComponent implements OnInit {
 
   public showGroceryProductInForm(groceryProduct: GroceryProduct) {
     this.addGroceryProductForm.patchValue({
-      groceryProductId: groceryProduct.groceryProductId,
       name: groceryProduct.name,
       amount: groceryProduct.amount,
+      groceryProductId: groceryProduct.groceryProductId
     });
   }
 
@@ -106,7 +119,7 @@ export class GroceryProductComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((data) => {
       if (data.name !== null && data.isSubmitted) {
-        this.GroceryProductService.saveGroceryProductToPantryStock({
+        this.groceryProductService.saveGroceryProductToPantryStock({
           name: data.groceryProductName,
           amount: data.amount,
           pantryId: this.getPantryId(),

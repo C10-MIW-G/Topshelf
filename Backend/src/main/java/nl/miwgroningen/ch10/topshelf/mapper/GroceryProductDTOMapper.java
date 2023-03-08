@@ -33,7 +33,7 @@ public class GroceryProductDTOMapper implements Function<GroceryProduct, Grocery
 
     public GroceryProduct convertFromDTO(GroceryProductDTO groceryProductDTO) {
         return new GroceryProduct(
-                groceryProductDTO.groceryProductId(),
+                groceryProductDTO.groceryProductId(), //needed for updating a product
                 groceryProductDTO.amount(),
                 productDefinitionService.findProductByName(groceryProductDTO.name()),
                 pantryService.findPantryByPantryId(groceryProductDTO.pantryId())
