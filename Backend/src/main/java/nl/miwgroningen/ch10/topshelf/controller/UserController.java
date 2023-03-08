@@ -1,5 +1,4 @@
 package nl.miwgroningen.ch10.topshelf.controller;
-
 import nl.miwgroningen.ch10.topshelf.exception.InvalidPasswordException;
 import nl.miwgroningen.ch10.topshelf.model.ChangePasswordRequest;
 import nl.miwgroningen.ch10.topshelf.model.User;

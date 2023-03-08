@@ -51,13 +51,11 @@ a:link, a:visited, a:active{
 .row {
   height: 100vh;
 }
-
-.component-left, .component-right {
+.component-left, .component-right, .sidebar {
   padding-top: 36px;
   text-align: left;
   background-color:
    rgb(232, 241, 248);
-   position: sticky ;
 }
 
 .component-center {
@@ -68,14 +66,19 @@ p {
   text-align: left;
 }
 
-.sidebar-fixed{
-  position: fixed;
-}
-
 .table {
   table-layout: fixed;
 }
 
-.custom-dialog-container .mat-dialog-content {
-  padding: 0;
+span:hover {
+  cursor: pointer;
+}
+
+.action-bar {
+  background-color:
+  rgb(232, 241, 248);
+  padding-top: 36px;
+  align-items: center;
+  justify-content: center;
+
 }

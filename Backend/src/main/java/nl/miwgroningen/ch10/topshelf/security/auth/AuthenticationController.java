@@ -27,9 +27,7 @@ public class AuthenticationController {
     private final UserService userService;
 
     @PostMapping("/register")
-    public ResponseEntity<AuthenticationResponse> register(
-            @RequestBody RegisterRequest request
-    ) throws InvalidReCaptchaException {
+    public ResponseEntity<AuthenticationResponse> register(@RequestBody RegisterRequest request) throws InvalidReCaptchaException {
         if (captchaService.verify(request.getCaptchaResponse())) {
             return ResponseEntity.ok(service.register(request));
         } else {
@@ -38,19 +36,15 @@ public class AuthenticationController {
     }
 
     @PostMapping("/auth")
-    public ResponseEntity<AuthenticationResponse> authenticate(
-            @RequestBody AuthenticationRequest request
-    ) {
+    public ResponseEntity<AuthenticationResponse> authenticate(@RequestBody AuthenticationRequest request) {
         return ResponseEntity.ok(service.authenticate(request));
     }
 
     @PostMapping("/resetpassword")
-    public ResponseEntity<String> resetUserPassword(
-            @RequestBody ResetPasswordRequest request) throws MessagingException, InvalidReCaptchaException {
+    public ResponseEntity<String> resetUserPassword(@RequestBody ResetPasswordRequest request) throws MessagingException, InvalidReCaptchaException {
         User user = userService.findUserByEmail(request.getEmail());
 
-        if (captchaService.verify(request.getCaptchaResponse()) &&
-                userService.checkUserEmail(user, request.getEmail())) {
+        if (captchaService.verify(request.getCaptchaResponse()) && userService.checkUserEmail(user, request.getEmail())) {
             userService.resetPassword(user);
 
             return new ResponseEntity<>(HttpStatus.OK);

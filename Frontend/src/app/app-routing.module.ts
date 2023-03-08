@@ -1,3 +1,8 @@
+import { ActionBarGroceryProductComponent } from './action-bar-grocery-product/action-bar-grocery-product.component';
+import { ActionBarBasicStockProductComponent } from './action-bar-basic-stock-product/action-bar-basic-stock-product.component';
+import { ActionBarStockProductComponent } from './action-bar-stock-product/action-bar-stock-product.component';
+import { PantrydetailComponent } from './pantrydetail/pantrydetail.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
 import { LoginComponent } from './login/login.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -8,23 +13,74 @@ import { BasicStockProductComponent } from './basic-stock-product/basic-stock-pr
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { GroceryProductComponent } from './grocery-product/grocery-product.component';
 
 const appRoute: Routes = [
   { path: 'home', component: HomePageComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'changepassword', component: ChangePasswordComponent},
-  { path: 'resetpassword', component: ResetPasswordComponent},
-  { path: 'pantry', component: PantryComponent },
-  { path: 'edit/:id', component: BasicStockProductComponent},
+  { path: 'changepassword', component: ChangePasswordComponent },
+  { path: 'resetpassword', component: ResetPasswordComponent },
   {
-    path: 'pantry/:pantryId/basicstock',
-    component: BasicStockProductComponent,
+    path: 'pantry',
+    component: PantryComponent,
+  },
+  { path: 'edit/:id', component: BasicStockProductComponent },
+  {
+    path: 'pantry/:pantryId/groceries',
+    component: GroceryProductComponent,
     pathMatch: 'full',
   },
   {
     path: 'pantry/:pantryId',
-    component: StockProductComponent,
+    component: PantrydetailComponent,
+    children: [
+      {
+        path: '',
+        component: SidebarComponent,
+        outlet: 'sidebar',
+      },
+      {
+        path: '',
+        component: StockProductComponent,
+        outlet: 'stockproduct',
+      },
+      {
+        path: '',
+        component: ActionBarStockProductComponent,
+        outlet: 'action',
+      },
+      {
+        path: 'basicstock',
+        component: BasicStockProductComponent,
+        outlet: 'stockproduct',
+      },
+      {
+        path: 'basicstock',
+        component: ActionBarBasicStockProductComponent,
+        outlet: 'action',
+      },
+      {
+        path: 'stock',
+        component: StockProductComponent,
+        outlet: 'stockproduct',
+      },
+      {
+        path: 'stock',
+        component: ActionBarStockProductComponent,
+        outlet: 'action',
+      },
+      {
+        path: 'groceries',
+        component: GroceryProductComponent,
+        outlet: 'stockproduct',
+      },
+      {
+        path: 'groceries',
+        component: ActionBarGroceryProductComponent,
+        outlet: 'action',
+      },
+    ],
   },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];

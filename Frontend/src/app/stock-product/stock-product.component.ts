@@ -27,7 +27,8 @@ export class StockProductComponent implements OnInit {
 
   ngOnInit() {
     this.getPantryName();
-    this.getPantryIdWithStockProducts();
+    this.getPantryId();
+    this.getPantryIdWithStockProducts(this.pantryId);
   }
 
   addStockProductForm = new FormGroup({
@@ -35,13 +36,12 @@ export class StockProductComponent implements OnInit {
     expirationdate: new FormControl('', Validators.required),
   });
 
-  public getPantryIdWithStockProducts(): void {
+  public getPantryIdWithStockProducts(pantryId: number): void {
     const id = Number(this.route.snapshot.paramMap.get('pantryId'));
     this.pantryId = id;
-    this.stockProductService.getPantryWithStockProducts(id).subscribe(
+    this.stockProductService.getPantryWithStockProducts(pantryId).subscribe(
       (response: StockProduct[]) => {
         this.pantryWithStockProducts = response;
-        console.log(response);
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
@@ -53,19 +53,18 @@ export class StockProductComponent implements OnInit {
     this.isSubmitted = true;
     const nameValue = this.addStockProductForm.value.name;
     const expDateValue = this.addStockProductForm.value.expirationdate;
-    const id = Number(this.route.snapshot.paramMap.get('pantryId'));
 
     if (nameValue && expDateValue) {
       this.stockProductService
         .saveStockProductToPantryStock({
           name: nameValue,
           expirationDate: new Date(expDateValue),
-          pantryId: id,
+          pantryId: this.getPantryId(),
         })
         .subscribe({
           complete: () => {
             console.log('Product has been added to pantry stock');
-            this.router.navigate(['/pantry', id]);
+            this.router.navigate(['/pantry', this.pantryId]);
             window.location.reload();
           },
         });
@@ -85,7 +84,16 @@ export class StockProductComponent implements OnInit {
   }
 
   public getPantryName() {
-    const id = this.route.snapshot.queryParamMap.get('name')!;
-    this.namePantry = id;
+    this.route.queryParams.subscribe((params) => {
+      this.namePantry = params['name'];
+    });
+  }
+
+  public getPantryId(): number {
+    this.route.parent?.params.subscribe((params) => {
+      const response = params['pantryId'];
+      this.pantryId = parseInt(response.split(';')[0], 10);
+    });
+    return this.pantryId;
   }
 }

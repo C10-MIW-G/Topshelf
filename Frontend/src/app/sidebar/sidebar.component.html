@@ -1,0 +1,62 @@
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <nav class="col-12 d-none d-md-block sidebar" #sidebar>
+        <div class="position-fixed">
+          <ul class="nav flex-column sidebar">
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                aria-current="true"
+                [routerLink]="[
+                  '/pantry',
+                  pantryId,
+                  { outlets: { stockproduct: ['stock'], action: ['stock'] } }
+                ]"
+                [queryParams]="{ name: pantryName }"
+                ><span>Stock</span></a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                [routerLink]="[
+                  '/pantry',
+                  pantryId,
+                  {
+                    outlets: {
+                      stockproduct: ['basicstock'],
+                      action: ['basicstock']
+                    }
+                  }
+                ]"
+                [queryParams]="{ name: pantryName }"
+                queryParamsHandling="merge"
+              >
+                <span>Basic stock</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                [routerLink]="[
+                  '/pantry',
+                  pantryId,
+                  {
+                    outlets: {
+                      stockproduct: ['groceries'],
+                      action: ['groceries']
+                    }
+                  }
+                ]"
+                [queryParams]="{ name: pantryName }"
+              >
+                <span>Grocery list</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </div>
+</body>

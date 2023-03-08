@@ -30,10 +30,16 @@ import { BasicStockProductComponent } from './basic-stock-product/basic-stock-pr
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { ModaladdbasicstockComponent } from './modaladdbasicstock/modaladdbasicstock.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { PantrydetailComponent } from './pantrydetail/pantrydetail.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import {MatToolbarModule} from '@angular/material/toolbar';
-
+import { GroceryProductComponent } from './grocery-product/grocery-product.component';
+import { ActionBarStockProductComponent } from './action-bar-stock-product/action-bar-stock-product.component';
+import { ActionBarBasicStockProductComponent } from './action-bar-basic-stock-product/action-bar-basic-stock-product.component';
+import { ActionBarGroceryProductComponent } from './action-bar-grocery-product/action-bar-grocery-product.component';
+import { ModalAddGroceryProductComponent } from './modal-add-grocery-product/modal-add-grocery-product.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,16 +47,20 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     PantryComponent,
     StockProductComponent,
     NavComponent,
-    StockProductComponent,
     RegisterComponent,
     ModaladdpantryComponent,
-    RegisterComponent,
     BasicStockProductComponent,
     ChangePasswordComponent,
-    ResetPasswordComponent,
-    HomePageComponent,
+    SidebarComponent,
+    PantrydetailComponent,
     ModaladdbasicstockComponent,
     ResetPasswordComponent,
+    HomePageComponent,
+    GroceryProductComponent,
+    ActionBarStockProductComponent,
+    ActionBarBasicStockProductComponent,
+    ActionBarGroceryProductComponent,
+    ModalAddGroceryProductComponent,
   ],
   imports: [
     BrowserModule,

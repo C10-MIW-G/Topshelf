@@ -24,14 +24,6 @@ public class BasicStockProductController {
 
     private final BasicStockProductService basicStockProductService;
 
-    @GetMapping("/details/{basicStockProductId}")
-    public ResponseEntity<BasicStockProductDTO> getBasicStockProductById
-            (@PathVariable("basicStockProductId") Long basicStockProductId) {
-        BasicStockProductDTO basicStockProductDTO = basicStockProductService
-                .findBasicStockProductByBasicStockProductId(basicStockProductId);
-        return new ResponseEntity<>(basicStockProductDTO, HttpStatus.OK);
-    }
-
     @GetMapping("/{pantryId}")
     public ResponseEntity<List<BasicStockProductDTO>> getBasicStockProductByPantryId
             (@PathVariable("pantryId") Pantry pantry) {

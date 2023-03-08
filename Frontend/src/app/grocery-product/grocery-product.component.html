@@ -4,9 +4,8 @@
       <div class="col-12 component-center">
         <h4>{{ namePantry }}</h4>
         <br />
-        <br />
         <tr>
-          Products defined in your basic stock:
+          Grocery list:
         </tr>
         <br />
         <table class="table table-striped">
@@ -15,18 +14,18 @@
             <th class="text-end">Amount</th>
             <th></th>
           </tr>
-          <tr *ngFor="let basicStockProduct of pantryWithBasicStockProducts">
-            <input type="hidden" name="basicStockProductId" />
-            <td>{{ basicStockProduct.name }}</td>
-            <td class="text-end">{{ basicStockProduct.amount }}</td>
-          <td class="text-center">
-            <a (click)="onOpenDialog(basicStockProduct)"
-            ><span><i class="fa fa-edit"></i></span
+          <tr *ngFor="let groceryProduct of pantryWithGroceryProducts">
+            <input type="hidden" name="groceryProductId" />
+            <td>{{ groceryProduct.name }}</td>
+            <td class="text-end">{{ groceryProduct.amount }}</td>
+            <td class="text-center">
+              <a (click)="openEditModal(groceryProduct)"
+                ><span><i class="fa fa-edit"></i></span
               ></a>
             </td>
           </tr>
         </table>
-        <div *ngIf="pantryWithBasicStockProducts.length === 0">
+        <div *ngIf="pantryWithGroceryProducts.length === 0">
           <p>There are no products in your list yet.</p>
         </div>
       </div>

@@ -47,7 +47,7 @@ export class ModaladdbasicstockComponent {
         ])
       ),
       isSubmitted: this.isSubmitted,
-      openNewModal: new FormControl(this.openNewModal)
+      openNewModal: new FormControl(false)
     })
   }
 
