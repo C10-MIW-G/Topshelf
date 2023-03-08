@@ -37,4 +37,6 @@ public class GroceryProductService {
         GroceryProduct groceryProduct = groceryProductDTOMapper.convertFromDTO(groceryProductDTO);
         groceryProductRepository.save(groceryProduct);
     }
+
+    public void deleteGroceryProduct(Long groceryProductId) { groceryProductRepository.deleteById(groceryProductId); }
 }
