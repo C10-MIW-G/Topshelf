@@ -1,7 +1,13 @@
 <mat-dialog-content [formGroup]="form" class="form">
   <button type="button" class="close" (click)="close()">&times;</button>
   <div class="modal-header primary">
-    <h5>Add a grocery product</h5>
+    <h5>
+      {{
+        groceryProductName == null
+          ? "Add a groceryproduct"
+          : "Edit groceryproduct"
+      }}
+    </h5>
   </div>
   <br />
   <mat-form-field class="form-group">
