@@ -49,6 +49,7 @@ export class PantryComponent implements OnInit {
       }
     );
   }
+
   onOpenDialog() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
