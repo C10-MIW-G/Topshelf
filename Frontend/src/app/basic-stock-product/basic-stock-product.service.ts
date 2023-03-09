@@ -18,21 +18,22 @@ export class BasicStockProductService {
     );
   }
 
-  getBasicStockProduct(basicStockProductId: number): Observable<BasicStockProduct> {
-    return this.http.get<BasicStockProduct>(`${this.apiServerUrl}/${basicStockProductId}`)
+  getBasicStockProduct(
+    basicStockProductId: number
+  ): Observable<BasicStockProduct> {
+    return this.http.get<BasicStockProduct>(
+      `${this.apiServerUrl}/${basicStockProductId}`
+    );
   }
 
   public saveBasicStockProductToPantryStock(
     basicStockProductEdit: BasicStockProduct
   ): Observable<any> {
-    return this.http.post(
-      `${this.apiServerUrl}/basicstockproduct/add`,
-      {
-        name: basicStockProductEdit.name,
-        amount: basicStockProductEdit.amount,
-        pantryId: basicStockProductEdit.pantryId,
-        basicStockProductId: basicStockProductEdit.basicStockProductId
-      }
-    );
+    return this.http.post(`${this.apiServerUrl}/basicstockproduct/add`, {
+      basicStockProductId: basicStockProductEdit.basicStockProductId,
+      pantryId: basicStockProductEdit.pantryId,
+      name: basicStockProductEdit.name,
+      amount: basicStockProductEdit.amount,
+    });
   }
 }

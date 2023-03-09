@@ -56,7 +56,8 @@ export class PantryComponent implements OnInit {
       name: null,
       isSubmitted: true,
     };
-
+    dialogConfig.height = '40%';
+    dialogConfig.width = '60%';
     const dialogRef = this.matDialog.open(
       ModaladdpantryComponent,
       dialogConfig

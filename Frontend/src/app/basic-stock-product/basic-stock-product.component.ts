@@ -3,6 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BasicStockProduct } from './basic-stock-product';
 import { BasicStockProductService } from './basic-stock-product.service';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { ModaladdbasicstockComponent } from '../modaladdbasicstock/modaladdbasicstock.component';
+import { ToastrService } from 'ngx-toastr';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserComponent } from '../user/user.component';
 import { User } from '../user/user';
@@ -15,11 +18,12 @@ import { AuthService } from '../_services/auth.service';
 })
 export class BasicStockProductComponent implements OnInit {
   public basicStockProducts?: BasicStockProduct[] = [];
-  public basicStockProductId?: number;
   public pantryWithBasicStockProducts: BasicStockProduct[] = [];
   public namePantry!: string;
   public pantryId!: number;
-  public BasicStockProductId: number | undefined;
+  public basicStockProductId?: number;
+  public modaladdbasicstock!: ModaladdbasicstockComponent;
+  public openNewModal?: boolean;
   public userComponent?: UserComponent;
   public authService?: AuthService;
   public isAdmin: boolean = false;
@@ -45,80 +49,99 @@ export class BasicStockProductComponent implements OnInit {
 
   constructor(
     private basicStockProductService: BasicStockProductService,
+    private router: Router,
     private route: ActivatedRoute,
-    private router: Router
+    private matDialog: MatDialog,
+    private toastr: ToastrService
   ) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.getPantryName();
+    this.getPantryId();
     this.getBasicStockProductsByPantryId();
   }
 
-  get name() {
-    return this.addBasicStockProductForm.get('name');
+  public getPantryId(): number {
+    this.route.parent?.params.subscribe((params) => {
+      const response = params['pantryId'];
+      this.pantryId = parseInt(response.split(';')[0], 10);
+    });
+    return this.pantryId;
   }
-  get amount() {
-    return this.addBasicStockProductForm.get('amount');
-  }
-
-  getBasicStockProduct(basicStockProductId: number) {
-    this.basicStockProductService
-      .getBasicStockProduct(basicStockProductId)
-      .subscribe((basicStockProduct: BasicStockProduct) =>
-        this.showBasicStockProductInForm(basicStockProduct)
-      );
-  }
-
   public getPantryName() {
-    const id = this.route.snapshot.queryParamMap.get('name')!;
-    this.namePantry = id;
+    this.route.queryParams.subscribe((params) => {
+      this.namePantry = params['name'];
+    });
   }
 
   public getBasicStockProductsByPantryId(): void {
-    const id = Number(this.route.snapshot.paramMap.get('pantryId'));
-    this.pantryId = id;
-    this.basicStockProductService.getBasicStockProductsByPantry(id).subscribe(
-      (response: BasicStockProduct[]) => {
-        this.pantryWithBasicStockProducts = response;
-        console.log(response);
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-    );
+    this.basicStockProductService
+      .getBasicStockProductsByPantry(this.pantryId)
+      .subscribe(
+        (response: BasicStockProduct[]) => {
+          this.pantryWithBasicStockProducts = response;
+        },
+        (error: HttpErrorResponse) => {
+          alert(error.message);
+        }
+      );
   }
 
-  public save() {
-    const nameValue = this.addBasicStockProductForm.value.name;
-    const amountValue = this.addBasicStockProductForm.value.amount;
-    const id = Number(this.route.snapshot.paramMap.get('pantryId'));
-    const basicStockProductId =
-      this.addBasicStockProductForm.value.basicStockProductId;
+  onOpenDialog(basicStockProduct?: BasicStockProduct) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.data = {
+      name: basicStockProduct?.name,
+      amount: basicStockProduct?.amount,
+      isSubmitted: true
+    };
 
-    if (this.isEmptyOrSpaces(nameValue) && amountValue! > 0) {
+    const dialogRef = this.matDialog.open(
+      ModaladdbasicstockComponent,
+      dialogConfig
+    );
+
+    dialogRef.afterClosed().subscribe((data) => {
+      this.saveBasicStockProduct(data, basicStockProduct);
+    });
+  }
+
+  private saveBasicStockProduct(
+    data: any,
+    basicStockProduct: BasicStockProduct | undefined
+  ) {
+    if (data.basicStockProductName !== null && data.isSubmitted) {
+      if (basicStockProduct?.basicStockProductId !== null) {
+        this.basicStockProductId = basicStockProduct?.basicStockProductId;
+      } else {
+        this.basicStockProductId = data.basicStockProductId;
+      }
       this.basicStockProductService
         .saveBasicStockProductToPantryStock({
-          name: nameValue,
-          basicStockProductId: basicStockProductId,
-          pantryId: id,
-          amount: amountValue,
+          name: data.basicStockProductName,
+          amount: data.amount,
+          pantryId: this.getPantryId(),
+          basicStockProductId: this.basicStockProductId,
         })
         .subscribe({
           complete: () => {
-            console.log('Product has been added to pantry basic stock');
-            this.router.navigate(['/basicstock', id]);
-            window.location.reload();
+            if (data.openNewModal == true) {
+              this.onOpenDialog();
+              this.toastr.success('Success!', 'Product added!', {
+                positionClass: 'toast-top-center',
+              });
+              this.openNewModal = true;
+            } else {
+              window.location.reload();
+            }
+          },
+          error: () => {
+            alert('Failed adding product');
           },
         });
+    } else {
+      window.location.reload();
     }
-  }
-
-  public showBasicStockProductInForm(basicStockProduct: BasicStockProduct) {
-    this.addBasicStockProductForm.patchValue({
-      basicStockProductId: basicStockProduct.basicStockProductId,
-      name: basicStockProduct.name,
-      amount: basicStockProduct.amount,
-    });
   }
 
   public isEmptyOrSpaces(str: string | null | undefined) {

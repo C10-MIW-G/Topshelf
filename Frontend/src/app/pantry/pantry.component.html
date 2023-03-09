@@ -1,26 +1,27 @@
 <body>
-  <div class="container-fluid" *ngIf="unAuthorizedUser">
+  <div class="container-fluid overflow-auto" *ngIf="unAuthorizedUser">
     <div class="row">
-      <div class="col-2 component-left">
-      </div>
+      <div class="col-2 component-left"></div>
       <div class="col-8 component-center">
         <h5>These are your pantries:</h5>
-        <br>
+        <br />
         <div *ngFor="let pantry of pantries">
           <table class="table table-striped">
             <tr>
               <a
-                routerLink="/pantry/{{ pantry.pantryId }}"
-                [queryParams]="{ name: pantry.name }"
+                routerLink="/pantry/{{
+                  pantry.pantryId
+                }};sidebar:sidebar;stockproduct:stockproduct"
+                [queryParams]="{ name: pantry.name, id: pantry.pantryId }"
                 >{{ pantry.name }}</a
               >
             </tr>
           </table>
         </div>
       </div>
-      <div class="col-2 component-right">
+      <div class="col-2 action-bar d-flex align-items-start">
         <button
-          class="btn btn-primary sidebar-fixed"
+          class="btn btn-primary position-fixed"
           *ngIf="unAuthorizedUser"
           (click)="onOpenDialog()"
         >
