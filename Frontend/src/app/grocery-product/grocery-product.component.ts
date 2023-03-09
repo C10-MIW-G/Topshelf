@@ -19,7 +19,6 @@ export class GroceryProductComponent implements OnInit {
   public groceryProductDelete?: GroceryProduct;
   public namePantry!: string;
   public pantryId!: number;
-  public GroceryProductId: number | undefined;
 
   constructor(
     private groceryProductService: GroceryProductService,
@@ -58,13 +57,6 @@ export class GroceryProductComponent implements OnInit {
     return this.pantryId;
   }
 
-  getGroceryProduct(groceryProductId: number) {
-    this.groceryProductService.getGroceryProduct(groceryProductId).subscribe(
-      (groceryProduct: GroceryProduct) =>
-        this.showGroceryProductInForm(groceryProduct)
-    );
-  }
-
   public getPantryName() {
     const name = this.route.snapshot.queryParamMap.get('name')!;
     this.namePantry = name;
@@ -92,14 +84,6 @@ export class GroceryProductComponent implements OnInit {
         alert(error.message);
       }
     );
-  }
-
-  public showGroceryProductInForm(groceryProduct: GroceryProduct) {
-    this.addGroceryProductForm.patchValue({
-      name: groceryProduct.name,
-      amount: groceryProduct.amount,
-      groceryProductId: groceryProduct.groceryProductId
-    });
   }
 
   openEditModal(groceryProductEdit: GroceryProduct): void {
