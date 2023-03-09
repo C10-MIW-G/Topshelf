@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ActionBarUserComponent } from './action-bar-user.component';
 
 describe('ActionBarUserComponent', () => {
@@ -8,9 +7,8 @@ describe('ActionBarUserComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ActionBarUserComponent ]
-    })
-    .compileComponents();
+      declarations: [ActionBarUserComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ActionBarUserComponent);
     component = fixture.componentInstance;
