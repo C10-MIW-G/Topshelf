@@ -14,7 +14,9 @@ import java.util.List;
  */
 
 @Entity
-@Getter @Setter @NoArgsConstructor
+@Getter
+@Setter
+@NoArgsConstructor
 public class Pantry {
 
     @Id
@@ -23,17 +25,16 @@ public class Pantry {
 
     private String name;
 
-    @JsonManagedReference
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "stockProductId")
     private List<StockProduct> stock;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "basicStockProductId")
     private List<BasicStockProduct> basicStock;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     private List<User> users;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     private List<User> admins;
 
 }

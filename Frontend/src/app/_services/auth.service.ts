@@ -2,7 +2,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { ChangePasswordRequest } from '../change-password/change-password';
 
 const AUTH_API = environment.authUrl;
 const API_URL = environment.apiBaseUrl;
@@ -59,7 +58,7 @@ export class AuthService {
   }
 
   resetPassword(
-    user: { email: string; },
+    user: { email: string },
     captchaResponse: string | undefined
   ): Observable<any> {
     return this.http.post(

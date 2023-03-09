@@ -4,6 +4,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { BasicStockProduct } from './basic-stock-product';
 import { BasicStockProductService } from './basic-stock-product.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UserComponent } from '../user/user.component';
+import { User } from '../user/user';
+import { AuthService } from '../_services/auth.service';
 
 @Component({
   selector: 'app-basic-stock-product',
@@ -17,33 +20,36 @@ export class BasicStockProductComponent implements OnInit {
   public namePantry!: string;
   public pantryId!: number;
   public BasicStockProductId: number | undefined;
+  public userComponent?: UserComponent;
+  public authService?: AuthService;
+  public isAdmin: boolean = false;
+  public admin!: any;
+  public admins: User[] = [];
+  public errorMessage: string = '';
 
   addBasicStockProductForm = new FormGroup({
     name: new FormControl(
       '',
       Validators.compose([Validators.required, Validators.pattern(/[\S]/g)])
     ),
-    basicStockProductId: new FormControl(
-      0,
-    ),
+    basicStockProductId: new FormControl(0),
     amount: new FormControl(
       0,
-        Validators.compose([
+      Validators.compose([
         Validators.required,
         Validators.min(1),
         Validators.max(2147483647),
       ])
     ),
-
   });
 
   constructor(
     private basicStockProductService: BasicStockProductService,
-    private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.getPantryName();
     this.getBasicStockProductsByPantryId();
   }
@@ -56,9 +62,12 @@ export class BasicStockProductComponent implements OnInit {
   }
 
   getBasicStockProduct(basicStockProductId: number) {
-    this.basicStockProductService.getBasicStockProduct(basicStockProductId).subscribe(
-      (basicStockProduct: BasicStockProduct) => this.showBasicStockProductInForm(basicStockProduct)
-  )}
+    this.basicStockProductService
+      .getBasicStockProduct(basicStockProductId)
+      .subscribe((basicStockProduct: BasicStockProduct) =>
+        this.showBasicStockProductInForm(basicStockProduct)
+      );
+  }
 
   public getPantryName() {
     const id = this.route.snapshot.queryParamMap.get('name')!;
@@ -71,6 +80,7 @@ export class BasicStockProductComponent implements OnInit {
     this.basicStockProductService.getBasicStockProductsByPantry(id).subscribe(
       (response: BasicStockProduct[]) => {
         this.pantryWithBasicStockProducts = response;
+        console.log(response);
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
@@ -82,7 +92,8 @@ export class BasicStockProductComponent implements OnInit {
     const nameValue = this.addBasicStockProductForm.value.name;
     const amountValue = this.addBasicStockProductForm.value.amount;
     const id = Number(this.route.snapshot.paramMap.get('pantryId'));
-    const basicStockProductId = this.addBasicStockProductForm.value.basicStockProductId;
+    const basicStockProductId =
+      this.addBasicStockProductForm.value.basicStockProductId;
 
     if (this.isEmptyOrSpaces(nameValue) && amountValue! > 0) {
       this.basicStockProductService
@@ -103,11 +114,11 @@ export class BasicStockProductComponent implements OnInit {
   }
 
   public showBasicStockProductInForm(basicStockProduct: BasicStockProduct) {
-     this.addBasicStockProductForm.patchValue({
+    this.addBasicStockProductForm.patchValue({
       basicStockProductId: basicStockProduct.basicStockProductId,
       name: basicStockProduct.name,
-      amount: basicStockProduct.amount
-    })
+      amount: basicStockProduct.amount,
+    });
   }
 
   public isEmptyOrSpaces(str: string | null | undefined) {

@@ -16,7 +16,27 @@ export class UserService {
   }
 
   public getUsersByPantry(pantryId: number): Observable<User[]> {
-    return this.http.get<User[]>(`${this.apiServerUrl}/pantry/findusers/${pantryId}`);
+    return this.http.get<User[]>(
+      `${this.apiServerUrl}/pantry/findusers/${pantryId}`
+    );
   }
 
+  public getAdminsByPantry(pantryId: number): Observable<User[]> {
+    return this.http.get<User[]>(
+      `${this.apiServerUrl}/pantry/findadmins/${pantryId}`
+    );
+  }
+
+  public inviteUserToPantry(email: string, pantryId: number): Observable<any> {
+    return this.http.post(`${this.apiServerUrl}/user/inviteuser/${pantryId}`, {
+      email,
+      pantryId,
+    });
+  }
+
+  public checkIfUserIsPantryAdmin(pantryId: number): Observable<User> {
+    return this.http.get<User>(
+      `${this.apiServerUrl}/user/checkuser/${pantryId}`
+    );
+  }
 }

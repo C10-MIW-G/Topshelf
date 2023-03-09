@@ -11,15 +11,18 @@
         <a
           [routerLink]="['/pantry/', pantryId, 'users']"
           [queryParams]="{ name: namePantry }"
+          *ngIf="isAdmin"
         >
           Go to user overview</a
         >
       </div>
       <div class="col-8 component-center">
         <h4>{{ namePantry }}</h4>
-        <br>
-        <tr>Products defined in your basic stock:</tr>
-        <br>
+        <br />
+        <tr>
+          Products defined in your basic stock:
+        </tr>
+        <br />
         <table class="table table-striped">
           <tr>
             <th>Product</th>
@@ -27,13 +30,15 @@
             <th></th>
           </tr>
           <tr *ngFor="let basicStockProduct of pantryWithBasicStockProducts">
-            <input type="hidden" name="basicStockProductId">
+            <input type="hidden" name="basicStockProductId" />
             <td>{{ basicStockProduct.name }}</td>
             <td class="text-end">{{ basicStockProduct.amount }}</td>
             <td class="text-center">
-              <a class="" (click)="showBasicStockProductInForm(basicStockProduct)"
-              ><span><i class="fa fa-edit"></i></span
-                ></a>
+              <a
+                class=""
+                (click)="showBasicStockProductInForm(basicStockProduct)"
+                ><span><i class="fa fa-edit"></i></span
+              ></a>
             </td>
           </tr>
         </table>
@@ -71,7 +76,14 @@
               >Product amount is invalid</span
             >
             <br />
-            <button type="submit" class="btn btn-primary" (click)="save()" [disabled]="addBasicStockProductForm.invalid">Save</button>
+            <button
+              type="submit"
+              class="btn btn-primary"
+              (click)="save()"
+              [disabled]="addBasicStockProductForm.invalid"
+            >
+              Save
+            </button>
             <br />
           </div>
         </form>

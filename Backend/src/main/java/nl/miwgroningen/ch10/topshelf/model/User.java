@@ -39,8 +39,11 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    @ManyToMany
-    List<Pantry> pantries;
+    @ManyToMany(mappedBy = "users", fetch = FetchType.LAZY)
+    List<Pantry> userPantries;
+
+    @ManyToMany(mappedBy = "admins", fetch = FetchType.LAZY)
+    List<Pantry> adminPantries;
 
     public User(Long id, String username, String email, String password, Role role) {
         this.id = id;
@@ -53,16 +56,6 @@ public class User implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(role.name()));
-    }
-
-    @Override
-    public String getPassword() {
-        return password;
-    }
-
-    @Override
-    public String getUsername() {
-        return username;
     }
 
     @Override

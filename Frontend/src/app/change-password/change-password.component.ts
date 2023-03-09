@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { sequenceEqual } from 'rxjs';
 import { AuthService } from '../_services/auth.service';
 
 @Component({
@@ -12,7 +11,6 @@ import { AuthService } from '../_services/auth.service';
 })
 export class ChangePasswordComponent implements OnInit {
   changePasswordRequest: any = [];
-
 
   constructor(
     private authService: AuthService,
@@ -98,5 +96,4 @@ export class ChangePasswordComponent implements OnInit {
         },
       });
   }
-
 }

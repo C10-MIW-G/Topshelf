@@ -56,8 +56,15 @@ public class PantryController {
 
     @GetMapping("/findusers/{pantryId}")
     public ResponseEntity<List<PantryUsersDTO>> getUsersByPantry(@PathVariable("pantryId") Long pantryId) {
-        List<PantryUsersDTO> users = userService.findUsersByPantryId(pantryId);
+        List<PantryUsersDTO> users = userService.checkIfUserIsAdmin(pantryId);
 
         return new ResponseEntity<>(users, HttpStatus.OK);
+    }
+
+    @GetMapping("/findadmins/{pantryId}")
+    public ResponseEntity<List<PantryUsersDTO>> getAdminsByPantry(@PathVariable("pantryId") Long pantryId) {
+        List<PantryUsersDTO> admins = userService.findAdminsByPantryId(pantryId);
+
+        return new ResponseEntity<>(admins, HttpStatus.OK);
     }
 }

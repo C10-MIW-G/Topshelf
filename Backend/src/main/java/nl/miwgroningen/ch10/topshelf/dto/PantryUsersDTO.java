@@ -1,9 +1,6 @@
 package nl.miwgroningen.ch10.topshelf.dto;
 
 import nl.miwgroningen.ch10.topshelf.model.Role;
-import nl.miwgroningen.ch10.topshelf.model.User;
-
-import java.util.function.Function;
 
 /**
  * @author Jack Wieringa <j.w.wieringa@st.hanze.nl>
@@ -14,7 +11,8 @@ import java.util.function.Function;
 public record PantryUsersDTO(
         Long userId,
         String username,
+        String email,
         Role role
-){
+) {
 }
 

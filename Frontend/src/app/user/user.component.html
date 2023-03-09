@@ -28,15 +28,55 @@
             <th>User</th>
             <th>User role</th>
           </tr>
+          <tr *ngFor="let user of admins">
+            <td>{{ user.username }}</td>
+            <td>Pantry admin</td>
+          </tr>
           <tr *ngFor="let user of users">
             <td>{{ user.username }}</td>
+            <td>User</td>
           </tr>
         </table>
-        <div *ngIf="users.length === 0">
+        <div *ngIf="users.length == 0 && admins.length == 0">
           <p>There are no users using your pantry.</p>
         </div>
       </div>
-      <div class="col-2 component-right"></div>
+      <div class="col-2 component-right">
+        <div [hidden]="!isAdmin">
+          <h4>Invite user</h4>
+          <form [formGroup]="inviteUserToPantryForm">
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input
+                type="email"
+                class="form-control"
+                formControlName="email"
+                placeholder="email"
+                isSuccessful
+              />
+            </div>
+            <div
+              class="alert-danger"
+              *ngIf="email?.touched && email?.invalid && !isSuccessful"
+            >
+              Email must be a valid email adress
+            </div>
+            <div
+              class="alert-danger"
+              *ngIf="email?.touched && email?.valid && !isSuccessful"
+              [innerHTML]="errorMessage"
+            ></div>
+            <button
+              class="btn btn-primary btn-block"
+              [disabled]="inviteUserToPantryForm.invalid"
+              (click)="saveUserToPantry()"
+            >
+              Invite user
+            </button>
+          </form>
+          <div class="loader loader--full-height" *ngIf="isLoading"></div>
+        </div>
+      </div>
     </div>
   </div>
 </body>

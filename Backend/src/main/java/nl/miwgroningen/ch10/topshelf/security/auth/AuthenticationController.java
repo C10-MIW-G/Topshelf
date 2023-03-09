@@ -50,13 +50,13 @@ public class AuthenticationController {
         User user = userService.findUserByEmail(request.getEmail());
 
         if (captchaService.verify(request.getCaptchaResponse()) &&
-                userService.checkUserEmail(user, request.getEmail())) {
+                userService.checkUserEmail(request.getEmail())) {
             userService.resetPassword(user);
 
             return new ResponseEntity<>(HttpStatus.OK);
         } else if (!captchaService.verify(request.getCaptchaResponse())) {
             throw new InvalidReCaptchaException("Invalid reCaptcha");
-        } else if (!userService.checkUserEmail(user, request.getEmail())) {
+        } else if (!userService.checkUserEmail(request.getEmail())) {
             throw new UserNotFoundException("User with email: " + request.getEmail() + " was not found");
         } else {
             return new ResponseEntity<>("Reset password failed. Please try again.", HttpStatus.OK);
