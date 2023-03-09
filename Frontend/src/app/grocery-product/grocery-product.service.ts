@@ -19,21 +19,20 @@ export class GroceryProductService {
   }
 
   getGroceryProduct(groceryProductId: number): Observable<GroceryProduct> {
-    return this.http.get<GroceryProduct>(`${this.apiServerUrl}/${groceryProductId}`)
+    return this.http.get<GroceryProduct>(
+      `${this.apiServerUrl}/${groceryProductId}`
+    );
   }
 
   public saveGroceryProductToPantryStock(
     groceryProductEdit: GroceryProduct
   ): Observable<any> {
-    return this.http.post(
-      `${this.apiServerUrl}/groceryproduct/add`,
-      {
-        groceryProductId: groceryProductEdit.groceryProductId,
-        pantryId: groceryProductEdit.pantryId,
-        name: groceryProductEdit.name,
-        amount: groceryProductEdit.amount
-      }
-    );
+    return this.http.post(`${this.apiServerUrl}/groceryproduct/add`, {
+      groceryProductId: groceryProductEdit.groceryProductId,
+      pantryId: groceryProductEdit.pantryId,
+      name: groceryProductEdit.name,
+      amount: groceryProductEdit.amount,
+    });
   }
 
   public deleteGroceryProductFromPantry(

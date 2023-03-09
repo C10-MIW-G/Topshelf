@@ -7,6 +7,7 @@
             [formGroup]="inviteUserToPantryForm"
             class="sidebar-fixed"
             (keydown.enter)="$event.preventDefault()"
+            [hidden]="isLoading"
           >
             <div class="form-group col-12">
               <h4>Invite user</h4>

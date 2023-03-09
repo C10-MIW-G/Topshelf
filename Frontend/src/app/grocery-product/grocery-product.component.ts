@@ -103,20 +103,22 @@ export class GroceryProductComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((data) => {
       if (data.name !== null && data.isSubmitted) {
-        this.groceryProductService.saveGroceryProductToPantryStock({
-          name: data.groceryProductName,
-          amount: data.amount,
-          pantryId: this.getPantryId(),
-          groceryProductId: groceryProductEdit.groceryProductId,
-        }).subscribe({
-          complete: () => {
-            window.location.reload();
-          },
-          error: () => {
-            console.log(data.name);
-            alert('Update failed');
-          },
-        });
+        this.groceryProductService
+          .saveGroceryProductToPantryStock({
+            name: data.groceryProductName,
+            amount: data.amount,
+            pantryId: this.getPantryId(),
+            groceryProductId: groceryProductEdit.groceryProductId,
+          })
+          .subscribe({
+            complete: () => {
+              window.location.reload();
+            },
+            error: () => {
+              console.log(data.name);
+              alert('Update failed');
+            },
+          });
       }
     });
   }

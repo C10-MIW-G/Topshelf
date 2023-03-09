@@ -1,4 +1,5 @@
 package nl.miwgroningen.ch10.topshelf.controller;
+
 import lombok.RequiredArgsConstructor;
 import nl.miwgroningen.ch10.topshelf.dto.GroceryProductDTO;
 import nl.miwgroningen.ch10.topshelf.model.Pantry;
@@ -7,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 /**
@@ -24,7 +26,7 @@ public class GroceryProductController {
     private final GroceryProductService groceryProductService;
 
     @GetMapping("/{pantryId}")
-    public ResponseEntity<List<GroceryProductDTO>> getGroceryProductsByPantryId (
+    public ResponseEntity<List<GroceryProductDTO>> getGroceryProductsByPantryId(
             @PathVariable("pantryId") Pantry pantry) {
         List<GroceryProductDTO> groceryProductDTO = groceryProductService.findGroceryProductByPantry(pantry);
         return new ResponseEntity<>(groceryProductDTO, HttpStatus.OK);
@@ -33,7 +35,7 @@ public class GroceryProductController {
     @PostMapping("/add")
     public ResponseEntity<String> saveGroceryProductToPantry(
             @RequestBody GroceryProductDTO groceryProductToBeSaved, BindingResult result) {
-        if(!result.hasErrors()) {
+        if (!result.hasErrors()) {
             groceryProductService.save(groceryProductToBeSaved);
         }
         return new ResponseEntity<>(HttpStatus.CREATED);
@@ -41,7 +43,7 @@ public class GroceryProductController {
 
     @DeleteMapping("/delete/{groceryProductId}")
     public ResponseEntity<String> deleteGroceryProduct(
-            @PathVariable("groceryProductId") Long groceryProductId){
+            @PathVariable("groceryProductId") Long groceryProductId) {
         groceryProductService.deleteGroceryProduct(groceryProductId);
         return new ResponseEntity<>(HttpStatus.OK);
     }

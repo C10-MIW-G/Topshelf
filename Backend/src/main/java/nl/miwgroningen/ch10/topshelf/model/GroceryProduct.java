@@ -13,7 +13,10 @@ import lombok.Setter;
  */
 
 @Entity
-@Getter @Setter @NoArgsConstructor @AllArgsConstructor
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class GroceryProduct {
 
     @Id
