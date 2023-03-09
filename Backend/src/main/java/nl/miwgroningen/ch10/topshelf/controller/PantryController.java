@@ -5,6 +5,7 @@ import nl.miwgroningen.ch10.topshelf.dto.PantryUsersDTO;
 import nl.miwgroningen.ch10.topshelf.model.Pantry;
 import nl.miwgroningen.ch10.topshelf.security.config.JwtService;
 import nl.miwgroningen.ch10.topshelf.service.PantryService;
+import nl.miwgroningen.ch10.topshelf.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +24,7 @@ public class PantryController {
 
     private final JwtService jwtService;
     private final PantryService pantryService;
+    private final UserService userService;
 
     @GetMapping("/all")
     public ResponseEntity<List<PantryDTO>> getAllPantries() {

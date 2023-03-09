@@ -15,6 +15,7 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { HomePageComponent } from './home-page/home-page.component';
 import { UserComponent } from './user/user.component';
 import { GroceryProductComponent } from './grocery-product/grocery-product.component';
+import { ActionBarUserComponent } from './action-bar-user/action-bar-user.component';
 
 const appRoute: Routes = [
   { path: 'home', component: HomePageComponent },
@@ -23,7 +24,6 @@ const appRoute: Routes = [
   { path: 'changepassword', component: ChangePasswordComponent},
   { path: 'resetpassword', component: ResetPasswordComponent},
   { path: 'pantry', component: PantryComponent },
-  { path: 'pantry/:pantryId/users', component: UserComponent, pathMatch: 'full' },
   {
     path: 'pantry',
     component: PantryComponent,
@@ -75,6 +75,16 @@ const appRoute: Routes = [
       {
         path: 'groceries',
         component: ActionBarGroceryProductComponent,
+        outlet: 'action',
+      },
+      {
+        path: 'users',
+        component: UserComponent,
+        outlet: 'stockproduct',
+      },
+      {
+        path: 'users',
+        component: ActionBarUserComponent,
         outlet: 'action',
       },
     ],

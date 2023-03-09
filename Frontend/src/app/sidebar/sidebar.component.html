@@ -54,6 +54,24 @@
                 <span>Grocery list</span>
               </a>
             </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                [routerLink]="[
+                  '/pantry',
+                  pantryId,
+                  {
+                    outlets: {
+                      stockproduct: ['users'],
+                      action: ['users']
+                    }
+                  }
+                ]"
+                [queryParams]="{ name: pantryName }"
+              >
+                <span>Users</span>
+              </a>
+            </li>
           </ul>
         </div>
       </nav>
