@@ -8,21 +8,18 @@
         </h4>
         <div class="row">
           <div
-            class="col-4 justify-content-center d-flex"
+            class="col-4 justify-content-center d-flex flex-row"
             *ngFor="let pantry of pantries"
           >
-            <div
+            <a
               class="h-75 w-75 d-flex justify-content-center align-items-center pantry-card"
+              routerLink="/pantry/{{
+                pantry.pantryId
+              }};sidebar:sidebar;stockproduct:stockproduct"
+              [queryParams]="{ name: pantry.name, id: pantry.pantryId }"
             >
-              <a
-                class="d-flex justify-content-center col-12"
-                routerLink="/pantry/{{
-                  pantry.pantryId
-                }};sidebar:sidebar;stockproduct:stockproduct"
-                [queryParams]="{ name: pantry.name, id: pantry.pantryId }"
-                >{{ pantry.name }}
-              </a>
-            </div>
+              {{ pantry.name }}
+            </a>
           </div>
         </div>
         <div *ngIf="pantries!.length === 0">
