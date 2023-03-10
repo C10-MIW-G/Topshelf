@@ -32,7 +32,6 @@ export class UserComponent implements OnInit {
     this.userService.getUsersByPantry(pantryId).subscribe(
       (response: User[]) => {
         this.users = response;
-        console.log(response);
       },
       (_error: HttpErrorResponse) => {
         this.errorMessage = 'Unable to retrieve the users';
@@ -44,7 +43,6 @@ export class UserComponent implements OnInit {
     this.userService.getAdminsByPantry(pantryId).subscribe(
       (response: User[]) => {
         this.admins = response;
-        console.log(response);
       },
       (_error: HttpErrorResponse) => {
         this.errorMessage = 'Unable to retrieve the admins';
