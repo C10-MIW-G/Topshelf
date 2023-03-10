@@ -9,10 +9,11 @@ import { AuthService } from '../_services/auth.service';
   styleUrls: ['./reset-password.component.css']
 })
 export class ResetPasswordComponent {
-  form: any = [];
-  captchaResponse: string | undefined;
-  isSuccessful = false;
-  isResetFailed = false;
+  public form: any = [];
+  public captchaResponse: string | undefined;
+  public isSuccessful = false;
+  public isResetFailed = false;
+  public isLoading = false;
   errorMessage = '';
 
   constructor(
@@ -27,12 +28,14 @@ export class ResetPasswordComponent {
 
   onSubmit(): void {
     //this.form contains the data of the user. this.captcharesponse contains the SiteKey.
+    this.isLoading = true;
     this.authService.resetPassword(this.form, this.captchaResponse).subscribe(
       (response) => {
         // when registration is succesfull:
         console.log(response);
         this.isSuccessful = true;
         this.isResetFailed = false;
+        this.isLoading = false;
         this.router.navigate(['/login']);
         this.toastr.success('Check your mail', 'Password reset', {
           positionClass: 'toast-top-center',
@@ -41,6 +44,7 @@ export class ResetPasswordComponent {
       // when password reset isnt succesfull:
       (error) => {
         this.isResetFailed = true;
+        this.isLoading = false;
         // password reset failed for not using the recaptcha checkbox
         if (this.captchaResponse == undefined) {
           this.errorMessage = 'Please check reCaptcha';
