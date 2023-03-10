@@ -50,7 +50,6 @@ a:link, a:visited, a:active{
 .row {
   height: 100vh;
 }
-
 .component-left, .component-right {
   padding-top: 36px;
   text-align: left;
@@ -78,6 +77,8 @@ span i:hover {
   align-items: center;
   justify-content: center;
 }
+
+
 
 h5 {
   text-align: center;
@@ -161,7 +162,7 @@ button.btn-color, .btn-color:hover {
   margin-left: 5px
 }
 
-.modal-button.btn-color, 
+.modal-button.btn-color,
 .modal-button.btn-color:hover  {
   background-color: gray;
   color: white;

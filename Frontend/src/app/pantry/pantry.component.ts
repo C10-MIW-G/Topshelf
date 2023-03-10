@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Pantry } from './pantry';
 import { PantryService } from './pantry.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { ModaladdpantryComponent } from '../modaladdpantry/modaladdpantry.component';
+import { ModalAddPantryComponent } from '../modal-add-pantry/modal-add-pantry.component';
 
 @Component({
   selector: 'app-pantry',
@@ -60,7 +60,7 @@ export class PantryComponent implements OnInit {
     dialogConfig.height = '40%';
     dialogConfig.width = '60%';
     const dialogRef = this.matDialog.open(
-      ModaladdpantryComponent,
+      ModalAddPantryComponent,
       dialogConfig
     );
 

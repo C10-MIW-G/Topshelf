@@ -22,7 +22,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { NavComponent } from './nav/nav.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import { ModaladdpantryComponent } from './modaladdpantry/modaladdpantry.component';
+import { ModalAddPantryComponent } from './modal-add-pantry/modal-add-pantry.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { environment } from 'src/environments/environment';
@@ -42,6 +42,7 @@ import { ModalAddGroceryProductComponent } from './modal-add-grocery-product/mod
 import { ModalAddBasicStockComponent } from './modal-add-basic-stock/modal-add-basic-stock.component'
 import { UserComponent } from './user/user.component';
 import { ActionBarUserComponent } from './action-bar-user/action-bar-user.component';
+import { ModalUserComponent } from './modal-user/modal-user.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,7 @@ import { ActionBarUserComponent } from './action-bar-user/action-bar-user.compon
     StockProductComponent,
     NavComponent,
     RegisterComponent,
-    ModaladdpantryComponent,
+    ModalAddPantryComponent,
     BasicStockProductComponent,
     ChangePasswordComponent,
     SidebarComponent,
@@ -66,7 +67,8 @@ import { ActionBarUserComponent } from './action-bar-user/action-bar-user.compon
     ModalAddBasicStockComponent,
     HomePageComponent,
     UserComponent,
-    ActionBarUserComponent
+    ActionBarUserComponent,
+    ModalUserComponent
   ],
   imports: [
     BrowserModule,
@@ -88,7 +90,7 @@ import { ActionBarUserComponent } from './action-bar-user/action-bar-user.compon
     MatToolbarModule,
   ],
   exports: [MatFormFieldModule],
-  entryComponents: [ModaladdpantryComponent],
+  entryComponents: [ModalAddPantryComponent],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     {
