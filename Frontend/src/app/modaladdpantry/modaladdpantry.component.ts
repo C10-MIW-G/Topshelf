@@ -30,7 +30,10 @@ export class ModaladdpantryComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.fb.group({
-      pantryName: new FormControl('', [Validators.required]),
+      pantryName: new FormControl(
+        '',
+        Validators.compose([Validators.required, Validators.pattern(/[\S]/g)])
+      ),
       isSubmitted: this.isSubmitted,
     });
   }

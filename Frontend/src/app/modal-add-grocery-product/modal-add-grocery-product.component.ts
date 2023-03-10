@@ -32,7 +32,10 @@ export class ModalAddGroceryProductComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      groceryProductName: new FormControl('', [Validators.required]),
+      groceryProductName: new FormControl(
+        '',
+        Validators.compose([Validators.required, Validators.pattern(/[\S]/g)])
+      ),
       amount: new FormControl(
         '',
         Validators.compose([
