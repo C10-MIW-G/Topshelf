@@ -10,10 +10,10 @@ body {
 footer {
   background-color: rgb(65, 113, 156);
   color: white;
-  position: fixed;
-  bottom: 0;
   text-align: center;
   width: 100%;
+  position: absolute;
+  bottom: 0;
 }
 
 li {
@@ -50,7 +50,7 @@ a:link, a:visited, a:active{
 .row {
   height: 100vh;
 }
-.component-left, .component-right, .sidebar {
+.component-left, .component-right {
   padding-top: 36px;
   text-align: left;
   background-color:
@@ -61,8 +61,9 @@ p {
   text-align: left;
 }
 
-.table {
-  table-layout: fixed;
+.sidebar {
+  background-color:
+  rgb(232, 241, 248);
 }
 
 span i:hover {
@@ -77,10 +78,7 @@ span i:hover {
   justify-content: center;
 }
 
-.component-center {
-  padding-top: 36px;
-  padding-bottom: 100px;
-}
+
 
 h5 {
   text-align: center;
@@ -88,7 +86,7 @@ h5 {
 
 h4 {
   padding: 10px;
-  text-align: center;
+  text-align: left;
 }
 
 .card {
