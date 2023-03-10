@@ -4,7 +4,6 @@
       <div class="col-12 component-center">
         <h4>{{ namePantry }}</h4>
         <br />
-        <br />
         <tr>
           Products defined in your basic stock:
         </tr>
@@ -19,9 +18,9 @@
             <input type="hidden" name="basicStockProductId" />
             <td>{{ basicStockProduct.name }}</td>
             <td class="text-end">{{ basicStockProduct.amount }}</td>
-          <td class="text-center">
-            <a (click)="onOpenDialog(basicStockProduct)"
-            ><span><i class="fa fa-edit"></i></span
+            <td class="text-center">
+              <a (click)="editDialog(basicStockProduct)"
+                ><span><i class="fa fa-edit"></i></span
               ></a>
             </td>
           </tr>

@@ -4,8 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { BasicStockProduct } from './basic-stock-product';
 import { BasicStockProductService } from './basic-stock-product.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { ModaladdbasicstockComponent } from '../modaladdbasicstock/modaladdbasicstock.component';
-import { ToastrService } from 'ngx-toastr';
+import { ModalAddBasicStockComponent } from '../modal-add-basic-stock/modal-add-basic-stock.component';
 
 @Component({
   selector: 'app-basic-stock-product',
@@ -18,15 +17,14 @@ export class BasicStockProductComponent implements OnInit {
   public namePantry!: string;
   public pantryId!: number;
   public basicStockProductId?: number;
-  public modaladdbasicstock!: ModaladdbasicstockComponent;
-  public openNewModal?: boolean;
+  public modalAddBasicStock!: ModalAddBasicStockComponent;
+  public isSubmitted?: boolean;
 
   constructor(
     private basicStockProductService: BasicStockProductService,
     private router: Router,
     private route: ActivatedRoute,
-    private matDialog: MatDialog,
-    private toastr: ToastrService
+    private matDialog: MatDialog
   ) {}
 
   ngOnInit() {
@@ -42,7 +40,7 @@ export class BasicStockProductComponent implements OnInit {
     });
     return this.pantryId;
   }
-  
+
   public getPantryName() {
     this.route.queryParams.subscribe((params) => {
       this.namePantry = params['name'];
@@ -62,7 +60,7 @@ export class BasicStockProductComponent implements OnInit {
       );
   }
 
-  onOpenDialog(basicStockProduct?: BasicStockProduct) {
+  editDialog(basicStockProduct: BasicStockProduct) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.data = {
@@ -71,7 +69,7 @@ export class BasicStockProductComponent implements OnInit {
       isSubmitted: true,
     };
     const dialogRef = this.matDialog.open(
-      ModaladdbasicstockComponent,
+      ModalAddBasicStockComponent,
       dialogConfig
     );
     dialogRef.afterClosed().subscribe((data) => {
@@ -81,35 +79,19 @@ export class BasicStockProductComponent implements OnInit {
 
   private saveBasicStockProduct(
     data: any,
-    basicStockProduct: BasicStockProduct | undefined
+    basicStockProduct: BasicStockProduct
   ) {
     if (data.basicStockProductName !== null && data.isSubmitted) {
-      if (basicStockProduct?.basicStockProductId !== null) {
-        this.basicStockProductId = basicStockProduct?.basicStockProductId;
-      } else {
-        this.basicStockProductId = data.basicStockProductId;
-      }
       this.basicStockProductService
         .saveBasicStockProductToPantryStock({
           name: data.basicStockProductName,
           amount: data.amount,
           pantryId: this.getPantryId(),
-          basicStockProductId: this.basicStockProductId,
+          basicStockProductId: basicStockProduct.basicStockProductId,
         })
         .subscribe({
           complete: () => {
-            if (data.openNewModal == true) {
-              this.onOpenDialog();
-              this.toastr.success('Success!', 'Product added!', {
-                positionClass: 'toast-top-center',
-              });
-              this.openNewModal = true;
-            } else {
-              window.location.reload();
-            }
-          },
-          error: () => {
-            alert('Failed adding product');
+            window.location.reload();
           },
         });
     } else {

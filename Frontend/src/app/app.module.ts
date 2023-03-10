@@ -28,7 +28,6 @@ import { MatInputModule } from '@angular/material/input';
 import { environment } from 'src/environments/environment';
 import { BasicStockProductComponent } from './basic-stock-product/basic-stock-product.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
-import { ModaladdbasicstockComponent } from './modaladdbasicstock/modaladdbasicstock.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { PantrydetailComponent } from './pantrydetail/pantrydetail.component';
@@ -40,6 +39,7 @@ import { ActionBarStockProductComponent } from './action-bar-stock-product/actio
 import { ActionBarBasicStockProductComponent } from './action-bar-basic-stock-product/action-bar-basic-stock-product.component';
 import { ActionBarGroceryProductComponent } from './action-bar-grocery-product/action-bar-grocery-product.component';
 import { ModalAddGroceryProductComponent } from './modal-add-grocery-product/modal-add-grocery-product.component';
+import { ModalAddBasicStockComponent } from './modal-add-basic-stock/modal-add-basic-stock.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,7 +53,6 @@ import { ModalAddGroceryProductComponent } from './modal-add-grocery-product/mod
     ChangePasswordComponent,
     SidebarComponent,
     PantrydetailComponent,
-    ModaladdbasicstockComponent,
     ResetPasswordComponent,
     HomePageComponent,
     GroceryProductComponent,
@@ -61,6 +60,7 @@ import { ModalAddGroceryProductComponent } from './modal-add-grocery-product/mod
     ActionBarBasicStockProductComponent,
     ActionBarGroceryProductComponent,
     ModalAddGroceryProductComponent,
+    ModalAddBasicStockComponent,
   ],
   imports: [
     BrowserModule,

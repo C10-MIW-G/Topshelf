@@ -1,21 +1,22 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
   Validators,
   FormControl,
 } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef, MatDialogConfig } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { BasicStockProductComponent } from '../basic-stock-product/basic-stock-product.component';
 import { BasicStockProduct } from '../basic-stock-product/basic-stock-product';
 import { BasicStockProductService } from '../basic-stock-product/basic-stock-product.service';
 
+
 @Component({
-  selector: 'app-modaladdbasicstock',
-  templateUrl: './modaladdbasicstock.component.html',
-  styleUrls: ['./modaladdbasicstock.component.css'],
+  selector: 'app-modal-add-basic-stock',
+  templateUrl: './modal-add-basic-stock.component.html',
+  styleUrls: ['./modal-add-basic-stock.component.css']
 })
-export class ModaladdbasicstockComponent {
+export class ModalAddBasicStockComponent implements OnInit {
   form!: FormGroup;
   basicStockProductName: string;
   amount: number;
@@ -25,30 +26,36 @@ export class ModaladdbasicstockComponent {
   openNewModal!: boolean;
   basicStockProductsToBeAdded: BasicStockProduct[] = [];
   basicStockProcuctService!: BasicStockProductService;
-  public basicStockProductComponent!: BasicStockProductComponent;  
+  public basicStockProductComponent!: BasicStockProductComponent;
 
   constructor(
     private fb: FormBuilder,
-    private dialogRef: MatDialogRef<ModaladdbasicstockComponent>,
+    private dialogRef: MatDialogRef<ModalAddBasicStockComponent>,
     @Inject(MAT_DIALOG_DATA) data: any
   ) {
     this.basicStockProductName = data.name;
     this.amount = data.amount;
     this.isSubmitted = data.isSubmitted;
     this.form = this.fb.group({
-      basicStockProductName: new FormControl(this.basicStockProductName, [Validators.required]),
+      basicStockProductName: new FormControl(this.basicStockProductName, [
+        Validators.required,
+      ]),
       amount: new FormControl(
         this.amount,
         Validators.compose([
           Validators.required,
-          Validators.pattern("^[0-9]*$"),
+          Validators.pattern('^[0-9]*$'),
           Validators.min(1),
           Validators.max(2147483647),
         ])
       ),
       isSubmitted: this.isSubmitted,
-      openNewModal: new FormControl(false)
-    })
+      openNewModal: new FormControl(true),
+    });
+  }
+
+  ngOnInit(): void {
+    this.dialogRef.updateSize('25%', '48%');
   }
 
   close() {
@@ -57,10 +64,11 @@ export class ModaladdbasicstockComponent {
   }
 
   save() {
-    this.dialogRef.close(this.form.value);   
+    this.dialogRef.close(this.form.value);
   }
-  
+
   public myError = (controlName: string, errorName: string) => {
     return this.form.controls[controlName].hasError(errorName);
   };
 }
+
