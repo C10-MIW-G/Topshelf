@@ -8,10 +8,6 @@
       </div>
     </mat-toolbar>
     <div class="container-fluid">
-      <!-- <h4>
-          {{ basicStockProductName == null ? "Add a product" : "Edit product" }}
-        </h4> -->
-      <!-- <mat-dialog-content> -->
       <div>
         <div>
           <mat-form-field>
@@ -45,28 +41,25 @@
           </mat-form-field>
         </div>
       </div>
-
-      <!-- <div class="position-absolute bottom-0"> -->
       <div class="d-flex justify-content-between">
         <div>
           <span
             class="button-add-another"
             *ngIf="basicStockProductName == null"
           >
-              <mat-checkbox
-                class="addAnother"
-                formControlName="openNewModal"
-                checked="true"
-                unchecked="false"
-                color="primary"
-              >
-              </mat-checkbox
-              >Add another
+            <mat-checkbox
+              class="addAnother"
+              formControlName="openNewModal"
+              checked="true"
+              unchecked="false"
+              color="primary"
+            >
+            </mat-checkbox
+            >Add another
           </span>
         </div>
         <div>
-          <button class="btn btn-color" (click)="close()">Cancel</button>
-
+          <button class="btn btn-color-modal" (click)="close()">Cancel</button>
           <button
             class="btn btn-primary"
             onclick="openNewModal = false"
@@ -79,6 +72,4 @@
       </div>
     </div>
   </div>
-  <!-- </div> -->
-  <!-- </div> -->
 </body>

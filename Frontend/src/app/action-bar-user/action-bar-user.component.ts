@@ -1,8 +1,9 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { ModalUserComponent } from '../modal-user/modal-user.component';
 import { User } from '../user/user';
 import { UserService } from '../user/user.service';
 
@@ -12,59 +13,78 @@ import { UserService } from '../user/user.service';
   styleUrls: ['./action-bar-user.component.css'],
 })
 export class ActionBarUserComponent {
-  public isSuccessful = false;
-  public isLoading = false;
-  public errorMessage: string = '';
   public isAdmin = false;
   public user!: User;
   public namePantry!: string;
   public pantryId!: number;
-
-  inviteUserToPantryForm = new FormGroup({
-    email: new FormControl('', [
-      Validators.required,
-      Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
-    ]),
-  });
+  public emailUser!: string;
+  public openNewModal?: boolean;
+  public errorMessage?: string;
 
   constructor(
     private userService: UserService,
     private route: ActivatedRoute,
+    private matDialog: MatDialog,
     private toastr: ToastrService
   ) {}
 
-  ngOnInit() {
-    this.getPantryName();
-    this.getPantryId();
-    this.getCurrentPantryAdmin(this.pantryId);
+  onOpenDialog() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.data = {
+      isSubmitted: true,
+    };
+
+    const dialogRef = this.matDialog.open(ModalUserComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe((data) => {
+      this.saveUserToPantry(data);
+    });
   }
 
-  public saveUserToPantry(pantryId: number): any {
-    const emailUser = String(this.inviteUserToPantryForm.value.email);
-    this.isLoading = true;
-    
-    this.userService.inviteUserToPantry(emailUser, pantryId).subscribe(
-      () => {
-        console.log(emailUser);
-        this.isSuccessful = true;
-        this.inviteUserToPantryForm.reset();
-        this.isLoading = false;
-        window.location.reload;
-        this.toastr.success('User has been invited', 'Invitation success!', {
-          positionClass: 'toast-top-center',
+  public saveUserToPantry(data: any) {
+    if (data.isSubmitted) {
+      const emailUser = String(data.inviteUserToPantryForm);
+      this.userService
+        .inviteUserToPantry(
+          emailUser,
+          this.getPantryId())
+        .subscribe({
+          complete: () => {
+            if (data.openNewModal == true) {
+              this.onOpenDialog();
+              this.toastr.success('User invited!', 'Success!', {
+                positionClass: 'toast-top-center',
+              });
+              this.openNewModal = true;
+            } else {
+              window.location.reload();
+            }
+          },
+          error: (_error: HttpErrorResponse) => {
+            if (_error.status == 403) {
+              this.toastr.error(
+                'User is already part of the pantry',
+                'User invitation failed!',
+                {
+                  positionClass: 'toast-top-center',
+                }
+              );
+            }
+            if (_error.status == 400) {
+              this.toastr.error(
+                "User doesn't have an account",
+                'User invitation failed!',
+                {
+                  positionClass: 'toast-top-center',
+                }
+              );
+            }
+          },
         });
-      },
-      (_error: HttpErrorResponse) => {
-        this.isLoading = false;
-        this.isSuccessful = false;
-        if (_error.status == 403) {
-          this.errorMessage = 'User is already part of the pantry';
-        }
-        if (_error.status == 400) {
-          this.errorMessage = "User doesn't have an account";
-        }
-      }
-    );
+    } else {
+      window.location.reload();
+    }
   }
 
   public getCurrentPantryAdmin(pantryId: number): any {
@@ -98,9 +118,5 @@ export class ActionBarUserComponent {
       this.pantryId = parseInt(response.split(';')[0], 10);
     });
     return this.pantryId;
-  }
-
-  public get email() {
-    return this.inviteUserToPantryForm.get('email');
   }
 }
