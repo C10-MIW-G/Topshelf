@@ -7,9 +7,9 @@ package nl.miwgroningen.ch10.topshelf.dto;
  */
 
 public record GroceryProductDTO(
-    Long groceryProductId,
-    Long pantryId,
-    String name,
-    int amount
+        Long groceryProductId,
+        Long pantryId,
+        String name,
+        int amount
 ) {
 }

@@ -8,11 +8,11 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-modaladdpantry',
-  templateUrl: './modaladdpantry.component.html',
-  styleUrls: ['./modaladdpantry.component.css'],
+  selector: 'app-modal-add-pantry',
+  templateUrl: './modal-add-pantry.component.html',
+  styleUrls: ['./modal-add-pantry.component.css'],
 })
-export class ModaladdpantryComponent implements OnInit {
+export class ModalAddPantryComponent implements OnInit {
   form!: FormGroup;
   pantryName: string;
   hasFailed: boolean = false;
@@ -21,7 +21,7 @@ export class ModaladdpantryComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private dialogRef: MatDialogRef<ModaladdpantryComponent>,
+    private dialogRef: MatDialogRef<ModalAddPantryComponent>,
     @Inject(MAT_DIALOG_DATA) data: any
   ) {
     this.pantryName = data.name;
@@ -30,7 +30,10 @@ export class ModaladdpantryComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.fb.group({
-      pantryName: new FormControl('', [Validators.required]),
+      pantryName: new FormControl(
+        '',
+        Validators.compose([Validators.required, Validators.pattern(/[\S]/g)])
+      ),
       isSubmitted: this.isSubmitted,
     });
   }

@@ -11,7 +11,6 @@ import { ModalAddGroceryProductComponent } from './../modal-add-grocery-product/
 })
 export class ActionBarGroceryProductComponent {
   pantryId!: number;
-  basicStockProductService: any;
 
   constructor(
     private groceryProductService: GroceryProductService,
@@ -69,10 +68,6 @@ export class ActionBarGroceryProductComponent {
           },
         });
     }
-  }
-
-  public isEmptyOrSpaces(str: string | null | undefined) {
-    return str === null || str?.match(/[\S]/g) !== null;
   }
 
   public getPantryId(): number {

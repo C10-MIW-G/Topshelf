@@ -22,13 +22,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { NavComponent } from './nav/nav.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import { ModaladdpantryComponent } from './modaladdpantry/modaladdpantry.component';
+import { ModalAddPantryComponent } from './modal-add-pantry/modal-add-pantry.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { environment } from 'src/environments/environment';
 import { BasicStockProductComponent } from './basic-stock-product/basic-stock-product.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
-import { ModaladdbasicstockComponent } from './modaladdbasicstock/modaladdbasicstock.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { PantrydetailComponent } from './pantrydetail/pantrydetail.component';
@@ -40,8 +39,10 @@ import { ActionBarStockProductComponent } from './action-bar-stock-product/actio
 import { ActionBarBasicStockProductComponent } from './action-bar-basic-stock-product/action-bar-basic-stock-product.component';
 import { ActionBarGroceryProductComponent } from './action-bar-grocery-product/action-bar-grocery-product.component';
 import { ModalAddGroceryProductComponent } from './modal-add-grocery-product/modal-add-grocery-product.component';
+import { ModalAddBasicStockComponent } from './modal-add-basic-stock/modal-add-basic-stock.component'
 import { UserComponent } from './user/user.component';
 import { ActionBarUserComponent } from './action-bar-user/action-bar-user.component';
+import { ModalUserComponent } from './modal-user/modal-user.component';
 import { ModalStockProductComponent } from './modal-stock-product/modal-stock-product.component';
 
 @NgModule({
@@ -52,12 +53,11 @@ import { ModalStockProductComponent } from './modal-stock-product/modal-stock-pr
     StockProductComponent,
     NavComponent,
     RegisterComponent,
-    ModaladdpantryComponent,
+    ModalAddPantryComponent,
     BasicStockProductComponent,
     ChangePasswordComponent,
     SidebarComponent,
     PantrydetailComponent,
-    ModaladdbasicstockComponent,
     ResetPasswordComponent,
     HomePageComponent,
     GroceryProductComponent,
@@ -65,8 +65,11 @@ import { ModalStockProductComponent } from './modal-stock-product/modal-stock-pr
     ActionBarBasicStockProductComponent,
     ActionBarGroceryProductComponent,
     ModalAddGroceryProductComponent,
+    ModalAddBasicStockComponent,
     HomePageComponent,
     UserComponent,
+    ActionBarUserComponent,
+    ModalUserComponent
     ActionBarUserComponent,
     ModalStockProductComponent
   ],
@@ -90,7 +93,7 @@ import { ModalStockProductComponent } from './modal-stock-product/modal-stock-pr
     MatToolbarModule,
   ],
   exports: [MatFormFieldModule],
-  entryComponents: [ModaladdpantryComponent],
+  entryComponents: [ModalAddPantryComponent],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     {

@@ -8,20 +8,26 @@
           These users are part of this pantry:
         </tr>
         <br />
-        <table class="table table-striped">
-          <tr>
-            <th>User</th>
-            <th>User role</th>
-          </tr>
-          <tr *ngFor="let user of admins">
-            <td>{{ user.username }}</td>
-            <td>Pantry admin</td>
-          </tr>
-          <tr *ngFor="let user of users">
-            <td>{{ user.username }}</td>
-            <td>User</td>
-          </tr>
-        </table>
+        <div class="px-3">
+          <table class="table table-hover shadow">
+            <thead>
+              <tr>
+                <th>User</th>
+                <th>User role</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let user of admins">
+                <td>{{ user.username }}</td>
+                <td>Pantry admin</td>
+              </tr>
+              <tr *ngFor="let user of users">
+                <td>{{ user.username }}</td>
+                <td>User</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
         <div *ngIf="users.length == 0 && admins.length == 0">
           <p>There are no users using your pantry.</p>
         </div>

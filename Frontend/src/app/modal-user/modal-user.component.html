@@ -1,0 +1,41 @@
+<body>
+  <div [formGroup]="form" class="form">
+    <mat-toolbar class="header">
+      <div class="container-fluid">
+        <h4>Invite user</h4>
+      </div>
+    </mat-toolbar>
+    <div class="container-fluid">
+      <div>
+        <div>
+          <mat-form-field>
+            <input
+              name="email"
+              type="email"
+              matInput
+              formControlName="inviteUserToPantryForm"
+              placeholder="Email user"
+              required
+            />
+            <mat-error class="error" *ngIf="form.invalid && form.touched"
+              >Email is required</mat-error
+            >
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="d-flex justify-content-between">
+        <div>
+          <button class="btn btn-color-modal" (click)="close()">Cancel</button>
+          <button
+            class="btn btn-primary"
+            onclick="openNewModal = false"
+            [disabled]="form.invalid"
+            (click)="save()"
+          >
+            Save
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

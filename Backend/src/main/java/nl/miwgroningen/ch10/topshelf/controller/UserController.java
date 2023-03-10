@@ -49,7 +49,8 @@ public class UserController {
     @PostMapping("/inviteuser/{pantryId}")
     public ResponseEntity<String> inviteUserToPantry(
             @RequestBody PantryUsersDTO emailUser, @PathVariable("pantryId") Pantry pantryId) throws MessagingException {
-        System.out.println(emailUser);
+        System.out.println("User "+ emailUser);
+
         boolean existingUser = userService.checkUserEmail(emailUser.email());
 
         if (existingUser) {

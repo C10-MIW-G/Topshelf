@@ -10,10 +10,10 @@ body {
 footer {
   background-color: rgb(65, 113, 156);
   color: white;
-  position: fixed;
-  bottom: 0;
   text-align: center;
   width: 100%;
+  position: absolute;
+  bottom: 0;
 }
 
 li {
@@ -32,9 +32,19 @@ a.date {
   font-style: italic;
 }
 
+button, button.btn {
+  min-width: 90px;
+  margin-left: 5px
+}
+
 .btn-primary {
   background-color: rgb(65, 113, 156) !important;
   border: none!important;
+}
+
+button.btn-color-modal, button.btn-color-modal:hover {
+  background-color: gray;
+  color: white;
 }
 
 a {
@@ -50,7 +60,7 @@ a:link, a:visited, a:active{
 .row {
   height: 100vh;
 }
-.component-left, .component-right, .sidebar {
+.component-left, .component-right {
   padding-top: 36px;
   text-align: left;
   background-color:
@@ -61,11 +71,12 @@ p {
   text-align: left;
 }
 
-.table {
-  table-layout: fixed;
+.sidebar {
+  background-color:
+  rgb(232, 241, 248);
 }
 
-span:hover {
+span i:hover {
   cursor: pointer;
 }
 
@@ -77,11 +88,76 @@ span:hover {
   justify-content: center;
 }
 
-.component-center {
-  padding-top: 36px;
-  padding-bottom: 100px;
-}
+
 
 h5 {
   text-align: center;
+}
+
+h4 {
+  padding: 10px;
+  text-align: left;
+}
+
+.card {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cancel {
+  text-align: center;
+  padding: 10px 10px 0px 10px;
+  font-size: 14px;
+}
+
+a.secondary {
+  color: rgb(45, 92, 134);
+  text-decoration: none;
+}
+
+a.secondary:hover {
+  color: rgb(65, 113, 156);
+  text-decoration: underline;
+}
+
+.loader {
+  display: flex;
+  justify-content: center;
+}
+
+.loader--full-height {
+  align-items: center;
+  height: 20%;
+}
+
+.loader::after {
+  content: "";
+  width: 60px;
+  height: 60px;
+  border: 10px solid transparent;
+  border-top-color: #3498db;
+  border-radius: 50%;
+  animation: spin 1.3s ease infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+.alert {
+  white-space: pre-wrap;
+}
+
+mat-toolbar.header {
+  background-color: rgb(65, 113, 156);
+  width: 100%;
+  color: white;
+  margin-bottom: 20px;;
+}
+
+mat-form-field {
+  width: 100%;
 }
