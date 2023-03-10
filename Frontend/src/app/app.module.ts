@@ -42,6 +42,7 @@ import { ActionBarGroceryProductComponent } from './action-bar-grocery-product/a
 import { ModalAddGroceryProductComponent } from './modal-add-grocery-product/modal-add-grocery-product.component';
 import { UserComponent } from './user/user.component';
 import { ActionBarUserComponent } from './action-bar-user/action-bar-user.component';
+import { ModalStockProductComponent } from './modal-stock-product/modal-stock-product.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,8 @@ import { ActionBarUserComponent } from './action-bar-user/action-bar-user.compon
     ModalAddGroceryProductComponent,
     HomePageComponent,
     UserComponent,
-    ActionBarUserComponent
+    ActionBarUserComponent,
+    ModalStockProductComponent
   ],
   imports: [
     BrowserModule,
