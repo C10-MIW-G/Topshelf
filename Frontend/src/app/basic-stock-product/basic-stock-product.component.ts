@@ -110,7 +110,7 @@ export class BasicStockProductComponent implements OnInit {
     data: any,
     basicStockProduct: BasicStockProduct
   ) {
-    if (data.basicStockProductName !== null && data.isSubmitted) {
+    if (data.isSubmitted) {
       this.basicStockProductService
         .saveBasicStockProductToPantryStock({
           name: data.basicStockProductName,
@@ -121,6 +121,9 @@ export class BasicStockProductComponent implements OnInit {
         .subscribe({
           complete: () => {
             window.location.reload();
+          },
+          error: () => {
+            alert('Edit failed');
           },
         });
     } else {

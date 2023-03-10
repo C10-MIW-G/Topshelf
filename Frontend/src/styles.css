@@ -65,7 +65,7 @@ p {
   table-layout: fixed;
 }
 
-span:hover {
+span i:hover {
   cursor: pointer;
 }
 
@@ -141,4 +141,41 @@ a.secondary:hover {
 
 .alert {
   white-space: pre-wrap;
+}
+
+mat-toolbar.header {
+  background-color: rgb(65, 113, 156);
+  width: 100%;
+  color: white;
+  margin-bottom: 20px;;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+button.btn-color, .btn-color:hover {
+  background-color: gray;
+  color: white;
+}
+
+.modal-button {
+  min-width: 70px;
+  margin-left: 5px
+}
+
+.modal-button.btn-color, 
+.modal-button.btn-color:hover  {
+  background-color: gray;
+  color: white;
+}
+.bottom-div {
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.bottom-div.button-container {
+  position: absolute;
+  bottom: 0;
+  padding-bottom: 5px;
 }

@@ -1,55 +1,48 @@
 <body>
-    <div [formGroup]="form" class="form">
-      <mat-toolbar class="header">
-        <div class="container-fluid">
-          <h4>
-            {{ basicStockProductName == null ? "Add a product" : "Edit product" }}
-          </h4>
-        </div>
-      </mat-toolbar>
+  <div [formGroup]="form" class="form">
+    <mat-toolbar class="header">
       <div class="container-fluid">
-        <!-- <h4>
+        <h4>
           {{ basicStockProductName == null ? "Add a product" : "Edit product" }}
-        </h4> -->
-        <!-- <mat-dialog-content> -->
-        <div>
+        </h4>
+      </div>
+    </mat-toolbar>
+    <div class="container-fluid">
+      <mat-form-field>
+        <input
+          name="basicStockProductName"
+          type="text"
+          matInput
+          formControlName="basicStockProductName"
+          placeholder="Product name"
+          required
+        />
+        <mat-error class="error" *ngIf="form.invalid && form.touched"
+          >Enter a product name</mat-error
+        >
+      </mat-form-field>
+      <div class="form-group">
+        <br />
+        <mat-form-field>
+          <input
+            name="amount"
+            type="number"
+            formControlName="amount"
+            matInput
+            placeholder="Amount"
+            required
+          />
+          <mat-error class="error" *ngIf="form.touched && form.invalid"
+            >Enter a positive amount</mat-error
+          >
+        </mat-form-field>
+      </div>
+      <div
+        class="bottom-div container-fluid position-absolute bottom-0 start-50 translate-middle-x"
+      >
+        <div class="button-container d-flex justify-content-between">
           <div>
-            <mat-form-field>
-              <input
-                name="basicStockProductName"
-                type="text"
-                matInput
-                formControlName="basicStockProductName"
-                placeholder="Product name"
-                required
-              />
-              <mat-error class="error" *ngIf="form.invalid && form.touched"
-                >Enter a product name</mat-error
-              >
-            </mat-form-field>
-          </div>
-          <div class="form-group">
-            <br />
-            <mat-form-field>
-              <input
-                name="amount"
-                type="number"
-                formControlName="amount"
-                matInput
-                placeholder="Amount"
-                required
-              />
-              <mat-error class="error" *ngIf="form.touched && form.invalid"
-                >Enter a positive amount</mat-error
-              >
-            </mat-form-field>
-          </div>
-        </div>
-  
-        <!-- <div class="position-absolute bottom-0"> -->
-            <div class="d-flex justify-content-between">
-            <div>
-              <span *ngIf="basicStockProductName == null">
+            <span *ngIf="basicStockProductName == null">
               <mat-checkbox
                 class="addAnother"
                 formControlName="openNewModal"
@@ -62,14 +55,11 @@
             </span>
           </div>
           <div>
-          
-            
-              <button class="btn btn-color" (click)="close()">Cancel</button>
-            
-          
-          
+            <button class="modal-button btn btn-color" (click)="close()">
+              Cancel
+            </button>
             <button
-              class="btn btn-primary"
+              class="modal-button btn btn-primary"
               onclick="openNewModal = false"
               [disabled]="form.invalid"
               (click)="save()"
@@ -78,9 +68,7 @@
             </button>
           </div>
         </div>
-        </div>
-        </div>
-      <!-- </div> -->
-    <!-- </div> -->
-  </body>
-  
+      </div>
+    </div>
+  </div>
+</body>

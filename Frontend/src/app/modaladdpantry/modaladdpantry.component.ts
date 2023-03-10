@@ -26,13 +26,14 @@ export class ModaladdpantryComponent implements OnInit {
   ) {
     this.pantryName = data.name;
     this.isSubmitted = data.isSubmitted;
-  }
-
-  ngOnInit() {
     this.form = this.fb.group({
       pantryName: new FormControl('', [Validators.required]),
       isSubmitted: this.isSubmitted,
     });
+  }
+
+  ngOnInit() {
+    this.dialogRef.updateSize('25%', '50%');
   }
 
   close() {

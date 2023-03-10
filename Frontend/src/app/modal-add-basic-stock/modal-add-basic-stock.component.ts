@@ -10,11 +10,10 @@ import { BasicStockProductComponent } from '../basic-stock-product/basic-stock-p
 import { BasicStockProduct } from '../basic-stock-product/basic-stock-product';
 import { BasicStockProductService } from '../basic-stock-product/basic-stock-product.service';
 
-
 @Component({
   selector: 'app-modal-add-basic-stock',
   templateUrl: './modal-add-basic-stock.component.html',
-  styleUrls: ['./modal-add-basic-stock.component.css']
+  styleUrls: ['./modal-add-basic-stock.component.css'],
 })
 export class ModalAddBasicStockComponent implements OnInit {
   form!: FormGroup;
@@ -55,7 +54,7 @@ export class ModalAddBasicStockComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.dialogRef.updateSize('25%', '48%');
+    this.dialogRef.updateSize('25%', '50%');
   }
 
   close() {
@@ -64,6 +63,7 @@ export class ModalAddBasicStockComponent implements OnInit {
   }
 
   save() {
+    const groceryProductName = this.form.value.groceryProductName;
     this.dialogRef.close(this.form.value);
   }
 
@@ -71,4 +71,3 @@ export class ModalAddBasicStockComponent implements OnInit {
     return this.form.controls[controlName].hasError(errorName);
   };
 }
-

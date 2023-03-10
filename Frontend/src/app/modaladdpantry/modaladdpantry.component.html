@@ -1,17 +1,40 @@
-<mat-dialog-content [formGroup]="form" class="form">
-  <mat-form-field class="form-group">
-    <input
-      formControlName="pantryName"
-      matInput
-      placeholder="Type a pantryname"
-      [(ngModel)]="pantryName"
-      required
-    />
-  </mat-form-field>
-  <mat-error class="error" *ngIf="hasFailed">{{ errormessage }}</mat-error>
-</mat-dialog-content>
-
-<mat-dialog-actions>
-  <button class="btn btn-block btn-primary" (click)="close()">Close</button>
-  <button class="btn btn-block btn-primary" (click)="save()">Save</button>
-</mat-dialog-actions>
+<body>
+  <div [formGroup]="form" class="form">
+    <mat-toolbar class="header">
+      <div class="container-fluid">
+        <h4>Add a Pantry</h4>
+      </div>
+    </mat-toolbar>
+    <div class="container-fluid">
+      <mat-form-field>
+        <input
+          formControlName="pantryName"
+          matInput
+          placeholder="Type a pantryname"
+          [(ngModel)]="pantryName"
+          required
+        />
+        <mat-error class="error" *ngIf="form.invalid && form.touched"
+          >Enter a pantry name</mat-error
+        >
+      </mat-form-field>
+      <div
+        class="bottom-div container-fluid position-absolute bottom-0 start-50 translate-middle-x"
+      >
+        <div class="button-container d-flex flex-row-reverse">
+          <button
+            class="modal-button btn btn-primary"
+            onclick="openNewModal = false"
+            [disabled]="form.invalid"
+            (click)="save()"
+          >
+            Save
+          </button>
+          <button class="modal-button btn btn-color" (click)="close()">
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

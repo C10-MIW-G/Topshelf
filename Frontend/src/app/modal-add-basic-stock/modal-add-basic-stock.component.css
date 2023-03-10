@@ -1,4 +1,4 @@
-mat-toolbar.header {
+/* mat-toolbar.header {
     background-color: rgb(65, 113, 156);
     width: 100%;
     color: white;
@@ -12,11 +12,6 @@ mat-form-field {
 .btn-color, .btn-color:hover {
     background-color: gray;
     color: white;
-}
-  
-button {
-    min-width:70px;
-    margin-left: 5px
 }
 
 h4 {
@@ -34,9 +29,5 @@ h4 {
 
 .rightside {
     display: flex;
-}
+} */
 
-.modal-button {
-    padding-left: 5px;
-    display: flex;
-}
