@@ -50,6 +50,7 @@ a:link, a:visited, a:active{
 .row {
   height: 100vh;
 }
+
 .component-left, .component-right {
   padding-top: 36px;
   text-align: left;
@@ -77,8 +78,6 @@ span i:hover {
   align-items: center;
   justify-content: center;
 }
-
-
 
 h5 {
   text-align: center;
@@ -167,6 +166,7 @@ button.btn-color, .btn-color:hover {
   background-color: gray;
   color: white;
 }
+
 .bottom-div {
   position: relative;
   margin-bottom: 10px;
