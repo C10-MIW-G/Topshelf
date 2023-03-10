@@ -8,23 +8,31 @@
           Products defined in your basic stock:
         </tr>
         <br />
-        <table class="table table-striped">
-          <tr>
-            <th>Product</th>
-            <th class="text-end">Amount</th>
-            <th></th>
-          </tr>
-          <tr *ngFor="let basicStockProduct of pantryWithBasicStockProducts">
-            <input type="hidden" name="basicStockProductId" />
-            <td>{{ basicStockProduct.name }}</td>
-            <td class="text-end">{{ basicStockProduct.amount }}</td>
-            <td class="text-center">
-              <a (click)="editDialog(basicStockProduct)"
-                ><span><i class="fa fa-edit"></i></span
-              ></a>
-            </td>
-          </tr>
-        </table>
+        <div class="px-3">
+          <table class="table table-hover shadow">
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th class="text-end">Amount</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="let basicStockProduct of pantryWithBasicStockProducts"
+              >
+                <input type="hidden" name="basicStockProductId" />
+                <td>{{ basicStockProduct.name }}</td>
+                <td class="text-end">{{ basicStockProduct.amount }}</td>
+                <td class="text-center">
+                  <a (click)="editDialog(basicStockProduct)"
+                    ><span><i class="fa fa-edit"></i></span
+                  ></a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
         <div *ngIf="pantryWithBasicStockProducts.length === 0">
           <p>There are no products in your list yet.</p>
         </div>
