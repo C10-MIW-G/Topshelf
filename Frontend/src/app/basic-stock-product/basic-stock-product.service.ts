@@ -18,14 +18,6 @@ export class BasicStockProductService {
     );
   }
 
-  getBasicStockProduct(
-    basicStockProductId: number
-  ): Observable<BasicStockProduct> {
-    return this.http.get<BasicStockProduct>(
-      `${this.apiServerUrl}/${basicStockProductId}`
-    );
-  }
-
   public saveBasicStockProductToPantryStock(
     basicStockProductEdit: BasicStockProduct
   ): Observable<any> {

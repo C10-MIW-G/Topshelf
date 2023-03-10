@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { BasicStockProduct } from '../basic-stock-product/basic-stock-product';
 import { BasicStockProductService } from '../basic-stock-product/basic-stock-product.service';
 import { ModalAddBasicStockComponent } from '../modal-add-basic-stock/modal-add-basic-stock.component';
 
@@ -55,7 +54,7 @@ export class ActionBarBasicStockProductComponent {
           complete: () => {
             if (data.openNewModal == true) {
               this.onOpenDialog();
-              this.toastr.success('Success!', 'Product added!', {
+              this.toastr.success('Product added!', 'Success!', {
                 positionClass: 'toast-top-center',
               });
               this.openNewModal = true;

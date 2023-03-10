@@ -27,7 +27,10 @@ export class ModaladdpantryComponent implements OnInit {
     this.pantryName = data.name;
     this.isSubmitted = data.isSubmitted;
     this.form = this.fb.group({
-      pantryName: new FormControl('', [Validators.required]),
+      pantryName: new FormControl(
+        '',
+        Validators.compose([Validators.required, Validators.pattern(/[\S]/g)])
+      ),
       isSubmitted: this.isSubmitted,
     });
   }

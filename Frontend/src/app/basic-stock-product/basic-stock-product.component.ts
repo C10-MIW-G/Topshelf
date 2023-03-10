@@ -1,14 +1,10 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { BasicStockProduct } from './basic-stock-product';
 import { BasicStockProductService } from './basic-stock-product.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ModalAddBasicStockComponent } from '../modal-add-basic-stock/modal-add-basic-stock.component';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { UserComponent } from '../user/user.component';
-import { User } from '../user/user';
-import { AuthService } from '../_services/auth.service';
 
 @Component({
   selector: 'app-basic-stock-product',
@@ -16,40 +12,12 @@ import { AuthService } from '../_services/auth.service';
   styleUrls: ['./basic-stock-product.component.css'],
 })
 export class BasicStockProductComponent implements OnInit {
-  public basicStockProducts?: BasicStockProduct[] = [];
   public pantryWithBasicStockProducts: BasicStockProduct[] = [];
   public namePantry!: string;
   public pantryId!: number;
-  public basicStockProductId?: number;
-  public modalAddBasicStock!: ModalAddBasicStockComponent;
-  public isSubmitted?: boolean;
-  public openNewModal?: boolean;
-  public userComponent?: UserComponent;
-  public authService?: AuthService;
-  public isAdmin: boolean = false;
-  public admin!: any;
-  public admins: User[] = [];
-  public errorMessage: string = '';
-
-  addBasicStockProductForm = new FormGroup({
-    name: new FormControl(
-      '',
-      Validators.compose([Validators.required, Validators.pattern(/[\S]/g)])
-    ),
-    basicStockProductId: new FormControl(0),
-    amount: new FormControl(
-      0,
-      Validators.compose([
-        Validators.required,
-        Validators.min(1),
-        Validators.max(2147483647),
-      ])
-    ),
-  });
 
   constructor(
     private basicStockProductService: BasicStockProductService,
-    private router: Router,
     private route: ActivatedRoute,
     private matDialog: MatDialog
   ) {}
@@ -129,13 +97,5 @@ export class BasicStockProductComponent implements OnInit {
     } else {
       window.location.reload();
     }
-  }
-
-  public isEmptyOrSpaces(str: string | null | undefined) {
-    return str === null || str?.match(/[\S]/g) !== null;
-  }
-
-  editButtonClick(name: string) {
-    this.router.navigate(['/edit', name]);
   }
 }

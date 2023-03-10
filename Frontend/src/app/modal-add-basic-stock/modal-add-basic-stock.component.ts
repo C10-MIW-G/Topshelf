@@ -6,10 +6,6 @@ import {
   FormControl,
 } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { BasicStockProductComponent } from '../basic-stock-product/basic-stock-product.component';
-import { BasicStockProduct } from '../basic-stock-product/basic-stock-product';
-import { BasicStockProductService } from '../basic-stock-product/basic-stock-product.service';
-
 @Component({
   selector: 'app-modal-add-basic-stock',
   templateUrl: './modal-add-basic-stock.component.html',
@@ -19,13 +15,7 @@ export class ModalAddBasicStockComponent implements OnInit {
   form!: FormGroup;
   basicStockProductName: string;
   amount: number;
-  hasFailed: boolean = false;
-  errormessage?: string;
   isSubmitted: boolean;
-  openNewModal!: boolean;
-  basicStockProductsToBeAdded: BasicStockProduct[] = [];
-  basicStockProcuctService!: BasicStockProductService;
-  public basicStockProductComponent!: BasicStockProductComponent;
 
   constructor(
     private fb: FormBuilder,
@@ -36,9 +26,10 @@ export class ModalAddBasicStockComponent implements OnInit {
     this.amount = data.amount;
     this.isSubmitted = data.isSubmitted;
     this.form = this.fb.group({
-      basicStockProductName: new FormControl(this.basicStockProductName, [
-        Validators.required,
-      ]),
+      basicStockProductName: new FormControl(
+        this.basicStockProductName,
+        Validators.compose([Validators.required, Validators.pattern(/[\S]/g)])
+      ),
       amount: new FormControl(
         this.amount,
         Validators.compose([
@@ -63,11 +54,6 @@ export class ModalAddBasicStockComponent implements OnInit {
   }
 
   save() {
-    const groceryProductName = this.form.value.groceryProductName;
     this.dialogRef.close(this.form.value);
   }
-
-  public myError = (controlName: string, errorName: string) => {
-    return this.form.controls[controlName].hasError(errorName);
-  };
 }

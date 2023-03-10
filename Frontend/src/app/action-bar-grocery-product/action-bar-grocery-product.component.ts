@@ -34,18 +34,12 @@ export class ActionBarGroceryProductComponent {
       dialogConfig
     );
 
-    dialogRef
-      .afterClosed()
-      .subscribe(
-        (data) => {
-          this.saveProduct(data);
-        }
-      );
+    dialogRef.afterClosed().subscribe((data) => {
+      this.saveProduct(data);
+    });
   }
 
-  private saveProduct(
-    data: any,
-  ) {
+  private saveProduct(data: any) {
     if (data.isSubmitted) {
       this.groceryProductService
         .saveGroceryProductToPantryStock({
@@ -56,11 +50,19 @@ export class ActionBarGroceryProductComponent {
         })
         .subscribe({
           complete: () => {
+            if (data.openNewModal == true) {
+              this.onOpenDialog();
+              this.toastr.success('Product added!', 'Success!', {
+                positionClass: 'toast-top-center',
+              });
+              this.openNewModal = true;
+            } else {
               window.location.reload();
-            },
-            error: () => {
-              alert('Failed adding product');
-          },          
+            }
+          },
+          error: () => {
+            alert('Failed adding product');
+          },
         });
     } else {
       window.location.reload();

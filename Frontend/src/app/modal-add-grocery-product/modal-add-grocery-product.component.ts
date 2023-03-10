@@ -29,7 +29,10 @@ export class ModalAddGroceryProductComponent implements OnInit {
     this.amount = data.amount;
     this.isSubmitted = data.isSubmitted;
     this.form = this.fb.group({
-      groceryProductName: new FormControl('', [Validators.required]),
+      groceryProductName: new FormControl(
+        '',
+        Validators.compose([Validators.required, Validators.pattern(/[\S]/g)])
+      ),
       amount: new FormControl(
         '',
         Validators.compose([
