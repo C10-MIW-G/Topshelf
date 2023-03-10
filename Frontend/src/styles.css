@@ -65,7 +65,7 @@ p {
   table-layout: fixed;
 }
 
-span:hover {
+span i:hover {
   cursor: pointer;
 }
 

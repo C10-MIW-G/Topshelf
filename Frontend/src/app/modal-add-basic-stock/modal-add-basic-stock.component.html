@@ -1,55 +1,58 @@
 <body>
-    <div [formGroup]="form" class="form">
-      <mat-toolbar class="header">
-        <div class="container-fluid">
-          <h4>
-            {{ basicStockProductName == null ? "Add a product" : "Edit product" }}
-          </h4>
-        </div>
-      </mat-toolbar>
+  <div [formGroup]="form" class="form">
+    <mat-toolbar class="header">
       <div class="container-fluid">
-        <!-- <h4>
+        <h4>
+          {{ basicStockProductName == null ? "Add a product" : "Edit product" }}
+        </h4>
+      </div>
+    </mat-toolbar>
+    <div class="container-fluid">
+      <!-- <h4>
           {{ basicStockProductName == null ? "Add a product" : "Edit product" }}
         </h4> -->
-        <!-- <mat-dialog-content> -->
+      <!-- <mat-dialog-content> -->
+      <div>
         <div>
-          <div>
-            <mat-form-field>
-              <input
-                name="basicStockProductName"
-                type="text"
-                matInput
-                formControlName="basicStockProductName"
-                placeholder="Product name"
-                required
-              />
-              <mat-error class="error" *ngIf="form.invalid && form.touched"
-                >Enter a product name</mat-error
-              >
-            </mat-form-field>
-          </div>
-          <div class="form-group">
-            <br />
-            <mat-form-field>
-              <input
-                name="amount"
-                type="number"
-                formControlName="amount"
-                matInput
-                placeholder="Amount"
-                required
-              />
-              <mat-error class="error" *ngIf="form.touched && form.invalid"
-                >Enter a positive amount</mat-error
-              >
-            </mat-form-field>
-          </div>
+          <mat-form-field>
+            <input
+              name="basicStockProductName"
+              type="text"
+              matInput
+              formControlName="basicStockProductName"
+              placeholder="Product name"
+              required
+            />
+            <mat-error class="error" *ngIf="form.invalid && form.touched"
+              >Enter a product name</mat-error
+            >
+          </mat-form-field>
         </div>
-  
-        <!-- <div class="position-absolute bottom-0"> -->
-            <div class="d-flex justify-content-between">
-            <div>
-              <span *ngIf="basicStockProductName == null">
+        <div class="form-group">
+          <br />
+          <mat-form-field>
+            <input
+              name="amount"
+              type="number"
+              formControlName="amount"
+              matInput
+              placeholder="Amount"
+              required
+            />
+            <mat-error class="error" *ngIf="form.touched && form.invalid"
+              >Enter a positive amount</mat-error
+            >
+          </mat-form-field>
+        </div>
+      </div>
+
+      <!-- <div class="position-absolute bottom-0"> -->
+      <div class="d-flex justify-content-between">
+        <div>
+          <span
+            class="button-add-another"
+            *ngIf="basicStockProductName == null"
+          >
               <mat-checkbox
                 class="addAnother"
                 formControlName="openNewModal"
@@ -59,28 +62,23 @@
               >
               </mat-checkbox
               >Add another
-            </span>
-          </div>
-          <div>
-          
-            
-              <button class="btn btn-color" (click)="close()">Cancel</button>
-            
-          
-          
-            <button
-              class="btn btn-primary"
-              onclick="openNewModal = false"
-              [disabled]="form.invalid"
-              (click)="save()"
-            >
-              Save
-            </button>
-          </div>
+          </span>
         </div>
+        <div>
+          <button class="btn btn-color" (click)="close()">Cancel</button>
+
+          <button
+            class="btn btn-primary"
+            onclick="openNewModal = false"
+            [disabled]="form.invalid"
+            (click)="save()"
+          >
+            Save
+          </button>
         </div>
-        </div>
-      <!-- </div> -->
-    <!-- </div> -->
-  </body>
-  
+      </div>
+    </div>
+  </div>
+  <!-- </div> -->
+  <!-- </div> -->
+</body>

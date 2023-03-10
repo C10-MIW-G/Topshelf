@@ -63,7 +63,7 @@ export class ActionBarBasicStockProductComponent {
           complete: () => {
             if (data.openNewModal == true) {
               this.onOpenDialog();
-              this.toastr.success('Success!', 'Product added!', {
+              this.toastr.success('Product added!', 'Success!', {
                 positionClass: 'toast-top-center',
               });
               this.openNewModal = true;
