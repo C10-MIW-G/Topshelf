@@ -12,8 +12,8 @@
           <tr>
             <th>Product</th>
             <th class="text-end">Amount</th>
-            <th></th>
-            <th></th>
+            <th type="hidden" edit></th>
+            <th type="hidden" delete></th>
           </tr>
           <tr *ngFor="let groceryProduct of pantryWithGroceryProducts">
             <input type="hidden" name="groceryProductId" />
@@ -25,7 +25,7 @@
               ></a>
             </td>
             <td>
-              <a class="" (click)="remove(groceryProduct)"
+              <a (click)="remove(groceryProduct)"
                 ><span><i class="fa fa-trash-o"></i></span
               ></a>
             </td>

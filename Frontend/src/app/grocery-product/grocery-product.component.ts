@@ -13,10 +13,8 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
   styleUrls: ['./grocery-product.component.css'],
 })
 export class GroceryProductComponent implements OnInit {
-  public groceryProducts?: GroceryProduct[] = [];
   public groceryProductId?: number;
   public pantryWithGroceryProducts: GroceryProduct[] = [];
-  public groceryProductDelete?: GroceryProduct;
   public namePantry!: string;
   public pantryId!: number;
 
@@ -65,7 +63,7 @@ export class GroceryProductComponent implements OnInit {
   public remove(groceryProduct: GroceryProduct) {
     this.groceryProductService
       .deleteGroceryProductFromPantry(groceryProduct.groceryProductId)
-      .subscribe((response: void) => {
+      .subscribe(() => {
         this.getGroceryProductsByPantryId;
         window.location.reload();
       }),
@@ -119,9 +117,5 @@ export class GroceryProductComponent implements OnInit {
         });
       }
     });
-  }
-
-  editButtonClick(name: string) {
-    this.router.navigate(['/edit', name]);
   }
 }
