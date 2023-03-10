@@ -1,11 +1,9 @@
 <body>
   <div class="container-fluid">
     <div class="row">
-      <div class="col-2 component-left">
-        <p></p>
-      </div>
-      <div class="col-4 component-center">
-        <div class="col-12 card card-container">
+      <div class="col-2 component-left"> </div>
+      <div class="col-8 component-center">
+        <div class="col-5 card card-container">
           <h4>Log in</h4>
           <form
             *ngIf="!isLoggedIn"
@@ -74,22 +72,6 @@
               </div>
             </div>
           </form>
-        </div>
-      </div>
-      <div class="col-4 component-center">
-        <div class="col-12 card card-container">
-          <h4>Request your Topshelf account</h4>
-          <ul>
-            <p class="firstLine">
-              <span>&#x2713;</span>Create your own pantries
-            </p>
-            <p><span>&#x2713;</span>Easy access to your daily stock</p>
-            <p><span>&#x2713;</span>Get invited to other pantries</p>
-            <p><span>&#x2713;</span>Makes grocery shopping easy</p>
-          </ul>
-          <div class="register">
-            <a routerLink="/register" class="secondary">Create new account</a>
-          </div>
         </div>
       </div>
       <div class="col-2 component-right"></div>

@@ -88,7 +88,7 @@
             <artifactId>javax.json</artifactId>
             <version>1.1.4</version>
         </dependency>
-        <!--		deze wordt gebruik in CaptchaSettings-->
+        <!--		deze wordt gebruikt in CaptchaSettings-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
@@ -99,7 +99,7 @@
             <artifactId>json-smart</artifactId>
             <version>2.4.8</version>
         </dependency>
-        <!--		deze wordt gebruik voor emails-->
+        <!--		deze wordt gebruikt voor emails-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-mail</artifactId>

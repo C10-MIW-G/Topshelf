@@ -13,14 +13,17 @@ import { BasicStockProductComponent } from './basic-stock-product/basic-stock-pr
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { UserComponent } from './user/user.component';
 import { GroceryProductComponent } from './grocery-product/grocery-product.component';
+import { ActionBarUserComponent } from './action-bar-user/action-bar-user.component';
 
 const appRoute: Routes = [
   { path: 'home', component: HomePageComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'changepassword', component: ChangePasswordComponent },
-  { path: 'resetpassword', component: ResetPasswordComponent },
+  { path: 'changepassword', component: ChangePasswordComponent},
+  { path: 'resetpassword', component: ResetPasswordComponent},
+  { path: 'pantry', component: PantryComponent },
   {
     path: 'pantry',
     component: PantryComponent,
@@ -72,6 +75,16 @@ const appRoute: Routes = [
       {
         path: 'groceries',
         component: ActionBarGroceryProductComponent,
+        outlet: 'action',
+      },
+      {
+        path: 'users',
+        component: UserComponent,
+        outlet: 'stockproduct',
+      },
+      {
+        path: 'users',
+        component: ActionBarUserComponent,
         outlet: 'action',
       },
     ],

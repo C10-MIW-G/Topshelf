@@ -1,0 +1,46 @@
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 component-right">
+        <div [hidden]="!isAdmin">
+          <form
+            [formGroup]="inviteUserToPantryForm"
+            class="sidebar-fixed"
+            (keydown.enter)="$event.preventDefault()"
+            [hidden]="isLoading"
+          >
+            <div class="form-group col-12">
+              <h4>Invite user</h4>
+              <input
+                type="email"
+                class="form-control"
+                formControlName="email"
+                placeholder="Email"
+              />
+            </div>
+            <div
+              class="alert-danger"
+              *ngIf="email?.touched && email?.invalid && !isSuccessful"
+            >
+              Email must be a valid email adress
+            </div>
+            <div
+              class="alert-danger"
+              *ngIf="email?.touched && email?.valid && !isSuccessful"
+              [innerHTML]="errorMessage"
+            ></div>
+            <br />
+            <button
+              class="btn btn-primary btn-block"
+              [disabled]="inviteUserToPantryForm.invalid"
+              (click)="saveUserToPantry(pantryId)"
+            >
+              Invite user
+            </button>
+          </form>
+          <div class="loader loader--full-height" *ngIf="isLoading"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

@@ -49,6 +49,7 @@ export class PantryComponent implements OnInit {
       }
     );
   }
+
   onOpenDialog() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
@@ -56,7 +57,8 @@ export class PantryComponent implements OnInit {
       name: null,
       isSubmitted: true,
     };
-
+    dialogConfig.height = '40%';
+    dialogConfig.width = '60%';
     const dialogRef = this.matDialog.open(
       ModaladdpantryComponent,
       dialogConfig

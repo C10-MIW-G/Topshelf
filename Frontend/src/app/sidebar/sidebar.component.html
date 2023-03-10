@@ -3,7 +3,7 @@
     <div class="row">
       <nav class="col-12 d-none d-md-block sidebar" #sidebar>
         <div class="position-fixed">
-          <ul class="nav flex-column sidebar">
+          <ul class="nav flex-column">
             <li class="nav-item">
               <a
                 class="nav-link active"
@@ -52,6 +52,24 @@
                 [queryParams]="{ name: pantryName }"
               >
                 <span>Grocery list</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                [routerLink]="[
+                  '/pantry',
+                  pantryId,
+                  {
+                    outlets: {
+                      stockproduct: ['users'],
+                      action: ['users']
+                    }
+                  }
+                ]"
+                [queryParams]="{ name: pantryName }"
+              >
+                <span>Users</span>
               </a>
             </li>
           </ul>

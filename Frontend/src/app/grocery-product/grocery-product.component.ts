@@ -13,13 +13,10 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
   styleUrls: ['./grocery-product.component.css'],
 })
 export class GroceryProductComponent implements OnInit {
-  public groceryProducts?: GroceryProduct[] = [];
   public groceryProductId?: number;
   public pantryWithGroceryProducts: GroceryProduct[] = [];
-  public groceryProductDelete?: GroceryProduct;
   public namePantry!: string;
   public pantryId!: number;
-  public GroceryProductId: number | undefined;
 
   constructor(
     private groceryProductService: GroceryProductService,
@@ -58,13 +55,6 @@ export class GroceryProductComponent implements OnInit {
     return this.pantryId;
   }
 
-  getGroceryProduct(groceryProductId: number) {
-    this.groceryProductService.getGroceryProduct(groceryProductId).subscribe(
-      (groceryProduct: GroceryProduct) =>
-        this.showGroceryProductInForm(groceryProduct)
-    );
-  }
-
   public getPantryName() {
     const name = this.route.snapshot.queryParamMap.get('name')!;
     this.namePantry = name;
@@ -73,7 +63,7 @@ export class GroceryProductComponent implements OnInit {
   public remove(groceryProduct: GroceryProduct) {
     this.groceryProductService
       .deleteGroceryProductFromPantry(groceryProduct.groceryProductId)
-      .subscribe((response: void) => {
+      .subscribe(() => {
         this.getGroceryProductsByPantryId;
         window.location.reload();
       }),
@@ -94,14 +84,6 @@ export class GroceryProductComponent implements OnInit {
     );
   }
 
-  public showGroceryProductInForm(groceryProduct: GroceryProduct) {
-    this.addGroceryProductForm.patchValue({
-      name: groceryProduct.name,
-      amount: groceryProduct.amount,
-      groceryProductId: groceryProduct.groceryProductId
-    });
-  }
-
   openEditModal(groceryProductEdit: GroceryProduct): void {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
@@ -119,25 +101,23 @@ export class GroceryProductComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((data) => {
       if (data.name !== null && data.isSubmitted) {
-        this.groceryProductService.saveGroceryProductToPantryStock({
-          name: data.groceryProductName,
-          amount: data.amount,
-          pantryId: this.getPantryId(),
-          groceryProductId: groceryProductEdit.groceryProductId,
-        }).subscribe({
-          complete: () => {
-            window.location.reload();
-          },
-          error: () => {
-            console.log(data.name);
-            alert('Update failed');
-          },
-        });
+        this.groceryProductService
+          .saveGroceryProductToPantryStock({
+            name: data.groceryProductName,
+            amount: data.amount,
+            pantryId: this.getPantryId(),
+            groceryProductId: groceryProductEdit.groceryProductId,
+          })
+          .subscribe({
+            complete: () => {
+              window.location.reload();
+            },
+            error: () => {
+              console.log(data.name);
+              alert('Update failed');
+            },
+          });
       }
     });
-  }
-
-  editButtonClick(name: string) {
-    this.router.navigate(['/edit', name]);
   }
 }

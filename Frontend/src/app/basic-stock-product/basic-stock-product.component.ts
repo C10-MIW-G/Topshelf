@@ -5,6 +5,10 @@ import { BasicStockProduct } from './basic-stock-product';
 import { BasicStockProductService } from './basic-stock-product.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ModalAddBasicStockComponent } from '../modal-add-basic-stock/modal-add-basic-stock.component';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UserComponent } from '../user/user.component';
+import { User } from '../user/user';
+import { AuthService } from '../_services/auth.service';
 
 @Component({
   selector: 'app-basic-stock-product',
@@ -19,6 +23,29 @@ export class BasicStockProductComponent implements OnInit {
   public basicStockProductId?: number;
   public modalAddBasicStock!: ModalAddBasicStockComponent;
   public isSubmitted?: boolean;
+  public openNewModal?: boolean;
+  public userComponent?: UserComponent;
+  public authService?: AuthService;
+  public isAdmin: boolean = false;
+  public admin!: any;
+  public admins: User[] = [];
+  public errorMessage: string = '';
+
+  addBasicStockProductForm = new FormGroup({
+    name: new FormControl(
+      '',
+      Validators.compose([Validators.required, Validators.pattern(/[\S]/g)])
+    ),
+    basicStockProductId: new FormControl(0),
+    amount: new FormControl(
+      0,
+      Validators.compose([
+        Validators.required,
+        Validators.min(1),
+        Validators.max(2147483647),
+      ])
+    ),
+  });
 
   constructor(
     private basicStockProductService: BasicStockProductService,
@@ -68,10 +95,12 @@ export class BasicStockProductComponent implements OnInit {
       amount: basicStockProduct?.amount,
       isSubmitted: true,
     };
+
     const dialogRef = this.matDialog.open(
       ModalAddBasicStockComponent,
       dialogConfig
     );
+
     dialogRef.afterClosed().subscribe((data) => {
       this.saveBasicStockProduct(data, basicStockProduct);
     });

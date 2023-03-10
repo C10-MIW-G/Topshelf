@@ -1,9 +1,9 @@
 <body>
-  <div class="container-fluid" *ngIf="unAuthorizedUser">
+  <div class="container-fluid overflow-auto" *ngIf="unAuthorizedUser">
     <div class="row">
       <div class="col-2 component-left"></div>
       <div class="col-8 component-center">
-        <h5>These are your pantries:</h5>
+        <h4>Your pantries</h4>
         <br />
         <div *ngFor="let pantry of pantries">
           <table class="table table-striped">
@@ -18,10 +18,13 @@
             </tr>
           </table>
         </div>
+        <div *ngIf="pantries!.length === 0">
+          <p>Let's get started with reducing food waste. Add your first pantry now!</p>
+        </div>
       </div>
-      <div class="col-2 component-right">
+      <div class="col-2 action-bar d-flex align-items-start">
         <button
-          class="btn btn-primary sidebar-fixed"
+          class="btn btn-primary position-fixed"
           *ngIf="unAuthorizedUser"
           (click)="onOpenDialog()"
         >

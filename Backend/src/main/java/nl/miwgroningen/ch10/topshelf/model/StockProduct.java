@@ -14,7 +14,9 @@ import java.time.LocalDate;
  */
 
 @Entity
-@Getter @Setter @NoArgsConstructor
+@Getter
+@Setter
+@NoArgsConstructor
 public class StockProduct {
 
     @Id
@@ -27,7 +29,6 @@ public class StockProduct {
     @JoinColumn(name = "name", referencedColumnName = "name")
     private ProductDefinition productDefinition;
 
-    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "pantryId", referencedColumnName = "pantryId")
     private Pantry pantry;
