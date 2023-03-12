@@ -2,10 +2,17 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-12 action-bar px-0 d-flex align-items-start">
-        <button class="btn btn-primary position-fixed" (click)="onOpenDialog()" [disabled]="isLoading">
+        <button
+          class="btn btn-primary position-fixed"
+          (click)="onOpenDialog()"
+          [disabled]="isLoading"
+        >
           Invite user
         </button>
-        <div class="loader loader--full-height" *ngIf="isLoading"></div>
+        <div
+          class="loader loader--full-height"
+          *ngIf="isLoading"
+        ></div>
       </div>
     </div>
   </div>
