@@ -14,7 +14,11 @@
                   { outlets: { stockproduct: ['stock'], action: ['stock'] } }
                 ]"
                 [queryParams]="{ name: pantryName }"
-                ><span>Stock</span></a
+                routerLinkActive="active-link"
+                #stock="routerLinkActive"
+              >
+              <div *ngIf="stock.isActive"><img src="/assets/images/favicon2.ico"/>Stock</div>
+              <div *ngIf="!stock.isActive">Stock</div></a
               >
             </li>
             <li class="nav-item">
@@ -32,8 +36,11 @@
                 ]"
                 [queryParams]="{ name: pantryName }"
                 queryParamsHandling="merge"
+                routerLinkActive="active-link"
+                #basicStock="routerLinkActive"
               >
-                <span>Basic stock</span>
+              <div *ngIf="basicStock.isActive"><img src="/assets/images/favicon2.ico"/>Basic stock</div>
+              <div *ngIf="!basicStock.isActive">Basic stock</div>
               </a>
             </li>
             <li class="nav-item">
@@ -50,8 +57,11 @@
                   }
                 ]"
                 [queryParams]="{ name: pantryName }"
+                routerLinkActive="active-link"
+                #groceryList="routerLinkActive"
               >
-                <span>Grocery list</span>
+              <div *ngIf="groceryList.isActive"><img src="/assets/images/favicon2.ico"/>Grocery list</div>
+              <div *ngIf="!groceryList.isActive">Grocery list</div>
               </a>
             </li>
             <li class="nav-item">
@@ -68,8 +78,11 @@
                   }
                 ]"
                 [queryParams]="{ name: pantryName }"
+                routerLinkActive="active-link"
+                #users="routerLinkActive"
               >
-                <span>Users</span>
+                <div *ngIf="users.isActive"><img src="/assets/images/favicon2.ico"/>Users</div>
+                <div *ngIf="!users.isActive">Users</div>
               </a>
             </li>
           </ul>

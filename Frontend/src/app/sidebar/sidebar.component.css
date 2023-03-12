@@ -21,3 +21,18 @@ a{
   padding: 10px;
 }
 
+.active-link {
+  font-weight: 700;
+}
+
+img {
+  width: 28px;
+  height: 28px;
+  margin-right: 5px;
+}
+
+li a div {
+  display: flex;
+  text-align: center;
+  align-items: center;
+}
