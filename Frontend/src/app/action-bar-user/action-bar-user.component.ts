@@ -20,6 +20,7 @@ export class ActionBarUserComponent {
   public emailUser!: string;
   public openNewModal?: boolean;
   public errorMessage?: string;
+  public isLoading?: boolean;
 
   constructor(
     private userService: UserService,
@@ -44,6 +45,7 @@ export class ActionBarUserComponent {
 
   public saveUserToPantry(data: any) {
     if (data.isSubmitted) {
+      this.isLoading = true;
       const emailUser = String(data.inviteUserToPantryForm);
       this.userService
         .inviteUserToPantry(
@@ -52,16 +54,16 @@ export class ActionBarUserComponent {
         .subscribe({
           complete: () => {
             if (data.openNewModal == true) {
-              this.onOpenDialog();
+              this.isLoading = false;
               this.toastr.success('User invited!', 'Success!', {
                 positionClass: 'toast-top-center',
               });
               this.openNewModal = true;
-            } else {
               window.location.reload();
             }
           },
           error: (_error: HttpErrorResponse) => {
+            this.isLoading = false;
             if (_error.status == 403) {
               this.toastr.error(
                 'User is already part of the pantry',
@@ -91,7 +93,6 @@ export class ActionBarUserComponent {
     this.userService.checkIfUserIsPantryAdmin(pantryId).subscribe(
       (response: User) => {
         this.user = response;
-        console.log(response);
         this.isAdmin = true;
         if (response == null) {
           this.isAdmin = false;
