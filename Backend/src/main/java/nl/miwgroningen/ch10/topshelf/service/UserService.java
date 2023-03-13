@@ -112,17 +112,19 @@ public class UserService {
         user.setPassword(passwordEncoder.encode(newPassword));
         userRepository.save(user);
 
-        sendEmail.sendMessage(user, "Reset password", "Your password reset was successful \n" +
+        sendEmail.sendMessage(user, "Reset password", "Hello " + user + "\n\n" +
+                "Your password reset was successful \n" +
                 "Your new password = " + newPassword + "\n" +
-                "It's strongly advised to change your password immediately.");
+                "It's strongly advised to change your password immediately. \n\n With kind regards, \n\n Topshelf");
     }
 
     public void inviteUserToPantry(User user, Pantry pantryId) throws MessagingException {
         if (pantryService.checkIfUserIsPartOfPantry(user.getUsername(), pantryId)) {
             pantryService.addUserToPantry(user.getUsername(), pantryId);
             sendEmail.sendMessage(user, "Invite to pantry: " + pantryId.getName(),
-                    "Great news: you've been invited to pantry: " + pantryId.getName() + "\n" +
-                            "Log in and check out your new pantry: http://localhost:4200/");
+                    "Hello " + user + "\n\n" + "Great news: you've been invited to pantry: " + pantryId.getName()
+                            + "\n" + "Log in and check out your new pantry: http://localhost:4200/ " +
+                            "\n\n With kind regards, \n\n Topshelf" );
         } else {
             throw new UserNotFoundException("User is already part of the pantry");
         }
