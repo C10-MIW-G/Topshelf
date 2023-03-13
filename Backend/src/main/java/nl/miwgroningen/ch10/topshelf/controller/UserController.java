@@ -48,8 +48,8 @@ public class UserController {
 
     @PostMapping("/inviteuser/{pantryId}")
     public ResponseEntity<String> inviteUserToPantry(
-            @RequestBody PantryUsersDTO emailUser, @PathVariable("pantryId") Pantry pantryId) throws MessagingException {
-        System.out.println("User "+ emailUser);
+            @RequestBody PantryUsersDTO emailUser,
+            @PathVariable("pantryId") Pantry pantryId) throws MessagingException {
 
         boolean existingUser = userService.checkUserEmail(emailUser.email());
 
@@ -65,16 +65,9 @@ public class UserController {
 
     @GetMapping("/checkuser/{pantryId}")
     public ResponseEntity<PantryUsersDTO> checkIfCurrentUserIsPantryAdmin(@PathVariable("pantryId") Long pantryId) {
-        System.out.println("pantryID: " + pantryId);
-        System.out.println();
         User user = userService.findUserByUsername(
                 SecurityContextHolder.getContext().getAuthentication().getName());
-        System.out.println("User: " + user);
-        System.out.println();
         List<PantryUsersDTO> currentAdmin = userService.checkIfUserIsPantryAdmin(user, pantryId);
-
-        System.out.println("List of pantry admins: " + currentAdmin);
-        System.out.println();
 
         if (currentAdmin.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.OK);

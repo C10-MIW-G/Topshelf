@@ -88,8 +88,6 @@ span i:hover {
   justify-content: center;
 }
 
-
-
 h5 {
   text-align: center;
 }
@@ -103,12 +101,7 @@ h4 {
   display: block;
   margin-left: auto;
   margin-right: auto;
-}
-
-.cancel {
-  text-align: center;
-  padding: 10px 10px 0px 10px;
-  font-size: 14px;
+  min-height: 330px;
 }
 
 a.secondary {
@@ -160,4 +153,46 @@ mat-toolbar.header {
 
 mat-form-field {
   width: 100%;
+}
+
+.component-center.user-actions {
+  padding: 20px;
+}
+
+.user-form, .user-form div {
+  text-align: center;
+  font-size: 14px;
+}
+
+.user-form button {
+  margin-bottom: 10px;
+  min-width: 150px;
+}
+
+
+button.btn-color, .btn-color:hover {
+  background-color: gray;
+  color: white;
+}
+
+.modal-button {
+  min-width: 70px;
+  margin-left: 5px
+}
+
+.modal-button.btn-color,
+.modal-button.btn-color:hover  {
+  background-color: gray;
+  color: white;
+}
+
+.bottom-div {
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.bottom-div.button-container {
+  position: absolute;
+  bottom: 0;
+  padding-bottom: 5px;
 }

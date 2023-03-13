@@ -6,7 +6,6 @@ import {
   FormControl,
 } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-
 @Component({
   selector: 'app-modal-add-basic-stock',
   templateUrl: './modal-add-basic-stock.component.html',
@@ -46,7 +45,7 @@ export class ModalAddBasicStockComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.dialogRef.updateSize('25%', '48%');
+    this.dialogRef.updateSize('450px', '350px');
   }
 
   close() {

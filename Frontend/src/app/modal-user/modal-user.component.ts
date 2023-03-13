@@ -36,7 +36,7 @@ export class ModalUserComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.dialogRef.updateSize('25%', '48%');
+    this.dialogRef.updateSize('450px', '350px');
   }
 
   close() {

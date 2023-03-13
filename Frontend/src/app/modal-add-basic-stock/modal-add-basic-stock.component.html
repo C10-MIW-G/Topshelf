@@ -8,67 +8,81 @@
       </div>
     </mat-toolbar>
     <div class="container-fluid">
-      <div>
-        <div>
-          <mat-form-field>
-            <input
-              name="basicStockProductName"
-              type="text"
-              matInput
-              formControlName="basicStockProductName"
-              placeholder="Product name"
-              required
-            />
-            <mat-error class="error" *ngIf="form.invalid && form.touched"
-              >Product name is required</mat-error
-            >
-          </mat-form-field>
-        </div>
-        <div class="form-group">
-          <br />
-          <mat-form-field>
-            <input
-              name="amount"
-              type="number"
-              formControlName="amount"
-              matInput
-              placeholder="Amount"
-              required
-            />
-            <mat-error class="error" *ngIf="form.touched && form.invalid"
-              >Enter a positive amount</mat-error
-            >
-          </mat-form-field>
-        </div>
+      <mat-form-field>
+        <input
+          name="basicStockProductName"
+          type="text"
+          matInput
+          formControlName="basicStockProductName"
+          placeholder="Product name"
+          required
+        />
+        <mat-error class="error" *ngIf="form.invalid && form.touched"
+          >Enter a product name</mat-error
+        >
+      </mat-form-field>
+      <div class="form-group">
+        <br />
+        <mat-form-field>
+          <input
+            name="amount"
+            type="number"
+            formControlName="amount"
+            matInput
+            placeholder="Amount"
+            required
+          />
+          <mat-error class="error" *ngIf="form.touched && form.invalid"
+            >Enter a positive amount</mat-error
+          >
+        </mat-form-field>
       </div>
-      <div class="d-flex justify-content-between">
-        <div>
-          <span
-            class="button-add-another"
-            *ngIf="basicStockProductName == null"
-          >
-            <mat-checkbox
-              class="addAnother"
-              formControlName="openNewModal"
-              checked="true"
-              unchecked="false"
-              color="primary"
+      <div
+        class="bottom-div container-fluid position-absolute bottom-0 start-50 translate-middle-x"
+      >
+        <span *ngIf="basicStockProductName == null">
+          <div class="button-container d-flex justify-content-between">
+            <div>
+              <mat-checkbox
+                class="addAnother"
+                formControlName="openNewModal"
+                checked="true"
+                unchecked="false"
+                color="primary"
+              >
+              </mat-checkbox
+              >Add another
+            </div>
+            <div>
+              <button class="modal-button btn btn-color" (click)="close()">
+                Cancel
+              </button>
+              <button
+                class="modal-button btn btn-primary"
+                onclick="openNewModal = false"
+                [disabled]="form.invalid"
+                (click)="save()"
+              >
+                Save
+              </button>
+            </div>
+          </div>
+        </span>
+        <span *ngIf="basicStockProductName; null">
+          <div class="button-container d-flex flex-row-reverse">
+            <button
+              class="modal-button btn btn-primary"
+              onclick="openNewModal = false"
+              [disabled]="form.invalid"
+              (click)="save()"
             >
-            </mat-checkbox
-            >Add another
-          </span>
-        </div>
-        <div>
-          <button class="btn btn-color-modal" (click)="close()">Cancel</button>
-          <button
-            class="btn btn-primary"
-            onclick="openNewModal = false"
-            [disabled]="form.invalid"
-            (click)="save()"
-          >
-            Save
-          </button>
-        </div>
+              Save
+            </button>
+            <button class="modal-button btn btn-color" (click)="close()">
+              Cancel
+            </button>
+          </div>
+        </span>
       </div>
     </div>
   </div>
