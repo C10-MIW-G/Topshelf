@@ -35,8 +35,8 @@ export class ModalAddPantryComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
-    this.dialogRef.updateSize('25%', '50%');
+  ngOnInit(): void {
+    this.dialogRef.updateSize('450px', '350px');
   }
 
   close() {

@@ -48,7 +48,7 @@ export class ModalAddGroceryProductComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.dialogRef.updateSize('25%', '50%');
+    this.dialogRef.updateSize('450px', '350px');
   }
 
   close() {
