@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
       },
       (err) => {
         console.log(err);
-        this.errorMessage = err;
+        this.errorMessage = "User doesn't exist or password was incorrect, please try again.";
         this.isLoginFailed = true;
       }
     );

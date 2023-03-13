@@ -13,7 +13,7 @@
             novalidate
           >
             <div class="form-group">
-              <label for="username">Username</label>
+              <label for="username">Email</label>
               <input
                 type="text"
                 class="form-control"
@@ -21,13 +21,17 @@
                 [(ngModel)]="form.username"
                 required
                 #username="ngModel"
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
               />
-              <div
-                class="alert alert-danger"
-                role="alert"
-                *ngIf="f.submitted && username.invalid"
-              >
-                Username is required!
+            </div>
+            <div
+              class="alert alert-danger"
+              role="alert"
+              *ngIf="f.submitted && username.invalid"
+            >
+              <div *ngIf="username.errors?.['required']">Email is required</div>
+              <div *ngIf="username.errors?.['pattern']">
+                Email must be a valid email adress
               </div>
             </div>
             <div class="form-group">
@@ -56,11 +60,7 @@
             </div>
             <div class="form-group">
               <div class="user-form">
-                <button
-                  class="btn btn-primary"
-                >
-                  Login
-                </button>
+                <button class="btn btn-primary">Login</button>
                 <div>
                   <a routerLink="/resetpassword" class="secondary"
                     >Forgot password</a
@@ -73,8 +73,7 @@
                 class="alert alert-danger"
                 role="alert"
                 *ngIf="f.submitted && isLoginFailed"
-              >
-                Login failed: {{ errorMessage }}
+              >{{errorMessage }}
               </div>
             </div>
           </form>
