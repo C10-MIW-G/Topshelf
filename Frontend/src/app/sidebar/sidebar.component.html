@@ -4,7 +4,7 @@
       <nav class="col-12 d-none d-md-block sidebar">
         <div class="position-fixed">
           <ul class="nav flex-column">
-            <li class="nav-item">
+            <li class="nav-item item">
               <a
                 class="nav-link active"
                 aria-current="true"
@@ -17,11 +17,18 @@
                 routerLinkActive="active-link"
                 #stock="routerLinkActive"
               >
-              <div *ngIf="stock.isActive"><img src="/assets/images/favicon2.ico"/>Stock</div>
-              <div *ngIf="!stock.isActive">Stock</div></a
+                <div *ngIf="stock.isActive">
+                  Stock<img src="/assets/images/favicon2.ico" />
+                </div>
+                <div *ngIf="stockInitialLoad.isActive" >
+                  <div class="initial-load">Stock</div><img src="/assets/images/favicon2.ico" />
+                </div>
+                <div *ngIf="!stock.isActive && !stockInitialLoad.isActive">
+                  Stock
+                </div></a
               >
             </li>
-            <li class="nav-item">
+            <li class="nav-item item">
               <a
                 class="nav-link active"
                 [routerLink]="[
@@ -35,15 +42,16 @@
                   }
                 ]"
                 [queryParams]="{ name: pantryName }"
-                queryParamsHandling="merge"
                 routerLinkActive="active-link"
                 #basicStock="routerLinkActive"
               >
-              <div *ngIf="basicStock.isActive"><img src="/assets/images/favicon2.ico"/>Basic stock</div>
-              <div *ngIf="!basicStock.isActive">Basic stock</div>
+                <div *ngIf="basicStock.isActive">
+                  Minimum stock<img src="/assets/images/favicon2.ico" />
+                </div>
+                <div *ngIf="!basicStock.isActive">Minimum stock</div>
               </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item item">
               <a
                 class="nav-link"
                 [routerLink]="[
@@ -60,11 +68,13 @@
                 routerLinkActive="active-link"
                 #groceryList="routerLinkActive"
               >
-              <div *ngIf="groceryList.isActive"><img src="/assets/images/favicon2.ico"/>Grocery list</div>
-              <div *ngIf="!groceryList.isActive">Grocery list</div>
+                <div *ngIf="groceryList.isActive">
+                  Grocery list<img src="/assets/images/favicon2.ico" />
+                </div>
+                <div *ngIf="!groceryList.isActive">Grocery list</div>
               </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item item">
               <a
                 class="nav-link"
                 [routerLink]="[
@@ -81,9 +91,23 @@
                 routerLinkActive="active-link"
                 #users="routerLinkActive"
               >
-                <div *ngIf="users.isActive"><img src="/assets/images/favicon2.ico"/>Users</div>
+                <div *ngIf="users.isActive">
+                  Users<img src="/assets/images/favicon2.ico" />
+                </div>
                 <div *ngIf="!users.isActive">Users</div>
               </a>
+            </li>
+            <li class="nav-item">
+              <div
+                class="nav-link active"
+                aria-current="true"
+                routerLink="/pantry/{{
+                  initialPantryId
+                }};sidebar:sidebar;stockproduct:stockproduct"
+                [queryParams]="{ name: pantryName, id: initialPantryId }"
+                routerLinkActive="active-link"
+                #stockInitialLoad="routerLinkActive"
+              ></div>
             </li>
           </ul>
         </div>
