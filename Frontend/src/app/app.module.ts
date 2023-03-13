@@ -69,7 +69,7 @@ import { ModalStockProductComponent } from './modal-stock-product/modal-stock-pr
     HomePageComponent,
     UserComponent,
     ActionBarUserComponent,
-    ModalUserComponent
+    ModalUserComponent,
     ActionBarUserComponent,
     ModalStockProductComponent
   ],

@@ -196,3 +196,16 @@ button.btn-color, .btn-color:hover {
   bottom: 0;
   padding-bottom: 5px;
 }
+.pantry-card {
+  border-style: solid;
+  border-color:  rgb(65, 113, 156);
+  text-decoration: none !important;
+  max-width: 100%;
+  text-overflow: ellipsis;
+}
+.pantry-card a {
+  text-decoration: none;
+}
+.pantry-card:hover {
+  background-color: rgb(232, 241, 248);
+}
