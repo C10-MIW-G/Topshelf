@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ModaladdpantryComponent } from './modal-add-pantry.component';
+import { ModalAddPantryComponent } from './modal-add-pantry.component';
 
 describe('ModaladdpantryComponent', () => {
-  let component: ModaladdpantryComponent;
-  let fixture: ComponentFixture<ModaladdpantryComponent>;
+  let component: ModalAddPantryComponent;
+  let fixture: ComponentFixture<ModalAddPantryComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ModaladdpantryComponent ]
+      declarations: [ ModalAddPantryComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ModaladdpantryComponent);
+    fixture = TestBed.createComponent(ModalAddPantryComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

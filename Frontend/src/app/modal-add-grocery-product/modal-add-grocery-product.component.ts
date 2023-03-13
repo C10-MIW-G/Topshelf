@@ -28,9 +28,6 @@ export class ModalAddGroceryProductComponent implements OnInit {
     this.groceryProductName = data.name;
     this.amount = data.amount;
     this.isSubmitted = data.isSubmitted;
-  }
-
-  ngOnInit(): void {
     this.form = this.fb.group({
       groceryProductName: new FormControl(
         '',
@@ -46,7 +43,12 @@ export class ModalAddGroceryProductComponent implements OnInit {
         ])
       ),
       isSubmitted: this.isSubmitted,
+      openNewModal: new FormControl(true),
     });
+  }
+
+  ngOnInit(): void {
+    this.dialogRef.updateSize('450px', '350px');
   }
 
   close() {
