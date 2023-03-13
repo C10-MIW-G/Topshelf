@@ -48,13 +48,10 @@ export class ActionBarUserComponent {
       this.isLoading = true;
       const emailUser = String(data.inviteUserToPantryForm);
       this.userService
-        .inviteUserToPantry(
-          emailUser,
-          this.getPantryId())
+        .inviteUserToPantry(emailUser, this.getPantryId())
         .subscribe({
           complete: () => {
             if (data.openNewModal == true) {
-              this.isLoading = false;
               this.toastr.success('User invited!', 'Success!', {
                 positionClass: 'toast-top-center',
               });
