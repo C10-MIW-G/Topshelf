@@ -37,9 +37,8 @@ export class StockProductComponent implements OnInit {
   });
 
   public getPantryIdWithStockProducts(pantryId: number): void {
-    const id = Number(this.route.snapshot.paramMap.get('pantryId'));
-    this.pantryId = id;
-    this.stockProductService.getPantryWithStockProducts(pantryId).subscribe(
+  
+    this.stockProductService.getPantryWithStockProducts(this.getPantryId()).subscribe(
       (response: StockProduct[]) => {
         this.pantryWithStockProducts = response;
       },
@@ -47,28 +46,6 @@ export class StockProductComponent implements OnInit {
         alert(error.message);
       }
     );
-  }
-
-  public save() {
-    this.isSubmitted = true;
-    const nameValue = this.addStockProductForm.value.name;
-    const expDateValue = this.addStockProductForm.value.expirationdate;
-
-    if (nameValue && expDateValue) {
-      this.stockProductService
-        .saveStockProductToPantryStock({
-          name: nameValue,
-          expirationDate: new Date(expDateValue),
-          pantryId: this.getPantryId(),
-        })
-        .subscribe({
-          complete: () => {
-            console.log('Product has been added to pantry stock');
-            this.router.navigate(['/pantry', this.pantryId]);
-            window.location.reload();
-          },
-        });
-    }
   }
 
   public remove(stockProduct: StockProduct) {

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { ModalStockProductComponent } from '../modal-stock-product/modal-stock-product.component';
 import { StockProductService } from '../stock-product/stock-product.service';
 
 @Component({
@@ -9,37 +10,63 @@ import { StockProductService } from '../stock-product/stock-product.service';
   styleUrls: ['./action-bar-stock-product.component.css'],
 })
 export class ActionBarStockProductComponent {
-  addStockProductForm = new FormGroup({
-    name: new FormControl('', Validators.required),
-    expirationdate: new FormControl('', Validators.required),
-  });
   isSubmitted: boolean | undefined;
 
   pantryId!: number;
 
   constructor(
     private stockProductService: StockProductService,
-    private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private matDialog: MatDialog
   ) {}
 
-  public save() {
-    this.isSubmitted = true;
-    const nameValue = this.addStockProductForm.value.name;
-    const expDateValue = this.addStockProductForm.value.expirationdate;
+  onOpenDialog() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.data = {
+      name: null,
+      isSubmitted: true,
+    };
 
-    if (nameValue && expDateValue) {
+    const dialogRef = this.matDialog.open(
+      ModalStockProductComponent,
+      dialogConfig
+    );
+
+    dialogRef
+      .afterClosed()
+      .subscribe(
+        (data: {
+          stockProductName: null;
+          expirationDate: any;
+          isSubmitted: any;
+          stockProductId: any;
+        }) => {
+          this.saveProduct(data);
+        }
+      );
+  }
+
+  private saveProduct(data: {
+    expirationDate: Date;
+    stockProductName: null;
+    isSubmitted: any;
+    stockProductId: any;
+  }) {
+    if (data.stockProductName !== null && data.isSubmitted) {
       this.stockProductService
         .saveStockProductToPantryStock({
-          name: nameValue,
-          expirationDate: new Date(expDateValue),
+          name: data.stockProductName,
+          expirationDate: data.expirationDate,
           pantryId: this.getPantryId(),
+          stockProductId: data.stockProductId,
         })
         .subscribe({
           complete: () => {
-            console.log('Product has been added to pantry stock');
-            this.router.navigate(['/pantry', this.pantryId]);
             window.location.reload();
+          },
+          error: () => {
+            alert('Failed adding product');
           },
         });
     }

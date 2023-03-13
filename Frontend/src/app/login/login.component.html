@@ -1,8 +1,8 @@
 <body>
   <div class="container-fluid">
     <div class="row">
-      <div class="col-2 component-left"> </div>
-      <div class="col-8 component-center">
+      <div class="col-2 component-left"></div>
+      <div class="col-8 component-center user-actions">
         <div class="col-5 card card-container">
           <h4>Log in</h4>
           <form
@@ -22,13 +22,14 @@
                 required
                 #username="ngModel"
               />
-              <div
-                class="alert alert-danger"
-                role="alert"
-                *ngIf="f.submitted && username.invalid"
-              >
-                Username is required!
-              </div>
+            </div>
+            <div
+              class="alert alert-danger"
+              role="alert"
+              *ngIf="f.submitted && username.invalid"
+            >
+              <div *ngIf="username.errors?.['required']">Username is required</div>
+              
             </div>
             <div class="form-group">
               <label for="password">Password</label>
@@ -55,11 +56,13 @@
               </div>
             </div>
             <div class="form-group">
-              <button class="btn btn-primary btn-block">Login</button>
-              <div class="reset">
-                <a routerLink="/resetpassword" class="secondary"
-                  >Forgot password</a
-                >
+              <div class="user-form">
+                <button class="btn btn-primary">Login</button>
+                <div>
+                  <a routerLink="/resetpassword" class="secondary"
+                    >Forgot password</a
+                  >
+                </div>
               </div>
             </div>
             <div class="form-group">
@@ -67,8 +70,7 @@
                 class="alert alert-danger"
                 role="alert"
                 *ngIf="f.submitted && isLoginFailed"
-              >
-                Login failed: {{ errorMessage }}
+              >{{errorMessage }}
               </div>
             </div>
           </form>

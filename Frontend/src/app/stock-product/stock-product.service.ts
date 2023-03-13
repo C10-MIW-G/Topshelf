@@ -29,6 +29,7 @@ export class StockProductService {
         expirationDate: stockProductSave.expirationDate,
         name: stockProductSave.name,
         pantryId: stockProductSave.pantryId,
+        stockProductId: stockProductSave.stockProductId,
       }
     );
   }

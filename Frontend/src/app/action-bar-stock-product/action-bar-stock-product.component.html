@@ -1,39 +1,14 @@
 <body>
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-12 component-right">
-        <form [formGroup]="addStockProductForm" class="sidebar-fixed">
-          <div class="formGroup col-12">
-            <h5>Add your product</h5>
-            <label>Product name: </label>
-            <input
-              type="text"
-              class="form-control"
-              formControlName="name"
-              placeholder="enter product name"
-            />
-          </div>
-          <br />
-          <div class="formGroup col-12">
-            <label>Expiration date: </label>
-            <input
-              type="date"
-              class="form-control"
-              formControlName="expirationdate"
-              placeholder="enter expiration date"
-            />
-            <br />
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12 action-bar px-0 d-flex align-items-start">
             <button
-              type="submit"
-              class="btn btn-primary"
-              (click)="save()"
-              [disabled]="addStockProductForm.invalid"
+              class="btn btn-primary position-fixed"
+              (click)="onOpenDialog()"
             >
-              Save
+              Add product
             </button>
           </div>
-        </form>
+        </div>
       </div>
-    </div>
-  </div>
 </body>

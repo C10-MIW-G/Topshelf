@@ -1,0 +1,51 @@
+<mat-dialog-content [formGroup]="form" class="form">
+  <button type="button" class="close" (click)="close()">&times;</button>
+  <div class="modal-header primary">
+    <h5>
+      {{
+        stockProductName == null
+          ? "Add a stockproduct"
+          : "Edit stockproduct"
+      }}
+    </h5>
+  </div>
+  <br />
+  <mat-form-field class="form-group">
+    <input
+      name="stockProductName"
+      type="text"
+      matInput
+      formControlName="stockProductName"
+      placeholder="Product name"
+      ngModel="{{ stockProductName }}"
+      required
+    />
+    <mat-error class="error" *ngIf="form.invalid && form.touched"
+      >Name is required</mat-error
+    >
+  </mat-form-field>
+
+  <br />
+  <mat-form-field class="form-group">
+    <input
+      name="date"
+      type="date"
+      formControlName="expirationDate"
+      matInput
+      placeholder="Date"
+      ngModel="{{ expirationDate }}"
+      required
+    />
+    <mat-error class="error" *ngIf="form.touched && form.invalid"
+      >Enter a positive amount</mat-error
+    >
+  </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button class="btn btn-color" (click)="close()">Cancel</button>
+  <button class="btn btn-color-2" [disabled]="form.invalid" (click)="save()">
+    Save
+  </button>
+</mat-dialog-actions>
+

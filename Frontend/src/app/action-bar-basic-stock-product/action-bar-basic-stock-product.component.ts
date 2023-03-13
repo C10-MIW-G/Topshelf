@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { BasicStockProduct } from '../basic-stock-product/basic-stock-product';
 import { BasicStockProductService } from '../basic-stock-product/basic-stock-product.service';
 import { ModalAddBasicStockComponent } from '../modal-add-basic-stock/modal-add-basic-stock.component';
 
@@ -13,7 +12,6 @@ import { ModalAddBasicStockComponent } from '../modal-add-basic-stock/modal-add-
 })
 export class ActionBarBasicStockProductComponent {
   pantryId!: number;
-  basicStockProductId?: number;
   openNewModal?: boolean;
 
   constructor(
@@ -23,12 +21,11 @@ export class ActionBarBasicStockProductComponent {
     private toastr: ToastrService
   ) {}
 
-  onOpenDialog(basicStockProduct?: BasicStockProduct) {
+  onOpenDialog() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.data = {
-      name: basicStockProduct?.name,
-      amount: basicStockProduct?.amount,
+      name: null,
       isSubmitted: true
     };
 
@@ -38,26 +35,20 @@ export class ActionBarBasicStockProductComponent {
     );
 
     dialogRef.afterClosed().subscribe((data) => {
-      this.saveBasicStockProduct(data, basicStockProduct);
+      this.saveBasicStockProduct(data);
     });
   }
 
   private saveBasicStockProduct(
     data: any,
-    basicStockProduct: BasicStockProduct | undefined
   ) {
-    if (data.basicStockProductName !== null && data.isSubmitted) {
-      if (basicStockProduct?.basicStockProductId !== null) {
-        this.basicStockProductId = basicStockProduct?.basicStockProductId;
-      } else {
-        this.basicStockProductId = data.basicStockProductId;
-      }
+    if (data.isSubmitted) {
       this.basicStockProductService
         .saveBasicStockProductToPantryStock({
           name: data.basicStockProductName,
           amount: data.amount,
           pantryId: this.getPantryId(),
-          basicStockProductId: this.basicStockProductId,
+          basicStockProductId: data.basicStockProductId,
         })
         .subscribe({
           complete: () => {
