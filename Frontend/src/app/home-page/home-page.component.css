@@ -1,10 +1,43 @@
 .header,
 h4 {
-  background-color: rgb(207, 233, 255);
+  background-color: rgb(65, 113, 156);
   text-align: center;
   padding: 5px;
-  color: rgb(65, 113, 156);
+  color: white;
   font-style: italic;
+  font-size: larger;
+}
+
+h3 {
+  color: white;
+  text-align: left;
+}
+.component-center {
+  background-color:
+  rgb(65, 113, 156);
+}
+
+.component-left, .component-right, .sidebar {
+  background-color:
+  rgb(65, 113, 156);
+}
+
+.button-landing {
+  display: block;
+}
+
+.btn-start {
+  background-color: rgb(45, 94, 141);
+  border-color: white;
+  font-size: larger;
+  max-width: 200px;
+}
+
+.btn-login {
+  background-color: rgb(90, 157, 216);
+  border-color: white;
+  font-size: larger;
+  max-width: 200px;
 }
 
 a {
@@ -25,25 +58,26 @@ a ul a {
 }
 
 p {
- text-align: center;
- font-size: larger;
+ text-align: left;
+ font-size: large;
+ color: white;
 }
 
-.col-4 {
+.col-6 {
   display: block;
   margin-top: 50px;
 }
 
 .card {
-  background-color: white;
-  border: rgb(207, 233, 255) solid 4px;
+  background-color: rgb(65, 113, 156);;
   position: relative;
   min-height: 250px;
-}
-
-.card:hover {
-  border: rgb(162, 212, 255) outset 5px;
-  color: black;
+  max-height: 300px;
+  min-width: auto;
+  display: block;
+  border: 0;
+  color: white;
+  align-content: end;
 }
 
 ul {
@@ -54,8 +88,7 @@ ul {
 
 img {
   margin-left: -15px;
-}
-
-.row {
-    max-height: 90vh;
+  max-width: 70%;
+  height: auto;
+  align-self: flex-end;
 }

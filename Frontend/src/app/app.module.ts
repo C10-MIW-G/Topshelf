@@ -43,6 +43,7 @@ import { ModalAddBasicStockComponent } from './modal-add-basic-stock/modal-add-b
 import { UserComponent } from './user/user.component';
 import { ActionBarUserComponent } from './action-bar-user/action-bar-user.component';
 import { ModalUserComponent } from './modal-user/modal-user.component';
+import { ModalStockProductComponent } from './modal-stock-product/modal-stock-product.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,9 @@ import { ModalUserComponent } from './modal-user/modal-user.component';
     HomePageComponent,
     UserComponent,
     ActionBarUserComponent,
-    ModalUserComponent
+    ModalUserComponent,
+    ActionBarUserComponent,
+    ModalStockProductComponent
   ],
   imports: [
     BrowserModule,
