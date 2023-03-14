@@ -73,6 +73,11 @@ h4 {
   text-align: left;
 }
 
+h3 {
+  padding: 20px;
+  text-align: left;
+}
+
 .card {
   display: block;
   margin-left: auto;
