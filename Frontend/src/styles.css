@@ -227,3 +227,7 @@ button.actions-button {
   text-decoration: none;
 }
 
+html.cdk-global-scrollblock {
+  overflow: hidden;
+}
+
