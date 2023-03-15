@@ -17,7 +17,7 @@
               <tr *ngFor="let stockProduct of pantryWithStockProducts">
                 <td>{{ stockProduct.name }}</td>
                 <td class="date-font">
-                  {{ stockProduct.expirationDate | date : "dd.MM.y" }}
+                  {{ stockProduct.expirationDate | date : "dd-MM-y" }}
                 </td>
                 <td class="text-center">
                   <a (click)="editDialog(stockProduct)">

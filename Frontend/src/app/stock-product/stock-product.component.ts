@@ -29,7 +29,7 @@ export class StockProductComponent implements OnInit {
     this.getPantryName();
   }
 
-  public getPantryIdWithStockProducts(pantryId: number): void {
+  public getPantryIdWithStockProducts(): void {
     this.stockProductService
       .getPantryWithStockProducts(this.getPantryId())
       .subscribe(
