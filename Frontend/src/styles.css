@@ -12,7 +12,7 @@ footer {
   color: white;
   text-align: center;
   width: 100%;
-  position: absolute;
+  position: fixed;
   bottom: 0;
 }
 
@@ -68,13 +68,17 @@ a:link, a:visited, a:active{
    rgb(232, 241, 248);
 }
 
-p {
-  text-align: left;
+.component-center.user-actions {
+  padding: 20px;
 }
 
 .sidebar {
   background-color:
   rgb(232, 241, 248);
+}
+
+p {
+  text-align: left;
 }
 
 span i:hover {
@@ -98,11 +102,23 @@ h4 {
   text-align: left;
 }
 
-.card {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  min-height: 330px;
+h3 {
+  padding: 20px;
+  text-align: left;
+}
+
+a.date {
+  font-style: italic;
+}
+
+a {
+  color: rgb(65, 113, 156);
+  font-size: larger;
+}
+
+a:link, a:visited, a:active{
+  color:black;
+  text-decoration: underline;
 }
 
 a.secondary {
@@ -156,10 +172,6 @@ mat-form-field {
   width: 100%;
 }
 
-.component-center.user-actions {
-  padding: 20px;
-}
-
 .user-form, .user-form div {
   text-align: center;
   font-size: 14px;
@@ -197,6 +209,18 @@ button.btn-color, .btn-color:hover {
   padding-bottom: 5px;
 }
 
+button.actions-button {
+  width: 180px;
+  font-size: 18px;
+}
+
+.card {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  min-height: 330px;
+}
+
 .pantry-card {
   border-style: solid;
   border-color:  rgb(65, 113, 156);
@@ -209,6 +233,14 @@ button.btn-color, .btn-color:hover {
   text-decoration: none;
 }
 
+.pantry-card span {
+  text-decoration: none;
+
 .pantry-card:hover {
   background-color: rgb(232, 241, 248);
 }
+
+html.cdk-global-scrollblock {
+  overflow: hidden;
+}
+

@@ -112,7 +112,7 @@ public class UserService {
         user.setPassword(passwordEncoder.encode(newPassword));
         userRepository.save(user);
 
-        sendEmail.sendMessage(user, "Reset password", "Hello " + user + "\n\n" +
+        sendEmail.sendMessage(user, "Reset password", "Hello " + user.getUsername() + "\n\n" +
                 "Your password reset was successful \n" +
                 "Your new password = " + newPassword + "\n" +
                 "It's strongly advised to change your password immediately. \n\n With kind regards, \n\n Topshelf");
@@ -122,7 +122,7 @@ public class UserService {
         if (pantryService.checkIfUserIsPartOfPantry(user.getUsername(), pantryId)) {
             pantryService.addUserToPantry(user.getUsername(), pantryId);
             sendEmail.sendMessage(user, "Invite to pantry: " + pantryId.getName(),
-                    "Hello " + user + "\n\n" + "Great news: you've been invited to pantry: " + pantryId.getName()
+                    "Hello " + user.getUsername() + "\n\n" + "Great news: you've been invited to pantry: " + pantryId.getName()
                             + "\n" + "Log in and check out your new pantry: http://localhost:4200/ " +
                             "\n\n With kind regards, \n\n Topshelf" );
         } else {

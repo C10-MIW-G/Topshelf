@@ -14,21 +14,21 @@ a{
   text-decoration: underline;
 }
 
-.nav-item {
+.nav-item.item {
   border-bottom: 1px solid black;
   display: block;
-  width: auto;
+  width: 190px;
   padding: 10px;
 }
 
-.active-link {
+.active-link, .initial-load{
   font-weight: 700;
 }
 
 img {
-  width: 28px;
-  height: 28px;
-  margin-right: 5px;
+  width: 27px;
+  height: 27px;
+  margin-left: 5px;
 }
 
 li a div {
