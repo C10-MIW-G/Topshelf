@@ -28,7 +28,18 @@ export class TokenStorageService {
   }
 
   public getUser(): any {
-    return JSON.parse(sessionStorage.getItem(USER_KEY)!);
+    const user = window.sessionStorage.getItem(USER_KEY);
+    if (user) {
+      return JSON.parse(user);
+    }
+  }
+
+  public getUsername(): any {
+    const user = window.sessionStorage.getItem(USER_KEY);
+    if (user) {
+      return JSON.parse(user).username;
+    }
+    return {};
   }
 
   public isLoggedIn(): boolean {
