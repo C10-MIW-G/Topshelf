@@ -235,6 +235,7 @@ button.actions-button {
 
 .pantry-card span {
   text-decoration: none;
+}
 
 .pantry-card:hover {
   background-color: rgb(232, 241, 248);
