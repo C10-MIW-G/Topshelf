@@ -43,4 +43,11 @@ public class StockProduct {
         this.productDefinition = productDefinition;
         this.pantry = pantry;
     }
+
+    public StockProduct(Long stockProductId, LocalDate expirationDate, ProductDefinition productByName, Pantry pantryByPantryId) {
+        this.stockProductId = stockProductId;
+        this.expirationDate = expirationDate;
+        this.productDefinition = productByName;
+        this.pantry = pantryByPantryId;
+    }
 }

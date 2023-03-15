@@ -233,12 +233,12 @@ button.actions-button {
   text-decoration: none;
 }
 
-.pantry-card span {
+.pantry-card a:hover {
   text-decoration: none;
 }
-
 .pantry-card:hover {
   background-color: rgb(232, 241, 248);
+  text-decoration: none !important;
 }
 
 html.cdk-global-scrollblock {

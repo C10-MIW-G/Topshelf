@@ -17,4 +17,8 @@ export class NavComponent {
     this.tokenStorageService.signOut();
     window.location.reload;
   }
+
+  public getUsername(): string {
+    return this.tokenStorageService.getUsername();
+  }
 }

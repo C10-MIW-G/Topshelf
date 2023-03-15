@@ -18,6 +18,7 @@
       </li>
     </ul>
     <div class="form-inline my-2 my-lg-0" *ngIf="isLoggedIn()">
+      <div class="username">{{ getUsername() }}</div>
       <div class="dropdown">
         <button
           class="btn"
