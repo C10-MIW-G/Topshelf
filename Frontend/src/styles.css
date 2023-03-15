@@ -1,4 +1,4 @@
-body {
+body, .date-font {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
@@ -32,7 +32,7 @@ a.date {
   font-style: italic;
 }
 
-button, button.btn {
+button.btn {
   min-width: 90px;
   margin-left: 5px
 }
@@ -60,6 +60,7 @@ a:link, a:visited, a:active{
 .row {
   height: 100vh;
 }
+
 .component-left, .component-right {
   padding-top: 36px;
   text-align: left;
@@ -67,13 +68,17 @@ a:link, a:visited, a:active{
    rgb(232, 241, 248);
 }
 
-p {
-  text-align: left;
+.component-center.user-actions {
+  padding: 20px;
 }
 
 .sidebar {
   background-color:
   rgb(232, 241, 248);
+}
+
+p {
+  text-align: left;
 }
 
 span i:hover {
@@ -88,25 +93,6 @@ span i:hover {
   justify-content: center;
 }
 
-
-.pantry-card {
-  border-style: solid;
-  border-color:  rgb(65, 113, 156);
-  text-decoration: none !important;
-  max-width: 100%;
-  text-overflow: ellipsis;
-}
-
-.pantry-card span {
-  text-decoration: none;
-}
-
-
-.pantry-card:hover {
-  background-color: rgb(232, 241, 248);
-}
-
-
 h5 {
   text-align: center;
 }
@@ -116,16 +102,23 @@ h4 {
   text-align: left;
 }
 
-.card {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+h3 {
+  padding: 20px;
+  text-align: left;
 }
 
-.cancel {
-  text-align: center;
-  padding: 10px 10px 0px 10px;
-  font-size: 14px;
+a.date {
+  font-style: italic;
+}
+
+a {
+  color: rgb(65, 113, 156);
+  font-size: larger;
+}
+
+a:link, a:visited, a:active{
+  color:black;
+  text-decoration: underline;
 }
 
 a.secondary {
@@ -178,3 +171,77 @@ mat-toolbar.header {
 mat-form-field {
   width: 100%;
 }
+
+.user-form, .user-form div {
+  text-align: center;
+  font-size: 14px;
+}
+
+.user-form button {
+  margin-bottom: 10px;
+  min-width: 150px;
+}
+
+button.btn-color, .btn-color:hover {
+  background-color: gray;
+  color: white;
+}
+
+.modal-button {
+  min-width: 70px;
+  margin-left: 5px
+}
+
+.modal-button.btn-color,
+.modal-button.btn-color:hover  {
+  background-color: gray;
+  color: white;
+}
+
+.bottom-div {
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.bottom-div.button-container {
+  position: absolute;
+  bottom: 0;
+  padding-bottom: 5px;
+}
+
+button.actions-button {
+  width: 180px;
+  font-size: 18px;
+}
+
+.card {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  min-height: 330px;
+}
+
+.pantry-card {
+  border-style: solid;
+  border-color:  rgb(65, 113, 156);
+  text-decoration: none !important;
+  max-width: 100%;
+  text-overflow: ellipsis;
+}
+
+.pantry-card a {
+  text-decoration: none;
+}
+
+.pantry-card span {
+  text-decoration: none;
+}
+
+.pantry-card:hover {
+  background-color: rgb(232, 241, 248);
+}
+
+html.cdk-global-scrollblock {
+  overflow: hidden;
+}
+

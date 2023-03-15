@@ -2,12 +2,7 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-12 component-center">
-        <h4>{{ namePantry }}</h4>
-
-        <tr>
-          Products in stock:
-        </tr>
-        <br />
+        <h3>{{ namePantry }}</h3>
         <div class="px-3">
           <table class="table table-hover shadow">
             <thead>
@@ -21,7 +16,16 @@
             <tbody>
               <tr *ngFor="let stockProduct of pantryWithStockProducts">
                 <td>{{ stockProduct.name }}</td>
-                <td>{{ stockProduct.expirationDate }}</td>
+                <td class="date-font">
+                  {{ stockProduct.expirationDate | date : "dd.MM.y" }}
+                </td>
+                <td class="text-center">
+                  <a (click)="editDialog(stockProduct)">
+                    <span>
+                      <i class="fa fa-edit"></i>
+                    </span>
+                  </a>
+                </td>
                 <td>
                   {{ stockProduct.stockStatus ? "Almost out of stock" : "" }}
                 </td>

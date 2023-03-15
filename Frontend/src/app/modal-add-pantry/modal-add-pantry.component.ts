@@ -4,7 +4,7 @@ import {
   Validators,
   FormControl,
 } from '@angular/forms';
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, HostListener, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
@@ -33,6 +33,13 @@ export class ModalAddPantryComponent implements OnInit {
       ),
       isSubmitted: this.isSubmitted,
     });
+  }
+
+  @HostListener('document:keypress', ['$event'])
+  keyEvent(event: KeyboardEvent) {
+    if (event.key === "Enter") {
+      this.save();
+    }
   }
 
   ngOnInit(): void {

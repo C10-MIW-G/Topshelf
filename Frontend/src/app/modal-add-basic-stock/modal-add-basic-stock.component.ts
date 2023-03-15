@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, HostListener, Inject, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -6,6 +6,7 @@ import {
   FormControl,
 } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+
 @Component({
   selector: 'app-modal-add-basic-stock',
   templateUrl: './modal-add-basic-stock.component.html',
@@ -16,6 +17,7 @@ export class ModalAddBasicStockComponent implements OnInit {
   basicStockProductName: string;
   amount: number;
   isSubmitted: boolean;
+  openNewModal?: boolean;
 
   constructor(
     private fb: FormBuilder,
@@ -25,6 +27,7 @@ export class ModalAddBasicStockComponent implements OnInit {
     this.basicStockProductName = data.name;
     this.amount = data.amount;
     this.isSubmitted = data.isSubmitted;
+    this.openNewModal = data.openNewModal;
     this.form = this.fb.group({
       basicStockProductName: new FormControl(
         this.basicStockProductName,
@@ -40,8 +43,15 @@ export class ModalAddBasicStockComponent implements OnInit {
         ])
       ),
       isSubmitted: this.isSubmitted,
-      openNewModal: new FormControl(true),
+      openNewModal: new FormControl(this.openNewModal),
     });
+  }
+
+  @HostListener('document:keypress', ['$event'])
+  keyEvent(event: KeyboardEvent) {
+    if (event.key === "Enter") {
+      this.save();
+    }
   }
 
   ngOnInit(): void {

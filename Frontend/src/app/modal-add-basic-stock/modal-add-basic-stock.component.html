@@ -54,7 +54,9 @@
               >Add another
             </div>
             <div>
-              <button class="modal-button btn btn-color" (click)="close()">
+              <button 
+              class="modal-button btn btn-color"
+              (click)="close()">
                 Cancel
               </button>
               <button
@@ -74,6 +76,7 @@
               class="modal-button btn btn-primary"
               onclick="openNewModal = false"
               [disabled]="form.invalid"
+              (keydown.enter)="save()"
               (click)="save()"
             >
               Save

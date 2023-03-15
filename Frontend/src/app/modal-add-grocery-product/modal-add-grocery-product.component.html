@@ -73,14 +73,16 @@
         <span *ngIf="groceryProductName != null">
           <div class="button-container d-flex flex-row-reverse">
             <button
+              type="submit"
               class="modal-button btn btn-primary"
               onclick="openNewModal = false"
               [disabled]="form.invalid"
+              (keydown.enter)="save()"
               (click)="save()"
             >
               Save
             </button>
-            <button class="modal-button btn btn-color" (click)="close()">
+            <button  class="modal-button btn btn-color" (click)="close()">
               Cancel
             </button>
           </div>
