@@ -1,4 +1,4 @@
-body {
+body, .date-font {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
@@ -32,7 +32,7 @@ a.date {
   font-style: italic;
 }
 
-button, button.btn {
+button.btn {
   min-width: 90px;
   margin-left: 5px
 }
@@ -60,6 +60,7 @@ a:link, a:visited, a:active{
 .row {
   height: 100vh;
 }
+
 .component-left, .component-right {
   padding-top: 36px;
   text-align: left;
@@ -169,7 +170,6 @@ mat-form-field {
   min-width: 150px;
 }
 
-
 button.btn-color, .btn-color:hover {
   background-color: gray;
   color: white;
@@ -196,6 +196,7 @@ button.btn-color, .btn-color:hover {
   bottom: 0;
   padding-bottom: 5px;
 }
+
 .pantry-card {
   border-style: solid;
   border-color:  rgb(65, 113, 156);
@@ -203,9 +204,11 @@ button.btn-color, .btn-color:hover {
   max-width: 100%;
   text-overflow: ellipsis;
 }
+
 .pantry-card a {
   text-decoration: none;
 }
+
 .pantry-card:hover {
   background-color: rgb(232, 241, 248);
 }

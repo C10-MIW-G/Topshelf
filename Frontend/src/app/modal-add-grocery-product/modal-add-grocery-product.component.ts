@@ -1,5 +1,5 @@
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, HostListener } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -16,9 +16,8 @@ export class ModalAddGroceryProductComponent implements OnInit {
   form!: FormGroup;
   groceryProductName: string;
   amount: number;
-  hasFailed: boolean = false;
-  errormessage?: string;
   isSubmitted: boolean;
+  openNewModal?: boolean;
 
   constructor(
     private fb: FormBuilder,
@@ -28,6 +27,7 @@ export class ModalAddGroceryProductComponent implements OnInit {
     this.groceryProductName = data.name;
     this.amount = data.amount;
     this.isSubmitted = data.isSubmitted;
+    this.openNewModal = data.openNewModal;
     this.form = this.fb.group({
       groceryProductName: new FormControl(
         '',
@@ -43,8 +43,15 @@ export class ModalAddGroceryProductComponent implements OnInit {
         ])
       ),
       isSubmitted: this.isSubmitted,
-      openNewModal: new FormControl(true),
+      openNewModal: new FormControl(this.openNewModal),
     });
+  }
+
+  @HostListener('document:keypress', ['$event'])
+  keyEvent(event: KeyboardEvent) {
+    if (event.key === "Enter") {
+      this.save();
+    }
   }
 
   ngOnInit(): void {
@@ -57,34 +64,6 @@ export class ModalAddGroceryProductComponent implements OnInit {
   }
 
   save() {
-    const groceryProductName = this.form.value.groceryProductName;
-    console.log(groceryProductName + ' grocery-component');
-    if (!this.isEmptyOrSpaces(groceryProductName)) {
-      this.hasFailed = true;
-      this.errormessage = 'Enter product name';
-    }
-    if (this.form.value.amount === null) {
-      this.hasFailed = true;
-      this.errormessage = 'Enter a postive amount';
-    }
-    if (
-      this.form.value.amount < 0 ||
-      !this.isEmptyOrSpaces(groceryProductName)
-    ) {
-      this.hasFailed = true;
-      this.errormessage = 'Amount has to be positive';
-    } else {
-      this.isSubmitted = true;
-      this.dialogRef.close(this.form.value);
-    }
-  }
-
-  public myError = (controlName: string, errorName: string) => {
-    return this.form.controls[controlName].hasError(errorName);
-  };
-
-  public isEmptyOrSpaces(str: string | null | undefined) {
-    console.log(str);
-    return str === null || str?.match(/[\S]/g) !== null;
+    this.dialogRef.close(this.form.value);
   }
 }

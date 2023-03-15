@@ -31,6 +31,7 @@ public class StockProductDTOMapper implements Function<StockProduct, StockProduc
 
     public StockProduct convertFromDTO (StockProductDTO stockProductDTO) {
         return new StockProduct(
+                stockProductDTO.stockProductId(),
                 stockProductDTO.expirationDate(),
                 productDefinitionService.findProductByName(stockProductDTO.name()),
                 pantryService.findPantryByPantryId(stockProductDTO.pantryId())

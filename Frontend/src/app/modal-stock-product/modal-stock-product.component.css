@@ -1,0 +1,8 @@
+::ng-deep .mat-datepicker-content .mat-calendar {
+    width: 229px!important;
+    height: 290px!important;
+}
+
+.cdk-overlay-pane{
+    z-index: 10000 !important;
+}

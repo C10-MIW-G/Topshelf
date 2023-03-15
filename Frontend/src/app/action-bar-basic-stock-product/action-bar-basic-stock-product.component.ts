@@ -12,7 +12,6 @@ import { ModalAddBasicStockComponent } from '../modal-add-basic-stock/modal-add-
 })
 export class ActionBarBasicStockProductComponent {
   pantryId!: number;
-  openNewModal?: boolean;
 
   constructor(
     private basicStockProductService: BasicStockProductService,
@@ -21,12 +20,13 @@ export class ActionBarBasicStockProductComponent {
     private toastr: ToastrService
   ) {}
 
-  onOpenDialog() {
+  onOpenDialog(openNewModal?: boolean) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.data = {
       name: null,
-      isSubmitted: true
+      isSubmitted: true,
+      openNewModal,
     };
 
     const dialogRef = this.matDialog.open(
@@ -39,9 +39,7 @@ export class ActionBarBasicStockProductComponent {
     });
   }
 
-  private saveBasicStockProduct(
-    data: any,
-  ) {
+  private saveBasicStockProduct(data: any) {
     if (data.isSubmitted) {
       this.basicStockProductService
         .saveBasicStockProductToPantryStock({
@@ -52,12 +50,15 @@ export class ActionBarBasicStockProductComponent {
         })
         .subscribe({
           complete: () => {
-            if (data.openNewModal == true) {
-              this.onOpenDialog();
-              this.toastr.success('Product added!', 'Success!', {
-                positionClass: 'toast-top-center',
-              });
-              this.openNewModal = true;
+            if (data.openNewModal) {
+              this.onOpenDialog(true);
+              this.toastr.success(
+                data.basicStockProductName + ' added!',
+                'Success!',
+                {
+                  positionClass: 'toast-top-center',
+                }
+              );
             } else {
               window.location.reload();
             }

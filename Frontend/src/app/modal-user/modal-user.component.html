@@ -27,6 +27,7 @@
             class="modal-button btn btn-primary"
             onclick="openNewModal = false"
             [disabled]="form.invalid"
+            (keydown.enter)="save()"
             (click)="save()"
           >
             Save

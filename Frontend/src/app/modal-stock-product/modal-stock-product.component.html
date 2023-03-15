@@ -1,51 +1,91 @@
-<mat-dialog-content [formGroup]="form" class="form">
-  <button type="button" class="close" (click)="close()">&times;</button>
-  <div class="modal-header primary">
-    <h5>
-      {{
-        stockProductName == null
-          ? "Add a stockproduct"
-          : "Edit stockproduct"
-      }}
-    </h5>
+<body>
+  <div [formGroup]="form" class="form">
+    <mat-toolbar class="header">
+      <div class="container-fluid">
+        <h4>
+          {{ stockProductName == null ? "Add a product" : "Edit product" }}
+        </h4>
+      </div>
+    </mat-toolbar>
+    <div class="container-fluid">
+      <mat-form-field>
+        <input
+          name="stockProductName"
+          type="text"
+          matInput
+          formControlName="stockProductName"
+          placeholder="Product name"
+          required
+        />
+        <mat-error class="error" *ngIf="form.invalid && form.touched"
+          >Name is required</mat-error
+        >
+      </mat-form-field>
+      <br />
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Date"
+          formControlName="expirationDate"
+          [matDatepicker]="expiresAt"
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="expiresAt"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #expiresAt></mat-datepicker>
+        <mat-error class="error" *ngIf="form.invalid && form.touched"
+          >Date is required</mat-error
+        >
+      </mat-form-field>
+      <div
+        class="bottom-div container-fluid position-absolute bottom-0 start-50 translate-middle-x"
+      >
+        <span *ngIf="stockProductName == null">
+          <div class="button-container d-flex justify-content-between">
+            <div>
+              <mat-checkbox
+                class="addAnother"
+                formControlName="openNewModal"
+                checked="true"
+                unchecked="false"
+                color="primary"
+              >
+              </mat-checkbox
+              >Add another
+            </div>
+            <div>
+              <button class="modal-button btn btn-color" (click)="close()">
+                Cancel
+              </button>
+              <button
+                class="modal-button btn btn-primary"
+                onclick="openNewModal = false"
+                [disabled]="form.invalid"
+                (click)="save()"
+              >
+                Save
+              </button>
+            </div>
+          </div>
+        </span>
+        <span *ngIf="stockProductName; null">
+          <div class="button-container d-flex flex-row-reverse">
+            <button
+              class="modal-button btn btn-primary"
+              onclick="openNewModal = false"
+              [disabled]="form.invalid"
+              (keydown.enter)="save()"
+              (click)="save()"
+            >
+              Save
+            </button>
+            <button class="modal-button btn btn-color" (click)="close()">
+              Cancel
+            </button>
+          </div>
+        </span>
+      </div>
+    </div>
   </div>
-  <br />
-  <mat-form-field class="form-group">
-    <input
-      name="stockProductName"
-      type="text"
-      matInput
-      formControlName="stockProductName"
-      placeholder="Product name"
-      ngModel="{{ stockProductName }}"
-      required
-    />
-    <mat-error class="error" *ngIf="form.invalid && form.touched"
-      >Name is required</mat-error
-    >
-  </mat-form-field>
-
-  <br />
-  <mat-form-field class="form-group">
-    <input
-      name="date"
-      type="date"
-      formControlName="expirationDate"
-      matInput
-      placeholder="Date"
-      ngModel="{{ expirationDate }}"
-      required
-    />
-    <mat-error class="error" *ngIf="form.touched && form.invalid"
-      >Enter a positive amount</mat-error
-    >
-  </mat-form-field>
-</mat-dialog-content>
-
-<mat-dialog-actions>
-  <button class="btn btn-color" (click)="close()">Cancel</button>
-  <button class="btn btn-color-2" [disabled]="form.invalid" (click)="save()">
-    Save
-  </button>
-</mat-dialog-actions>
-
+</body>
