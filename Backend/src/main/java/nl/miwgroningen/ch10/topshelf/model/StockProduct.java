@@ -37,7 +37,8 @@ public class StockProduct {
 
     private boolean stockStatus;
 
-    public StockProduct(LocalDate expirationDate, ProductDefinition productDefinition, Pantry pantry) {
+    public StockProduct(Long stockProductId, LocalDate expirationDate, ProductDefinition productDefinition, Pantry pantry) {
+        this.stockProductId = stockProductId;
         this.expirationDate = expirationDate;
         this.productDefinition = productDefinition;
         this.pantry = pantry;

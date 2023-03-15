@@ -60,11 +60,10 @@ public class PantryService {
 
     public List<PantryDTO> findPantriesByUser(String username) {
         User userToBeSearched = userService.findUserByUsername(username);
-        List<PantryDTO> newlist = pantryRepository.findPantriesByUsers(userToBeSearched)
+        return pantryRepository.findPantriesByUsers(userToBeSearched)
                 .stream()
                 .map(pantryDTOMapper)
                 .toList();
-        return newlist;
     }
 
     public boolean checkIfUserIsPartOfPantry(String username, Pantry pantry) {

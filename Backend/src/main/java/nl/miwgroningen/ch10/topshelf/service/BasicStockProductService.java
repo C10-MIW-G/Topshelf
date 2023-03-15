@@ -1,7 +1,6 @@
 package nl.miwgroningen.ch10.topshelf.service;
 
 import nl.miwgroningen.ch10.topshelf.dto.BasicStockProductDTO;
-import nl.miwgroningen.ch10.topshelf.exception.BasicStockProductNotFoundException;
 import nl.miwgroningen.ch10.topshelf.mapper.BasicStockProductDTOMapper;
 import nl.miwgroningen.ch10.topshelf.model.BasicStockProduct;
 import nl.miwgroningen.ch10.topshelf.model.Pantry;
@@ -31,13 +30,6 @@ public class BasicStockProductService {
         this.basicStockProductDTOMapper = basicStockProductDTOMapper;
     }
 
-    public BasicStockProductDTO findBasicStockProductByBasicStockProductId(Long basicStockProductId) {
-        return basicStockProductRepository.findBasicStockProductByBasicStockProductId(basicStockProductId)
-                .map(basicStockProductDTOMapper)
-                .orElseThrow(() -> new BasicStockProductNotFoundException("BasicStockProduct with id: " +
-                        basicStockProductId + " was not found!"));
-    }
-
     public List<BasicStockProductDTO> findBasicStockProductByPantry(Pantry pantry) {
         return basicStockProductRepository.findBasicStockProductsByPantry(pantry)
                 .stream()
@@ -52,11 +44,6 @@ public class BasicStockProductService {
 
     public int findBasicStockAmountByName(Pantry pantry, ProductDefinition productDefinition){
          Optional<BasicStockProduct> basicStockProduct = basicStockProductRepository.findBasicStockProductByPantryAndProductDefinition(pantry, productDefinition);
-         if(basicStockProduct.isPresent()){
-             return basicStockProduct.get().getAmount();
-         } else {
-             return 0;
-         }
-
+        return basicStockProduct.map(BasicStockProduct::getAmount).orElse(0);
     }
 }
