@@ -8,7 +8,7 @@ import nl.miwgroningen.ch10.topshelf.model.User;
 import nl.miwgroningen.ch10.topshelf.repository.StockProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.util.Comparator;
+
 import java.util.List;
 
 /**
@@ -34,11 +34,10 @@ public class StockProductService {
         this.basicStockProductService = basicStockProductService;
     }
 
-    public List<StockProductDTO> findStockProductByPantry(Pantry pantry) {
-        return stockProductRepository.findStockProductsByPantry(pantry)
+    public List<StockProductDTO> findStockProductByPantryOrderByExpirationDate(Pantry pantry) {
+        return stockProductRepository.findStockProductsByPantryOrderByExpirationDate(pantry)
                 .stream()
-                .peek(stockProduct -> setStockStatus(stockProduct))
-                .sorted(Comparator.comparing(StockProduct::getExpirationDate))
+                .peek(this::setStockStatus)
                 .map(stockProductDTOMapper)
                 .toList();
     }
@@ -66,10 +65,6 @@ public class StockProductService {
         int count = this.countStockProductByProductDefinition(productDefinition, pantry);
         int amount = basicStockProductService.findBasicStockAmountByName(pantry, productDefinition);
 
-        if(count >= amount || amount == 0){
-            stockProduct.setStockStatus(false);
-        } else {
-            stockProduct.setStockStatus(true);
-        }
+        stockProduct.setStockStatus(count < amount && amount != 0);
     }
 }
