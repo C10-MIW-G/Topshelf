@@ -10,7 +10,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 @Component({
   selector: 'app-modal-user',
   templateUrl: './modal-user.component.html',
-  styleUrls: ['./modal-user.component.css']
+  styleUrls: ['./modal-user.component.css'],
 })
 export class ModalUserComponent implements OnInit {
   form!: FormGroup;
@@ -25,11 +25,10 @@ export class ModalUserComponent implements OnInit {
     this.emailUser = data.email;
     this.isSubmitted = data.isSubmitted;
     this.form = this.fb.group({
-      inviteUserToPantryForm: new FormControl(
-        this.emailUser, [
-          Validators.required,
-          Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
-        ]),
+      inviteUserToPantryForm: new FormControl(this.emailUser, [
+        Validators.required,
+        Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
+      ]),
       isSubmitted: this.isSubmitted,
       openNewModal: new FormControl(true),
     });
@@ -37,8 +36,11 @@ export class ModalUserComponent implements OnInit {
 
   @HostListener('document:keypress', ['$event'])
   keyEvent(event: KeyboardEvent) {
-    if (event.key === "Enter") {
-      this.save();
+    if (event.key === 'Enter') {
+      this.form.markAllAsTouched();
+      if (this.form.valid) {
+        this.save();
+      }
     }
   }
 

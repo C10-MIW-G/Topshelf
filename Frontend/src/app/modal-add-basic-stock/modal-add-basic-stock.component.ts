@@ -49,8 +49,11 @@ export class ModalAddBasicStockComponent implements OnInit {
 
   @HostListener('document:keypress', ['$event'])
   keyEvent(event: KeyboardEvent) {
-    if (event.key === "Enter") {
-      this.save();
+    if (event.key === 'Enter') {
+      this.form.markAllAsTouched();
+      if (this.form.valid) {
+        this.save();
+      }
     }
   }
 

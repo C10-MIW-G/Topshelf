@@ -10,6 +10,7 @@
     <div class="container-fluid">
       <mat-form-field>
         <input
+          id="basicStockProductName"
           name="basicStockProductName"
           type="text"
           matInput
@@ -21,6 +22,7 @@
           >Enter a product name</mat-error
         >
       </mat-form-field>
+
       <div class="form-group">
         <br />
         <mat-form-field>
@@ -32,7 +34,7 @@
             placeholder="Amount"
             required
           />
-          <mat-error class="error" *ngIf="form.touched && form.invalid"
+          <mat-error class="error" *ngIf="form.invalid && form.touched"
             >Enter a positive amount</mat-error
           >
         </mat-form-field>
@@ -49,14 +51,13 @@
                 checked="true"
                 unchecked="false"
                 color="primary"
+                tabIndex="-1"
               >
               </mat-checkbox
               >Add another
             </div>
             <div>
-              <button 
-              class="modal-button btn btn-color"
-              (click)="close()">
+              <button class="modal-button btn btn-color" (click)="close()">
                 Cancel
               </button>
               <button

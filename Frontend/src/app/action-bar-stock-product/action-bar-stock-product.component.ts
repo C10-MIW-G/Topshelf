@@ -40,8 +40,11 @@ export class ActionBarStockProductComponent {
   }
 
   private saveProduct(data: any) {
-    console.log(data);
-    if (data.isSubmitted) {
+    if (
+      data.isSubmitted &&
+      data.basicStockProductName !== null &&
+      data.amount !== null
+    ) {
       this.stockProductService
         .saveStockProductToPantryStock({
           name: data.stockProductName,
