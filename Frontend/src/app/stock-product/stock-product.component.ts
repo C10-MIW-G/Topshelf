@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { StockProduct } from './stock-product';
 import { StockProductService } from './stock-product.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -11,7 +11,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./stock-product.component.css'],
 })
 export class StockProductComponent implements OnInit {
-  public stockProducts?: StockProduct[] = [];
   public stockProductId?: number;
   public pantryWithStockProducts: StockProduct[] = [];
   public stockProductDelete?: StockProduct;
@@ -21,14 +20,13 @@ export class StockProductComponent implements OnInit {
 
   constructor(
     private stockProductService: StockProductService,
-    private router: Router,
     private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
-    this.getPantryName();
     this.getPantryId();
-    this.getPantryIdWithStockProducts(this.pantryId);
+    this.getPantryIdWithStockProducts();
+    this.getPantryName();
   }
 
   addStockProductForm = new FormGroup({
@@ -36,16 +34,18 @@ export class StockProductComponent implements OnInit {
     expirationdate: new FormControl('', Validators.required),
   });
 
-  public getPantryIdWithStockProducts(pantryId: number): void {
-  
-    this.stockProductService.getPantryWithStockProducts(this.getPantryId()).subscribe(
-      (response: StockProduct[]) => {
-        this.pantryWithStockProducts = response;
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-    );
+  public getPantryIdWithStockProducts(): void {
+    this.stockProductService
+      .getPantryWithStockProducts(this.getPantryId())
+      .subscribe(
+        (response: StockProduct[]) => {
+          this.pantryWithStockProducts = response;
+          console.log(response);
+        },
+        (error: HttpErrorResponse) => {
+          alert(error.message);
+        }
+      );
   }
 
   public remove(stockProduct: StockProduct) {

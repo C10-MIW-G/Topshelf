@@ -33,6 +33,8 @@ public class StockProduct {
     @JoinColumn(name = "pantryId", referencedColumnName = "pantryId")
     private Pantry pantry;
 
+    private boolean stockStatus;
+
     public StockProduct(LocalDate expirationDate, ProductDefinition productDefinition, Pantry pantry) {
         this.expirationDate = expirationDate;
         this.productDefinition = productDefinition;

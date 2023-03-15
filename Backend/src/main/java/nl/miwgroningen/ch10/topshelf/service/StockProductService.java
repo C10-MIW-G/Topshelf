@@ -1,6 +1,7 @@
 package nl.miwgroningen.ch10.topshelf.service;
 import nl.miwgroningen.ch10.topshelf.dto.StockProductDTO;
 import nl.miwgroningen.ch10.topshelf.mapper.StockProductDTOMapper;
+import nl.miwgroningen.ch10.topshelf.model.ProductDefinition;
 import nl.miwgroningen.ch10.topshelf.model.StockProduct;
 import nl.miwgroningen.ch10.topshelf.model.Pantry;
 import nl.miwgroningen.ch10.topshelf.model.User;
@@ -19,17 +20,24 @@ import java.util.List;
 public class StockProductService {
     private final StockProductRepository stockProductRepository;
     private final StockProductDTOMapper stockProductDTOMapper;
+    private final PantryService pantryService;
+    private final ProductDefinitionService productDefinitionService;
+    private final BasicStockProductService basicStockProductService;
 
     @Autowired
     public StockProductService(StockProductRepository stockProductRepository,
-                               StockProductDTOMapper stockProductDTOMapper) {
+                               StockProductDTOMapper stockProductDTOMapper, PantryService pantryService, ProductDefinitionService productDefinitionService, BasicStockProductService basicStockProductService) {
         this.stockProductRepository = stockProductRepository;
         this.stockProductDTOMapper = stockProductDTOMapper;
+        this.pantryService = pantryService;
+        this.productDefinitionService = productDefinitionService;
+        this.basicStockProductService = basicStockProductService;
     }
 
     public List<StockProductDTO> findStockProductByPantry(Pantry pantry) {
         return stockProductRepository.findStockProductsByPantry(pantry)
                 .stream()
+                .peek(stockProduct -> setStockStatus(stockProduct))
                 .sorted(Comparator.comparing(StockProduct::getExpirationDate))
                 .map(stockProductDTOMapper)
                 .toList();
@@ -46,5 +54,22 @@ public class StockProductService {
 
     public boolean checkIfUserBelongsToPantry(Pantry pantry, User user){
        return pantry.getUsers().contains(user);
+    }
+
+    public int countStockProductByProductDefinition(ProductDefinition productDefinition, Pantry pantry){
+        return stockProductRepository.countStockProductByProductDefinitionAndPantry(productDefinition, pantry);
+    }
+
+    public void setStockStatus(StockProduct stockProduct){
+        Pantry pantry =  pantryService.findPantryByPantryId(stockProduct.getPantry().getPantryId());
+        ProductDefinition productDefinition = productDefinitionService.findProductByName(stockProduct.getProductDefinition().getName());
+        int count = this.countStockProductByProductDefinition(productDefinition, pantry);
+        int amount = basicStockProductService.findBasicStockAmountByName(pantry, productDefinition);
+
+        if(count >= amount || amount == 0){
+            stockProduct.setStockStatus(false);
+        } else {
+            stockProduct.setStockStatus(true);
+        }
     }
 }

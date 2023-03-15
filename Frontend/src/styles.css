@@ -88,7 +88,7 @@ span i:hover {
   justify-content: center;
 }
 
-<<<<<<< HEAD
+
 .pantry-card {
   border-style: solid;
   border-color:  rgb(65, 113, 156);
@@ -107,8 +107,6 @@ span i:hover {
 }
 
 
-=======
->>>>>>> 3bd6a997c95c18460c4f11436cede10f8466ca3a
 h5 {
   text-align: center;
 }
@@ -122,7 +120,12 @@ h4 {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  min-height: 330px;
+}
+
+.cancel {
+  text-align: center;
+  padding: 10px 10px 0px 10px;
+  font-size: 14px;
 }
 
 a.secondary {
@@ -174,59 +177,4 @@ mat-toolbar.header {
 
 mat-form-field {
   width: 100%;
-}
-
-.component-center.user-actions {
-  padding: 20px;
-}
-
-.user-form, .user-form div {
-  text-align: center;
-  font-size: 14px;
-}
-
-.user-form button {
-  margin-bottom: 10px;
-  min-width: 150px;
-}
-
-
-button.btn-color, .btn-color:hover {
-  background-color: gray;
-  color: white;
-}
-
-.modal-button {
-  min-width: 70px;
-  margin-left: 5px
-}
-
-.modal-button.btn-color,
-.modal-button.btn-color:hover  {
-  background-color: gray;
-  color: white;
-}
-
-.bottom-div {
-  position: relative;
-  margin-bottom: 10px;
-}
-
-.bottom-div.button-container {
-  position: absolute;
-  bottom: 0;
-  padding-bottom: 5px;
-}
-.pantry-card {
-  border-style: solid;
-  border-color:  rgb(65, 113, 156);
-  text-decoration: none !important;
-  max-width: 100%;
-  text-overflow: ellipsis;
-}
-.pantry-card a {
-  text-decoration: none;
-}
-.pantry-card:hover {
-  background-color: rgb(232, 241, 248);
 }
