@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ModalStockProductComponent } from '../modal-stock-product/modal-stock-product.component';
 import { StockProductService } from '../stock-product/stock-product.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-action-bar-stock-product',
@@ -10,22 +11,22 @@ import { StockProductService } from '../stock-product/stock-product.service';
   styleUrls: ['./action-bar-stock-product.component.css'],
 })
 export class ActionBarStockProductComponent {
-  isSubmitted: boolean | undefined;
-
   pantryId!: number;
 
   constructor(
     private stockProductService: StockProductService,
     private route: ActivatedRoute,
-    private matDialog: MatDialog
+    private matDialog: MatDialog,
+    private toastr: ToastrService
   ) {}
 
-  onOpenDialog() {
+  onOpenDialog(openNewModal?: boolean) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.data = {
       name: null,
       isSubmitted: true,
+      openNewModal,
     };
 
     const dialogRef = this.matDialog.open(
@@ -33,27 +34,14 @@ export class ActionBarStockProductComponent {
       dialogConfig
     );
 
-    dialogRef
-      .afterClosed()
-      .subscribe(
-        (data: {
-          stockProductName: null;
-          expirationDate: any;
-          isSubmitted: any;
-          stockProductId: any;
-        }) => {
-          this.saveProduct(data);
-        }
-      );
+    dialogRef.afterClosed().subscribe((data) => {
+      this.saveProduct(data);
+    });
   }
 
-  private saveProduct(data: {
-    expirationDate: Date;
-    stockProductName: null;
-    isSubmitted: any;
-    stockProductId: any;
-  }) {
-    if (data.stockProductName !== null && data.isSubmitted) {
+  private saveProduct(data: any) {
+    console.log(data);
+    if (data.isSubmitted) {
       this.stockProductService
         .saveStockProductToPantryStock({
           name: data.stockProductName,
@@ -63,12 +51,25 @@ export class ActionBarStockProductComponent {
         })
         .subscribe({
           complete: () => {
-            window.location.reload();
+            if (data.openNewModal) {
+              this.onOpenDialog(true);
+              this.toastr.success(
+                data.stockProductName + ' has been added!',
+                'Success!',
+                {
+                  positionClass: 'toast-top-center',
+                }
+              );
+            } else {
+              window.location.reload();
+            }
           },
           error: () => {
             alert('Failed adding product');
           },
         });
+    } else {
+      window.location.reload();
     }
   }
 

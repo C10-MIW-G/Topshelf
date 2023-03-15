@@ -1,5 +1,5 @@
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, HostListener } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -10,15 +10,14 @@ import {
 @Component({
   selector: 'app-modal-stock-product',
   templateUrl: './modal-stock-product.component.html',
-  styleUrls: ['./modal-stock-product.component.css']
+  styleUrls: ['./modal-stock-product.component.css'],
 })
-export class ModalStockProductComponent implements OnInit{
+export class ModalStockProductComponent implements OnInit {
   form!: FormGroup;
   stockProductName: string;
   expirationDate: Date;
-  hasFailed: boolean = false;
-  errormessage?: string;
   isSubmitted: boolean;
+  openNewModal?: boolean;
 
   constructor(
     private fb: FormBuilder,
@@ -28,19 +27,30 @@ export class ModalStockProductComponent implements OnInit{
     this.stockProductName = data.name;
     this.expirationDate = data.expirationDate;
     this.isSubmitted = data.isSubmitted;
+    this.openNewModal = data.openNewModal;
+    this.form = this.fb.group({
+      stockProductName: new FormControl(
+        this.stockProductName,
+        Validators.compose([Validators.required, Validators.pattern(/[\S]/g)])
+      ),
+      expirationDate: new FormControl(
+        this.expirationDate,
+        Validators.compose([Validators.required])
+      ),
+      isSubmitted: this.isSubmitted,
+      openNewModal: new FormControl(this.openNewModal),
+    });
+  }
+
+  @HostListener('document:keypress', ['$event'])
+  keyEvent(event: KeyboardEvent) {
+    if (event.key === "Enter") {
+      this.save();
+    }
   }
 
   ngOnInit(): void {
-    this.form = this.fb.group({
-      stockProductName: new FormControl('', [Validators.required]),
-      expirationDate: new FormControl(
-        '',
-        Validators.compose([
-          Validators.required,
-        ])
-      ),
-      isSubmitted: this.isSubmitted,
-    });
+    this.dialogRef.updateSize('450px', '350px');
   }
 
   close() {
@@ -49,29 +59,6 @@ export class ModalStockProductComponent implements OnInit{
   }
 
   save() {
-    const stockProductName = this.form.value.stockProductName;
-    console.log(this.form.value.expirationDate)
-    if (!this.isEmptyOrSpaces(stockProductName)) {
-      this.hasFailed = true;
-      this.errormessage = 'Enter product name';
-    }
-    if (this.form.value.expirationDate === null) {
-      this.hasFailed = true;
-      this.errormessage = 'Enter an expirationDate';
-    }
-    else {
-      this.isSubmitted = true;
-      this.dialogRef.close(this.form.value);
-    }
+    this.dialogRef.close(this.form.value);
   }
-
-  public myError = (controlName: string, errorName: string) => {
-    return this.form.controls[controlName].hasError(errorName);
-  };
-
-  public isEmptyOrSpaces(str: string | null | undefined) {
-    console.log(str);
-    return str === null || str?.match(/[\S]/g) !== null;
-  }
-
 }

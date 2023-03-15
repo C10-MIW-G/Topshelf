@@ -10,6 +10,7 @@ public record StockProductDTO (
         Long stockProductId,
         Long pantryId,
         String name,
-        LocalDate expirationDate
+        LocalDate expirationDate,
+        Boolean stockStatus
 ) {
 }

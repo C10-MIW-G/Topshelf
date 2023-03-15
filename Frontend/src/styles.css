@@ -1,4 +1,4 @@
-body {
+body, .date-font {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
@@ -26,6 +26,35 @@ input.ng-invalid {
 
 input.ng-valid {
   border-left: 5px solid rgb(65, 113, 156);
+}
+
+a.date {
+  font-style: italic;
+}
+
+button.btn {
+  min-width: 90px;
+  margin-left: 5px
+}
+
+.btn-primary {
+  background-color: rgb(65, 113, 156) !important;
+  border: none!important;
+}
+
+button.btn-color-modal, button.btn-color-modal:hover {
+  background-color: gray;
+  color: white;
+}
+
+a {
+  color: rgb(65, 113, 156);
+  font-size: larger;
+}
+
+a:link, a:visited, a:active{
+  color:black;
+  text-decoration: underline;
 }
 
 .row {
@@ -153,21 +182,6 @@ mat-form-field {
   min-width: 150px;
 }
 
-button, button.btn {
-  min-width: 90px;
-  margin-left: 5px
-}
-
-.btn-primary {
-  background-color: rgb(65, 113, 156) !important;
-  border: none!important;
-}
-
-button.btn-color-modal, button.btn-color-modal:hover {
-  background-color: gray;
-  color: white;
-}
-
 button.btn-color, .btn-color:hover {
   background-color: gray;
   color: white;
@@ -215,16 +229,16 @@ button.actions-button {
   text-overflow: ellipsis;
 }
 
-.pantry-card:hover {
-  background-color: rgb(232, 241, 248);
-}
-
 .pantry-card a {
   text-decoration: none;
 }
 
-.pantry-card span {
+.pantry-card a:hover {
   text-decoration: none;
+}
+.pantry-card:hover {
+  background-color: rgb(232, 241, 248);
+  text-decoration: none !important;
 }
 
 html.cdk-global-scrollblock {

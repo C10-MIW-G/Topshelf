@@ -12,7 +12,6 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ActionBarGroceryProductComponent {
   pantryId!: number;
-  openNewModal?: boolean;
 
   constructor(
     private groceryProductService: GroceryProductService,
@@ -21,12 +20,13 @@ export class ActionBarGroceryProductComponent {
     private toastr: ToastrService
   ) {}
 
-  onOpenDialog() {
+  onOpenDialog(openNewModal?: boolean) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.data = {
       name: null,
       isSubmitted: true,
+      openNewModal,
     };
 
     const dialogRef = this.matDialog.open(
@@ -50,12 +50,15 @@ export class ActionBarGroceryProductComponent {
         })
         .subscribe({
           complete: () => {
-            if (data.openNewModal == true) {
-              this.onOpenDialog();
-              this.toastr.success('Product added!', 'Success!', {
-                positionClass: 'toast-top-center',
-              });
-              this.openNewModal = true;
+            if (data.openNewModal) {
+              this.onOpenDialog(true);
+              this.toastr.success(
+                data.groceryProductName + ' added!',
+                'Success!',
+                {
+                  positionClass: 'toast-top-center',
+                }
+              );
             } else {
               window.location.reload();
             }

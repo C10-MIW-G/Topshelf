@@ -33,17 +33,23 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { PantrydetailComponent } from './pantrydetail/pantrydetail.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import {MatToolbarModule} from '@angular/material/toolbar';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { GroceryProductComponent } from './grocery-product/grocery-product.component';
 import { ActionBarStockProductComponent } from './action-bar-stock-product/action-bar-stock-product.component';
 import { ActionBarBasicStockProductComponent } from './action-bar-basic-stock-product/action-bar-basic-stock-product.component';
 import { ActionBarGroceryProductComponent } from './action-bar-grocery-product/action-bar-grocery-product.component';
 import { ModalAddGroceryProductComponent } from './modal-add-grocery-product/modal-add-grocery-product.component';
-import { ModalAddBasicStockComponent } from './modal-add-basic-stock/modal-add-basic-stock.component'
+import { ModalAddBasicStockComponent } from './modal-add-basic-stock/modal-add-basic-stock.component';
 import { UserComponent } from './user/user.component';
 import { ActionBarUserComponent } from './action-bar-user/action-bar-user.component';
 import { ModalUserComponent } from './modal-user/modal-user.component';
 import { ModalStockProductComponent } from './modal-stock-product/modal-stock-product.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import {
+  MatMomentDateModule,
+  MAT_MOMENT_DATE_ADAPTER_OPTIONS,
+} from '@angular/material-moment-adapter';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -71,7 +77,7 @@ import { ModalStockProductComponent } from './modal-stock-product/modal-stock-pr
     ActionBarUserComponent,
     ModalUserComponent,
     ActionBarUserComponent,
-    ModalStockProductComponent
+    ModalStockProductComponent,
   ],
   imports: [
     BrowserModule,
@@ -91,6 +97,8 @@ import { ModalStockProductComponent } from './modal-stock-product/modal-stock-pr
     RecaptchaFormsModule,
     MatCheckboxModule,
     MatToolbarModule,
+    MatDatepickerModule,
+    MatMomentDateModule,
   ],
   exports: [MatFormFieldModule],
   entryComponents: [ModalAddPantryComponent],
@@ -102,6 +110,8 @@ import { ModalStockProductComponent } from './modal-stock-product/modal-stock-pr
         siteKey: environment.recaptcha.siteKey,
       } as RecaptchaSettings,
     },
+    { provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: { useUtc: true } },
+    { provide: MAT_DATE_LOCALE, useValue: 'nl' },
   ],
   bootstrap: [AppComponent],
 })

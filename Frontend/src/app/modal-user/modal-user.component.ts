@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, HostListener, Inject, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -33,6 +33,13 @@ export class ModalUserComponent implements OnInit {
       isSubmitted: this.isSubmitted,
       openNewModal: new FormControl(true),
     });
+  }
+
+  @HostListener('document:keypress', ['$event'])
+  keyEvent(event: KeyboardEvent) {
+    if (event.key === "Enter") {
+      this.save();
+    }
   }
 
   ngOnInit(): void {

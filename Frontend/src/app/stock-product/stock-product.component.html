@@ -10,12 +10,25 @@
                 <th>Product</th>
                 <th>Expiration Date</th>
                 <th></th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let stockProduct of pantryWithStockProducts">
                 <td>{{ stockProduct.name }}</td>
-                <td>{{ stockProduct.expirationDate }}</td>
+                <td class="date-font">
+                  {{ stockProduct.expirationDate | date : "dd-MM-y" }}
+                </td>
+                <td class="text-center">
+                  <a (click)="editDialog(stockProduct)">
+                    <span>
+                      <i class="fa fa-edit"></i>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  {{ stockProduct.stockStatus ? "Almost out of stock" : "" }}
+                </td>
                 <td>
                   <a class="" (click)="remove(stockProduct)"
                     ><span><i class="fa fa-trash-o"></i></span

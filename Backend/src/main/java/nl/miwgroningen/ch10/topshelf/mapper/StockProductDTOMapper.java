@@ -5,6 +5,7 @@ import nl.miwgroningen.ch10.topshelf.dto.StockProductDTO;
 import nl.miwgroningen.ch10.topshelf.model.StockProduct;
 import nl.miwgroningen.ch10.topshelf.service.PantryService;
 import nl.miwgroningen.ch10.topshelf.service.ProductDefinitionService;
+import nl.miwgroningen.ch10.topshelf.service.StockProductService;
 import org.springframework.stereotype.Service;
 
 import java.util.function.Function;
@@ -21,16 +22,19 @@ public class StockProductDTOMapper implements Function<StockProduct, StockProduc
     private final ProductDefinitionService productDefinitionService;
 
     public StockProductDTO apply (StockProduct stockProduct) {
-        return new StockProductDTO(
+        StockProductDTO stockProductDTO = new StockProductDTO(
                 stockProduct.getStockProductId(),
                 stockProduct.getPantry().getPantryId(),
                 stockProduct.getProductDefinition().getName(),
-                stockProduct.getExpirationDate()
+                stockProduct.getExpirationDate(),
+                stockProduct.isStockStatus()
         );
+        return stockProductDTO;
     }
 
     public StockProduct convertFromDTO (StockProductDTO stockProductDTO) {
         return new StockProduct(
+                stockProductDTO.stockProductId(),
                 stockProductDTO.expirationDate(),
                 productDefinitionService.findProductByName(stockProductDTO.name()),
                 pantryService.findPantryByPantryId(stockProductDTO.pantryId())

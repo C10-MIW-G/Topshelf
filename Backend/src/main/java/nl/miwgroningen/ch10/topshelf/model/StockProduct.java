@@ -1,7 +1,7 @@
 package nl.miwgroningen.ch10.topshelf.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -17,6 +17,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class StockProduct {
 
     @Id
@@ -33,9 +34,19 @@ public class StockProduct {
     @JoinColumn(name = "pantryId", referencedColumnName = "pantryId")
     private Pantry pantry;
 
+
+    private boolean stockStatus;
+
     public StockProduct(LocalDate expirationDate, ProductDefinition productDefinition, Pantry pantry) {
         this.expirationDate = expirationDate;
         this.productDefinition = productDefinition;
         this.pantry = pantry;
+    }
+
+    public StockProduct(Long stockProductId, LocalDate expirationDate, ProductDefinition productByName, Pantry pantryByPantryId) {
+        this.stockProductId = stockProductId;
+        this.expirationDate = expirationDate;
+        this.productDefinition = productByName;
+        this.pantry = pantryByPantryId;
     }
 }
