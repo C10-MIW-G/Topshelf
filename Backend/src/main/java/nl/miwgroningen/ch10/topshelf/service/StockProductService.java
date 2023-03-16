@@ -36,8 +36,8 @@ public class StockProductService {
         this.basicStockProductService = basicStockProductService;
     }
 
-    public List<StockProductDTO> findStockProductByPantry(Pantry pantry) {
-        List<StockProduct> stockProductList = stockProductRepository.findStockProductsByPantry(pantry)
+    public List<StockProductDTO> findStockProductsByPantryOrderByExpirationDate(Pantry pantry) {
+        List<StockProduct> stockProductList = stockProductRepository.findStockProductsByPantryOrderByExpirationDate(pantry)
                 .stream()
                 .toList();
         stockProductList.stream().forEach(this::setStockStatus);

@@ -34,7 +34,7 @@ public class StockProductController {
         String username = jwtService.extractUsername(jwt.substring(7));
         User user = userService.findUserByUsername(username);
         if(stockProductService.checkIfUserBelongsToPantry(pantry, user)){
-        List<StockProductDTO> stockProduct = stockProductService.findStockProductByPantryOrderByExpirationDate(pantry);
+        List<StockProductDTO> stockProduct = stockProductService.findStockProductsByPantryOrderByExpirationDate(pantry);
         return new ResponseEntity<>(stockProduct, HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.FORBIDDEN);
