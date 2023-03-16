@@ -50,6 +50,8 @@ import {
   MAT_MOMENT_DATE_ADAPTER_OPTIONS,
 } from '@angular/material-moment-adapter';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { PantryDetailComponent } from './pantry-detail/pantry-detail.component';
+import { ActionBarPantryDetailComponent } from './action-bar-pantry-detail/action-bar-pantry-detail.component';
 
 @NgModule({
   declarations: [
@@ -78,6 +80,8 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
     ModalUserComponent,
     ActionBarUserComponent,
     ModalStockProductComponent,
+    PantryDetailComponent,
+    ActionBarPantryDetailComponent,
   ],
   imports: [
     BrowserModule,

@@ -36,14 +36,6 @@ public class StockProduct {
 
 
     private boolean stockStatus;
-
-    public StockProduct(Long stockProductId, LocalDate expirationDate, ProductDefinition productDefinition, Pantry pantry) {
-        this.stockProductId = stockProductId;
-        this.expirationDate = expirationDate;
-        this.productDefinition = productDefinition;
-        this.pantry = pantry;
-    }
-
     public StockProduct(Long stockProductId, LocalDate expirationDate, ProductDefinition productByName, Pantry pantryByPantryId) {
         this.stockProductId = stockProductId;
         this.expirationDate = expirationDate;
