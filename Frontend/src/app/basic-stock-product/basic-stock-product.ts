@@ -1,6 +1,6 @@
 export interface BasicStockProduct {
-  name: string | null | undefined;
-  basicStockProductId: number | null | undefined;
+  name: string;
+  basicStockProductId: number;
   pantryId: number;
-  amount: number | null | undefined;
+  amount: number;
 }
