@@ -18,8 +18,6 @@ export class AuthService {
 
   public isAuthenticated(): boolean {
     const token = sessionStorage.getItem('auth-token');
-    console.log(token);
-    console.log(this.jwtHelper.isTokenExpired(token) + ' istokenexpired');
     return this.jwtHelper.isTokenExpired(token);
   }
 
