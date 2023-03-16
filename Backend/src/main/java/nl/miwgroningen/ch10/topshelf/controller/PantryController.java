@@ -65,4 +65,12 @@ public class PantryController {
 
         return new ResponseEntity<>(admins, HttpStatus.OK);
     }
+
+    @DeleteMapping("/delete/{pantryId}")
+    public ResponseEntity<String> deletePantry(
+            @PathVariable("pantryId") Long pantryId){
+        pantryService.deletePantry(pantryId);
+        String text = "Pantry has been deleted";
+        return new ResponseEntity<>(text, HttpStatus.OK);
+    }
 }
