@@ -73,5 +73,9 @@ public class PantryService {
                 .toList();
         return pantries.isEmpty();
     }
+
+    public void deletePantry(Long pantryId){
+        pantryRepository.deleteById(pantryId);
+    }
 }
 

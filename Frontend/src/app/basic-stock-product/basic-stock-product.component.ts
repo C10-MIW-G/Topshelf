@@ -14,7 +14,7 @@ export class BasicStockProductComponent implements OnInit {
   public pantryWithBasicStockProducts: BasicStockProduct[] = [];
   public namePantry!: string;
   public pantryId!: number;
-
+  
   constructor(
     private basicStockProductService: BasicStockProductService,
     private route: ActivatedRoute,
@@ -101,7 +101,7 @@ export class BasicStockProductComponent implements OnInit {
             window.location.reload();
           },
           error: () => {
-            alert('Edit failed');
+            alert("Product was already added to the minimum stock");
           },
         });
     } else {
