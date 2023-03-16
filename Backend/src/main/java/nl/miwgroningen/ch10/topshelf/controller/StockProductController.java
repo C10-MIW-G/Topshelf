@@ -57,8 +57,9 @@ public class StockProductController {
                     pantryStockProductToBeSaved.stockStatus());
 
             stockProductService.save(stockProductDTO);
+            return new ResponseEntity<>(HttpStatus.OK);
         }
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
     @DeleteMapping("/delete/{stockProductId}")

@@ -61,9 +61,4 @@ public class BasicStockProductService {
     public void deleteBasicStockProduct(Long basicStockProductId) {
         basicStockProductRepository.deleteById(basicStockProductId);
     }
-
-    public void setProductDefinitionNameToLowerCase(BasicStockProduct basicStockProduct) {
-        String nameToLowerCase = basicStockProduct.getProductDefinition().getName().toLowerCase();
-        basicStockProduct.getProductDefinition().setName(nameToLowerCase);
-    }
 }
