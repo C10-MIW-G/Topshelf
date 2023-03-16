@@ -33,11 +33,12 @@ public class StockProductController {
 
     @GetMapping("/{pantryId}")
     public ResponseEntity<List<StockProductDTO>> getStockProductByPantryId(@PathVariable("pantryId") Pantry pantry,
-                                                                           @RequestHeader(name = "Authorization") String jwt) {
+    @RequestHeader (name = "Authorization") String jwt ) {
         String username = jwtService.extractUsername(jwt.substring(7));
         User user = userService.findUserByUsername(username);
         if (stockProductService.checkIfUserBelongsToPantry(pantry, user)) {
-            List<StockProductDTO> stockProduct = stockProductService.findStockProductByPantryOrderByExpirationDate(pantry);
+            List<StockProductDTO> stockProduct = stockProductService
+                    .findStockProductByPantryOrderByExpirationDate(pantry);
             return new ResponseEntity<>(stockProduct, HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.FORBIDDEN);

@@ -8,7 +8,6 @@ import nl.miwgroningen.ch10.topshelf.model.User;
 import nl.miwgroningen.ch10.topshelf.repository.StockProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 /**
@@ -37,12 +36,12 @@ public class StockProductService {
         this.basicStockProductService = basicStockProductService;
     }
 
-    public List<StockProductDTO> findStockProductByPantryOrderByExpirationDate(Pantry pantry) {
-        return stockProductRepository.findStockProductsByPantryOrderByExpirationDate(pantry)
+    public List<StockProductDTO> findStockProductsByPantryOrderByExpirationDate(Pantry pantry) {
+        List<StockProduct> stockProductList = stockProductRepository.findStockProductsByPantryOrderByExpirationDate(pantry)
                 .stream()
-                .peek(this::setStockStatus)
-                .map(stockProductDTOMapper)
                 .toList();
+        stockProductList.stream().forEach(this::setStockStatus);
+        return stockProductList.stream().map(stockProductDTOMapper).toList();
     }
 
     public void save(StockProductDTO pantryStockProductToBeSaved) {
@@ -64,11 +63,14 @@ public class StockProductService {
 
     public void setStockStatus(StockProduct stockProduct){
         Pantry pantry =  pantryService.findPantryByPantryId(stockProduct.getPantry().getPantryId());
-        ProductDefinition productDefinition =
-                productDefinitionService.findProductByName(stockProduct.getProductDefinition().getName());
+        ProductDefinition productDefinition = productDefinitionService.findProductByName(stockProduct.getProductDefinition().getName());
         int count = this.countStockProductByProductDefinition(productDefinition, pantry);
         int amount = basicStockProductService.findBasicStockAmountByName(pantry, productDefinition);
 
-        stockProduct.setStockStatus(count < amount && amount != 0);
+        stockProduct.setStockStatus(settingStockStatus(count, amount));
+    }
+
+    public boolean settingStockStatus(int count, int amount) {
+        return count < amount && amount != 0;
     }
 }

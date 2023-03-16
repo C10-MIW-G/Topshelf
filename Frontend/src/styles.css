@@ -1,4 +1,5 @@
-body, .date-font {
+body,
+.date-font {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
@@ -34,26 +35,24 @@ a.date {
 
 button.btn {
   min-width: 90px;
-  margin-left: 5px
+  margin-left: 5px;
 }
 
 .btn-primary {
   background-color: rgb(65, 113, 156) !important;
-  border: none!important;
+  border: none !important;
 }
 
-button.btn-color-modal, button.btn-color-modal:hover {
+button.btn-color-modal,
+button.btn-color-modal:hover {
   background-color: gray;
   color: white;
 }
 
-a {
-  color: rgb(65, 113, 156);
-  font-size: larger;
-}
-
-a:link, a:visited, a:active{
-  color:black;
+a:link,
+a:visited,
+a:active {
+  color: black;
   text-decoration: underline;
 }
 
@@ -61,11 +60,11 @@ a:link, a:visited, a:active{
   height: 100vh;
 }
 
-.component-left, .component-right {
+.component-left,
+.component-right {
   padding-top: 36px;
   text-align: left;
-  background-color:
-   rgb(232, 241, 248);
+  background-color: rgb(232, 241, 248);
 }
 
 .component-center.user-actions {
@@ -73,8 +72,7 @@ a:link, a:visited, a:active{
 }
 
 .sidebar {
-  background-color:
-  rgb(232, 241, 248);
+  background-color: rgb(232, 241, 248);
 }
 
 p {
@@ -86,8 +84,7 @@ span i:hover {
 }
 
 .action-bar {
-  background-color:
-  rgb(232, 241, 248);
+  background-color: rgb(232, 241, 248);
   padding-top: 36px;
   align-items: center;
   justify-content: center;
@@ -116,8 +113,10 @@ a {
   font-size: larger;
 }
 
-a:link, a:visited, a:active{
-  color:black;
+a:link,
+a:visited,
+a:active {
+  color: black;
   text-decoration: underline;
 }
 
@@ -165,14 +164,15 @@ mat-toolbar.header {
   background-color: rgb(65, 113, 156);
   width: 100%;
   color: white;
-  margin-bottom: 20px;;
+  margin-bottom: 20px;
 }
 
 mat-form-field {
   width: 100%;
 }
 
-.user-form, .user-form div {
+.user-form,
+.user-form div {
   text-align: center;
   font-size: 14px;
 }
@@ -182,18 +182,19 @@ mat-form-field {
   min-width: 150px;
 }
 
-button.btn-color, .btn-color:hover {
+button.btn-color,
+.btn-color:hover {
   background-color: gray;
   color: white;
 }
 
 .modal-button {
   min-width: 70px;
-  margin-left: 5px
+  margin-left: 5px;
 }
 
 .modal-button.btn-color,
-.modal-button.btn-color:hover  {
+.modal-button.btn-color:hover {
   background-color: gray;
   color: white;
 }
@@ -223,9 +224,8 @@ button.actions-button {
 
 .pantry-card {
   border-style: solid;
-  border-color:  rgb(65, 113, 156);
+  border-color: rgb(65, 113, 156);
   text-decoration: none !important;
-  max-width: 100%;
   text-overflow: ellipsis;
 }
 
@@ -244,4 +244,3 @@ button.actions-button {
 html.cdk-global-scrollblock {
   overflow: hidden;
 }
-

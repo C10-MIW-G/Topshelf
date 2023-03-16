@@ -54,6 +54,7 @@ public class BasicStockProductService {
          Optional<BasicStockProduct> basicStockProduct =
                  basicStockProductRepository.findBasicStockProductByPantryAndProductDefinition
                          (pantry, productDefinition);
+
         return basicStockProduct.map(BasicStockProduct::getAmount).orElse(0);
     }
 

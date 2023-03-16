@@ -1,6 +1,7 @@
 package nl.miwgroningen.ch10.topshelf.service;
 
 import nl.miwgroningen.ch10.topshelf.dto.GroceryProductDTO;
+import nl.miwgroningen.ch10.topshelf.exception.GroceryProductNotFoundException;
 import nl.miwgroningen.ch10.topshelf.mapper.GroceryProductDTOMapper;
 import nl.miwgroningen.ch10.topshelf.model.GroceryProduct;
 import nl.miwgroningen.ch10.topshelf.model.Pantry;
@@ -26,6 +27,13 @@ public class GroceryProductService {
                                  GroceryProductDTOMapper groceryProductDTOMapper) {
         this.groceryProductRepository = groceryProductRepository;
         this.groceryProductDTOMapper = groceryProductDTOMapper;
+    }
+
+    //This method isn't used, but made for the sake of portfolio purpose.
+    public GroceryProduct findGroceryProductByGroceryProductId (Long groceryProductId) {
+        return groceryProductRepository.findGroceryProductByGroceryProductId(groceryProductId)
+                .orElseThrow(() -> new GroceryProductNotFoundException(
+                        "Grocery product with id: " + groceryProductId + " was not found"));
     }
 
     public List<GroceryProductDTO> findGroceryProductByPantry(Pantry pantry) {

@@ -7,15 +7,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.OptionalInt;
 
 public interface BasicStockProductRepository extends JpaRepository<BasicStockProduct, Long> {
 
     List<BasicStockProduct> findBasicStockProductsByPantry(Pantry pantry);
 
-    Optional<BasicStockProduct> findBasicStockProductByPantryAndProductDefinition
-            (Pantry pantry, ProductDefinition productDefinition);
+    Optional<BasicStockProduct> findBasicStockProductByPantryAndProductDefinition(Pantry pantry,
+                                                                                  ProductDefinition productDefinition);
 
     Optional<BasicStockProduct> findBasicStockProductByProductDefinition(ProductDefinition productDefinition);
 }
-
