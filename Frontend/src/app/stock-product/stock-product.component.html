@@ -9,8 +9,9 @@
               <tr>
                 <th>Product</th>
                 <th>Expiration Date</th>
-                <th></th>
-                <th></th>
+                <th name="Almost out of stock"></th>
+                <th name="Edit"></th>
+                <th name="Delete"></th>
               </tr>
             </thead>
             <tbody>
@@ -18,6 +19,9 @@
                 <td>{{ stockProduct.name }}</td>
                 <td class="date-font">
                   {{ stockProduct.expirationDate | date : "dd-MM-y" }}
+                </td>
+                <td>
+                  {{ stockProduct.stockStatus ? "Almost out of stock" : "" }}
                 </td>
                 <td class="text-center">
                   <a (click)="editDialog(stockProduct)">

@@ -33,4 +33,15 @@ public class StockProduct {
     @ManyToOne
     @JoinColumn(name = "pantryId", referencedColumnName = "pantryId")
     private Pantry pantry;
+
+
+    private boolean stockStatus;
+
+    public StockProduct(
+            Long stockProductId, LocalDate expirationDate, ProductDefinition productByName, Pantry pantryByPantryId) {
+        this.stockProductId = stockProductId;
+        this.expirationDate = expirationDate;
+        this.productDefinition = productByName;
+        this.pantry = pantryByPantryId;
+    }
 }

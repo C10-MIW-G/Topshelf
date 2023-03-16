@@ -2,6 +2,7 @@ package nl.miwgroningen.ch10.topshelf.repository;
 
 import nl.miwgroningen.ch10.topshelf.model.BasicStockProduct;
 import nl.miwgroningen.ch10.topshelf.model.Pantry;
+import nl.miwgroningen.ch10.topshelf.model.ProductDefinition;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -12,4 +13,6 @@ public interface BasicStockProductRepository extends JpaRepository<BasicStockPro
     List<BasicStockProduct> findBasicStockProductsByPantry(Pantry pantry);
 
     Optional<BasicStockProduct> findBasicStockProductByBasicStockProductId(Long basicStockProductId);
+
+    Optional<BasicStockProduct> findBasicStockProductByPantryAndProductDefinition(Pantry pantry, ProductDefinition productDefinition);
 }

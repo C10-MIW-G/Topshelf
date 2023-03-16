@@ -3,4 +3,5 @@ export interface StockProduct {
   expirationDate: Date;
   pantryId: number;
   stockProductId: number;
+  stockStatus: boolean;
 }

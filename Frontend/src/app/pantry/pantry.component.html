@@ -6,14 +6,12 @@
         <h3>These are your pantries:</h3>
         <div class="row">
           <div
-            class="col-4 justify-content-center d-flex flex-row"
+            class="col-4 justify-content-center align-items-center d-flex flex-row"
             *ngFor="let pantry of pantries"
           >
-            <div
-              class="h-25 w-75 d-flex justify-content-center align-items-center pantry-card"
-            >
+            <div class="h-50 w-75 d-flex pantry-card">
               <a
-                class="d-flex justify-content-center col-12"
+                class="d-flex align-items-center justify-content-center col-12 h-100"
                 routerLink="/pantry/{{
                   pantry.pantryId
                 }};sidebar:sidebar;stockproduct:stockproduct"

@@ -1,22 +1,24 @@
 a {
-    white-space: nowrap;
-    color: rgb(65, 113, 156);
-    margin-left: 10px;
+  white-space: nowrap;
+  color: rgb(65, 113, 156);
+  margin-left: 10px;
 }
 
 img {
-    max-width: 100%;
-    height: auto;
+  max-width: 100%;
+  height: auto;
 }
 
 .navbar-brand {
-    width: auto;
-    max-width: 120px;
+  width: auto;
+  max-width: 120px;
 }
 
-a:link, a:visited, a:active{
-    color:white !important;
-    text-decoration: none;
+a:link,
+a:visited,
+a:active {
+  color: white !important;
+  text-decoration: none;
 }
 
 .btn-primary {
@@ -24,27 +26,34 @@ a:link, a:visited, a:active{
 }
 
 .btn {
-    color: white;
+  color: white;
 }
 
 .btn:hover {
-    background-color: rgb(232, 241, 248);
-    color: rgb(65, 113, 156);
+  background-color: rgb(232, 241, 248);
+  color: rgb(65, 113, 156);
 }
 
 .item p {
-    color: black;
-    padding: 5px;
-    padding-left: 10px;
-    margin: 0;
-    text-align: left;
-    white-space: nowrap;
+  color: black;
+  padding: 5px;
+  padding-left: 10px;
+  margin: 0;
+  text-align: left;
+  white-space: nowrap;
 }
 
 .item:hover p {
-    font-weight: 500;
+  font-weight: 500;
 }
 
 .dropdown-menu-right.show {
-    left: auto;
+  left: auto;
+}
+
+.username {
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  margin-right: 10px;
 }

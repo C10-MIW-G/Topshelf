@@ -1,7 +1,7 @@
 import { ModalAddGroceryProductComponent } from './../modal-add-grocery-product/modal-add-grocery-product.component';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { GroceryProduct } from './grocery-product';
 import { GroceryProductService } from './grocery-product.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -13,14 +13,12 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
   styleUrls: ['./grocery-product.component.css'],
 })
 export class GroceryProductComponent implements OnInit {
-  public groceryProductId?: number;
   public pantryWithGroceryProducts: GroceryProduct[] = [];
   public namePantry!: string;
   public pantryId!: number;
 
   constructor(
     private groceryProductService: GroceryProductService,
-    private router: Router,
     private route: ActivatedRoute,
     private matDialog: MatDialog
   ) {}

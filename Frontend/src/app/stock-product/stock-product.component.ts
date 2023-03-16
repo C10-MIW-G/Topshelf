@@ -1,9 +1,8 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { StockProduct } from './stock-product';
 import { StockProductService } from './stock-product.service';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ModalStockProductComponent } from '../modal-stock-product/modal-stock-product.component';
 
@@ -24,12 +23,12 @@ export class StockProductComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.getPantryName();
     this.getPantryId();
-    this.getPantryIdWithStockProducts(this.pantryId);
+    this.getPantryIdWithStockProducts();
+    this.getPantryName();
   }
 
-  public getPantryIdWithStockProducts(pantryId: number): void {
+  public getPantryIdWithStockProducts(): void {
     this.stockProductService
       .getPantryWithStockProducts(this.getPantryId())
       .subscribe(

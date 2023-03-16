@@ -21,12 +21,13 @@ public class StockProductDTOMapper implements Function<StockProduct, StockProduc
     private final ProductDefinitionService productDefinitionService;
 
     public StockProductDTO apply (StockProduct stockProduct) {
-        return new StockProductDTO(
+       return new StockProductDTO(
                 stockProduct.getStockProductId(),
                 stockProduct.getPantry().getPantryId(),
                 stockProduct.getProductDefinition().getName(),
-                stockProduct.getExpirationDate()
-        );
+                stockProduct.getExpirationDate(),
+                stockProduct.isStockStatus()
+       );
     }
 
     public StockProduct convertFromDTO (StockProductDTO stockProductDTO) {
