@@ -28,4 +28,10 @@ export class BasicStockProductService {
       amount: basicStockProductEdit.amount,
     });
   }
+
+  public deleteBasicStockProductFromPantry(basicStockProductId: number): Observable<void> {
+      return this.http.delete<void>(
+        `${this.apiServerUrl}/basicstockproduct/delete/${basicStockProductId}`
+      );
+  }
 }

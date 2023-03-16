@@ -5,7 +5,6 @@ import { BasicStockProduct } from './basic-stock-product';
 import { BasicStockProductService } from './basic-stock-product.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ModalAddBasicStockComponent } from '../modal-add-basic-stock/modal-add-basic-stock.component';
-
 @Component({
   selector: 'app-basic-stock-product',
   templateUrl: './basic-stock-product.component.html',
@@ -53,6 +52,17 @@ export class BasicStockProductComponent implements OnInit {
           alert(error.message);
         }
       );
+  }
+
+  public remove(basicStockProductId: number){
+      this.basicStockProductService.deleteBasicStockProductFromPantry(basicStockProductId)
+      .subscribe(() => {
+        this.getBasicStockProductsByPantryId;
+        window.location.reload();
+      }),
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }     
   }
 
   editDialog(basicStockProduct: BasicStockProduct) {

@@ -107,7 +107,31 @@
                 [queryParams]="{ name: pantryName, id: initialPantryId }"
                 routerLinkActive="active-link"
                 #stockInitialLoad="routerLinkActive"
+                hidden="stockInitialLoad.isActive && !stockInitialLoad.isActive"
               ></div>
+            </li>
+            <li class="nav-item item">
+              <a
+                class="nav-link"
+                [routerLink]="[
+                  '/pantry',
+                  pantryId,
+                  {
+                    outlets: {
+                      stockproduct: ['pantrydetail'],
+                      action: ['pantrydetail']
+                    }
+                  }
+                ]"
+                [queryParams]="{ name: pantryName }"
+                routerLinkActive="active-link"
+                #pantryDetail="routerLinkActive"
+              >
+                <div *ngIf="pantryDetail.isActive">
+                  Pantry settings<img src="/assets/images/favicon2.ico" />
+                </div>
+                <div *ngIf="!pantryDetail.isActive">Pantry settings</div>
+              </a>
             </li>
           </ul>
         </div>

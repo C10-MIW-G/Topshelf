@@ -43,8 +43,15 @@ public class BasicStockProductService {
     }
 
     public int findBasicStockAmountByName(Pantry pantry, ProductDefinition productDefinition){
+         Optional<BasicStockProduct> basicStockProduct =
+                 basicStockProductRepository.findBasicStockProductByPantryAndProductDefinition
+                         (pantry, productDefinition);
          Optional<BasicStockProduct> basicStockProduct = basicStockProductRepository
                  .findBasicStockProductByPantryAndProductDefinition(pantry, productDefinition);
         return basicStockProduct.map(BasicStockProduct::getAmount).orElse(0);
+    }
+
+    public void deleteBasicStockProduct(Long basicStockProductId) {
+        basicStockProductRepository.deleteById(basicStockProductId);
     }
 }
