@@ -16,6 +16,8 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { UserComponent } from './user/user.component';
 import { GroceryProductComponent } from './grocery-product/grocery-product.component';
 import { ActionBarUserComponent } from './action-bar-user/action-bar-user.component';
+import { PantryDetailComponent } from './pantry-detail/pantry-detail.component';
+import { ActionBarPantryDetailComponent } from './action-bar-pantry-detail/action-bar-pantry-detail.component';
 
 const appRoute: Routes = [
   { path: 'home', component: HomePageComponent },
@@ -85,6 +87,16 @@ const appRoute: Routes = [
       {
         path: 'users',
         component: ActionBarUserComponent,
+        outlet: 'action',
+      },
+      {
+        path: 'pantrydetail',
+        component: PantryDetailComponent,
+        outlet: 'stockproduct',
+      },
+      {
+        path: 'pantrydetail',
+        component: ActionBarPantryDetailComponent,
         outlet: 'action',
       },
     ],
