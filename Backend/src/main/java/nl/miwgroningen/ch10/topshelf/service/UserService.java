@@ -15,6 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 /**
@@ -69,6 +70,7 @@ public class UserService {
 
     public List<PantryUsersDTO> findUsersByPantryId(Long pantryId) {
         List<User> pantryUsers = userRepository.findAllByUserPantriesPantryId(pantryId);
+
         return pantryUsers
                 .stream()
                 .map(userDTOMapper)
@@ -90,15 +92,20 @@ public class UserService {
 
         return pantryAdmins
                 .stream()
-                .filter(u -> user.getUsername().equals(u.username()))
+                .filter(getPantryUsersDTOPredicate(user)) //Extracted to the function below, so it's easier to test.
                 .collect(Collectors.toList());
+    }
+
+    //In programming predicates mean functions with one argument that return a boolean value.
+    private static Predicate<PantryUsersDTO> getPantryUsersDTOPredicate(User user) {
+        return u -> user.getUsername().equals(u.username());
     }
 
     public boolean checkPassword(User user, String oldPassword) {
         return passwordEncoder.matches(oldPassword, user.getPassword());
     }
 
-    public void changeUserPassword(User user, String password) {
+    public void changeUserPassword(User user, String password) {//deze?
         user.setPassword(passwordEncoder.encode(password));
         userRepository.save(user);
     }
@@ -122,7 +129,8 @@ public class UserService {
         if (pantryService.checkIfUserIsPartOfPantry(user.getUsername(), pantryId)) {
             pantryService.addUserToPantry(user.getUsername(), pantryId);
             sendEmail.sendMessage(user, "Invite to pantry: " + pantryId.getName(),
-                    "Hello " + user.getUsername() + "\n\n" + "Great news: you've been invited to pantry: " + pantryId.getName()
+                    "Hello " + user.getUsername() + "\n\n" + "Great news: you've been invited to pantry: "
+                            + pantryId.getName()
                             + "\n" + "Log in and check out your new pantry: http://localhost:4200/ " +
                             "\n\n With kind regards, \n\n Topshelf" );
         } else {
