@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 const AUTH_API = environment.authUrl;
 const API_URL = environment.apiBaseUrl;
@@ -13,7 +14,14 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, public jwtHelper: JwtHelperService) {}
+
+  public isAuthenticated(): boolean {
+    const token = sessionStorage.getItem('auth-token');
+    console.log(token);
+    console.log(this.jwtHelper.isTokenExpired(token) + ' istokenexpired');
+    return this.jwtHelper.isTokenExpired(token);
+  }
 
   login(credentials: { username: string; password: string }): Observable<any> {
     console.log(credentials);

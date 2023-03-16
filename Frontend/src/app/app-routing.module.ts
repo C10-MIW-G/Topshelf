@@ -19,20 +19,23 @@ import { ActionBarUserComponent } from './action-bar-user/action-bar-user.compon
 import { PantryDetailComponent } from './pantry-detail/pantry-detail.component';
 import { ActionBarPantryDetailComponent } from './action-bar-pantry-detail/action-bar-pantry-detail.component';
 
+import { AuthGuardService as AuthGuard } from './_services/auth-guard.service';
+
 const appRoute: Routes = [
   { path: 'home', component: HomePageComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'changepassword', component: ChangePasswordComponent},
-  { path: 'resetpassword', component: ResetPasswordComponent},
-  { path: 'pantry', component: PantryComponent },
   {
-    path: 'pantry',
-    component: PantryComponent,
+    path: 'changepassword',
+    component: ChangePasswordComponent,
+    canActivate: [AuthGuard],
   },
+  { path: 'resetpassword', component: ResetPasswordComponent },
+  { path: 'pantry', component: PantryComponent, canActivate: [AuthGuard] },
   {
     path: 'pantry/:pantryId',
     component: PantrydetailComponent,
+    canActivate: [AuthGuard],
     children: [
       {
         path: '',
