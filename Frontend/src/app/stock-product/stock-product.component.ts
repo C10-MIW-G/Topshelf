@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { StockProduct } from './stock-product';
 import { StockProductService } from './stock-product.service';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ModalStockProductComponent } from '../modal-stock-product/modal-stock-product.component';
 

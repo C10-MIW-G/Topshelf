@@ -26,7 +26,10 @@ public class StockProductService {
 
     @Autowired
     public StockProductService(StockProductRepository stockProductRepository,
-                               StockProductDTOMapper stockProductDTOMapper, PantryService pantryService, ProductDefinitionService productDefinitionService, BasicStockProductService basicStockProductService) {
+                               StockProductDTOMapper stockProductDTOMapper,
+                               PantryService pantryService,
+                               ProductDefinitionService productDefinitionService,
+                               BasicStockProductService basicStockProductService) {
         this.stockProductRepository = stockProductRepository;
         this.stockProductDTOMapper = stockProductDTOMapper;
         this.pantryService = pantryService;
@@ -61,7 +64,8 @@ public class StockProductService {
 
     public void setStockStatus(StockProduct stockProduct){
         Pantry pantry =  pantryService.findPantryByPantryId(stockProduct.getPantry().getPantryId());
-        ProductDefinition productDefinition = productDefinitionService.findProductByName(stockProduct.getProductDefinition().getName());
+        ProductDefinition productDefinition =
+                productDefinitionService.findProductByName(stockProduct.getProductDefinition().getName());
         int count = this.countStockProductByProductDefinition(productDefinition, pantry);
         int amount = basicStockProductService.findBasicStockAmountByName(pantry, productDefinition);
 
