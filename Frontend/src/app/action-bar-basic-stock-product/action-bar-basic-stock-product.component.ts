@@ -64,7 +64,7 @@ export class ActionBarBasicStockProductComponent {
             }
           },
           error: () => {
-            alert('Failed adding product');
+            alert("Product was already added to the minimum stock");
           },
         });
     } else {

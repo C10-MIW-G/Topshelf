@@ -36,9 +36,16 @@ public class BasicStockProductController {
     public ResponseEntity<String> saveBasicStockProductToPantry(
             @RequestBody BasicStockProductDTO basicStockProductToBeSaved, BindingResult result) {
         if (!result.hasErrors()) {
-            basicStockProductService.save(basicStockProductToBeSaved);
+            String basicStockProductName = setProductNameToUpperCase(basicStockProductToBeSaved);
+            BasicStockProductDTO basicStockProductDTO = new BasicStockProductDTO(
+                    basicStockProductToBeSaved.basicStockProductId(),
+                    basicStockProductToBeSaved.pantryId(),
+                    basicStockProductName,
+                    basicStockProductToBeSaved.amount());
+
+            basicStockProductService.save(basicStockProductDTO);
         }
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
     @DeleteMapping("/delete/{basicStockProductId}")
@@ -46,5 +53,11 @@ public class BasicStockProductController {
             @PathVariable("basicStockProductId") Long basicStockProductId) {
         basicStockProductService.deleteBasicStockProduct(basicStockProductId);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    public String setProductNameToUpperCase (BasicStockProductDTO basicStockProductDTO) {
+        String nameToBeAdjusted = basicStockProductDTO.name();
+
+        return nameToBeAdjusted.substring(0, 1).toUpperCase() + nameToBeAdjusted.substring(1);
     }
 }

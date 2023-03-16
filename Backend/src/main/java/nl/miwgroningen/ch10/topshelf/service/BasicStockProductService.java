@@ -1,6 +1,7 @@
 package nl.miwgroningen.ch10.topshelf.service;
 
 import nl.miwgroningen.ch10.topshelf.dto.BasicStockProductDTO;
+import nl.miwgroningen.ch10.topshelf.exception.ProductAlreadyAddedException;
 import nl.miwgroningen.ch10.topshelf.mapper.BasicStockProductDTOMapper;
 import nl.miwgroningen.ch10.topshelf.model.BasicStockProduct;
 import nl.miwgroningen.ch10.topshelf.model.Pantry;
@@ -39,7 +40,14 @@ public class BasicStockProductService {
 
     public void save(BasicStockProductDTO basicStockProductDTO) {
         BasicStockProduct basicStockProduct = basicStockProductDTOMapper.convertFromDTO(basicStockProductDTO);
-        basicStockProductRepository.save(basicStockProduct);
+        Optional<BasicStockProduct> existingBasicStockProduct = basicStockProductRepository
+                .findBasicStockProductByProductDefinition(
+                        (basicStockProduct.getProductDefinition()));
+        if(existingBasicStockProduct.isPresent()) {
+            throw new ProductAlreadyAddedException("BasicStockProduct is already added");
+            } else {
+            basicStockProductRepository.save(basicStockProduct);
+        }
     }
 
     public int findBasicStockAmountByName(Pantry pantry, ProductDefinition productDefinition){
@@ -51,5 +59,10 @@ public class BasicStockProductService {
 
     public void deleteBasicStockProduct(Long basicStockProductId) {
         basicStockProductRepository.deleteById(basicStockProductId);
+    }
+
+    public void setProductDefinitionNameToLowerCase(BasicStockProduct basicStockProduct) {
+        String nameToLowerCase = basicStockProduct.getProductDefinition().getName().toLowerCase();
+        basicStockProduct.getProductDefinition().setName(nameToLowerCase);
     }
 }
