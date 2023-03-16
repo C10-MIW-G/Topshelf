@@ -38,7 +38,7 @@ public class StockProductController {
         User user = userService.findUserByUsername(username);
         if (stockProductService.checkIfUserBelongsToPantry(pantry, user)) {
             List<StockProductDTO> stockProduct = stockProductService
-                    .findStockProductByPantryOrderByExpirationDate(pantry);
+                    .findStockProductsByPantryOrderByExpirationDate(pantry);
             return new ResponseEntity<>(stockProduct, HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.FORBIDDEN);
