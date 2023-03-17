@@ -13,6 +13,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 @ExtendWith(MockitoExtension.class)
 class StockProductServiceTest {
     private StockProductService stockProductService;
+
     @Mock
     private StockProductRepository stockProductRepository;
     @Mock
@@ -35,24 +36,20 @@ class StockProductServiceTest {
         int count = 3;
         int amount = 4;
 
-        Assertions.assertEquals(true, stockProductService.settingStockStatus(count, amount));
-
+        Assertions.assertTrue(stockProductService.settingStockStatus(count, amount));
     }
     @Test
     void stockStatusTestWhenStockIsEnough(){
         int count = 5;
         int amount = 4;
 
-        Assertions.assertEquals(false, stockProductService.settingStockStatus(count, amount));
-
+        Assertions.assertFalse(stockProductService.settingStockStatus(count, amount));
     }
     @Test
     void stockStatusTestWhenStockIsEqualToBasicStock(){
         int count = 4;
         int amount = 4;
 
-        Assertions.assertEquals(false, stockProductService.settingStockStatus(count, amount));
-
+        Assertions.assertFalse(stockProductService.settingStockStatus(count, amount));
     }
-
 }

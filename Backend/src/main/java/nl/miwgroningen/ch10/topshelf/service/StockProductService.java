@@ -37,10 +37,11 @@ public class StockProductService {
     }
 
     public List<StockProductDTO> findStockProductsByPantryOrderByExpirationDate(Pantry pantry) {
-        List<StockProduct> stockProductList = stockProductRepository.findStockProductsByPantryOrderByExpirationDate(pantry)
+        List<StockProduct> stockProductList = stockProductRepository
+                .findStockProductsByPantryOrderByExpirationDate(pantry)
                 .stream()
                 .toList();
-        stockProductList.stream().forEach(this::setStockStatus);
+        stockProductList.forEach(this::setStockStatus);
         return stockProductList.stream().map(stockProductDTOMapper).toList();
     }
 
@@ -63,7 +64,8 @@ public class StockProductService {
 
     public void setStockStatus(StockProduct stockProduct){
         Pantry pantry =  pantryService.findPantryByPantryId(stockProduct.getPantry().getPantryId());
-        ProductDefinition productDefinition = productDefinitionService.findProductByName(stockProduct.getProductDefinition().getName());
+        ProductDefinition productDefinition = productDefinitionService
+                .findProductByName(stockProduct.getProductDefinition().getName());
         int count = this.countStockProductByProductDefinition(productDefinition, pantry);
         int amount = basicStockProductService.findBasicStockAmountByName(pantry, productDefinition);
 
