@@ -2,6 +2,7 @@ package nl.miwgroningen.ch10.topshelf.service;
 
 import nl.miwgroningen.ch10.topshelf.dto.BasicStockProductDTO;
 import nl.miwgroningen.ch10.topshelf.exception.ProductAlreadyAddedException;
+import nl.miwgroningen.ch10.topshelf.exception.ProductWithNameAlreadyExistsException;
 import nl.miwgroningen.ch10.topshelf.mapper.BasicStockProductDTOMapper;
 import nl.miwgroningen.ch10.topshelf.model.BasicStockProduct;
 import nl.miwgroningen.ch10.topshelf.model.Pantry;
@@ -40,14 +41,42 @@ public class BasicStockProductService {
 
     public void save(BasicStockProductDTO basicStockProductDTO) {
         BasicStockProduct basicStockProduct = basicStockProductDTOMapper.convertFromDTO(basicStockProductDTO);
-        Optional<BasicStockProduct> existingBasicStockProduct = basicStockProductRepository
-                .findBasicStockProductByProductDefinition(
-                        (basicStockProduct.getProductDefinition()));
+        Optional<BasicStockProduct> existingBasicStockProduct = findProductWithSameNameInPantry(basicStockProduct);
+
         if(existingBasicStockProduct.isPresent()) {
             throw new ProductAlreadyAddedException("BasicStockProduct is already added");
-            } else {
+        } else {
             basicStockProductRepository.save(basicStockProduct);
         }
+    }
+
+    public void edit(BasicStockProductDTO basicStockProductToBeEdited) {
+        BasicStockProduct basicStockProduct = basicStockProductDTOMapper.convertFromDTO(basicStockProductToBeEdited);
+        Optional<BasicStockProduct> existingBasicStockProduct = findSameProductInPantry(basicStockProduct);
+        Optional<BasicStockProduct> sameNameBasicStockProduct = findProductWithSameNameInPantry(basicStockProduct);
+
+        if (basicStockProductToBeEdited.name().equals
+                (existingBasicStockProduct.get().getProductDefinition().getName())) {
+            basicStockProductRepository.save(basicStockProduct);
+        } else if (sameNameBasicStockProduct.isPresent()) {
+            throw new ProductWithNameAlreadyExistsException("Product with this name already exists");
+        } else {
+            basicStockProductRepository.save(basicStockProduct);
+        }
+    }
+
+    public Optional<BasicStockProduct> findSameProductInPantry (BasicStockProduct basicStockProduct) {
+        Optional<BasicStockProduct> existingBasicStockProduct =
+                basicStockProductRepository.findBasicStockProductByPantryAndBasicStockProductId
+                        (basicStockProduct.getPantry(), basicStockProduct.getBasicStockProductId());
+        return existingBasicStockProduct;
+    }
+
+    public Optional<BasicStockProduct> findProductWithSameNameInPantry (BasicStockProduct basicStockProduct) {
+        Optional<BasicStockProduct> sameNameBasicStockProduct =
+                basicStockProductRepository.findBasicStockProductByPantryAndProductDefinition
+                        (basicStockProduct.getPantry(), basicStockProduct.getProductDefinition());
+        return sameNameBasicStockProduct;
     }
 
     public int findBasicStockAmountByName(Pantry pantry, ProductDefinition productDefinition){

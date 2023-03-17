@@ -49,6 +49,15 @@ public class BasicStockProductController {
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
+    @PutMapping("/edit")
+    public ResponseEntity<String> editBasicStockProduct(
+            @RequestBody BasicStockProductDTO basicStockProductToBeEdited, BindingResult result) {
+        if (!result.hasErrors()) {
+            basicStockProductService.edit(basicStockProductToBeEdited);
+        }
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
     @DeleteMapping("/delete/{basicStockProductId}")
     public ResponseEntity<String> deleteBasicStockProduct(
             @PathVariable("basicStockProductId") Long basicStockProductId) {

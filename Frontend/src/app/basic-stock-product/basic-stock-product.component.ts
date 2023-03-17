@@ -5,6 +5,8 @@ import { BasicStockProduct } from './basic-stock-product';
 import { BasicStockProductService } from './basic-stock-product.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ModalAddBasicStockComponent } from '../modal-add-basic-stock/modal-add-basic-stock.component';
+import { SameNameDialogComponent } from '../same-name-dialog/same-name-dialog.component';
+
 @Component({
   selector: 'app-basic-stock-product',
   templateUrl: './basic-stock-product.component.html',
@@ -14,7 +16,7 @@ export class BasicStockProductComponent implements OnInit {
   public pantryWithBasicStockProducts: BasicStockProduct[] = [];
   public namePantry!: string;
   public pantryId!: number;
-  
+
   constructor(
     private basicStockProductService: BasicStockProductService,
     private route: ActivatedRoute,
@@ -54,15 +56,29 @@ export class BasicStockProductComponent implements OnInit {
       );
   }
 
-  public remove(basicStockProductId: number){
-      this.basicStockProductService.deleteBasicStockProductFromPantry(basicStockProductId)
+  public remove(basicStockProductId: number) {
+    this.basicStockProductService
+      .deleteBasicStockProductFromPantry(basicStockProductId)
       .subscribe(() => {
         this.getBasicStockProductsByPantryId;
         window.location.reload();
       }),
       (error: HttpErrorResponse) => {
         alert(error.message);
-      }     
+      };
+  }
+
+  openSameNameDialog(name?: string) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.data = {
+      name: name,
+    };
+
+    const dialogRef = this.matDialog.open(
+      SameNameDialogComponent,
+      dialogConfig
+    );
   }
 
   editDialog(basicStockProduct: BasicStockProduct) {
@@ -80,17 +96,17 @@ export class BasicStockProductComponent implements OnInit {
     );
 
     dialogRef.afterClosed().subscribe((data) => {
-      this.saveBasicStockProduct(data, basicStockProduct);
+      this.editBasicStockProduct(data, basicStockProduct);
     });
   }
 
-  private saveBasicStockProduct(
+  private editBasicStockProduct(
     data: any,
     basicStockProduct: BasicStockProduct
   ) {
     if (data.isSubmitted) {
       this.basicStockProductService
-        .saveBasicStockProductToPantryStock({
+        .editBasicStockProduct({
           name: data.basicStockProductName,
           amount: data.amount,
           pantryId: this.getPantryId(),
@@ -101,7 +117,7 @@ export class BasicStockProductComponent implements OnInit {
             window.location.reload();
           },
           error: () => {
-            alert("Product was already added to the minimum stock");
+            this.openSameNameDialog(data.basicStockProductName);
           },
         });
     } else {
