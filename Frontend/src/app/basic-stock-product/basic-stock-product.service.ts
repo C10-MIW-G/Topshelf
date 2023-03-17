@@ -29,9 +29,22 @@ export class BasicStockProductService {
     });
   }
 
-  public deleteBasicStockProductFromPantry(basicStockProductId: number): Observable<void> {
-      return this.http.delete<void>(
-        `${this.apiServerUrl}/basicstockproduct/delete/${basicStockProductId}`
-      );
+  public editBasicStockProduct(
+    basicStockProductEdit: BasicStockProduct
+  ): Observable<any> {
+    return this.http.put(`${this.apiServerUrl}/basicstockproduct/edit`, {
+      basicStockProductId: basicStockProductEdit.basicStockProductId,
+      pantryId: basicStockProductEdit.pantryId,
+      name: basicStockProductEdit.name,
+      amount: basicStockProductEdit.amount,
+    });
+  }
+
+  public deleteBasicStockProductFromPantry(
+    basicStockProductId: number
+  ): Observable<void> {
+    return this.http.delete<void>(
+      `${this.apiServerUrl}/basicstockproduct/delete/${basicStockProductId}`
+    );
   }
 }

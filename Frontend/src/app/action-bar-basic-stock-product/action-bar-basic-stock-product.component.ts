@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { BasicStockProductService } from '../basic-stock-product/basic-stock-product.service';
 import { ModalAddBasicStockComponent } from '../modal-add-basic-stock/modal-add-basic-stock.component';
+import { SameNameDialogComponent } from '../same-name-dialog/same-name-dialog.component';
 
 @Component({
   selector: 'app-action-bar-basic-stock-product',
@@ -19,6 +20,19 @@ export class ActionBarBasicStockProductComponent {
     private matDialog: MatDialog,
     private toastr: ToastrService
   ) {}
+
+  openSameNameDialog(name?: string) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.data = {
+      name: name,
+    };
+
+    const dialogRef = this.matDialog.open(
+      SameNameDialogComponent,
+      dialogConfig
+    );
+  }
 
   onOpenDialog(openNewModal?: boolean) {
     const dialogConfig = new MatDialogConfig();
@@ -64,7 +78,7 @@ export class ActionBarBasicStockProductComponent {
             }
           },
           error: () => {
-            alert('Failed adding product');
+            this.openSameNameDialog(data.basicStockProductName);
           },
         });
     } else {

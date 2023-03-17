@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
+import * as moment from 'moment';
 
 const TOKEN_KEY = 'auth-token';
 const USER_KEY = 'auth-user';
+const EXPIRES_AT = 'expires_at';
 
 @Injectable({
   providedIn: 'root',

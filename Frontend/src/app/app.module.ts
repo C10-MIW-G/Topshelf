@@ -1,3 +1,4 @@
+import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 import { AppRoutingModule } from './app-routing.module';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -52,6 +53,8 @@ import {
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { PantryDetailComponent } from './pantry-detail/pantry-detail.component';
 import { ActionBarPantryDetailComponent } from './action-bar-pantry-detail/action-bar-pantry-detail.component';
+import { SameNameDialogComponent } from './same-name-dialog/same-name-dialog.component';
+import { ModalDeletePantryComponent } from './modal-delete-pantry/modal-delete-pantry.component';
 
 @NgModule({
   declarations: [
@@ -82,6 +85,8 @@ import { ActionBarPantryDetailComponent } from './action-bar-pantry-detail/actio
     ModalStockProductComponent,
     PantryDetailComponent,
     ActionBarPantryDetailComponent,
+    SameNameDialogComponent,
+    ModalDeletePantryComponent,
   ],
   imports: [
     BrowserModule,
@@ -103,10 +108,18 @@ import { ActionBarPantryDetailComponent } from './action-bar-pantry-detail/actio
     MatToolbarModule,
     MatDatepickerModule,
     MatMomentDateModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => localStorage.getItem('auth-token'),
+        allowedDomains: ['example.com'],
+        disallowedRoutes: ['example.com/login'],
+      },
+    }),
   ],
   exports: [MatFormFieldModule],
   entryComponents: [ModalAddPantryComponent],
   providers: [
+    JwtHelperService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     {
       provide: RECAPTCHA_SETTINGS,

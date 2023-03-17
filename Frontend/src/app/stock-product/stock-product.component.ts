@@ -28,9 +28,9 @@ export class StockProductComponent implements OnInit {
     this.getPantryName();
   }
 
-  public getPantryIdWithStockProducts(): void {
+  public getPantryIdWithStockProducts(): any {
     this.stockProductService
-      .getPantryWithStockProducts(this.getPantryId())
+      .getPantryWithStockProducts(this.pantryId)
       .subscribe(
         (response: StockProduct[]) => {
           this.pantryWithStockProducts = response;
