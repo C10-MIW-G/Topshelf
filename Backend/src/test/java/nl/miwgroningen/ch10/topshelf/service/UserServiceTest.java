@@ -52,14 +52,14 @@ class UserServiceTest {
         when(userRepository.findByUsername(username)).thenReturn(Optional.empty());
 
         assertThrows(UserNotFoundException.class,
-                () -> userService.findPantryUsersDTOByUsername( "test"));
+                () -> userService.findPantryUsersDTOByUsername(username));
     }
     @Test
     void findPantryUsersDTOByUsernameWithAUser() {
         String username = "John Doe";
         User user = new User();
         user.setUsername(username);
-        PantryUsersDTO pantryUsersDTO = new PantryUsersDTO(1l, username, "test@email.com", Role.USER);
+        PantryUsersDTO pantryUsersDTO = new PantryUsersDTO(1L, username, "test@email.com", Role.USER);
         when(userRepository.findByUsername(username)).thenReturn(Optional.of(user));
         when(userDTOMapper.apply(user)).thenReturn(pantryUsersDTO);
 

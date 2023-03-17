@@ -5,6 +5,7 @@ import { BasicStockProduct } from './basic-stock-product';
 import { BasicStockProductService } from './basic-stock-product.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ModalAddBasicStockComponent } from '../modal-add-basic-stock/modal-add-basic-stock.component';
+
 @Component({
   selector: 'app-basic-stock-product',
   templateUrl: './basic-stock-product.component.html',
@@ -14,7 +15,7 @@ export class BasicStockProductComponent implements OnInit {
   public pantryWithBasicStockProducts: BasicStockProduct[] = [];
   public namePantry!: string;
   public pantryId!: number;
-  
+
   constructor(
     private basicStockProductService: BasicStockProductService,
     private route: ActivatedRoute,
@@ -41,7 +42,7 @@ export class BasicStockProductComponent implements OnInit {
     });
   }
 
-  public getBasicStockProductsByPantryId(): void {
+  public getBasicStockProductsByPantryId(): any {
     this.basicStockProductService
       .getBasicStockProductsByPantry(this.pantryId)
       .subscribe(
@@ -54,15 +55,16 @@ export class BasicStockProductComponent implements OnInit {
       );
   }
 
-  public remove(basicStockProductId: number){
-      this.basicStockProductService.deleteBasicStockProductFromPantry(basicStockProductId)
+  public remove(basicStockProductId: number) {
+    this.basicStockProductService
+      .deleteBasicStockProductFromPantry(basicStockProductId)
       .subscribe(() => {
         this.getBasicStockProductsByPantryId;
         window.location.reload();
       }),
       (error: HttpErrorResponse) => {
         alert(error.message);
-      }     
+      };
   }
 
   editDialog(basicStockProduct: BasicStockProduct) {
@@ -101,7 +103,7 @@ export class BasicStockProductComponent implements OnInit {
             window.location.reload();
           },
           error: () => {
-            alert("Product was already added to the minimum stock");
+            alert('Product was already added to the minimum stock');
           },
         });
     } else {

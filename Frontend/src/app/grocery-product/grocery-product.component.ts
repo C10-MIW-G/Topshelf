@@ -70,7 +70,7 @@ export class GroceryProductComponent implements OnInit {
       };
   }
 
-  public getGroceryProductsByPantryId(): void {
+  public getGroceryProductsByPantryId(): any {
     const id = this.getPantryId();
     this.groceryProductService.getGroceryProductsByPantry(id).subscribe(
       (response: GroceryProduct[]) => {
