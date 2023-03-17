@@ -12,6 +12,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
 class StockProductServiceTest {
+
     private StockProductService stockProductService;
 
     @Mock
@@ -24,6 +25,7 @@ class StockProductServiceTest {
     private  ProductDefinitionService productDefinitionService;
     @Mock
     private BasicStockProductService basicStockProductService;
+    
     @BeforeEach
     void setUp(){
         MockitoAnnotations.openMocks(this);
