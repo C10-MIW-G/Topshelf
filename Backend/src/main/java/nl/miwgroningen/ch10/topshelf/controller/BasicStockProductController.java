@@ -44,6 +44,7 @@ public class BasicStockProductController {
                     basicStockProductToBeSaved.amount());
 
             basicStockProductService.save(basicStockProductDTO);
+            return new ResponseEntity<>(HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
