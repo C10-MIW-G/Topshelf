@@ -1,5 +1,5 @@
 .card-deck {
-   max-height: 140px;
+  max-height: 140px;
 }
 
 .card {
@@ -23,15 +23,13 @@
 .col-4 h5 {
   text-align: center;
   border-bottom: 1px solid black;
-  width: 288px;
+  max-width: 288px;
   padding: 10px;
-  white-space: nowrap;
 }
 
 .col-6 h5 {
-    text-align: center;
-    border-bottom: 1px solid black;
-    width: 458px;
-    padding: 10px;
-    white-space: nowrap;
-  }
+  text-align: center;
+  border-bottom: 1px solid black;
+  max-width: 458px;
+  padding: 10px;
+}

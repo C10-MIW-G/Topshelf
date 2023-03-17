@@ -88,7 +88,6 @@ export class PantryDetailComponent implements OnInit {
     this.userService.getUsersByPantry(this.pantryId).subscribe(
       (response: User[]) => {
         this.users = response;
-        console.log(this.users);
       },
       (_error: HttpErrorResponse) => {
         this.errorMessage = 'Unable to retrieve the users';
@@ -100,7 +99,6 @@ export class PantryDetailComponent implements OnInit {
     this.userService.getAdminsByPantry(this.pantryId).subscribe(
       (response: User[]) => {
         this.admins = response;
-        console.log(this.admins);
       },
       (_error: HttpErrorResponse) => {
         this.errorMessage = 'Unable to retrieve the admins';
