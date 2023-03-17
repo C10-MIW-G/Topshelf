@@ -29,7 +29,7 @@ export class PantryComponent implements OnInit {
       (response: Pantry[]) => {
         this.pantries = response;
       },
-      (error: HttpErrorResponse) => {
+      (_error: HttpErrorResponse) => {
         this.errorMessage = 'Unable to retrieve the pantries';
       }
     );
@@ -42,7 +42,7 @@ export class PantryComponent implements OnInit {
 
         this.unAuthorizedUser = true;
       },
-      (error: HttpErrorResponse) => {
+      (_error: HttpErrorResponse) => {
         this.errorMessage = 'You are not logged in';
 
         this.unAuthorizedUser = false;

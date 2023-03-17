@@ -1,0 +1,31 @@
+<body>
+  <div class="form">
+    <mat-toolbar class="header">
+      <div class="container-fluid">
+        <h4>Delete pantry</h4>
+      </div>
+    </mat-toolbar>
+    <div class="container-fluid">
+        <p>Are you sure you want to delete pantry: </p>
+        <h3>{{ pantryName }}</h3>
+        <p><span>&#33;</span>Warning<span>&#33;</span></p>
+        <p>This will delete this pantry with all its products</p>
+      <div
+        class="bottom-div container-fluid position-absolute bottom-0 start-50 translate-middle-x"
+      >
+        <div class="button-container d-flex flex-row-reverse">
+          <button
+            class="modal-button btn delete-color"
+            onclick="openNewModal = false"
+            (click)="delete()"
+          >
+            Delete
+          </button>
+          <button class="modal-button btn btn-color" (click)="close()">
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

@@ -24,12 +24,12 @@ export class UserComponent implements OnInit {
   ngOnInit() {
     this.getPantryName();
     this.getPantryId();
-    this.getUsers(this.pantryId);
-    this.getAdmins(this.pantryId);
+    this.getUsers();
+    this.getAdmins();
   }
 
-  public getUsers(pantryId: number): any {
-    this.userService.getUsersByPantry(pantryId).subscribe(
+  public getUsers(): any {
+    this.userService.getUsersByPantry(this.pantryId).subscribe(
       (response: User[]) => {
         this.users = response;
       },
@@ -39,8 +39,8 @@ export class UserComponent implements OnInit {
     );
   }
 
-  public getAdmins(pantryId: number): any {
-    this.userService.getAdminsByPantry(pantryId).subscribe(
+  public getAdmins(): any {
+    this.userService.getAdminsByPantry(this.pantryId).subscribe(
       (response: User[]) => {
         this.admins = response;
       },
@@ -49,14 +49,14 @@ export class UserComponent implements OnInit {
       }
     );
   }
-  
+
   public getPantryName() {
     this.route.queryParams.subscribe((params) => {
       this.namePantry = params['name'];
     });
   }
 
-  public getPantryId(): number {
+  public getPantryId() {
     this.route.parent?.params.subscribe((params) => {
       const response = params['pantryId'];
       this.pantryId = parseInt(response.split(';')[0], 10);

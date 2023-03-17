@@ -43,7 +43,7 @@ export class BasicStockProductComponent implements OnInit {
     });
   }
 
-  public getBasicStockProductsByPantryId(): void {
+  public getBasicStockProductsByPantryId(): any {
     this.basicStockProductService
       .getBasicStockProductsByPantry(this.pantryId)
       .subscribe(

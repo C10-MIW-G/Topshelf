@@ -54,6 +54,7 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { PantryDetailComponent } from './pantry-detail/pantry-detail.component';
 import { ActionBarPantryDetailComponent } from './action-bar-pantry-detail/action-bar-pantry-detail.component';
 import { SameNameDialogComponent } from './same-name-dialog/same-name-dialog.component';
+import { ModalDeletePantryComponent } from './modal-delete-pantry/modal-delete-pantry.component';
 
 @NgModule({
   declarations: [
@@ -85,6 +86,7 @@ import { SameNameDialogComponent } from './same-name-dialog/same-name-dialog.com
     PantryDetailComponent,
     ActionBarPantryDetailComponent,
     SameNameDialogComponent,
+    ModalDeletePantryComponent,
   ],
   imports: [
     BrowserModule,
