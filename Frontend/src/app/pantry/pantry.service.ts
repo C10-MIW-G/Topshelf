@@ -25,4 +25,10 @@ export class PantryService {
       pantryDTO
     );
   }
+
+  public deletePantry(pantryId: number): Observable<void> {
+    return this.http.delete<void>(
+      `${this.apiServerUrl}/pantry/delete/${pantryId}`
+    );
+}
 }

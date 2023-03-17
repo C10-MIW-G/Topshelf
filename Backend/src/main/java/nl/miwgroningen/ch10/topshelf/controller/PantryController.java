@@ -1,4 +1,5 @@
 package nl.miwgroningen.ch10.topshelf.controller;
+
 import lombok.RequiredArgsConstructor;
 import nl.miwgroningen.ch10.topshelf.dto.PantryDTO;
 import nl.miwgroningen.ch10.topshelf.dto.PantryUsersDTO;
@@ -9,6 +10,7 @@ import nl.miwgroningen.ch10.topshelf.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 /**
@@ -68,9 +70,8 @@ public class PantryController {
 
     @DeleteMapping("/delete/{pantryId}")
     public ResponseEntity<String> deletePantry(
-            @PathVariable("pantryId") Long pantryId){
+            @PathVariable("pantryId") Long pantryId) {
         pantryService.deletePantry(pantryId);
-        String text = "Pantry has been deleted";
-        return new ResponseEntity<>(text, HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
