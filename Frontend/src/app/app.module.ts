@@ -53,6 +53,7 @@ import {
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { PantryDetailComponent } from './pantry-detail/pantry-detail.component';
 import { ActionBarPantryDetailComponent } from './action-bar-pantry-detail/action-bar-pantry-detail.component';
+import { ModalDeletePantryComponent } from './modal-delete-pantry/modal-delete-pantry.component';
 
 @NgModule({
   declarations: [
@@ -83,6 +84,7 @@ import { ActionBarPantryDetailComponent } from './action-bar-pantry-detail/actio
     ModalStockProductComponent,
     PantryDetailComponent,
     ActionBarPantryDetailComponent,
+    ModalDeletePantryComponent,
   ],
   imports: [
     BrowserModule,

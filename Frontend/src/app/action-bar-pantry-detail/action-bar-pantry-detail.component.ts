@@ -1,8 +1,9 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { ModalDeletePantryComponent } from '../modal-delete-pantry/modal-delete-pantry.component';
 import { Pantry } from '../pantry/pantry';
 import { PantryService } from '../pantry/pantry.service';
 
@@ -15,6 +16,7 @@ export class ActionBarPantryDetailComponent {
   public pantryId!: number;
   public pantry?: Pantry;
   public errorMessage?: string;
+  public namePantry?: string;
 
   constructor(
     private pantryService: PantryService,
@@ -26,9 +28,29 @@ export class ActionBarPantryDetailComponent {
 
   ngOnInit() {
     this.getPantryId();
+    this.getPantryName();
   }
 
-  public remove() {
+  deleteDialog() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.data = {
+      name: this.namePantry,
+      isSubmitted: true,
+    };
+
+    const dialogRef = this.matDialog.open(
+      ModalDeletePantryComponent,
+      dialogConfig
+    );
+
+    dialogRef.afterClosed().subscribe((data) => {
+      this.remove(data);
+    });
+  }
+
+  public remove(data: any) {
+    if(data){
     this.pantryService
       .deletePantry(this.pantryId)
       .subscribe(() => {
@@ -40,6 +62,9 @@ export class ActionBarPantryDetailComponent {
       (_error: HttpErrorResponse) => {
         this.errorMessage = "Pantry was not deleted, please try again"
       };
+    } else {
+      window.location.reload();
+    }
   }
 
   public getPantryId(): number {
@@ -48,6 +73,11 @@ export class ActionBarPantryDetailComponent {
       this.pantryId = parseInt(response.split(';')[0], 10);
     });
     return this.pantryId;
+  }
+
+  public getPantryName() {
+    const name = this.route.snapshot.queryParamMap.get('name')!;
+    this.namePantry = name;
   }
 
 }
