@@ -36,7 +36,14 @@ public class GroceryProductController {
     public ResponseEntity<String> saveGroceryProductToPantry(
             @RequestBody GroceryProductDTO groceryProductToBeSaved, BindingResult result) {
         if (!result.hasErrors()) {
-            groceryProductService.save(groceryProductToBeSaved);
+            String groceryProductName = setProductNameToUpperCase(groceryProductToBeSaved);
+            GroceryProductDTO groceryProductDTO = new GroceryProductDTO(
+                    groceryProductToBeSaved.groceryProductId(),
+                    groceryProductToBeSaved.pantryId(),
+                    groceryProductName,
+                    groceryProductToBeSaved.amount()
+            );
+            groceryProductService.save(groceryProductDTO);
         }
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
@@ -46,5 +53,11 @@ public class GroceryProductController {
             @PathVariable("groceryProductId") Long groceryProductId) {
         groceryProductService.deleteGroceryProduct(groceryProductId);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    public String setProductNameToUpperCase (GroceryProductDTO groceryProductDTO) {
+        String nameToBeAdjusted = groceryProductDTO.name();
+
+        return nameToBeAdjusted.substring(0, 1).toUpperCase() + nameToBeAdjusted.substring(1);
     }
 }
