@@ -42,7 +42,8 @@ public class BasicStockProductServiceTest {
                 new BasicStockProduct(1L, 5, new ProductDefinition(), new Pantry());
         when(basicStockProductDTOMapper.convertFromDTO(basicStockProductDTO)).thenReturn(basicStockProduct);
         when(basicStockProductRepository
-                .findBasicStockProductByProductDefinition(basicStockProduct.getProductDefinition()))
+                .findBasicStockProductByPantryAndProductDefinition
+                        (basicStockProduct.getPantry(), basicStockProduct.getProductDefinition()))
                 .thenReturn(Optional.of(basicStockProduct));
         assertThrows(ProductAlreadyAddedException.class,
                 () -> basicStockProductService.save(basicStockProductDTO));
