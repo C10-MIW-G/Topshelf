@@ -18,12 +18,9 @@
                 #stock="routerLinkActive"
               >
                 <div
-                  class="nav-link active"
-                  aria-current="true"
                   routerLink="/pantry/{{
                     initialPantryId
                   }};sidebar:sidebar;stockproduct:stockproduct"
-                  [queryParams]="{ name: pantryName, id: initialPantryId }"
                   routerLinkActive="active-link"
                   #stockInitialLoad="routerLinkActive"
                   hidden="stockInitialLoad.isActive && !stockInitialLoad.isActive"
