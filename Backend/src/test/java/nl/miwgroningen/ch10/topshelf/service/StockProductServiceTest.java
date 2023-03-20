@@ -30,7 +30,9 @@ class StockProductServiceTest {
     void setUp(){
         MockitoAnnotations.openMocks(this);
 
-        stockProductService = new StockProductService(stockProductRepository, stockProductDTOMapper, pantryService, productDefinitionService, basicStockProductService );
+        stockProductService = new StockProductService(
+                stockProductRepository, stockProductDTOMapper, pantryService, productDefinitionService,
+                basicStockProductService );
     }
 
     @Test

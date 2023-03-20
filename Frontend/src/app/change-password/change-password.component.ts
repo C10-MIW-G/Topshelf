@@ -40,17 +40,14 @@ export class ChangePasswordComponent implements OnInit {
     const passw = this.changePasswordForm.value.password;
     const newPw = this.changePasswordForm.value.newPassword;
     const confirmPw = this.changePasswordForm.value.confirmPassword;
-    // new password and confirmation password don't match
     if (newPw != confirmPw) {
       this.confirmDoesNotMatch();
       return;
     }
-    // new password is the same as the old password
     if (passw == newPw) {
       this.samePassword();
       return;
     }
-    // old password matches, and the new password is valid
     if (passw && newPw) {
       this.setNewPassword(passw, newPw);
     }

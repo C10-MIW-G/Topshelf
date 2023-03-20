@@ -14,6 +14,6 @@ public interface BasicStockProductRepository extends JpaRepository<BasicStockPro
 
     Optional<BasicStockProduct> findBasicStockProductByPantryAndProductDefinition(Pantry pantry,
                                                                                   ProductDefinition productDefinition);
-
-    Optional<BasicStockProduct> findBasicStockProductByProductDefinition(ProductDefinition productDefinition);
+    Optional<BasicStockProduct> findBasicStockProductByPantryAndBasicStockProductId(Pantry pantry,
+                                                                                    Long basicStockProductId);
 }

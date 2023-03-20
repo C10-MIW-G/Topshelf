@@ -1,43 +1,28 @@
-.header,
-h4 {
-  background-color: rgb(65, 113, 156);
+h2 {
+  color: rgb(90, 157, 216);
+  text-align: left;
+  font-size: 180%;
+  max-width: 100%;
+  margin: 10px;
+  margin-bottom: 40px;
   text-align: center;
-  padding: 5px;
-  color: white;
-  font-style: italic;
-  font-size: larger;
+  font-weight: 700;
 }
 
 h3 {
-  color: white;
+  color:  rgb(65, 113, 156);
   text-align: left;
-}
-.component-center {
-  background-color:
-  rgb(65, 113, 156);
-}
-
-.component-left, .component-right, .sidebar {
-  background-color:
-  rgb(65, 113, 156);
+  font-size: 250%;
+  margin-left: -50px;
+  margin-top: 80px;
 }
 
-.button-landing {
-  display: block;
-}
-
-.btn-start {
-  background-color: rgb(45, 94, 141);
-  border-color: white;
-  font-size: larger;
-  max-width: 200px;
-}
-
-.btn-login {
-  background-color: rgb(90, 157, 216);
-  border-color: white;
-  font-size: larger;
-  max-width: 200px;
+h4 {
+  color:  rgb(65, 113, 156);
+  text-align: center;
+  font-size:200%;
+  padding-top: 20px;
+  font-weight: 550;
 }
 
 a {
@@ -45,50 +30,86 @@ a {
   text-decoration: none;
 }
 
+p {
+  margin-top: 20px;
+  text-align: left;
+  font-size: 30px !important;
+  color:  rgb(65, 113, 156);
+  font-weight: 500;
+  max-width: 100%;
+ }
+
+ span {
+  margin-left: 50px;
+ }
+
+.btn-start {
+  background-color: rgb(45, 94, 141);
+  border-color: rgb(250, 237, 221);
+  font-size: larger;
+  max-width: 280px;
+  color: rgb(250, 237, 221);
+}
+
+.btn-login {
+  background-color: rgb(90, 157, 216);
+  border-color: rgb(250, 237, 221);
+  font-size: larger;
+  max-width: 280px;
+}
+
+a.col-6 {
+  background: transparent !important;
+  margin-left: -100px !important;
+}
+
+.col-12 {
+  padding-top: 10px;
+  padding-left: 130px;
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+
+
+.button-landing {
+  margin-left: 0px;
+}
+
 a.btn,
 a.btn:hover {
   color: white;
 }
 
-a ul a {
-  position: absolute;
-  bottom: 0;
-  width: 230px;
-  margin: 10px 0px 5px 0px;
-}
-
-p {
- text-align: left;
- font-size: large;
- color: white;
-}
-
-.col-6 {
-  display: block;
-  margin-top: 50px;
-}
-
 .card {
-  background-color: rgb(65, 113, 156);;
   position: relative;
   min-height: 250px;
   max-height: 300px;
   min-width: auto;
   display: block;
   border: 0;
-  color: white;
   align-content: end;
 }
 
 ul {
-  text-align: center;
-  padding: 3px;
+  margin-top: 150px;
+  margin-right: -50px;
+  padding: 20px;
   padding-top: 10px;
+  padding-left: -50px;
+  background: rgba(250, 237, 221, 0.9);
+}
+
+p {
+  margin-left: 1px;
+  font-size: larger;
+}
+
+.row {
+  background: url("/assets/images/food-on-shelves.jpg");
+  background-size: cover;
 }
 
 img {
-  margin-left: -15px;
-  max-width: 70%;
-  height: auto;
-  align-self: flex-end;
+  margin-top: 100px;
+  padding-right: 100px;
 }
