@@ -52,8 +52,12 @@ a:active {
 }
 
 .username {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: bold;
   color: white;
   margin-right: 10px;
+}
+
+a {
+  font-size: 20px;
 }

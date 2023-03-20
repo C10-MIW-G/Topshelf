@@ -2,3 +2,7 @@ card {
     position: relative;
     bottom: 0;
 }
+
+th, td {
+  font-size: 20px;
+}

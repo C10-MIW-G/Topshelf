@@ -244,3 +244,9 @@ button.actions-button {
 html.cdk-global-scrollblock {
   overflow: hidden;
 }
+
+.center {
+  padding: 70px 0;
+  text-align: center;
+}
+
