@@ -7,6 +7,7 @@ import nl.miwgroningen.ch10.topshelf.model.BasicStockProduct;
 import nl.miwgroningen.ch10.topshelf.model.Pantry;
 import nl.miwgroningen.ch10.topshelf.model.ProductDefinition;
 import nl.miwgroningen.ch10.topshelf.repository.BasicStockProductRepository;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -35,14 +36,16 @@ public class BasicStockProductServiceTest {
     BasicStockProductService basicStockProductService;
 
     @Test
-    void productAlreadyAddedExceptionTest() {
+    @DisplayName("Test if saveBasicStockProduct method is throwing an exception")
+    void saveBasicStockProductTest() {
         BasicStockProductDTO basicStockProductDTO =
                 new BasicStockProductDTO(1L, 2L, "Pasta", 5);
         BasicStockProduct basicStockProduct =
                 new BasicStockProduct(1L, 5, new ProductDefinition(), new Pantry());
         when(basicStockProductDTOMapper.convertFromDTO(basicStockProductDTO)).thenReturn(basicStockProduct);
         when(basicStockProductRepository
-                .findBasicStockProductByProductDefinition(basicStockProduct.getProductDefinition()))
+                .findBasicStockProductByPantryAndProductDefinition
+                        (basicStockProduct.getPantry(), basicStockProduct.getProductDefinition()))
                 .thenReturn(Optional.of(basicStockProduct));
         assertThrows(ProductAlreadyAddedException.class,
                 () -> basicStockProductService.save(basicStockProductDTO));

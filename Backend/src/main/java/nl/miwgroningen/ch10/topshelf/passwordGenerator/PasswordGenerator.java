@@ -28,35 +28,35 @@ public class PasswordGenerator {
         return String.valueOf(stringBuilder);
     }
 
-    public static char getRandomCharacter(char char1, char char2) {
+    private static char getRandomCharacter(char char1, char char2) {
         return (char) (char1 + Math.random() * (char2 - char1 + 1));
     }
 
     /**
      * Generate a random lowercase letter
      */
-    public char getRandomLowerCaseLetter() {
+    private static char getRandomLowerCaseLetter() {
         return getRandomCharacter('a', 'z');
     }
 
     /**
      * Generate a random uppercase letter
      */
-    public char getRandomUpperCaseLetter() {
+    private static char getRandomUpperCaseLetter() {
         return getRandomCharacter('A', 'Z');
     }
 
     /**
      * Generate a random digit character
      */
-    public char getRandomDigitCharacter() {
+    private static char getRandomDigitCharacter() {
         return getRandomCharacter('0', '9');
     }
 
     /**
      * Generate a random character
      */
-    public char getRandomCharacter() {
+    private static char getRandomCharacter() {
         return getRandomCharacter('!', '%');
     }
 }
