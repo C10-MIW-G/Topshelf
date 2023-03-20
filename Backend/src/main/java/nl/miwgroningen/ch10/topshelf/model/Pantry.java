@@ -1,6 +1,7 @@
 package nl.miwgroningen.ch10.topshelf.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,7 +14,7 @@ import java.util.List;
  */
 
 @Entity
-@Getter @Setter @NoArgsConstructor
+@Getter @Setter @NoArgsConstructor @AllArgsConstructor
 public class Pantry {
 
     @Id
@@ -21,6 +22,10 @@ public class Pantry {
     private Long pantryId;
 
     private String name;
+
+    public Pantry(String name) {
+        this.name = name;
+    }
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "pantry")
     private List<StockProduct> stock;
