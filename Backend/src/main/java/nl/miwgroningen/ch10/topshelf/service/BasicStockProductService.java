@@ -65,18 +65,14 @@ public class BasicStockProductService {
         }
     }
 
-    public Optional<BasicStockProduct> findSameProductInPantry (BasicStockProduct basicStockProduct) {
-        Optional<BasicStockProduct> existingBasicStockProduct =
-                basicStockProductRepository.findBasicStockProductByPantryAndBasicStockProductId
+    protected Optional<BasicStockProduct> findSameProductInPantry (BasicStockProduct basicStockProduct) {
+        return basicStockProductRepository.findBasicStockProductByPantryAndBasicStockProductId
                         (basicStockProduct.getPantry(), basicStockProduct.getBasicStockProductId());
-        return existingBasicStockProduct;
     }
 
-    public Optional<BasicStockProduct> findProductWithSameNameInPantry (BasicStockProduct basicStockProduct) {
-        Optional<BasicStockProduct> sameNameBasicStockProduct =
-                basicStockProductRepository.findBasicStockProductByPantryAndProductDefinition
+    protected Optional<BasicStockProduct> findProductWithSameNameInPantry (BasicStockProduct basicStockProduct) {
+        return basicStockProductRepository.findBasicStockProductByPantryAndProductDefinition
                         (basicStockProduct.getPantry(), basicStockProduct.getProductDefinition());
-        return sameNameBasicStockProduct;
     }
 
     public int findBasicStockAmountByName(Pantry pantry, ProductDefinition productDefinition){

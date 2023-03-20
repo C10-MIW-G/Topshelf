@@ -28,4 +28,5 @@ public class BasicStockProduct {
     @ManyToOne
     @JoinColumn(name = "pantryId", referencedColumnName = "pantryId")
     private Pantry pantry;
+
 }

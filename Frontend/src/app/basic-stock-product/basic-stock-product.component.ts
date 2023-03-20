@@ -85,8 +85,8 @@ export class BasicStockProductComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.data = {
-      name: basicStockProduct?.name,
-      amount: basicStockProduct?.amount,
+      name: basicStockProduct.name,
+      amount: basicStockProduct.amount,
       isSubmitted: true,
     };
 

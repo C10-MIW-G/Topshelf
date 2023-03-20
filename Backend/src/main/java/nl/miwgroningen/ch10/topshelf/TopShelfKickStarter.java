@@ -27,7 +27,7 @@ public class TopShelfKickStarter implements CommandLineRunner {
     public void run(String... args) throws Exception {
         if (userRepository.findAll().size() == 0) {
             User user = new User();
-            user.setUsername("admin");
+            user.setUsername("Ingmar");
             user.setPassword(passwordEncoder.encode("123456"));
             user.setRole(Role.SITEADMIN);
             userRepository.save(user);

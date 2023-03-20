@@ -65,7 +65,6 @@ export class PantryComponent implements OnInit {
     );
 
     dialogRef.afterClosed().subscribe((data) => {
-      console.log(data);
       if (data.pantryName !== null && data.isSubmitted) {
         this.pantryService.addPantry({ name: data.pantryName }).subscribe({
           complete: () => {

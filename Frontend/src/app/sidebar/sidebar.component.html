@@ -17,11 +17,19 @@
                 routerLinkActive="active-link"
                 #stock="routerLinkActive"
               >
+                <div
+                  routerLink="/pantry/{{
+                    initialPantryId
+                  }};sidebar:sidebar;stockproduct:stockproduct"
+                  routerLinkActive="active-link"
+                  #stockInitialLoad="routerLinkActive"
+                  hidden="stockInitialLoad.isActive && !stockInitialLoad.isActive"
+                ></div>
                 <div *ngIf="stock.isActive">
-                  Stock<img src="/assets/images/favicon2.ico" />
-                </div>
-                <div *ngIf="stockInitialLoad.isActive" >
-                  <div class="initial-load">Stock</div><img src="/assets/images/favicon2.ico" />
+                  Stock<img
+                    src="/assets/images/favicon2.ico"
+                    alt="Topshelf icon side-bar"
+                  />
                 </div>
                 <div *ngIf="!stock.isActive && !stockInitialLoad.isActive">
                   Stock
@@ -46,7 +54,10 @@
                 #basicStock="routerLinkActive"
               >
                 <div *ngIf="basicStock.isActive">
-                  Minimum stock<img src="/assets/images/favicon2.ico" />
+                  Minimum stock<img
+                    src="/assets/images/favicon2.ico"
+                    alt="Topshelf icon side-bar"
+                  />
                 </div>
                 <div *ngIf="!basicStock.isActive">Minimum stock</div>
               </a>
@@ -69,7 +80,10 @@
                 #groceryList="routerLinkActive"
               >
                 <div *ngIf="groceryList.isActive">
-                  Grocery list<img src="/assets/images/favicon2.ico" />
+                  Grocery list<img
+                    src="/assets/images/favicon2.ico"
+                    alt="Topshelf icon side-bar"
+                  />
                 </div>
                 <div *ngIf="!groceryList.isActive">Grocery list</div>
               </a>
@@ -92,23 +106,13 @@
                 #users="routerLinkActive"
               >
                 <div *ngIf="users.isActive">
-                  Users<img src="/assets/images/favicon2.ico" />
+                  Users<img
+                    src="/assets/images/favicon2.ico"
+                    alt="Topshelf icon side-bar"
+                  />
                 </div>
                 <div *ngIf="!users.isActive">Users</div>
               </a>
-            </li>
-            <li class="nav-item">
-              <div
-                class="nav-link active"
-                aria-current="true"
-                routerLink="/pantry/{{
-                  initialPantryId
-                }};sidebar:sidebar;stockproduct:stockproduct"
-                [queryParams]="{ name: pantryName, id: initialPantryId }"
-                routerLinkActive="active-link"
-                #stockInitialLoad="routerLinkActive"
-                hidden="stockInitialLoad.isActive && !stockInitialLoad.isActive"
-              ></div>
             </li>
             <li class="nav-item item">
               <a
@@ -128,7 +132,10 @@
                 #pantryDetail="routerLinkActive"
               >
                 <div *ngIf="pantryDetail.isActive">
-                  Pantry settings<img src="/assets/images/favicon2.ico" />
+                  Pantry settings<img
+                    src="/assets/images/favicon2.ico"
+                    alt="Topshelf icon side-bar"
+                  />
                 </div>
                 <div *ngIf="!pantryDetail.isActive">Pantry settings</div>
               </a>

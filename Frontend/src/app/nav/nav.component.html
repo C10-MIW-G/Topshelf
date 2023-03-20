@@ -1,9 +1,13 @@
 <nav class="navbar navbar-expand-lg sticky-top">
-  <a class="navbar-brand" *ngIf="isLoggedIn()" href="/pantry"
-    ><img src="/assets/images/TOPSHELF-logo.png"
+  <a class="navbar-brand" *ngIf="isLoggedIn() && !atHome" href="/pantry"
+    ><img
+      src="/assets/images/TOPSHELF-logo.png"
+      alt="Topshelf logo navigationbar"
   /></a>
-  <a class="navbar-brand" *ngIf="!isLoggedIn()" href="/home"
-    ><img src="/assets/images/TOPSHELF-logo.png"
+  <a class="navbar-brand" *ngIf="!isLoggedIn() && !atHome" href="/home"
+    ><img
+      src="/assets/images/TOPSHELF-logo.png"
+      alt="Topshelf logo navigationbar"
   /></a>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
