@@ -35,28 +35,28 @@ public class PasswordGenerator {
     /**
      * Generate a random lowercase letter
      */
-    public static char getRandomLowerCaseLetter() {
+    public char getRandomLowerCaseLetter() {
         return getRandomCharacter('a', 'z');
     }
 
     /**
      * Generate a random uppercase letter
      */
-    public static char getRandomUpperCaseLetter() {
+    public char getRandomUpperCaseLetter() {
         return getRandomCharacter('A', 'Z');
     }
 
     /**
      * Generate a random digit character
      */
-    public static char getRandomDigitCharacter() {
+    public char getRandomDigitCharacter() {
         return getRandomCharacter('0', '9');
     }
 
     /**
      * Generate a random character
      */
-    public static char getRandomCharacter() {
+    public char getRandomCharacter() {
         return getRandomCharacter('!', '%');
     }
 }
