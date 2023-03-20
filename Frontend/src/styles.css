@@ -6,6 +6,7 @@ body,
 .navbar {
   background-color: rgb(65, 113, 156);
   color: white;
+  min-height: 66px;
 }
 
 footer {

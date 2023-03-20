@@ -1,13 +1,13 @@
 package nl.miwgroningen.ch10.topshelf.service;
 
 import nl.miwgroningen.ch10.topshelf.dto.BasicStockProductDTO;
+import nl.miwgroningen.ch10.topshelf.exception.ProductAlreadyAddedException;
 import nl.miwgroningen.ch10.topshelf.exception.ProductWithNameAlreadyExistsException;
 import nl.miwgroningen.ch10.topshelf.mapper.BasicStockProductDTOMapper;
 import nl.miwgroningen.ch10.topshelf.model.BasicStockProduct;
 import nl.miwgroningen.ch10.topshelf.model.Pantry;
 import nl.miwgroningen.ch10.topshelf.model.ProductDefinition;
 import nl.miwgroningen.ch10.topshelf.repository.BasicStockProductRepository;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -21,9 +21,9 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 /**
- * @author Robbin Drent <r.v.drent@st.hanze.nl>
+ * @author Jack Wieringa <j.w.wieringa@st.hanze.nl>
  * <p>
- * Tests the function to edit products in your Minimum Stock.
+ * Test function for BasicStockProductService.
  */
 
 @ExtendWith(MockitoExtension.class)
@@ -31,17 +31,25 @@ public class BasicStockProductServiceTest {
 
     @Mock
     BasicStockProductRepository basicStockProductRepository;
-
     @Mock
     BasicStockProductDTOMapper basicStockProductDTOMapper;
-
     @InjectMocks
-    private BasicStockProductService basicStockProductService;
+    BasicStockProductService basicStockProductService;
 
-    @BeforeEach
-    public void addBasicStockProductTest() {
-        basicStockProductService = new BasicStockProductService
-                (basicStockProductRepository, basicStockProductDTOMapper);
+    @Test
+    @DisplayName("Test if saveBasicStockProduct method is throwing an exception")
+    void saveBasicStockProductTest() {
+        BasicStockProductDTO basicStockProductDTO =
+                new BasicStockProductDTO(1L, 2L, "Pasta", 5);
+        BasicStockProduct basicStockProduct =
+                new BasicStockProduct(1L, 5, new ProductDefinition(), new Pantry());
+        when(basicStockProductDTOMapper.convertFromDTO(basicStockProductDTO)).thenReturn(basicStockProduct);
+        when(basicStockProductRepository
+                .findBasicStockProductByPantryAndProductDefinition
+                        (basicStockProduct.getPantry(), basicStockProduct.getProductDefinition()))
+                .thenReturn(Optional.of(basicStockProduct));
+        assertThrows(ProductAlreadyAddedException.class,
+                () -> basicStockProductService.save(basicStockProductDTO));
     }
 
     @Test
