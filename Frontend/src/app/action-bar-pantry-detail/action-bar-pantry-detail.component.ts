@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { ModalAddPantryComponent } from '../modal-add-pantry/modal-add-pantry.component';
 import { ModalDeletePantryComponent } from '../modal-delete-pantry/modal-delete-pantry.component';
 import { Pantry } from '../pantry/pantry';
 import { PantryService } from '../pantry/pantry.service';
@@ -14,9 +15,9 @@ import { PantryService } from '../pantry/pantry.service';
 })
 export class ActionBarPantryDetailComponent {
   public pantryId!: number;
-  public pantry?: Pantry;
+  public pantry!: Pantry;
   public errorMessage?: string;
-  public namePantry?: string;
+  public namePantry!: string;
 
   constructor(
     private pantryService: PantryService,
@@ -80,4 +81,33 @@ export class ActionBarPantryDetailComponent {
     this.namePantry = name;
   }
 
+  editOpenDialog() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.data = {
+      pantryId: this.pantryId,
+      name: this.namePantry,
+      isSubmitted: true,
+    };
+    const dialogRef = this.matDialog.open(
+      ModalAddPantryComponent,
+      dialogConfig
+    );
+
+    dialogRef.afterClosed().subscribe((data) => {
+      if (data.isSubmitted) {
+        this.pantryService.editPantry({pantryId: this.pantryId, name: data.pantryName }).subscribe({
+          complete: () => {
+            this.router.navigate(["/pantry"]);
+            this.toastr.success('Pantry has been edited!', 'Success!', {
+          positionClass: 'toast-top-center',
+        })
+          },
+          error: () => {
+            alert('pantry niet toegevoegd');
+          },
+        });
+      }
+    });
+  }
 }
