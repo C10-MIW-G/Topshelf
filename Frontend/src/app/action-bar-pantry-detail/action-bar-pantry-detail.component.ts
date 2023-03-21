@@ -89,16 +89,12 @@ export class ActionBarPantryDetailComponent {
       name: this.namePantry,
       isSubmitted: true,
     };
-    dialogConfig.height = '40%';
-    dialogConfig.width = '60%';
     const dialogRef = this.matDialog.open(
       ModalAddPantryComponent,
       dialogConfig
     );
 
     dialogRef.afterClosed().subscribe((data) => {
-      console.log(this.pantryId)
-      console.log(data)
       if (data.isSubmitted) {
         this.pantryService.editPantry({pantryId: this.pantryId, name: data.pantryName }).subscribe({
           complete: () => {
