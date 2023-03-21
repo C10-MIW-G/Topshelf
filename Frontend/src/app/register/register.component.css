@@ -9,13 +9,10 @@
 
 .col-5 {
   background: rgba(250, 237, 221, 0.9);
-}
-
-.col-5 {
   font-size: 18px;
 }
 
-H4 {
+h4 {
   font-size: 25px;
   margin-top: 18px;
 }
