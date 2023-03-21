@@ -1,3 +1,23 @@
 button.btn {
     margin-top: 10px;
 }
+
+.row {
+  background: url("/assets/images/food-on-shelves.jpg");
+  background-size: cover;
+}
+
+.component-right, .component-left {
+  background: transparent !important;
+}
+
+.col-5 {
+  background: rgba(250, 237, 221, 0.9);
+  font-size: 18px;
+  }
+
+ h4 {
+  font-size: 25px;
+  margin-top: 18px;
+  }
+

@@ -20,7 +20,7 @@ h3 {
 h4 {
   color:  rgb(65, 113, 156);
   text-align: center;
-  font-size:200%;
+  font-size: 150%;
   padding-top: 20px;
   font-weight: 550;
 }
@@ -31,9 +31,8 @@ a {
 }
 
 p {
-  margin-top: 20px;
   text-align: left;
-  font-size: 30px !important;
+  font-size: 25px !important;
   color:  rgb(65, 113, 156);
   font-weight: 500;
   max-width: 100%;
@@ -60,19 +59,12 @@ p {
 
 a.col-6 {
   background: transparent !important;
-  margin-left: -100px !important;
+  margin-left: -200px !important;
 }
 
 .col-12 {
-  padding-top: 10px;
   padding-left: 130px;
   padding-bottom: 20px;
-  padding-top: 20px;
-}
-
-
-.button-landing {
-  margin-left: 0px;
 }
 
 a.btn,
@@ -91,12 +83,12 @@ a.btn:hover {
 }
 
 ul {
-  margin-top: 150px;
   margin-right: -50px;
   padding: 20px;
   padding-top: 10px;
   padding-left: -50px;
   background: rgba(250, 237, 221, 0.9);
+  align-content: center;
 }
 
 p {
@@ -109,7 +101,7 @@ p {
   background-size: cover;
 }
 
-img {
+.img-big {
   margin-top: 100px;
-  padding-right: 100px;
+  padding-left: 120px;
 }

@@ -6,7 +6,7 @@ a{
 
 .nav-link {
   color: #333;
-  font-size: 18px;
+  font-size: 20px;
   padding: 10px;
 }
 
@@ -17,8 +17,9 @@ a{
 .nav-item.item {
   border-bottom: 1px solid black;
   display: block;
-  width: 190px;
-  padding: 10px;
+  width: 255px;
+  padding: 5px;
+  margin-left: 10px;
 }
 
 .active-link, .initial-load{
@@ -36,3 +37,8 @@ li a div {
   text-align: center;
   align-items: center;
 }
+
+.col-12 {
+  padding-top: 10px;
+}
+
