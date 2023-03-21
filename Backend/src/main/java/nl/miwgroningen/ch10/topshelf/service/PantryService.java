@@ -41,6 +41,11 @@ public class PantryService {
                 .orElseThrow(() -> new PantryNotFoundException("Pantry with id: " + pantryId + " was not found!"));
     }
 
+    public Pantry findPantryByName(String pantryName) {
+        return pantryRepository.findPantryByName(pantryName)
+                .orElseThrow(() -> new PantryNotFoundException("Pantry with name: " + pantryName + " was not found!"));
+    }
+
     public Pantry addPantry(PantryDTO pantryDTO) {
         Pantry pantry = pantryDTOMapper.toPantry(pantryDTO);
         return pantryRepository.save(pantry);
@@ -69,7 +74,7 @@ public class PantryService {
     public boolean checkIfUserIsPartOfPantry(String username, Pantry pantry) {
         List<PantryDTO> pantries = findPantriesByUser(username)
                 .stream()
-                .filter(p -> pantry.getPantryId().equals(p.pantryId()))
+                .filter(p -> pantry.getName().equals(p.name()))
                 .toList();
         return pantries.isEmpty();
     }

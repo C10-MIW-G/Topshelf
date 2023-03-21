@@ -25,7 +25,7 @@ import static org.mockito.Mockito.when;
  */
 
 @ExtendWith(MockitoExtension.class)
-public class UserTests {
+public class UserPasswordChangeTest {
 
     @Mock
     UserRepository userRepository;
@@ -48,7 +48,7 @@ public class UserTests {
     @Test
     @DisplayName("Test if password is updated")
     void testIfPasswordIsUpdated() {
-        User user1 = new User(-3L, "User 1", "User1@pantry.nl","password3", Role.USER);
+        User user1 = new User(-3L, "User 1", "User1@pantry.nl", "password3", Role.USER);
         when(userRepository.save(user1)).thenReturn(user1);
         when(passwordEncoder.encode("ChangedPassword")).thenReturn("ChangedPassword");
 
