@@ -24,6 +24,7 @@ public class PantryDTOMapper implements Function<Pantry, PantryDTO> {
 
     public Pantry toPantry(PantryDTO pantryDTO){
         Pantry pantry = new Pantry();
+        pantry.setPantryId(pantryDTO.pantryId());
         pantry.setName(pantryDTO.name());
         pantry.setUsers(new ArrayList<>());
         pantry.setAdmins(new ArrayList<>());

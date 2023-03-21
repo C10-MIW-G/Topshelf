@@ -26,6 +26,15 @@ export class PantryService {
     );
   }
 
+  public editPantry(pantry: Pantry): Observable<Pantry> {
+    return this.http.post<Pantry>(
+      `${this.apiServerUrl}/pantry/add`, {
+        pantryId: pantry.pantryId,
+        name: pantry.name,
+      }
+    )
+  }
+
   public deletePantry(pantryId: number): Observable<void> {
     return this.http.delete<void>(
       `${this.apiServerUrl}/pantry/delete/${pantryId}`
