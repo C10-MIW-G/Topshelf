@@ -239,8 +239,6 @@ button.actions-button {
 }
 
 .pantry-card {
-  border-style: solid;
-  border-color: rgb(65, 113, 156);
   text-overflow: ellipsis;
   align-items: center;
   justify-content: center;
