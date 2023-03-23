@@ -2,15 +2,22 @@
   max-height: 165px;
 }
 
+.card-deck-users {
+  display: flex;
+  justify-content: center;
+}
+
 .card {
   font-family: Roboto, "Helvetica Neue", sans-serif;
   position: relative;
-  padding: 10px;
+  display: flex;
+  justify-content: center;
+  padding: 20px 80px 20px 80px;
   margin: 15px;
   margin-bottom: 100px;
   min-height: 130px;
-  border: 2px solid rgb(65, 113, 156);
   border-radius: 0;
+  border: 0;
 }
 
 .card p {
@@ -23,14 +30,14 @@
 
 .col-4 h5 {
   text-align: center;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid rgb(65, 113, 156);
   max-width: 400px;
   padding: 10px;
 }
 
-.col-6 h5 {
+.col-3 h5 {
   text-align: center;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid rgb(65, 113, 156);
   max-width: 600px;
   padding: 10px;
 }
