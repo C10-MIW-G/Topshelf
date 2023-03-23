@@ -114,7 +114,7 @@
                 <div *ngIf="!users.isActive">Users</div>
               </a>
             </li>
-            <li class="nav-item item">
+            <li class="nav-item item" [hidden]="!isAdmin">
               <a
                 class="nav-link"
                 [routerLink]="[

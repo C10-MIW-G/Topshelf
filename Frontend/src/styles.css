@@ -255,6 +255,8 @@ button.actions-button {
 
 .pantry-card p {
   text-align: center;
+  padding-top: 30px;
+  font-size: x-large;
 }
 
 .pantry-card a:hover {
