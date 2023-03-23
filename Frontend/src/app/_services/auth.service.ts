@@ -22,7 +22,6 @@ export class AuthService {
   }
 
   login(credentials: { username: string; password: string }): Observable<any> {
-    console.log(credentials);
     return this.http.post(
       AUTH_API + '/auth',
       {

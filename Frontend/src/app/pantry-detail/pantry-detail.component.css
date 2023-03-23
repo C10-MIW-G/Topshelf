@@ -1,5 +1,5 @@
 .card-deck {
-  max-height: 140px;
+  max-height: 165px;
 }
 
 .card {
@@ -8,8 +8,9 @@
   padding: 10px;
   margin: 15px;
   margin-bottom: 100px;
-  min-height: 110px;
+  min-height: 130px;
   border: 2px solid rgb(65, 113, 156);
+  border-radius: 0;
 }
 
 .card p {
@@ -23,13 +24,19 @@
 .col-4 h5 {
   text-align: center;
   border-bottom: 1px solid black;
-  max-width: 288px;
+  max-width: 400px;
   padding: 10px;
 }
 
 .col-6 h5 {
   text-align: center;
   border-bottom: 1px solid black;
-  max-width: 458px;
+  max-width: 600px;
   padding: 10px;
+}
+
+.centered {
+  display: block;
+  margin: 0 auto;
+  padding-top: 30px;
 }
