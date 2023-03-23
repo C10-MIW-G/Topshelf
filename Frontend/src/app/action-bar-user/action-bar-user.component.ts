@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -12,7 +12,7 @@ import { UserService } from '../user/user.service';
   templateUrl: './action-bar-user.component.html',
   styleUrls: ['./action-bar-user.component.css'],
 })
-export class ActionBarUserComponent {
+export class ActionBarUserComponent implements OnInit{
   public isAdmin = false;
   public user!: User;
   public namePantry!: string;
@@ -28,6 +28,11 @@ export class ActionBarUserComponent {
     private matDialog: MatDialog,
     private toastr: ToastrService
   ) {}
+
+ngOnInit(): void {
+  this.getPantryId();
+  this.getCurrentPantryAdmin(this.pantryId);
+}
 
   onOpenDialog() {
     const dialogConfig = new MatDialogConfig();
