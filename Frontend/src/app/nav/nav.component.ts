@@ -20,8 +20,6 @@ export class NavComponent implements OnInit {
   }
   ngOnInit(): void {
     this.isAtHome();
-    console.log(this.currentUrl);
-    console.log(this.atHome);
   }
 
   public isAtHome(): void {

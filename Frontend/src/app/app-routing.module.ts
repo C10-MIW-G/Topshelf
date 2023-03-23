@@ -23,7 +23,10 @@ import { AuthGuardService as AuthGuard } from './_services/auth-guard.service';
 
 const appRoute: Routes = [
   { path: 'home', component: HomePageComponent },
-  { path: 'login', component: LoginComponent },
+  {
+    path: 'login',
+    component: LoginComponent,
+  },
   { path: 'register', component: RegisterComponent },
   {
     path: 'changepassword',
@@ -105,6 +108,7 @@ const appRoute: Routes = [
     ],
   },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '**', redirectTo: 'home', pathMatch: 'full' },
 ];
 
 @NgModule({
