@@ -11,7 +11,7 @@ import { UserService } from '../user/user.service';
   styleUrls: ['./sidebar.component.css'],
 })
 export class SidebarComponent implements OnInit {
-  pantryId?: number;
+  pantryId!: number;
   initialPantryId!: number;
   pantryName?: string;
   pantry!: Pantry;
@@ -19,16 +19,28 @@ export class SidebarComponent implements OnInit {
   user!: User;
   errorMessage?: string;
 
-  constructor(private userService: UserService, private route: ActivatedRoute) {}
+  constructor(
+    private userService: UserService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit() {
-    this.route.parent?.params.subscribe((params) => {
-      this.pantryId = params['pantryId'];
-    });
-    this.getPantryName();
     this.getPantryId();
-    this.getCurrentPantryAdmin(this.initialPantryId);
-    console.log(this.isAdmin);
+    this.getPantryName();
+    this.getInitialPantryId();
+    if (this.initialPantryId !== undefined) {
+      this.getInitialPantryAdmin(this.initialPantryId);
+    }
+    if (this.initialPantryId == undefined) {
+      this.getCurrentPantryAdmin(this.pantryId);
+    }
+  }
+  public getPantryId(): number {
+    this.route.parent?.params.subscribe((params) => {
+      const response = params['pantryId'];
+      this.pantryId = parseInt(response.split(';')[0], 10);
+    });
+    return this.pantryId;
   }
 
   public getPantryName() {
@@ -37,17 +49,34 @@ export class SidebarComponent implements OnInit {
     });
   }
 
-  public getPantryId() {
+  public getInitialPantryId() {
     this.route.queryParams.subscribe((params) => {
       this.initialPantryId = params['id'];
     });
   }
 
-  public getCurrentPantryAdmin(pantryId: number): any {
-    console.log(pantryId)
+  public getInitialPantryAdmin(pantryId: number): any {
     this.userService.checkIfUserIsPantryAdmin(pantryId).subscribe(
       (response: User) => {
-        this.user = response
+        this.user = response;
+        this.isAdmin = true;
+        if (response == null) {
+          this.isAdmin = false;
+        }
+      },
+      (_error: HttpErrorResponse) => {
+        if (_error.status == 400) {
+          this.isAdmin = false;
+          this.errorMessage = 'Current user is not an admin of this pantry';
+        }
+      }
+    );
+  }
+
+  public getCurrentPantryAdmin(pantryId: number): any {
+    this.userService.checkIfUserIsPantryAdmin(pantryId).subscribe(
+      (response: User) => {
+        this.user = response;
         this.isAdmin = true;
         if (response == null) {
           this.isAdmin = false;

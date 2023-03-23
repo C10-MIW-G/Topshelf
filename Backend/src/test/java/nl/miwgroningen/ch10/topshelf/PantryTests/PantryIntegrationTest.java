@@ -56,7 +56,6 @@ public class PantryIntegrationTest {
 
     String jwtToken;
 
-
     @BeforeEach
     void setUp() {
         pantryService = new PantryService(pantryRepository, pantryDTOMapper, userService);
