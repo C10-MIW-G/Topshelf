@@ -73,7 +73,6 @@ public class UserController {
             return new ResponseEntity<>(HttpStatus.OK);
         } else {
             PantryUsersDTO pantryUsersDTO = userService.findPantryUsersDTOByUsername(user.getUsername());
-            System.out.println(pantryUsersDTO);
             return new ResponseEntity<>(pantryUsersDTO, HttpStatus.OK);
         }
     }

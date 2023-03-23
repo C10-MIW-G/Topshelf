@@ -34,6 +34,11 @@ a:active {
   color: rgb(65, 113, 156);
 }
 
+button i {
+  display: flex;
+  justify-content: center;
+}
+
 .item p {
   color: black;
   padding: 5px;

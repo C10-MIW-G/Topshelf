@@ -21,12 +21,14 @@ public class BasicStockProduct {
 
     private int amount;
 
-    @ManyToOne
+    // The cascade type will assure entities will be persisted, merged, and removed when the BasicStockProduct instance
+    // is persisted,merged, and removed.
+    // The associated entities will be lazily loaded when loading BasicStockProduct instance.
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "name", referencedColumnName = "name")
     private ProductDefinition productDefinition;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "pantryId", referencedColumnName = "pantryId")
     private Pantry pantry;
-
 }

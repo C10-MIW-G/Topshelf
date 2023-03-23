@@ -17,7 +17,7 @@ Backend
 * Open the Backend folder with your IDE.
 * Run Maven.
 * Set the JDK to 17, download if necessary.
-* Set the environment variable "SECRET-KEY" in your IDE-configurations (key will be provided by your team).
+* Ask the team for the /config/application.properties file and import this to the backend folder
 * Run the backend in your IDE.
 
 Frontend

@@ -5,7 +5,11 @@ import nl.miwgroningen.ch10.topshelf.TopshelfApplication;
 import nl.miwgroningen.ch10.topshelf.dto.PantryDTO;
 import nl.miwgroningen.ch10.topshelf.mapper.PantryDTOMapper;
 import nl.miwgroningen.ch10.topshelf.model.Pantry;
+import nl.miwgroningen.ch10.topshelf.model.Role;
+import nl.miwgroningen.ch10.topshelf.model.User;
 import nl.miwgroningen.ch10.topshelf.repository.PantryRepository;
+import nl.miwgroningen.ch10.topshelf.repository.UserRepository;
+import nl.miwgroningen.ch10.topshelf.security.config.JwtService;
 import nl.miwgroningen.ch10.topshelf.service.PantryService;
 import nl.miwgroningen.ch10.topshelf.service.UserService;
 import org.junit.jupiter.api.*;
@@ -17,8 +21,6 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.concurrent.TimeUnit;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -40,17 +42,26 @@ public class PantryIntegrationTest {
     @Autowired
     ObjectMapper mapper;
     @Autowired
+    PantryDTOMapper pantryDTOMapper;
+    @Autowired
     PantryService pantryService;
+    @Autowired
+    UserService userService;
+    @Autowired
+    JwtService jwtService;
     @Autowired
     PantryRepository pantryRepository;
     @Autowired
-    PantryDTOMapper pantryDTOMapper;
-    @Autowired
-    UserService userService;
+    UserRepository userRepository;
+
+    String jwtToken;
 
     @BeforeEach
     void setUp() {
         pantryService = new PantryService(pantryRepository, pantryDTOMapper, userService);
+        User user = new User(501L, "Peter", "peter@topshelf.com", "123456", Role.USER);
+        jwtToken = jwtService.generateToken(user);
+        userRepository.save(user);
     }
 
     @Test
@@ -71,23 +82,21 @@ public class PantryIntegrationTest {
     @Test
     @DisplayName("With a post request, a new pantry should be created")
     public void testPantryAdding() throws Exception {
+        //Arrange
         PantryDTO pantry = new PantryDTO(1001L, "Snackbar");
         String jsonRequest = mapper.writeValueAsString(pantry);
-        String token =
-                "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJKYWNrIiwiaWF0IjoxNjc5NDEzNTk0LCJleHAiOjE2Nzk0OTk5OTR9" +
-                        ".ODo2gKOYz6hrhzKu5yVDcwhMFCJBB8uFgCYhOv7WsNw";
 
+        //Activate
         MvcResult result = mockMvc
                 .perform(post("/pantry/add")
-                        .header("Authorization", "Bearer " + token)
+                        .header("Authorization", "Bearer " + jwtToken)
                         .content(jsonRequest)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isCreated()).andReturn();
 
-        TimeUnit.SECONDS.sleep(3);
-
         Pantry newPantry = pantryService.findPantryByName(pantry.name());
 
+        //Assert
         Assertions.assertAll(() -> assertEquals(201, result.getResponse().getStatus()),
                 () -> assertEquals(pantry.name(), newPantry.getName()));
     }
