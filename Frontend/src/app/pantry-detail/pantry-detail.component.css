@@ -1,8 +1,5 @@
 .card-deck {
   max-height: 165px;
-}
-
-.card-deck-users {
   display: flex;
   justify-content: center;
 }
@@ -13,8 +10,7 @@
   display: flex;
   justify-content: center;
   padding: 20px 80px 20px 80px;
-  margin: 15px;
-  margin-bottom: 100px;
+  margin: 15px 30px 15px 30px;
   min-height: 130px;
   border-radius: 0;
   border: 0;
