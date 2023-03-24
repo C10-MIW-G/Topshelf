@@ -431,10 +431,8 @@ public class SeedController {
         //vliegtuigbar
         ArrayList<User> adminPantry1 = new ArrayList<>();
         ArrayList<User> usersPantry1 = new ArrayList<>();
-        adminPantry1.add(klaas);
         adminPantry1.add(bushra);
         usersPantry1.add(admin);
-        usersPantry1.add(klaas);
         usersPantry1.add(bushra);
 
         vliegtuigbar.setUsers(usersPantry1);
