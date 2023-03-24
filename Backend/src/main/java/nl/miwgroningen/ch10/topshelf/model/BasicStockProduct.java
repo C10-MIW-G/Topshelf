@@ -1,10 +1,7 @@
 package nl.miwgroningen.ch10.topshelf.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 /**
  * @author Jack Wieringa <j.w.wieringa@st.hanze.nl>
@@ -13,6 +10,7 @@ import lombok.Setter;
 
 @Entity
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor
+@Builder
 public class BasicStockProduct {
 
     @Id
@@ -24,11 +22,11 @@ public class BasicStockProduct {
     // The cascade type will assure entities will be persisted, merged, and removed when the BasicStockProduct instance
     // is persisted,merged, and removed.
     // The associated entities will be lazily loaded when loading BasicStockProduct instance.
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne( fetch = FetchType.LAZY)
     @JoinColumn(name = "name", referencedColumnName = "name")
     private ProductDefinition productDefinition;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne( fetch = FetchType.LAZY)
     @JoinColumn(name = "pantryId", referencedColumnName = "pantryId")
     private Pantry pantry;
 }

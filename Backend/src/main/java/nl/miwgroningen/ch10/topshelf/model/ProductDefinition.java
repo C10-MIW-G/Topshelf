@@ -3,10 +3,7 @@ package nl.miwgroningen.ch10.topshelf.model;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 /**
  * @author Robbin Drent <r.v.drent@st.hanze.nl>
@@ -15,6 +12,7 @@ import lombok.Setter;
 
 @Entity
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor
+@Builder
 public class ProductDefinition {
 
     @Id

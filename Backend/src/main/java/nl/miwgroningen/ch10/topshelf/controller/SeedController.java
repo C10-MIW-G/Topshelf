@@ -4,6 +4,8 @@ import nl.miwgroningen.ch10.topshelf.repository.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.swing.plaf.basic.BasicEditorPaneUI;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -43,19 +45,19 @@ public class SeedController {
 
 
         Pantry vlinder = new Pantry();
-        vlinder.setName("Afdeling Vlinder");
+        vlinder.setName("Department Butterfly");
 
         Pantry survival = new Pantry();
-        survival.setName("Het laatste loodje");
+        survival.setName("The Swinf Over");
 
         Pantry veganbar = new Pantry();
         veganbar.setName("Veganbar Leafs");
 
         Pantry gezin = new Pantry();
-        gezin.setName("Familie van der Wal");
+        gezin.setName("Beta Delta Pi");
 
         Pantry vliegtuigbar = new Pantry();
-        vliegtuigbar.setName("Vliegtuigbar");
+        vliegtuigbar.setName("IlionX");
 
         pantryRepository.save(vliegtuigbar);
         pantryRepository.save(vlinder);
@@ -64,25 +66,25 @@ public class SeedController {
         pantryRepository.save(gezin);
 
         ProductDefinition rijst = new ProductDefinition();
-        rijst.setName("Rijst 500gr");
+        rijst.setName("Rice 500gr");
 
         ProductDefinition spaghetti = new ProductDefinition();
         spaghetti.setName("Spaghetti 500gr");
 
         ProductDefinition oudeKaas = new ProductDefinition();
-        oudeKaas.setName("Oude kaas plakken 150gr");
+        oudeKaas.setName("Old cheese slices 150gr");
 
         ProductDefinition parmezaan = new ProductDefinition();
-        parmezaan.setName("Parmezaan 125gr");
+        parmezaan.setName("Parmesan 125gr");
 
         ProductDefinition pesto = new ProductDefinition();
-        pesto.setName("Pesto potje 100gr");
+        pesto.setName("Pesto jar 100gr");
 
         ProductDefinition veganCheese = new ProductDefinition();
         veganCheese.setName("Vegan Cheese 250gr");
 
         ProductDefinition almondMilk = new ProductDefinition();
-        almondMilk.setName("Almond Milk pak 1L");
+        almondMilk.setName("Almond Milk bottle 1L");
 
         ProductDefinition tofu = new ProductDefinition();
         tofu.setName("Tofu 500gr");
@@ -91,7 +93,7 @@ public class SeedController {
         seitan.setName("Seitan 100 gr");
 
         ProductDefinition veganYogurt = new ProductDefinition();
-        veganYogurt.setName("Vegan Yogurt pak 1L");
+        veganYogurt.setName("Vegan Yogurt 1L");
 
         ProductDefinition tempeh = new ProductDefinition();
         tempeh.setName("Tempeh 400gr");
@@ -106,7 +108,7 @@ public class SeedController {
         nutritionalYeast.setName("Nutritional Yeast 1kg");
 
         ProductDefinition veggieBurger = new ProductDefinition();
-        veggieBurger.setName("Veggie Burger pak 4stuks");
+        veggieBurger.setName("Veggie Burger 4pack");
 
 
         List<ProductDefinition> productDefinitions = new ArrayList<>();
@@ -116,7 +118,7 @@ public class SeedController {
         productDefinitions.add(pasta);
 
         ProductDefinition melk = new ProductDefinition();
-        melk.setName("Melk 1L");
+        melk.setName("Milk 1L");
         productDefinitions.add(melk);
 
         ProductDefinition yoghurt = new ProductDefinition();
@@ -124,36 +126,45 @@ public class SeedController {
         productDefinitions.add(yoghurt);
 
         ProductDefinition kaas = new ProductDefinition();
-        kaas.setName("Kaas 250gr");
+        kaas.setName("Cheese 250gr");
         productDefinitions.add(kaas);
 
         ProductDefinition brood = new ProductDefinition();
-        brood.setName("Brood heel");
+        brood.setName("Bread loaf");
         productDefinitions.add(brood);
 
         ProductDefinition appels = new ProductDefinition();
-        appels.setName("Appels 1kg");
+        appels.setName("Apples 1kg");
         productDefinitions.add(appels);
 
         ProductDefinition bananen = new ProductDefinition();
-        bananen.setName("Bananen 1kg");
+        bananen.setName("Bananas 1kg");
         productDefinitions.add(bananen);
 
         ProductDefinition tomaten = new ProductDefinition();
-        tomaten.setName("Tomaten 500gr");
+        tomaten.setName("Tomatoes 500gr");
         productDefinitions.add(tomaten);
 
         ProductDefinition kipfilet = new ProductDefinition();
-        kipfilet.setName("Kipfilet 500gr");
+        kipfilet.setName("Chicken breast 500gr");
         productDefinitions.add(kipfilet);
 
         ProductDefinition gehakt = new ProductDefinition();
-        gehakt.setName("Gehakt 500gr");
+        gehakt.setName("Minced meat 500gr");
         productDefinitions.add(gehakt);
 
         ProductDefinition limonade = new ProductDefinition();
-        limonade.setName("Limonade 1L");
+        limonade.setName("Lemonade 1L");
         productDefinitions.add(limonade);
+   ProductDefinition bitterbal = new ProductDefinition();
+        bitterbal.setName("Bitterballs 10pc");
+        productDefinitions.add(bitterbal);
+   ProductDefinition beer = new ProductDefinition();
+        beer.setName("Beer 33cl");
+        productDefinitions.add(beer);
+        ProductDefinition fristi = new ProductDefinition();
+        fristi.setName("Fristi 200cl");
+        productDefinitions.add(fristi);
 
         Collections.addAll(productDefinitions,
                 veganButter,
@@ -180,22 +191,51 @@ public class SeedController {
                 kaas,
                 tomaten,
                 kipfilet,
-                brood);
+                brood,
+                bitterbal,
+                beer,
+                fristi);
 
         productDefinitionRepository.saveAll(productDefinitions);
 
       stockProductRepository.save(
         StockProduct.builder()
-                .productDefinition(rijst)
-                .expirationDate(LocalDate.of(2022,5,9))
+                .productDefinition(pasta)
+                .expirationDate(LocalDate.of(2023,3,24))
                 .pantry(gezin)
-                        .build());
+                .build());
                 stockProductRepository.save(
         StockProduct.builder()
                 .productDefinition(tomaten)
-                .expirationDate(LocalDate.of(2022,11,9))
+                .expirationDate(LocalDate.of(2023,3,25))
                 .pantry(gezin)
                 .build());
+                stockProductRepository.save(
+                StockProduct.builder()
+                .productDefinition(melk)
+                .expirationDate(LocalDate.of(2024,3,26))
+                .pantry(gezin)
+                .build());
+                stockProductRepository.save(
+                StockProduct.builder()
+                .productDefinition(limonade)
+                .expirationDate(LocalDate.of(2023,9,26))
+                .pantry(gezin)
+                .build());
+
+                basicStockProductRepository.save(
+                        BasicStockProduct.builder()
+                                .amount(2).productDefinition(melk)
+                                .pantry(gezin)
+                                .build());
+                basicStockProductRepository.save(
+                        BasicStockProduct.builder()
+                                .amount(2).productDefinition(pasta)
+                                .pantry(gezin)
+                                .build());
+
+
+
 
 
         StockProduct rijst1 = new StockProduct();
@@ -413,7 +453,6 @@ public class SeedController {
         users.add(admin);
         users.add(klaas);
         users.add(bushra);
-        users.add(erik);
         users.add(lisa);
         admins.add(admin);
         veganbar.setAdmins(admins);
@@ -450,12 +489,31 @@ public class SeedController {
         survival.setUsers(userSurvival);
         pantryRepository.save(survival);
 
-        //gezin
+        stockProductRepository.save(
+                StockProduct.builder()
+                        .productDefinition(beer)
+                        .expirationDate(LocalDate.of(2024,3,24))
+                        .pantry(survival)
+                        .build());
+        stockProductRepository.save(
+                StockProduct.builder()
+                        .productDefinition(fristi)
+                        .expirationDate(LocalDate.of(2023,12,24))
+                        .pantry(survival)
+                        .build());
+        stockProductRepository.save(
+                StockProduct.builder()
+                        .productDefinition(bitterbal)
+                        .expirationDate(LocalDate.of(2023,7,12))
+                        .pantry(survival)
+                        .build());
+
+        //gezin---------------------------------------------------------------
         ArrayList<User> adminGezin = new ArrayList<>();
         ArrayList<User> userGezin = new ArrayList<>();
 
-        Collections.addAll(adminGezin, lisa, admin, erik);
-        Collections.addAll(userGezin, lisa, admin, erik);
+        Collections.addAll(adminGezin, admin, tom);
+        Collections.addAll(userGezin, lisa, admin, tom);
 
         for (User user : userGezin) {
             user.getUserPantries().add(gezin);
@@ -475,7 +533,7 @@ public class SeedController {
         vlinder.setUsers(new ArrayList<>());
         vlinder.setAdmins(new ArrayList<>());
         Collections.addAll(vlinder.getAdmins(), klaas, admin);
-        Collections.addAll(vlinder.getUsers(), klaas, admin, erik, lisa, tom);
+        Collections.addAll(vlinder.getUsers(), klaas, admin, lisa, tom);
         for (User user : vlinder.getUsers()) {
             user.getUserPantries().add(vlinder);
             userRepository.save(user);

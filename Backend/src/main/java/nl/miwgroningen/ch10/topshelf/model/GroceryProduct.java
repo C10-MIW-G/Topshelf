@@ -1,10 +1,7 @@
 package nl.miwgroningen.ch10.topshelf.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 /**
  * Auteur Jessica Schouten.
@@ -17,6 +14,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class GroceryProduct {
 
     @Id
