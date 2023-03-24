@@ -55,14 +55,20 @@ public class BasicStockProductServiceTest {
     @Test
     @DisplayName("Test exception when name already exists")
     void testEditNameExists() {
-        BasicStockProductDTO basicStockProductToEdit = new BasicStockProductDTO(-3L, -2L, "ProductToBeEdited", 2);
-        BasicStockProduct basicStockProduct = new BasicStockProduct(-2L, 2, new ProductDefinition(), new Pantry());
+        BasicStockProductDTO basicStockProductToEdit = new BasicStockProductDTO
+                (-3L, -2L, "ProductToBeEdited", 2);
+        BasicStockProduct basicStockProduct = new BasicStockProduct
+                (-2L, 2, new ProductDefinition(), new Pantry());
 
-        when(basicStockProductDTOMapper.convertFromDTO(basicStockProductToEdit)).thenReturn(basicStockProduct);
-        when(basicStockProductService.findSameProductInPantry(basicStockProduct)).thenReturn(Optional.of(basicStockProduct));
-        when(basicStockProductService.findProductWithSameNameInPantry(basicStockProduct)).thenReturn((Optional.of(basicStockProduct)));
+        when(basicStockProductDTOMapper.convertFromDTO(basicStockProductToEdit))
+                .thenReturn(basicStockProduct);
+        when(basicStockProductService.findSameProductInPantry(basicStockProduct))
+                .thenReturn(Optional.of(basicStockProduct));
+        when(basicStockProductService.findProductWithSameNameInPantry(basicStockProduct))
+                .thenReturn((Optional.of(basicStockProduct)));
 
-        assertThrows(ProductWithNameAlreadyExistsException.class, () -> basicStockProductService.edit(basicStockProductToEdit));
+        assertThrows(ProductWithNameAlreadyExistsException.class, () ->
+                basicStockProductService.edit(basicStockProductToEdit));
     }
 
     @Test
@@ -72,7 +78,7 @@ public class BasicStockProductServiceTest {
         BasicStockProductDTO basicStockProductToEdit =
                 new BasicStockProductDTO(-3L, -2L, "ProductToBeEdited", 2);
         BasicStockProduct basicStockProduct =
-                new BasicStockProduct(-2L, 2, productToBeEdited, new Pantry());
+                new BasicStockProduct(-3L, 2, productToBeEdited, new Pantry());
 
         when(basicStockProductService.findSameProductInPantry(basicStockProduct))
                 .thenReturn(Optional.of(basicStockProduct));
@@ -86,11 +92,13 @@ public class BasicStockProductServiceTest {
     @DisplayName("When edited name is still available")
     void testProductWithNewName() {
         ProductDefinition productToBeEdited = new ProductDefinition("ProductToBeEdited");
-        BasicStockProduct basicStockProduct = new BasicStockProduct(-3L, 2, productToBeEdited, new Pantry());
+        BasicStockProduct basicStockProduct = new BasicStockProduct
+                (-3L, 2, productToBeEdited, new Pantry());
         BasicStockProductDTO basicStockProductToEdit =
                 new BasicStockProductDTO(-3L, -3L, "ProductWithNewName", 2);
 
-        when(basicStockProductService.findProductWithSameNameInPantry(basicStockProduct)).thenReturn (Optional.of(basicStockProduct));
+        when(basicStockProductService.findProductWithSameNameInPantry(basicStockProduct))
+                .thenReturn (Optional.of(basicStockProduct));
 
         assertNotEquals(basicStockProductToEdit.name(),
                 basicStockProductService.findProductWithSameNameInPantry
