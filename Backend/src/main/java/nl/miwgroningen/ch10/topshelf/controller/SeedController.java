@@ -45,7 +45,7 @@ public class SeedController {
 
 
         Pantry vlinder = new Pantry();
-        vlinder.setName("Department Butterfly");
+        vlinder.setName("Unit Yellow");
 
         Pantry survival = new Pantry();
         survival.setName("The Swinf Over");
@@ -57,7 +57,7 @@ public class SeedController {
         gezin.setName("Beta Delta Pi");
 
         Pantry vliegtuigbar = new Pantry();
-        vliegtuigbar.setName("IlionX");
+        vliegtuigbar.setName("Airport Bar");
 
         pantryRepository.save(vliegtuigbar);
         pantryRepository.save(vlinder);
