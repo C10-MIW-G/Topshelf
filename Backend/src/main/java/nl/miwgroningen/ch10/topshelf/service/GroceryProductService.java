@@ -2,6 +2,7 @@ package nl.miwgroningen.ch10.topshelf.service;
 
 import nl.miwgroningen.ch10.topshelf.dto.GroceryProductDTO;
 import nl.miwgroningen.ch10.topshelf.exception.GroceryProductNotFoundException;
+import nl.miwgroningen.ch10.topshelf.exception.ProductAlreadyAddedException;
 import nl.miwgroningen.ch10.topshelf.mapper.GroceryProductDTOMapper;
 import nl.miwgroningen.ch10.topshelf.model.GroceryProduct;
 import nl.miwgroningen.ch10.topshelf.model.Pantry;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Auteur Jessica Schouten.
@@ -30,13 +32,13 @@ public class GroceryProductService {
     }
 
     //This method isn't used, but made for the sake of portfolio purpose.
-    public GroceryProduct findGroceryProductByGroceryProductId (Long groceryProductId) {
+    public GroceryProduct findGroceryProductByGroceryProductId(Long groceryProductId) {
         return groceryProductRepository.findGroceryProductByGroceryProductId(groceryProductId)
                 .orElseThrow(() -> new GroceryProductNotFoundException(
                         "Grocery product with id: " + groceryProductId + " was not found"));
     }
 
-    public List<GroceryProductDTO> findGroceryProductByPantry(Pantry pantry) {
+    public List<GroceryProductDTO> findGroceryProductByPantry(Pantry pantry) throws GroceryProductNotFoundException {
         return groceryProductRepository.findGroceryProductByPantry(pantry)
                 .stream()
                 .map(groceryProductDTOMapper)
@@ -45,7 +47,18 @@ public class GroceryProductService {
 
     public void save(GroceryProductDTO groceryProductDTO) {
         GroceryProduct groceryProduct = groceryProductDTOMapper.convertFromDTO(groceryProductDTO);
-        groceryProductRepository.save(groceryProduct);
+        Optional<GroceryProduct> existingGroceryProduct = findProductWithSameNameInPantry(groceryProduct);
+
+        if (existingGroceryProduct.isPresent()) {
+            throw new ProductAlreadyAddedException("Product is already added to the grocery list!");
+        } else {
+            groceryProductRepository.save(groceryProduct);
+        }
+    }
+
+    protected Optional<GroceryProduct> findProductWithSameNameInPantry(GroceryProduct groceryProduct) {
+        return groceryProductRepository.findGroceryProductByPantryAndProductDefinition
+                (groceryProduct.getPantry(), groceryProduct.getProductDefinition());
     }
 
     public void deleteGroceryProduct(Long groceryProductId) {

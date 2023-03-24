@@ -4,6 +4,7 @@ import { GroceryProductService } from '../grocery-product/grocery-product.servic
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ModalAddGroceryProductComponent } from './../modal-add-grocery-product/modal-add-grocery-product.component';
 import { ToastrService } from 'ngx-toastr';
+import { SameNameDialogComponent } from '../same-name-dialog/same-name-dialog.component';
 
 @Component({
   selector: 'app-action-bar-grocery-product',
@@ -19,6 +20,19 @@ export class ActionBarGroceryProductComponent {
     private matDialog: MatDialog,
     private toastr: ToastrService
   ) {}
+
+  openSameNameDialog(name?: string) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.data = {
+      name: name,
+    };
+
+    const dialogRef = this.matDialog.open(
+      SameNameDialogComponent,
+      dialogConfig
+    );
+  }
 
   onOpenDialog(openNewModal?: boolean) {
     const dialogConfig = new MatDialogConfig();
@@ -64,7 +78,7 @@ export class ActionBarGroceryProductComponent {
             }
           },
           error: () => {
-            alert('Failed adding product');
+            this.openSameNameDialog(data.groceryProductName);;
           },
         });
     } else {

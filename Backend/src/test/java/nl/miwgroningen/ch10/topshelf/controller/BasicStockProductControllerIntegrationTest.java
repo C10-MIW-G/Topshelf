@@ -83,7 +83,7 @@ class BasicStockProductControllerIntegrationTest {
     }
 
     @Test
-    @DisplayName("Test to see of a product can be added in the basicStock of a pantry")
+    @DisplayName("Test to see whether a product can be added to the basicStock of a pantry")
     void addBasicStockProductToPantry_success() throws Exception {
 
         // Get the amount of basicStockProducts in the minimum stock of the pantry, before adding a product
