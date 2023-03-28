@@ -66,43 +66,43 @@ public class SeedController {
         pantryRepository.save(gezin);
 
         ProductDefinition rijst = new ProductDefinition();
-        rijst.setName("Rice 500gr");
+        rijst.setName("Rice 500g");
 
         ProductDefinition spaghetti = new ProductDefinition();
-        spaghetti.setName("Spaghetti 500gr");
+        spaghetti.setName("Spaghetti 500g");
 
         ProductDefinition oudeKaas = new ProductDefinition();
-        oudeKaas.setName("Old cheese slices 150gr");
+        oudeKaas.setName("Old cheese slices 150g");
 
         ProductDefinition parmezaan = new ProductDefinition();
-        parmezaan.setName("Parmesan 125gr");
+        parmezaan.setName("Parmesan 125g");
 
         ProductDefinition pesto = new ProductDefinition();
-        pesto.setName("Pesto jar 100gr");
+        pesto.setName("Pesto jar 100g");
 
         ProductDefinition veganCheese = new ProductDefinition();
-        veganCheese.setName("Vegan Cheese 250gr");
+        veganCheese.setName("Vegan Cheese 250g");
 
         ProductDefinition almondMilk = new ProductDefinition();
         almondMilk.setName("Almond Milk bottle 1L");
 
         ProductDefinition tofu = new ProductDefinition();
-        tofu.setName("Tofu 500gr");
+        tofu.setName("Tofu 500g");
 
         ProductDefinition seitan = new ProductDefinition();
-        seitan.setName("Seitan 100 gr");
+        seitan.setName("Seitan 100g");
 
         ProductDefinition veganYogurt = new ProductDefinition();
         veganYogurt.setName("Vegan Yogurt 1L");
 
         ProductDefinition tempeh = new ProductDefinition();
-        tempeh.setName("Tempeh 400gr");
+        tempeh.setName("Tempeh 400g");
 
         ProductDefinition veganProteinPowder = new ProductDefinition();
-        veganProteinPowder.setName("Vegan Protein Powder 500gr");
+        veganProteinPowder.setName("Vegan Protein Powder 500g");
 
         ProductDefinition veganButter = new ProductDefinition();
-        veganButter.setName("Vegan Butter 250gr");
+        veganButter.setName("Vegan Butter 250g");
 
         ProductDefinition nutritionalYeast = new ProductDefinition();
         nutritionalYeast.setName("Nutritional Yeast 1kg");
@@ -114,7 +114,7 @@ public class SeedController {
         List<ProductDefinition> productDefinitions = new ArrayList<>();
 
         ProductDefinition pasta = new ProductDefinition();
-        pasta.setName("Pasta 500gr");
+        pasta.setName("Pasta 500g");
         productDefinitions.add(pasta);
 
         ProductDefinition melk = new ProductDefinition();
@@ -122,11 +122,11 @@ public class SeedController {
         productDefinitions.add(melk);
 
         ProductDefinition yoghurt = new ProductDefinition();
-        yoghurt.setName("Yoghurt 500gr");
+        yoghurt.setName("Yoghurt 500g");
         productDefinitions.add(yoghurt);
 
         ProductDefinition kaas = new ProductDefinition();
-        kaas.setName("Cheese 250gr");
+        kaas.setName("Cheese 250g");
         productDefinitions.add(kaas);
 
         ProductDefinition brood = new ProductDefinition();
@@ -142,26 +142,29 @@ public class SeedController {
         productDefinitions.add(bananen);
 
         ProductDefinition tomaten = new ProductDefinition();
-        tomaten.setName("Tomatoes 500gr");
+        tomaten.setName("Tomatoes 500g");
         productDefinitions.add(tomaten);
 
         ProductDefinition kipfilet = new ProductDefinition();
-        kipfilet.setName("Chicken breast 500gr");
+        kipfilet.setName("Chicken breast 500g");
         productDefinitions.add(kipfilet);
 
         ProductDefinition gehakt = new ProductDefinition();
-        gehakt.setName("Minced meat 500gr");
+        gehakt.setName("Minced meat 500g");
         productDefinitions.add(gehakt);
 
         ProductDefinition limonade = new ProductDefinition();
         limonade.setName("Lemonade 1L");
         productDefinitions.add(limonade);
-   ProductDefinition bitterbal = new ProductDefinition();
+
+        ProductDefinition bitterbal = new ProductDefinition();
         bitterbal.setName("Bitterballs 10pc");
         productDefinitions.add(bitterbal);
-   ProductDefinition beer = new ProductDefinition();
+
+        ProductDefinition beer = new ProductDefinition();
         beer.setName("Beer 33cl");
         productDefinitions.add(beer);
+
         ProductDefinition fristi = new ProductDefinition();
         fristi.setName("Fristi 200cl");
         productDefinitions.add(fristi);
@@ -201,19 +204,19 @@ public class SeedController {
       stockProductRepository.save(
         StockProduct.builder()
                 .productDefinition(pasta)
-                .expirationDate(LocalDate.of(2023,3,24))
+                .expirationDate(LocalDate.of(2023,4,3))
                 .pantry(gezin)
                 .build());
                 stockProductRepository.save(
         StockProduct.builder()
                 .productDefinition(tomaten)
-                .expirationDate(LocalDate.of(2023,3,25))
+                .expirationDate(LocalDate.of(2023,4,2))
                 .pantry(gezin)
                 .build());
                 stockProductRepository.save(
                 StockProduct.builder()
                 .productDefinition(melk)
-                .expirationDate(LocalDate.of(2024,3,26))
+                .expirationDate(LocalDate.of(2024,2,10))
                 .pantry(gezin)
                 .build());
                 stockProductRepository.save(
@@ -240,7 +243,7 @@ public class SeedController {
 
         StockProduct rijst1 = new StockProduct();
         rijst1.setProductDefinition(rijst);
-        rijst1.setExpirationDate(LocalDate.of(2022, 4, 3));
+        rijst1.setExpirationDate(LocalDate.of(2024, 4, 3));
         rijst1.setPantry(vliegtuigbar);
 
         StockProduct spaghetti1 = new StockProduct();
@@ -250,7 +253,7 @@ public class SeedController {
 
         StockProduct oudeKaas1 = new StockProduct();
         oudeKaas1.setProductDefinition(oudeKaas);
-        oudeKaas1.setExpirationDate(LocalDate.of(2022, 12, 6));
+        oudeKaas1.setExpirationDate(LocalDate.of(2023, 12, 6));
         oudeKaas1.setPantry(vliegtuigbar);
 
         StockProduct pesto1 = new StockProduct();
@@ -268,70 +271,70 @@ public class SeedController {
 // Vegan Cheese
         StockProduct veganCheese1 = new StockProduct();
         veganCheese1.setProductDefinition(veganCheese);
-        veganCheese1.setExpirationDate(LocalDate.of(2022, 11, 15));
+        veganCheese1.setExpirationDate(LocalDate.of(2023, 11, 15));
         veganCheese1.setPantry(veganbar);
         stockProducts.add(veganCheese1);
 
 // Almond Milk
         StockProduct almondMilk1 = new StockProduct();
         almondMilk1.setProductDefinition(almondMilk);
-        almondMilk1.setExpirationDate(LocalDate.of(2022, 8, 21));
+        almondMilk1.setExpirationDate(LocalDate.of(2023, 8, 21));
         almondMilk1.setPantry(veganbar);
         stockProducts.add(almondMilk1);
 
 // Tofu
         StockProduct tofu1 = new StockProduct();
         tofu1.setProductDefinition(tofu);
-        tofu1.setExpirationDate(LocalDate.of(2022, 10, 5));
+        tofu1.setExpirationDate(LocalDate.of(2023, 10, 5));
         tofu1.setPantry(veganbar);
         stockProducts.add(tofu1);
 
 // Seitan
         StockProduct seitan1 = new StockProduct();
         seitan1.setProductDefinition(seitan);
-        seitan1.setExpirationDate(LocalDate.of(2022, 9, 13));
+        seitan1.setExpirationDate(LocalDate.of(2023, 9, 13));
         seitan1.setPantry(veganbar);
         stockProducts.add(seitan1);
 
 // Vegan Yogurt
         StockProduct veganYogurt1 = new StockProduct();
         veganYogurt1.setProductDefinition(veganYogurt);
-        veganYogurt1.setExpirationDate(LocalDate.of(2022, 12, 28));
+        veganYogurt1.setExpirationDate(LocalDate.of(2023, 12, 28));
         veganYogurt1.setPantry(veganbar);
         stockProducts.add(veganYogurt1);
 
 // Tempeh
         StockProduct tempeh1 = new StockProduct();
         tempeh1.setProductDefinition(tempeh);
-        tempeh1.setExpirationDate(LocalDate.of(2022, 6, 17));
+        tempeh1.setExpirationDate(LocalDate.of(2023, 6, 17));
         tempeh1.setPantry(veganbar);
         stockProducts.add(tempeh1);
 
 // Vegan Protein Powder
         StockProduct proteinPowder1 = new StockProduct();
         proteinPowder1.setProductDefinition(veganProteinPowder);
-        proteinPowder1.setExpirationDate(LocalDate.of(2023, 1, 9));
+        proteinPowder1.setExpirationDate(LocalDate.of(2023, 4, 9));
         proteinPowder1.setPantry(veganbar);
         stockProducts.add(proteinPowder1);
 
 // Vegan Butter
         StockProduct veganButter1 = new StockProduct();
         veganButter1.setProductDefinition(veganButter);
-        veganButter1.setExpirationDate(LocalDate.of(2022, 7, 31));
+        veganButter1.setExpirationDate(LocalDate.of(2023, 7, 31));
         veganButter1.setPantry(veganbar);
         stockProducts.add(veganButter1);
 
 // Nutritional Yeast
         StockProduct nutritionalYeast1 = new StockProduct();
         nutritionalYeast1.setProductDefinition(nutritionalYeast);
-        nutritionalYeast1.setExpirationDate(LocalDate.of(2022, 11, 3));
+        nutritionalYeast1.setExpirationDate(LocalDate.of(2023, 11, 3));
         nutritionalYeast1.setPantry(veganbar);
         stockProducts.add(nutritionalYeast1);
 
 // Veggie Burger
         StockProduct veggieBurger1 = new StockProduct();
         veggieBurger1.setProductDefinition(veggieBurger);
-        veggieBurger1.setExpirationDate(LocalDate.of(2022, 8, 7));
+        veggieBurger1.setExpirationDate(LocalDate.of(2023, 8, 7));
         veggieBurger1.setPantry(veganbar);
         stockProducts.add(veggieBurger1);
 
