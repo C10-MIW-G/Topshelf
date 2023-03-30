@@ -2,30 +2,39 @@ package nl.miwgroningen.ch10.topshelf.passwordGenerator;
 
 /**
  * @author Jack Wieringa <j.w.wieringa@st.hanze.nl>
- * <p>
+ *
  * Generates a random password of 12 characters
  */
 
 public class PasswordGenerator {
 
-    private static final int AMOUNT_OF_CHARACTERS = 3;
+    private static final int AMOUNT_OF_CHARACTERS = 12;
+    private static final int AMOUNT_OF_OPTIONS = 1;
+    private static final int MAX = 4;
+    private static final int MIN = 0;
 
     public String generateSecureRandomPassword() {
 
-        StringBuilder stringBuilder = new StringBuilder();
+        StringBuilder characterString = new StringBuilder();
+        StringBuilder passwordString = new StringBuilder();
 
         for (int i = 0; i < AMOUNT_OF_CHARACTERS; i++) {
-            char numbers = getRandomDigitCharacter();
-            char lowerCase = getRandomLowerCaseLetter();
-            char upperCase = getRandomUpperCaseLetter();
-            char character = getRandomCharacter();
+            for (int j = 0; j < AMOUNT_OF_OPTIONS; j++) {
+                characterString.delete(0, 4);
+                char number = getRandomDigitCharacter();
+                char lowerCase = getRandomLowerCaseLetter();
+                char upperCase = getRandomUpperCaseLetter();
+                char symbol = getRandomSymbol();
 
-            stringBuilder.append(numbers);
-            stringBuilder.append(lowerCase);
-            stringBuilder.append(upperCase);
-            stringBuilder.append(character);
+                characterString.append(number);
+                characterString.append(lowerCase);
+                characterString.append(upperCase);
+                characterString.append(symbol);
+            }
+            int index = (int)((Math.random() * (MAX - MIN)) + MIN);
+            passwordString.append(String.valueOf(characterString).charAt(index));
         }
-        return String.valueOf(stringBuilder);
+        return String.valueOf(passwordString);
     }
 
     private static char getRandomCharacter(char char1, char char2) {
@@ -56,7 +65,7 @@ public class PasswordGenerator {
     /**
      * Generate a random character
      */
-    private static char getRandomCharacter() {
+    private static char getRandomSymbol() {
         return getRandomCharacter('!', '%');
     }
 }

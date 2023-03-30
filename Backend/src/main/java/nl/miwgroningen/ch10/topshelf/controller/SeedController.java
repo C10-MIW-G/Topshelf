@@ -1,4 +1,5 @@
 package nl.miwgroningen.ch10.topshelf.controller;
+
 import nl.miwgroningen.ch10.topshelf.model.*;
 import nl.miwgroningen.ch10.topshelf.repository.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -161,9 +162,17 @@ public class SeedController {
         bitterbal.setName("Bitterballs 10pc");
         productDefinitions.add(bitterbal);
 
+        ProductDefinition bitterbals = new ProductDefinition();
+        bitterbals.setName("Bitterballs XXL");
+        productDefinitions.add(bitterbals);
+
         ProductDefinition beer = new ProductDefinition();
         beer.setName("Beer 33cl");
         productDefinitions.add(beer);
+
+        ProductDefinition beers = new ProductDefinition();
+        beers.setName("Beer crate 24 bottles");
+        productDefinitions.add(beers);
 
         ProductDefinition fristi = new ProductDefinition();
         fristi.setName("Fristi 200cl");
@@ -201,44 +210,70 @@ public class SeedController {
 
         productDefinitionRepository.saveAll(productDefinitions);
 
-      stockProductRepository.save(
-        StockProduct.builder()
-                .productDefinition(pasta)
-                .expirationDate(LocalDate.of(2023,4,3))
-                .pantry(gezin)
-                .build());
-                stockProductRepository.save(
-        StockProduct.builder()
-                .productDefinition(tomaten)
-                .expirationDate(LocalDate.of(2023,4,2))
-                .pantry(gezin)
-                .build());
-                stockProductRepository.save(
+        stockProductRepository.save(
                 StockProduct.builder()
-                .productDefinition(melk)
-                .expirationDate(LocalDate.of(2024,2,10))
-                .pantry(gezin)
-                .build());
-                stockProductRepository.save(
+                        .productDefinition(pasta)
+                        .expirationDate(LocalDate.of(2023, 4, 3))
+                        .pantry(gezin)
+                        .build());
+        stockProductRepository.save(
                 StockProduct.builder()
-                .productDefinition(limonade)
-                .expirationDate(LocalDate.of(2023,9,26))
-                .pantry(gezin)
-                .build());
+                        .productDefinition(tomaten)
+                        .expirationDate(LocalDate.of(2023, 4, 2))
+                        .pantry(gezin)
+                        .build());
+        stockProductRepository.save(
+                StockProduct.builder()
+                        .productDefinition(melk)
+                        .expirationDate(LocalDate.of(2023, 7, 10))
+                        .pantry(gezin)
+                        .build());
+        stockProductRepository.save(
+                StockProduct.builder()
+                        .productDefinition(limonade)
+                        .expirationDate(LocalDate.of(2023, 9, 26))
+                        .pantry(gezin)
+                        .build());
+        stockProductRepository.save(
+                StockProduct.builder()
+                        .productDefinition(bananen)
+                        .expirationDate(LocalDate.of(2023, 4, 15))
+                        .pantry(gezin)
+                        .build());
+        stockProductRepository.save(
+                StockProduct.builder()
+                        .productDefinition(beers)
+                        .expirationDate(LocalDate.of(2023, 9, 12))
+                        .pantry(gezin)
+                        .build());
+        stockProductRepository.save(
+                StockProduct.builder()
+                        .productDefinition(beers)
+                        .expirationDate(LocalDate.of(2023, 6, 03))
+                        .pantry(gezin)
+                        .build());
+        stockProductRepository.save(
+                StockProduct.builder()
+                        .productDefinition(bitterbals)
+                        .expirationDate(LocalDate.of(2024, 3, 26))
+                        .pantry(gezin)
+                        .build());
 
-                basicStockProductRepository.save(
-                        BasicStockProduct.builder()
-                                .amount(2).productDefinition(melk)
-                                .pantry(gezin)
-                                .build());
-                basicStockProductRepository.save(
-                        BasicStockProduct.builder()
-                                .amount(2).productDefinition(pasta)
-                                .pantry(gezin)
-                                .build());
-
-
-
+        basicStockProductRepository.save(
+                BasicStockProduct.builder()
+                        .amount(2).productDefinition(melk)
+                        .pantry(gezin)
+                        .build());
+        basicStockProductRepository.save(
+                BasicStockProduct.builder()
+                        .amount(2).productDefinition(pasta)
+                        .pantry(gezin)
+                        .build());
+        basicStockProductRepository.save(
+                BasicStockProduct.builder()
+                        .amount(2).productDefinition(beers)
+                        .pantry(gezin)
+                        .build());
 
 
         StockProduct rijst1 = new StockProduct();
@@ -423,7 +458,7 @@ public class SeedController {
         userRepository.save(lisa);
 
         User tom = new User();
-        tom.setUsername("Tom Waterval");
+        tom.setUsername("Tom");
         tom.setEmail("tom@mit.com");
         tom.setPassword(passwordEncoder.encode("tom123"));
         tom.setRole(Role.USER);
@@ -445,7 +480,6 @@ public class SeedController {
         admin.getUserPantries().add(vliegtuigbar);
         klaas.getUserPantries().add(vliegtuigbar);
         bushra.getUserPantries().add(vliegtuigbar);
-
 
 
         //veganbar
@@ -493,19 +527,19 @@ public class SeedController {
         stockProductRepository.save(
                 StockProduct.builder()
                         .productDefinition(beer)
-                        .expirationDate(LocalDate.of(2024,3,24))
+                        .expirationDate(LocalDate.of(2024, 3, 24))
                         .pantry(survival)
                         .build());
         stockProductRepository.save(
                 StockProduct.builder()
                         .productDefinition(fristi)
-                        .expirationDate(LocalDate.of(2023,12,24))
+                        .expirationDate(LocalDate.of(2023, 12, 24))
                         .pantry(survival)
                         .build());
         stockProductRepository.save(
                 StockProduct.builder()
                         .productDefinition(bitterbal)
-                        .expirationDate(LocalDate.of(2023,7,12))
+                        .expirationDate(LocalDate.of(2023, 7, 12))
                         .pantry(survival)
                         .build());
 
@@ -528,7 +562,6 @@ public class SeedController {
         pantryRepository.save(gezin);
 
 
-
         //woongroep vlinder
 
         vlinder.setUsers(new ArrayList<>());
@@ -540,7 +573,6 @@ public class SeedController {
             userRepository.save(user);
         }
         pantryRepository.save(vlinder);
-
 
 
         return "redirect:/pantry/all";

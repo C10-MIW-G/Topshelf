@@ -7,11 +7,29 @@ import org.junit.jupiter.api.Test;
 
 /**
  * @author Jack Wieringa <j.w.wieringa@st.hanze.nl>
- *
+ * <p>
  * Test function for PasswordGenerator
  */
 
 public class PasswordGeneratorTest {
+
+    @Test
+    public void passwordTest() {
+        PasswordGenerator passwordGenerator = new PasswordGenerator();
+        System.out.println("Password " + passwordGenerator.generateSecureRandomPassword());
+        System.out.println("Password " + passwordGenerator.generateSecureRandomPassword());
+        System.out.println("Password " + passwordGenerator.generateSecureRandomPassword());
+        System.out.println("Password " + passwordGenerator.generateSecureRandomPassword());
+        System.out.println("Password " + passwordGenerator.generateSecureRandomPassword());
+        System.out.println("Password " + passwordGenerator.generateSecureRandomPassword());
+        System.out.println("Password " + passwordGenerator.generateSecureRandomPassword());
+        System.out.println("Password " + passwordGenerator.generateSecureRandomPassword());
+        System.out.println("Password " + passwordGenerator.generateSecureRandomPassword());
+        System.out.println("Password " + passwordGenerator.generateSecureRandomPassword());
+        System.out.println("Password " + passwordGenerator.generateSecureRandomPassword());
+
+        Assertions.assertTrue(true, String.valueOf(false));
+    }
 
     @Test
     @DisplayName("Test if password contains characters")
@@ -62,7 +80,7 @@ public class PasswordGeneratorTest {
     public boolean checkNumber() {
         PasswordGenerator passwordGenerator = new PasswordGenerator();
         String newPassword = passwordGenerator.generateSecureRandomPassword();
-        char[] numbersToSearch = {'0','1','2','3','4','5','6','7','8','9'};
+        char[] numbersToSearch = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
 
         boolean checkIfNumberIsPresent = false;
         for (int i = 0; i < newPassword.length(); i++) {
